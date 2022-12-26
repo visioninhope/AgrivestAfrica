@@ -42,20 +42,22 @@ def s_register(request):
                 sponsor = Sponsor()
                 sponsor.username = name
                 sponsor.user = user
+                res_email = user.email
                 sponsor.save()
                 if user.is_active:
                     authenticate(username=name,pasword=pass1)
                     login(request,user)
-                info = {'username' : name}
-                html_template = 'welcome.html'
-                welcome_message = render_to_string(html_template, context=info)
-                recipient = user.email
-                welcome_mail = threading.Thread(target=send_welcome_mail, args=(welcome_message,recipient))
+                
+                welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
                 welcome_mail.start()
                 return redirect('trades_page')
     return render(request, 'registration/s_register.html')
 
-def send_welcome_mail(welcome_message,recipient):
+def send_welcome_mail(name,res_email):
+    info = {'username' : name}
+    html_template = 'welcome.html'
+    welcome_message = render_to_string(html_template, context=info)
+    recipient = res_email
     subject = 'Welcome To AgriVest Africa'
     sender = settings.EMAIL_HOST_USER
     message = EmailMessage(subject, welcome_message, sender, [recipient])
@@ -205,7 +207,7 @@ def reset_password(request, token):
             print(user.password)
             user.save()
             Password_Token.objects.last().delete()
-            return redirect('homepage')
+            return redirect('trades_page')
     return render(request, 'generic/reset_password.html')
 
 

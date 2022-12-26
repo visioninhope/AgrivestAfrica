@@ -1,5 +1,6 @@
 {% load static %}
 {% load socialaccount %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,15 +71,17 @@
                       <i class="fab fa-twitter green-text"></i>
                   </button>
                   <!--Google +-->
-                  <a href="{% provider_login_url 'google'%}?next=/trades">
-                    <button type="button" class="btn btn-white btn-rounded z-depth-1a animated rotateIn">
-                        <i class="fab fa-google-plus-g green-text"></i>
-                    </button>
-                  </a>
-                  <button type="button"
-                  class="btn btn-white btn-rounded z-depth-1a animated rotateIn">
-                  <i class="fab fa-facebook green-text"></i>
-              </button>
+                <a href="{% provider_login_url 'google'%}?next=/trades">
+                <button type="button" class="btn btn-white btn-rounded z-depth-1a animated rotateIn">
+                    <i class="fab fa-google-plus-g green-text"></i>
+                </button>
+                </a>
+                <a href="{% provider_login_url 'facebook' method='oauth2' %}">
+                <button type="button"
+                    class="btn btn-white btn-rounded z-depth-1a animated rotateIn">
+                    <i class="fab fa-facebook green-text"></i>
+                </button>
+                </a>
               </div>
               <h5 class="text-center text-muted">or</h5>
               <div class="modal-body mx-3">

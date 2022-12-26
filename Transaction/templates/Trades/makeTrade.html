@@ -80,10 +80,10 @@
   {% if messages %}   
       <div class="messBox">
         {% for message in messages %} 
-          {% if message.tags == 'info' %}
+          {% if message.tags == 'error' %}
           <a href="{% url 's_register_page' %}"><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">Create account to continue</div></a>
           {% else %}
-          <a class="text-center" class="btn btn-sm btn-danger  btn-rounded">{{message}}</a>
+          <a><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div></a>
           {% endif %}
         {% endfor %}
       </div>

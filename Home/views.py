@@ -7,7 +7,7 @@ from Asset.models import Trade
 
 
 def home(request):
-    # logout(request)
+    logout(request)
     trades = Trade.objects.all()
     sliderT = Trade.objects.all().order_by('-id')[:3]
     x = (Trade.objects.all().count() / 3)

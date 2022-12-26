@@ -24,10 +24,7 @@ def trades(request):
 
 def makeTrade(request, id):
     trade = Trade.objects.get(id=id)
-    end = trade.end_date
-    start = trade.start_date
     if request.method == 'POST':
-
         if request.user.is_authenticated:
             customer = User.objects.get(username=request.user)
             units = int(request.POST.get('units'))
@@ -74,9 +71,9 @@ def makeTrade(request, id):
                 tradeLog.total_cost = tradeInvoice.total_cost
                 tradeLog.status = 'Pending'
                 tradeLog.save()
+                return redirect('trades_page')
         else:
-            messages.info(request, 'Create Account to continue')
-
+            messages.error(request, 'Create Account to continue')
             '''
             mobileNumber = request.POST.get('mobile')
             amount = int(request.POST.get('amount'))
@@ -192,11 +189,6 @@ def markets(request):
         'markets' : markets
     }
     return render(request, 'Markets/markets.html', context)
-
-
-
-
-
 
 
 
