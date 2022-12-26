@@ -19,7 +19,7 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = ['https://agrivestafrica-production.up.railway.app','www.agrivestafrica.com']
 AUTH_USER_MODEL = 'Log.User'
 
-CSRF_TRUSTED_ORIGINS = ['https://agrivestafrica-production.up.railway.app','www.agrivestafrica.com']
+CSRF_TRUSTED_ORIGINS = ['https://agrivestafrica-production.up.railway.app','https://www.agrivestafrica.com']
 # Application definition
 
 INSTALLED_APPS = [
