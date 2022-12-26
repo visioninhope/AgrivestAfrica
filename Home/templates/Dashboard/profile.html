@@ -1,0 +1,325 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgrivestAfrica</title>
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <meta charset="utf-8">
+  <meta name="description" content="
+  Sign Up with Grow For Me for the opportunity to invest in new farms, manage and monitor old farms. " />
+  <meta name="keywords" content=" Grow For Me, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+  crop, africa, ghana, nigeria, india, agriculture, green technology " />
+  <meta name="subject" content="AgriVestAfrica">
+  <meta name="copyright" content="AgriVestAfrica">
+  <link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+    <link rel = "stylesheet" href = "{% static 'dashboard/main.css' %}">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .imagePreview {
+            width: 100%;
+            height: 180px;
+            background-position: center center;
+            background: url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+            background-color: #fff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: inline-block;
+            box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            display: block;
+            border-radius: 0px;
+            box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.2);
+            margin-top: -5px;
+        }
+
+        .imgUp {
+            margin-bottom: 15px;
+        }
+
+        .del {
+            position: absolute;
+            top: 0px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+
+        .imgAdd {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #4bd7ef;
+            color: #fff;
+            box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            line-height: 30px;
+            margin-top: 0px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .rgba-gradient1 {
+            background: -moz-linear-gradient(45deg, rgba(57, 221, 16, 0.7), rgba(19, 77, 5, 0.7) 60%);
+            background: -webkit-linear-gradient(45deg, rgba(14, 233, 25, 0.7), rgba(3, 46, 3, 0.7) 40%);
+            background: -webkit-gradient(linear, 45deg, from(rgba(7, 226, 36, 0.7)), to(rgba(103, 224, 87, 0.5)));
+            background: -o-linear-gradient(45deg, rgba(60, 230, 8, 0.2), rgba(20, 85, 3, 0.7) 50%);
+            background: linear-gradient(to 45deg, rgba(57, 238, 11, 0.7), rgba(9, 61, 4, 0.7) 20%);
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class = "dashboard-pg text-grey-blue">
+        <nav class = "navigation-bar d-flex align-items-center">
+            <div class = "container">
+                <div class = "row align-items-center">
+                    <div class = "navigation-bar-left col-6 d-flex align-items-center">
+                        <button type = "button" class = "navbar-open-btn text-grey-blue me-3">
+                            <i class = "fas fa-bars"></i>
+                        </button>
+                      
+                    </div>
+
+                    <div class = "navigation-bar-right col-6 d-flex align-items-center justify-content-end">
+                        <a href = "#" class = "profile-btn bg-blue  btn-circle me-3">
+                            <i class = "fas fa-user"></i>
+                        </a>
+                        <button type = "button" class = "notification-btn text-grey-blue">
+                            <i class = "fa-regular fa-bell"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class = "navigation-overlay position-fixed"></div>
+
+        {% include 'Dashboard/nav.html' %}
+
+    </div>
+    <br>
+    <br>
+
+    <!--Section: Live preview-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class=" card col-md-4 imgUp">
+                <div class="imagePreview"></div>
+                <label class="btn btn-success">
+                    <small>select Photo</small><input type="file" class="uploadFile img" value="Upload Photo"
+                        style="width: 0px;height: 0px;overflow: hidden;">
+                </label>
+            </div><!-- row -->
+        </div><!-- container -->
+       
+
+        <div class="row card">
+            <div class="container my-5 py-5 ">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 ">
+                      <!-- Default inline 1-->
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                          <input type="checkbox" class="custom-control-input" id="defaultInline1">
+                          <label class="custom-control-label" for="defaultInline1">As A Sponsor</label>
+                      </div>
+          
+                      <!-- Default inline 2-->
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                          <input type="checkbox" class="custom-control-input" id="defaultInline2">
+                          <label class="custom-control-label" for="defaultInline2">As A Farmer</label>
+                      </div>
+          
+                      <!-- Default inline 3-->
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                          <input type="checkbox" class="custom-control-input" id="defaultInline3">
+                          <label class="custom-control-label" for="defaultInline3">As An Offtaker</label>
+                      </div>
+                  </div>
+                  <div class="col-md-3"></div>
+                  </div>
+                  <br>
+                  <br>
+                <!--Section: Content-->
+                <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+            
+            
+                  <!--Grid row-->
+                  <div class="row d-flex justify-content-center">
+            
+                    <!--Grid column-->
+                    <div class="col-md-10">
+            
+                      <!-- Default form register -->
+                      <form class="text-center" action="#!">
+                        <div class="form-row mb-4">
+                          <div class="col">
+                            <!-- First name -->
+                            <input type="text"  class="form-control" placeholder="First name">
+                          </div>
+                          <div class="col">
+                            <!-- Last name -->
+                            <input type="text"  class="form-control" placeholder="Middle name">
+                          </div>
+                        
+                        </div>
+        
+                        <div class="form-row mb-4">
+                         
+                            <div class="col">
+                              <!-- Last name -->
+                              <input type="text"  class="form-control" placeholder="Last name">
+                            </div>
+                            <div class="col">
+                                <!-- Last name -->
+                                <input type="text"  class="form-control" placeholder="Gender">
+                              </div>
+                          </div>
+          
+                        <div class="form-row mb-4">
+                            <div class="col">
+                              <!-- First name -->
+                              <input type="text"  class="form-control" placeholder="Date Of Birth">
+                            </div>
+                            <div class="col">
+                              <!-- Last name -->
+                              <input type="text"  class="form-control" placeholder="Phone Number">
+                            </div>
+                          
+                          </div>
+                          <div class="form-row mb-4">
+                            <div class="col">
+                              <!-- First name -->
+                              <input type="text"  class="form-control" placeholder="IDcard and Number">
+                            </div>
+                            <div class="col">
+                              <!-- Last name -->
+                              <input type="text"  class="form-control" placeholder="Nationality">
+                            </div>
+                          </div>
+                
+                        <!-- Password -->
+                        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Residential Address"
+                          aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                          <br>
+                          <div class="form-row mb-4">
+                            <div class="col">
+                              <!-- First name -->
+                              <input type="text"  class="form-control" placeholder="Email Address">
+                            </div>
+                            <div class="col">
+                              <!-- Last name -->
+                              <input type="text"  class="form-control" placeholder="Referral Code">
+                            </div>
+                          </div>
+                          <h6 class="font-weight-bold text-center">
+                            Next Of Kin Details
+                          </h6>
+                          <div class="form-row mb-4">
+                            <div class="col">
+                              <!-- First name -->
+                              <input type="text"  class="form-control" placeholder="Name In Full">
+                            </div>
+                            <div class="col">
+                              <!-- Last name -->
+                              <input type="text"  class="form-control" placeholder="Relation">
+                            </div>
+                         </div>
+                         <div class="form-row mb-4">
+                            <div class="col">
+                                <!-- First name -->
+                                <input type="text"  class="form-control" placeholder="Full Number">
+                              </div>
+                              <div class="col">
+                                <!-- Last name -->
+                                <input type="text"  class="form-control" placeholder="Residentail Address">
+                              </div>
+                          </div>
+                            <button class="btn btn-rounded rgba-gradient1 text-white">Save Profile</button>
+                      </form>
+                      <!-- Default form register -->
+            
+                    </div>
+                    <!--Grid column-->
+            
+                  </div>
+                  <!--Grid row-->
+            
+            
+                </section>
+                <!--Section: Content-->
+              </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+    </div>
+
+    <!-- Footer Elements -->
+    <footer class="page-footer font-small green darken-3">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2022 Copyright:
+            <a href=""> AgriVestAfrica.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="{% static 'dashboard/script.js' %}"></script>
+    <script>
+        $(".imgAdd").click(function () {
+            $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+        });
+        $(document).on("click", "i.del", function () {
+            $(this).parent().remove();
+        });
+        $(function () {
+            $(document).on("change", ".uploadFile", function () {
+                var uploadFile = $(this);
+                var files = !!this.files ? this.files : [];
+                if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+                if (/^image/.test(files[0].type)) { // only image file
+                    var reader = new FileReader(); // instance of the FileReader
+                    reader.readAsDataURL(files[0]); // read the local file
+
+                    reader.onloadend = function () { // set image data as background of div
+                        //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+                        uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
+                    }
+                }
+
+            });
+        });
+    </script>
+
+</body>
+
+</html>

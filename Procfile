@@ -1,0 +1,1 @@
+web: gunicorn AgrivestAfrica.wsgi --log-file -

@@ -1,0 +1,224 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#33b5e5">
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <meta charset="utf-8">
+
+    <link rel="canonical" href="https://mdbootstrap.com/docs/standard/content-styles/animations/" />
+    <meta name="description" content="
+    Sign Up with Grow For Me for the opportunity to invest in new farms, manage and monitor old farms. " />
+    <meta name="keywords" content=" Grow For Me, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+    crop, africa, ghana, nigeria, india, agriculture, green technology " />
+    <meta name="subject" content="AgriVestAfrica">
+    <meta name="copyright" content="AgriVestAfrica">
+    <link rel="shortcut icon" href="img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="{% static 'Log/signup.css' %}">
+
+    <head>
+         <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar justify-content-center">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'homepage' %}">
+            <strong>AgriVestAfrica</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
+            aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="farm.html">Farm</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="trade.html">Trade</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="buy.html">Buy</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">About</a>
+                <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="about.html">About Us</a>
+                  <a class="dropdown-item" href="traction.html">Our Traction</a>
+                  <a class="dropdown-item" href="meet team.html">Team</a>
+                  <a class="dropdown-item" href="board.html">Our Board</a>
+                  <a class="dropdown-item" href="Advisores.html">Our Advisors</a>
+                  <a class="dropdown-item" href="testimonial.html">Testimonials</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">How It Works</a>
+                <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="how to .html">Get Started</a>
+                  <a class="dropdown-item" href="faq.html">FAQ</a>
+                  <a class="dropdown-item" href="webinar.html">Webinar Registration</a>
+                  <a class="dropdown-item" href="referral.html">Referrals</a>
+                  <a class="dropdown-item" href="img/Agrivest africa.pdf">Offline Guide</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Investors</a>
+                <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="investors.html">Investors</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="what we do.html">What we do</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="galllery.html">Our Gallery</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login_page' %}">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Full Page Intro -->
+    </head>
+
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class=" col-md-4  mb-4">
+                <section class="form-elegant">
+                    <!--Form without header-->
+                    <div class="card">
+
+                        <div class="card-body mx-6">
+                            <!--Header-->
+                            <div class="text-center">
+                              <h6 class="green-text mb-5">
+                                  {% block header %}
+                                  <strong>Sign up As A Sponsor</strong>
+                                  {% endblock header %}
+                                  <hr>
+                              </h6>
+                            </div>
+                            {% if messages %}
+                              {% for message in messages %}
+                              <div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div>
+                              {% endfor %}
+                            {% endif %}
+                            <div class="row my-3 d-flex justify-content-center">
+                                <!--Facebook-->
+                                <button type="button"
+                                    class="btn btn-white btn-rounded mr-md-3 z-depth-1a animated rotateIn">
+                                    <i class="fab fa-instagram green-text text-center"></i>
+                                </button>
+                                <!--Twitter-->
+                                <button type="button"
+                                    class="btn btn-white btn-rounded mr-md-3 z-depth-1a animated rotateIn">
+                                    <i class="fab fa-twitter green-text"></i>
+                                </button>
+                                <!--Google +-->
+                                <a href="{% provider_login_url 'google'%}?next=/trades">
+                                  <button type="button" class="btn btn-white btn-rounded z-depth-1a animated rotateIn">
+                                      <i class="fab fa-google-plus-g green-text"></i>
+                                  </button>
+                                </a>
+                                <button type="button" class="btn btn-white btn-rounded z-depth-1a animated rotateIn">
+                                    <i class="fab fa-facebook green-text"></i>
+                                </button>
+                            </div>
+                            <h5 class="text-center text-muted">or</h5>
+                            <!--Body-->
+                            <div class="md-form">
+                                <input type="text" id="Form-FullName" class="form-control" name="username" required>
+                                <label for="Form-FullName">Your Username</label>
+                            </div>
+                            <div class="md-form mb-5">
+                                <input type="email" id="defaultForm-email" class="form-control validate" name="email" required>
+                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your
+                                    email</label>
+                            </div>
+                            <div class="md-form pb-3">
+                                <input type="password" id="Form-pass1" class="form-control" name="pass1" required>
+                                <label for="Form-pass1">Your password</label>
+                            </div>
+                            <div class="md-form pb-3">
+                                <input type="password" id="Form-conpass1" class="form-control" name="pass2" required>
+                                <label for="Form-conpass1">Confirm password</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="materialInline4" required>
+                                <label class="form-check-label text-muted" for="materialInline4">Accept all our <a
+                                        href="">Terms</a> and <a href="">Conditions</a></label>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="text-center mb-3">
+                                <button type="submit" class="btn green btn-block btn-rounded z-depth-1a  white-text">Sign
+                                    Up</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Form without header-->
+
+                </section>
+
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </form>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small green darken-3">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2022 Copyright:
+            <a href=""> AgriVestAfrica.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+
+
+    <script type="text/javascript"
+        src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
+
+
+    <script type="text/javascript"
+        src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
+    <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1200,
+        })
+
+    </script>
+
+</body>
+
+</html>

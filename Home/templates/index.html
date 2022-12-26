@@ -1,0 +1,602 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="theme-color" content="#33b5e5">
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <meta charset="utf-8">
+  <meta name="description" content="
+  Sign Up with Grow For Me for the opportunity to invest in new farms, manage and monitor old farms. " />
+  <meta name="keywords" content=" Grow For Me, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+  crop, africa, ghana, nigeria, india, agriculture, green technology " />
+  <meta name="subject" content="AgriVestAfrica">
+  <meta name="copyright" content="AgriVestAfrica">
+  <link rel="shortcut icon" href="media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+  <link rel="stylesheet" href="{% static 'home/index.css' %}">
+
+
+  <header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar justify-content-center">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <strong>AgriVestAfrica</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
+          aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'farms_page' %}">Farm</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'trades_page' %}">Trade</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'markets_page' %}">Market</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">About</a>
+              <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="about.html">About Us</a>
+                <a class="dropdown-item" href="traction.html">Our Traction</a>
+                <a class="dropdown-item" href="meet team.html">Team</a>
+                <a class="dropdown-item" href="board.html">Our Board</a>
+                <a class="dropdown-item" href="Advisores.html">What we do</a>
+                <a class="dropdown-item" href="testimonial.html">Testimonials</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">How It Works</a>
+              <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="how to .html">Get Started</a>
+                <a class="dropdown-item" href="faq.html">FAQ</a>
+                <a class="dropdown-item" href="webinar.html">Webinar Registration</a>
+                <a class="dropdown-item" href="referral.html">Referrals</a>
+                <a class="dropdown-item" href="img/Agrivest africa.pdf">Offline Guide</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Investors</a>
+              <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="investors.html">Investors</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="galllery.html">Our Gallery</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">     
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" style="font-family: 'Alegreya Sans SC', sans-serif;" href="{% url 'dashboard' %}">{{user.username}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout_page' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login_page' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 's_register_page' %}">Sign-Up</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="#">NGO</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Full Page Intro -->
+    <div class="view"
+      style="background-image: url('media/img/soybean-isolated-white-background_74190-7801.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      <!-- Mask & flexbox options-->
+      <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+        <!-- Content -->
+        <div class="container">
+          <br>
+          <br>
+          <br>
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 ">
+              <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">Join AgrivestAfrica
+              </h1>
+              <hr class="hr-light">
+              <h6 class="mb-4">AgriVestAfrica is a farmer-owned and equity crowdfunding platform focused on bridging the gap between investors and agri-value chain. Our goal is to maximize the investors returns and help farmers get good returns while lowering risk. </h6>
+              <a class="btn btn-outline-white btn-rounded"
+                href="{% url 's_register_page' %}">As
+                A Sponsor</a>
+              <a class="btn btn-success btn-rounded"
+                href="{% url 'f_register_page' %}">As
+                A Farmer</a>
+              <a class="btn btn-outline-white btn-rounded"
+                href="{% url 'o_register_page' %}">As
+                An Offtaker</a>
+            </div>
+          </div>
+
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+    </div>
+    <!-- Full Page Intro -->
+  </header>
+  <!-- Main navigation -->
+</head>
+
+<body>
+  <br>
+  <br>
+  <br>
+
+  <section class="section-preview container">
+    <h3 class="font-weight-bold mb-4 text-center green-text">What We Grow</h3>
+    <!--Carousel Wrapper-->
+    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+      <!--Controls-->
+      <div class="controls-top">
+        <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i
+            class="fas fa-chevron-left green"></i></a>
+        <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
+            class="fas fa-chevron-right green"></i></a>
+      </div>
+      <!--/.Controls-->
+
+      <!--Indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+        <li data-target="#multi-item-example" data-slide-to="1"></li>
+        <li data-target="#multi-item-example" data-slide-to="2"></li>
+      </ol>
+      <!--/.Indicators-->
+
+      <!--Slides-->
+      <div class="carousel-inner" role="listbox">
+
+        <!--First slide-->
+        <div class="carousel-item active text-center">
+  
+          {% for trade in slide1 %}
+          <div class="col-md-4 overlay zoom text-center ">
+            <div class="card mb-2">
+              <img class="card-img-top" src="{{trade.image.url}}"
+                alt="Card image cap">
+              <div class="card-body">
+                  {% if trade.status == 'Available' %}
+                  <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
+                  {% else %}
+                  <a class="btn btn-danger btn-rounded">Sold Out</a>
+                  {% endif %}
+                <hr>
+                <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
+                <p class="card-text">{{trade.description|slice:":230"}}...</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+  
+        </div>
+        <!--/.First slide-->
+  
+        <!--Second slide-->
+        <div class="carousel-item">
+          
+          {% for trade in slide2 %}
+          <div class="col-md-4 overlay zoom text-center ">
+            <div class="card mb-2">
+              <img class="card-img-top" src="{{trade.image.url}}"
+                alt="Card image cap">
+              <div class="card-body">
+                  {% if trade.status == 'Available' %}
+                  <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
+                  {% else %}
+                  <a class="btn btn-danger btn-rounded">Sold Out</a>
+                  {% endif %}
+                <hr>
+                <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
+                <p class="card-text">{{trade.description|slice:":230"}}...</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+  
+        </div>
+        <!--/.Second slide-->
+  
+        <!--Third slide-->
+        <div class="carousel-item">
+          {% for trade in slide3 %}
+          <div class="col-md-4 overlay zoom text-center ">
+            <div class="card mb-2">
+              <img class="card-img-top" src="{{trade.image.url}}"
+                alt="Card image cap">
+              <div class="card-body">
+                  {% if trade.status == 'Available' %}
+                  <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
+                  {% else %}
+                  <a class="btn btn-danger btn-rounded">Sold Out</a>
+                  {% endif %}
+                <hr>
+                <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
+                <p class="card-text">{{trade.description|slice:":230"}}...</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+  
+        </div>
+        <!--/.Third slide-->
+  
+      </div>
+      <!--/.Slides-->
+
+    </div>
+    <!--/.Carousel Wrapper-->
+
+  </section>
+
+  <hr>
+ 
+
+  <section class="section-preview container">
+    <h3 class="font-weight-bold mb-4 text-center green-text">What We Trade  {{min_slide2.image.url}}</h3>
+    <!--Carousel Wrapper-->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="1800">
+      <div class="carousel-inner">
+      <!--Slides-->
+      
+      <div class="carousel-item active text-center">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-2  overlay zoom z-depth-1">                             
+              <img class="card-img-top" src="{{min_slide1.image.url}}" alt="Card image cap">
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            {% for i in min_slide2 %}
+            <div class="card mb-2 overlay zoom">
+              <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap">
+            </div>
+            {% endfor %}
+          </div>
+          <div class="col-md-4 overlay zoom text-center">
+            {% for i in min_slide3 %}
+            <div class="card mb-2">
+              <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="310px" height="310px">
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="row">
+        <div class="col-md-4 overlay zoom text-center">
+          {% for i in min_slide4 %}
+          <div class="card mb-2">
+            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="300px" height="300px">
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 overlay zoom text-center">
+          {% for i in min_slide5 %}
+          <div class="card mb-2">
+            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="280px"
+              height="280px">
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 overlay zoom text-center">
+          {% for i in min_slide6 %}
+          <div class="card mb-2">
+            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="320px"
+              height="320px">
+          </div>
+          {% endfor %}
+        </div>
+        </div>
+      </div>
+    <!--/.Carousel Wrapper-->
+</div>
+
+  </section>
+
+  </div>
+
+  <div class="container mt-5 z-depth-3">
+    <br>
+    <h5 class="font-weight-bold text-center green-text">How We Operate</h5>
+    <br>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <div class="card mb-2 overlay zoom">
+          <img class="card-img-top"
+            src="media/img/Pink Green Organic Don't Waste Your Energy Quote Instagram Post (4).gif"
+            alt="Card image cap">
+        </div>
+      </div>
+      
+      <div class="col-md-4 overlay zoom text-center">
+        <div class="card mb-2">
+          <img src="media/img/Pink Green Organic Don't Waste Your Energy Quote Instagram Post (5).gif">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-2  overlay zoom z-depth-1">
+          <img src="media/img/Pink Green Organic Don't Waste Your Energy Quote Instagram Post (6).gif" alt="Card image cap">
+        </div>
+        <br>
+        <br>
+        <a class="btn btn-outline-white btn-rounded"
+        href="what we do.html">Read More</a>
+        <a class="btn btn-outline-white btn-rounded"
+        href="Sign-up.html">As
+        An Offtaker</a>
+      </div>
+      
+    </div>
+  </div>
+   
+  <br>
+
+
+  
+
+
+  <!-- Jumbotron -->
+  <div class="card card-image" style="background-image: url(media/img/close-up-different-legumes-bowls_1205-86.webp);">
+    <div class="text-white text-center rgba-gradient py-5 px-4">
+      <div class="py-5">
+
+        <!-- Content -->
+        <h4 class="card-title font-weight-bold mb-4  ">Join AgriVestAfrica Today</h4>
+        <p class="mb-4 pb-2 px-md-5 mx-md-5">
+          As seen in the above benefits, the farming and agriculture industry overall can really benefit from
+          implementation of such an IoT solution or platform. Not only is a smart agriculture solution the innovative
+          farming method of today, it is the key solution to the growing concern of the global population’s food
+          consumption and environmental footprint.
+          comfort zone as well</p>
+          <a class="btn btn-outline-white btn-rounded"
+          href="Sign-up.html">As
+          A Sponsor</a>
+        <a class="btn btn-success btn-rounded"
+          href="sign-up farmer.html">As
+          A Farmer</a>
+        <a class="btn btn-outline-white btn-rounded"
+          href="sign-up offtaker.html">As
+          An Offtaker</a>
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+
+  <br>
+
+  </div>
+  </section>
+
+
+  <div class="container z-depth-1 my-5">
+
+    <section class="text-center py-5">
+
+      <p class="mb-4 pb-2 lead font-weight-bold">Our Partners</p>
+
+      <!-- Logo carousel -->
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="1800">
+        <div class="carousel-inner">
+          <!-- First slide -->
+          <div class="carousel-item active">
+            <!--Grid row-->
+            <div class="row">
+
+              <!--First column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/5.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/First column-->
+
+              <!--Second column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/7.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Second column-->
+
+              <!--Third column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/6.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Third column-->
+
+              <!--Fourth column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/9.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Fourth column-->
+
+            </div>
+            <!--/Grid row-->
+          </div>
+          <!-- First slide -->
+
+          <!-- Second slide -->
+          <div class="carousel-item">
+            <!--Grid row-->
+            <div class="row">
+
+              <!--First column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/11.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/First column-->
+
+              <!--Second column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/10.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Second column-->
+
+              <!--Third column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/12.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Third column-->
+
+              <!--Fourth column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/13.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Fourth column-->
+
+            </div>
+            <!--/Grid row-->
+          </div>
+          <!-- Second slide -->
+
+          <!-- Third slide -->
+          <div class="carousel-item">
+            <!--Grid row-->
+            <div class="row">
+
+              <!--First column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/1a.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/First column-->
+
+              <!--Second column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/2a.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Second column-->
+
+              <!--Third column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/3a.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Third column-->
+
+              <!--Fourth column-->
+              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
+                <img src="https://mdbootstrap.com/img/Photos/Template/4a.png" class="img-fluid px-4" alt="Logo">
+              </div>
+              <!--/Fourth column-->
+
+            </div>
+            <!--/Grid row-->
+          </div>
+          <!-- Third slide -->
+        </div>
+
+      </div>
+      <!-- Logo carousel -->
+
+    </section>
+
+  </div>
+  <br>
+
+
+
+  <!-- Footer -->
+
+  <!-- Footer Elements -->
+  <footer class="page-footer font-small green darken-3">
+    <div class="container">
+
+      <!-- Grid row-->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-12 py-5">
+          <h4 class="card-title font-weight-bold mb-4  text-center animated tada infinite ">Follow Us On:</h4>
+
+          <div class="mb-1 flex-center">
+
+            <!-- Facebook -->
+            <a type="button" href="https://web.facebook.com/agrivestafrica" class="btn-floating"><i
+                class="fab fa-facebook-f"></i></a>
+            <!-- Twitter -->
+            <a type="button" class="btn-floating"><i class="fab fa-twitter"></i></a>
+            <!-- Google + -->
+            <a type="button" href="https://www.linkedin.com/in/agrivestafrica-bb6a23258/" class="btn-floating"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a type="button" class="btn-floating"><i class="fab fa-instagram"></i></a>
+
+          </div>
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row-->
+
+    </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2022 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/"> AgriVestAfrica.com</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+
+
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
+
+
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
+  <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+
+  <script>
+    AOS.init({
+      duration: 1800,
+    })
+    $('.carousel.carousel-multi-item.v-2 .carousel-item').each(function () {
+      var next = $(this).next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
+      next.children(':first-child').clone().appendTo($(this));
+
+      for (var i = 0; i < 4; i++) {
+        next = next.next();
+        if (!next.length) {
+          next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+      }
+    });
+  </script>
+
+</body>
+
+</html>
