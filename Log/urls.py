@@ -16,4 +16,5 @@ urlpatterns = [
 
     path('welcome', views.welcome),
     #path('mail/',views.mail, name='mail')
+    path('tes/', views.tes)
 ]

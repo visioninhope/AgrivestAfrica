@@ -129,9 +129,12 @@ def login_user(request):
         if User.objects.filter(username=username).exists():
             user_username = User.objects.get(username=username).username
             user = authenticate(username=user_username, password=user_password)
-            if user.is_active:
-                login(request, user)
-                return redirect('trades_page')
+            if user:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('trades_page')
+            else:
+                messages.info(request, 'invalid credentials')
         elif User.objects.filter(email=username).exists():
             user_username = User.objects.get(email=username).username
             user = authenticate(username=user_username, password=user_password)
@@ -155,34 +158,37 @@ def forgot_password(request):
         if User.objects.filter(username=username).exists():
             user = User.objects.get(username=username)
             email = User.objects.get(username=username).email
-            token = randint(1000,9999)
-            pass_token = Password_Token()
-            pass_token.user = user
-            pass_token.token = token
-            pass_token.save()
-            #################
-            subject = 'Reset Password'
-            html_template = 'index.html'
-            lis = {
-                'king' : 'me'
-            }
-            html_message = render_to_string(html_template, context=lis)
-            mail_thread = threading.Thread(target=send_reset_email, args=(subject, html_message, email))
+            mail_thread = threading.Thread(target=send_reset_email, args=(user,email))
             mail_thread.start()
-            ################
+            messages.info(request, f'An email has been sent to {email}')
+        elif User.objects.filter(email=username).exists():
+            user = User.objects.get(email=username)
+            email = User.objects.get(email=username).email
+            mail_thread = threading.Thread(target=send_reset_email, args=(user,email))
+            mail_thread.start()
+            messages.info(request, f'An email has been sent to {email}')
         else:
             print('user non existent')
     return render(request, 'generic/forgot_password.html')
 
-def send_reset_email(subject, html_message, email):
+def send_reset_email(user,email):
+    token = randint(1000,9999)
+    pass_token = Password_Token()
+    pass_token.user = user
+    pass_token.token = token
+    pass_token.save()
+    link = f"https://agrivestafrica-production.up.railway.app/reset_password/{token}/"
+    subject = 'Reset Password'
+    html_template = 'generic/reset_mail.html'
+    lis = {
+        'link' : link,
+        'token' : token
+    }
+    html_message = render_to_string(html_template, context=lis)
     mail_from = settings.EMAIL_HOST_USER
     message = EmailMessage(subject, html_message, mail_from, [email])
     message.content_subtype = 'html'
     message.send()
-    #message = f"Follow link to reset password http://127.0.0.1:8000/reset_password/{token}/"
-    #print(message)
-    #recipient = email
-    #send_mail(subject, message, , [recipient], fail_silently=False)
     
 def reset_password(request, token):
     pass_user = Password_Token.objects.get(token=token).user
@@ -190,13 +196,22 @@ def reset_password(request, token):
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
         if len(pass1) < 4:
-            print('pass too short')
+            messages.info(request, f'Password Too Weak')
         elif pass1 != pass2:
-            print('passwords dont match')
+            messages.info(request, "Passwords don't match")
         else:
             user = User.objects.get(username=pass_user)
             user.password = make_password(pass1)
             print(user.password)
             user.save()
+            Password_Token.objects.last().delete()
             return redirect('homepage')
     return render(request, 'generic/reset_password.html')
+
+
+
+def tes(request):
+    context = {
+        'token' : 0000
+    }
+    return render(request, 'generic/reset_mail.html')
