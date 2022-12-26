@@ -194,7 +194,11 @@
 </head>
 
 <body>
-
+  {% if messages %}
+    {% for message in messages %}
+        <div class="text-center"><button type="button" class="btn btn-sm  btn-success  btn-rounded">{{message}}</div>
+    {% endfor %}
+  {% endif %}
 <!-- Rotating card -->
    <div class="container">
     {% for trades in tradeRow %}
