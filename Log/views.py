@@ -204,7 +204,6 @@ def reset_password(request, token):
         else:
             user = User.objects.get(username=pass_user)
             user.password = make_password(pass1)
-            print(user.password)
             user.save()
             Password_Token.objects.last().delete()
             return redirect('trades_page')
