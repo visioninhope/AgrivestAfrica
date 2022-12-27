@@ -127,57 +127,60 @@ def farms(request):
     return render(request, 'Farms/farms.html', context)
 
 def makeFarm(request, id):
-    customer = User.objects.get(username=request.user)
     farm = Farm.objects.get(id=id)
     end = farm.end_date
     start = farm.start_date
     if request.method == 'POST':
-        units = int(request.POST.get('units'))
-        total_cost = (units * farm.price) + ((units * farm.price) * (farm.service_charge / 100))
-        farm_name = request.POST.get('farm_name')
-        extra_notes = request.POST.get('extra_notes')
-        farmInvoice = FarmInvoice()
-        if FarmInvoice.objects.filter(customer=request.user).filter(farm_name=farm_name).exists():
-            messages.info(request, f"You already have a farm named {farm_name}")
+        if request.user.is_authenticated:
+            customer = User.objects.get(username=request.user)
+            units = int(request.POST.get('units'))
+            total_cost = (units * farm.price) + ((units * farm.price) * (farm.service_charge / 100))
+            farm_name = request.POST.get('farm_name')
+            extra_notes = request.POST.get('extra_notes')
+            farmInvoice = FarmInvoice()
+            if FarmInvoice.objects.filter(customer=request.user).filter(farm_name=farm_name).exists():
+                messages.info(request, f"You already have a farm named {farm_name}")
+            else:
+                farmInvoice.farm_name = farm_name
+                farmInvoice.customer = customer
+                farmInvoice.farm = farm.name
+                farmInvoice.location = farm.location
+                farmInvoice.price = farm.price
+                farmInvoice.units = units
+                farmInvoice.profit_range_min = farm.ros_min
+                farmInvoice.profit_range_max = farm.ros_max
+                farmInvoice.start_date = farm.start_date
+                farmInvoice.end_date = farm.end_date
+                farmInvoice.base_cost = units * farm.price
+                farmInvoice.service_charge = farm.service_charge
+                farmInvoice.total_cost = total_cost
+                farmInvoice.pros_min = round((units * farm.price) * (farm.ros_min/100))
+                farmInvoice.pros_max = round((units * farm.price) * (farm.ros_max/100))
+                farmInvoice.totalreturn_min = (int(farmInvoice.base_cost) + int(farmInvoice.pros_min))
+                farmInvoice.totalreturn_max = (int(farmInvoice.base_cost) + int(farmInvoice.pros_max))
+                if extra_notes != '':
+                    farmInvoice.extra_notes = extra_notes
+                farmInvoice.status = 'Pending'
+                payment = request.POST.get('payment')
+                farmInvoice.payment = payment
+                farmInvoice.save()
+                farmLog = FarmLog()
+                farmLog.farm_name = farm_name
+                farmLog.customer = customer
+                farmLog.location = farm.location
+                farmLog.price = farm.price
+                farmLog.units = units
+                farmLog.profit_range_min = farm.ros_min
+                farmLog.profit_range_max = farm.ros_max
+                farmLog.start_date = farm.start_date
+                farmLog.end_date = farm.end_date
+                farmLog.base_cost = units * farm.price
+                farmLog.service_charge = farm.service_charge
+                farmLog.total_cost = total_cost
+                farmLog.status = 'Pending'
+                farmLog.save()
         else:
-            farmInvoice.farm_name = farm_name
-            farmInvoice.customer = customer
-            farmInvoice.farm = farm.name
-            farmInvoice.location = farm.location
-            farmInvoice.price = farm.price
-            farmInvoice.units = units
-            farmInvoice.profit_range_min = farm.ros_min
-            farmInvoice.profit_range_max = farm.ros_max
-            farmInvoice.start_date = farm.start_date
-            farmInvoice.end_date = farm.end_date
-            farmInvoice.base_cost = units * farm.price
-            farmInvoice.service_charge = farm.service_charge
-            farmInvoice.total_cost = total_cost
-            farmInvoice.pros_min = round((units * farm.price) * (farm.ros_min/100))
-            farmInvoice.pros_max = round((units * farm.price) * (farm.ros_max/100))
-            farmInvoice.totalreturn_min = (int(farmInvoice.base_cost) + int(farmInvoice.pros_min))
-            farmInvoice.totalreturn_max = (int(farmInvoice.base_cost) + int(farmInvoice.pros_max))
-            if extra_notes != '':
-                farmInvoice.extra_notes = extra_notes
-            farmInvoice.status = 'Pending'
-            payment = request.POST.get('payment')
-            farmInvoice.payment = payment
-            farmInvoice.save()
-            farmLog = FarmLog()
-            farmLog.farm_name = farm_name
-            farmLog.customer = customer
-            farmLog.location = farm.location
-            farmLog.price = farm.price
-            farmLog.units = units
-            farmLog.profit_range_min = farm.ros_min
-            farmLog.profit_range_max = farm.ros_max
-            farmLog.start_date = farm.start_date
-            farmLog.end_date = farm.end_date
-            farmLog.base_cost = units * farm.price
-            farmLog.service_charge = farm.service_charge
-            farmLog.total_cost = total_cost
-            farmLog.status = 'Pending'
-            farmLog.save()
+            messages.error(request, 'Create Account to continue')
     context = {
         'farm': farm,
     }
