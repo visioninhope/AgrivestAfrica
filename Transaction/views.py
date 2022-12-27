@@ -8,11 +8,12 @@ from Asset.models import Trade, Farm, Market
 from Transaction.models import FarmInvoice,FarmLog,TradeInvoice,TradeLog
 import math
 
+
 def trades(request):
     if request.method == 'POST':
         active = 'yes'
         search = request.POST.get('search')
-        res = Trade.objects.filter(name__contains = search)
+        res = Trade.objects.filter(name__icontains = search)
         res.count()
         print(res.count())
         if res.count() > 0:
@@ -134,7 +135,7 @@ def farms(request):
     if request.method == 'POST':
         active = 'yes'
         search = request.POST.get('search')
-        res = Farm.objects.filter(name__contains = search)
+        res = Farm.objects.filter(name__icontains = search)
         res.count()
         print(res.count())
         if res.count() > 0:
