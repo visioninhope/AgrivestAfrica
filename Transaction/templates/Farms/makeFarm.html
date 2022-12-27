@@ -132,21 +132,40 @@
           <div class="card-body card-body-cascade">
             <p class="font-weight-bold text-center">Farm Details</p>
             <!--Grid column-->
-            <div class="row">
-              <!--Grid column-->
-              
-              <!--Grid column-->
-            </div>
+            
             <br>
             <!--Grid column-->
             <!--Grid column-->
             <div class=" mb-4">
-
               <!--lastName-->
               <label for="lastName" class="">Expected Farm Schedule</label>
               <input type="text" id="schedule" class="form-control" value="{{farm.start_date|date:'jS b, Y'}} - {{farm.end_date|date:'jS b, Y'}}" readonly style="cursor: pointer; background-color: #d4edda; border: none; font-weight: 500;">
-
             </div>
+            <div class="row">
+              <!--Grid column-->
+              <div class="col-lg-12">
+                <label for="country">Choose Farm Partners</label>
+                <select class="custom-select d-block w-100" id="country" required>
+                  <option value="">select Partners</option>
+                  <option>Northen Region Maize Farm</option>
+                  <option>Upper East Region Maize</option>
+                </select>
+              </div>
+              <!--Grid column-->
+            </div>
+            <br>
+            <div class="form-row mb-4">
+              <div class="col">
+                <!-- First name -->
+                <input type="number" id="defaultRegisterFormNUmberOfUnits" class="form-control"
+                  placeholder="No of units">
+              </div>
+              <div class="col">
+                <!-- Last name -->
+                <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="1/8 of land">
+              </div>
+            </div>
+            <br>
             <div class=" mb-4">
               <!--lastName-->
               <label for="lastName" class="">Preferred Name For Your Farm</label>

@@ -16,7 +16,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['agrivestafrica-production.up.railway.app','www.agrivestafrica.com','agrivestafrica.com']
+# ALLOWED_HOSTS = ['agrivestafrica-production.up.railway.app','www.agrivestafrica.com','agrivestafrica.com']
+ALLOWED_HOSTS = ['*']
+
 AUTH_USER_MODEL = 'Log.User'
 
 CSRF_TRUSTED_ORIGINS = ['https://agrivestafrica-production.up.railway.app','https://www.agrivestafrica.com']
@@ -60,8 +62,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-
 ROOT_URLCONF = 'AgrivestAfrica.urls'
 
 TEMPLATES = [
@@ -88,25 +88,25 @@ WSGI_APPLICATION = 'AgrivestAfrica.wsgi.application'
 
 
 
-# DATABASES = {
-#         'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'ACvinPt4J0h228UgjAhr',
-        'HOST': 'containers-us-west-66.railway.app',
-        'PORT': '6274'
+        'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
- }
+}
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'ACvinPt4J0h228UgjAhr',
+#         'HOST': 'containers-us-west-66.railway.app',
+#         'PORT': '6274'
+#     }
+#  }
 
 
 # Password validation
