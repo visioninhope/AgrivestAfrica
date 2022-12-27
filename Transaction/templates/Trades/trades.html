@@ -164,99 +164,210 @@
 
 <body>
   {% if messages %}
-    {% for message in messages %}
-        <div class="text-center"><button type="button" class="btn btn-sm  btn-success  btn-rounded">{{message}}</div>
-    {% endfor %}
+    {% if messages.tags == 'success' %}
+      {% for message in messages %}
+      <div class="text-center"><button type="button" class="btn btn-sm  btn-success  btn-rounded">{{message}}</div>
+      {% endfor %}
+    {% endif %}
   {% endif %}
-<!-- Rotating card -->
-   <div class="container">
-    {% for trades in tradeRow %}
-    <div class="row">
-        {% for trade in trades %}
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2" method="post">
+        {% csrf_token %}
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Trade" aria-label="Search" name="search">
+      </form>
+    </div>
+  </div>
+
+  {% if active == 'yes' %}
+    {% if result_page %}
+    <div class="container">
+      {% for page in result_page %}
+      <div class="row">
+        {% for trade in page %}
         <div class="col-md-4 verlay zoom">
-            <div class="card-wrapper">
-                <div id="card-1" class="card card-rotating text-center">
-                  <!-- Front Side -->
-                  <div class="face front">
-              
-                    <!-- Image-->
-                    <div class="card-up">
-                      <img class="card-img-top" src="{{trade.image.url}}" alt="Image with a photo of clouds.">
-                    </div>
-                    <!-- Content -->
-                      <div class="card-body">
-                        {% if trade.status == 'Available' %}
-                        <a class="btn rgba-gradient1 btn-rounded" style="color: white;" href="{% url 'makeTrade_page' trade.id %}">{{trade.status}}</a>
-                        {% else %}
-                        <a class="btn btn-danger btn-rounded">Sold Out</a>
-                        {% endif %}
-                        <hr>
-                        <span class="badge badge-success mb-2">{{ trade.start_date|timesince:trade.end_date }}</span>
-                        <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
-                        <dl class="row">
-                            <dd class="col-sm-6">
-                             Cost Per Unit
-                            </dd>
-                            <dd class="col-sm-6 green-text">
-                              $ GH {{trade.price|intcomma}}
-                            </dd>
-                          </dl>
-                          <hr>
-                          <dl class="row">
-                            <dd class="col-sm-6">
-                             Trade Start Date
-                            </dd>
-                            <dd class="col-sm-6 green-text">
-                              {{trade.start_date | date:'jS M, Y'}}
-                            </dd>
-                          </dl>
-                          <hr>
-                          <dl class="row">
-                            <dd class="col-sm-6">
-                              Trade End Date
-                            </dd>
-                            <dd class="col-sm-6 green-text">
-                              {{trade.end_date | date:'jS M, Y'}} 
-                            </dd>
-                          </dl>
-                          <!-- <hr> -->
-                          <!-- 
-                            <dl class="row">
-                              <dd class="col-sm-6">
-                                Profit Margin
-                              </dd>
-                              <dd class="col-sm-6 green-text">
-                                {{trade.ros_min}}% - {{trade.ros_max}}%
-                              </dd>
-                            </dl>
-                          -->
-                          <hr>
-                      <!-- Triggering button -->
-                      <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
-                    </div>
-                  </div>
-                  <!-- Front Side -->
-              
-                  <!-- Back Side -->
-                  <div class="face back">
-                    <div class="card-body">
-                     <h5 class="green-text">Details</h5>
-                     <hr>
-                     <p>{{trade.description|slice:":150"}}</p>
-                     <a href="{% url 'makeTrade_page' trade.id %}" class="btn rgba-gradient1 btn-rounded" style="color: white;">Sponsor Trade</a>
-                     <br>
-                        <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
-                    </div>
-                  </div>
-                  <!-- Back Side -->
+          <div class="card-wrapper">
+            <div id="card-1" class="card card-rotating text-center">
+              <!-- Front Side -->
+              <div class="face front">
+                <!-- Image-->
+                <div class="card-up">
+                  <img class="card-img-top" src="{{trade.image.url}}" alt="Image with a photo of clouds.">
                 </div>
+                <!-- Content -->
+                  <div class="card-body">
+                    {% if trade.status == 'Available' %}
+                    <a class="btn rgba-gradient1 btn-rounded" style="color: white;" href="{% url 'makeTrade_page' trade.slug %}">{{trade.status}}</a>
+                    {% else %}
+                    <a class="btn btn-danger btn-rounded">Sold Out</a>
+                    {% endif %}
+                    <hr>
+                    <span class="badge badge-success mb-2">{{ trade.start_date|timesince:trade.end_date }}</span>
+                    <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
+                    <dl class="row">
+                        <dd class="col-sm-6">
+                         Cost Per Unit
+                        </dd>
+                        <dd class="col-sm-6 green-text">
+                          $ GH {{trade.price|intcomma}}
+                        </dd>
+                      </dl>
+                      <hr>
+                      <dl class="row">
+                        <dd class="col-sm-6">
+                         Trade Start Date
+                        </dd>
+                        <dd class="col-sm-6 green-text">
+                          {{trade.start_date | date:'jS M, Y'}}
+                        </dd>
+                      </dl>
+                      <hr>
+                      <dl class="row">
+                        <dd class="col-sm-6">
+                          Trade End Date
+                        </dd>
+                        <dd class="col-sm-6 green-text">
+                          {{trade.end_date | date:'jS M, Y'}} 
+                        </dd>
+                      </dl>
+                      <!-- <hr> -->
+                      <!-- 
+                        <dl class="row">
+                          <dd class="col-sm-6">
+                            Profit Margin
+                          </dd>
+                          <dd class="col-sm-6 green-text">
+                            {{trade.ros_min}}% - {{trade.ros_max}}%
+                          </dd>
+                        </dl>
+                        <hr>
+                      -->
+                  <!-- Triggering button -->
+                  <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
+                </div>
+              </div>
+              <!-- Front Side -->
+              <!-- Back Side -->
+              <div class="face back">
+                <div class="card-body">
+                 <h5 class="green-text">Details</h5>
+                 <hr>
+                 <p>{{trade.description|slice:":150"}}</p>
+                 <a href="{% url 'makeTrade_page' trade.slug %}" class="btn rgba-gradient1 btn-rounded" style="color: white;">Sponsor Trade</a>
+                 <br>
+                    <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
+                </div>
+              </div>
+              <!-- Back Side -->
+            </div>
+          </div>
         </div>
-        </div>
-        {% endfor %}
+      {% endfor %}
     </div>
     <hr>
     {% endfor %}
-  </div>
+    {% else %}
+      {% if messages %}
+        {% for message in messages %}
+          <a><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div></a>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+    </div>
+    {% else %}
+    <div class="container">
+      {% for trades in tradeRow %}
+      <div class="row">
+          {% for trade in trades %}
+          <div class="col-md-4 verlay zoom">
+              <div class="card-wrapper">
+                  <div id="card-1" class="card card-rotating text-center">
+                    <!-- Front Side -->
+                    <div class="face front">
+                      <!-- Image-->
+                      <div class="card-up">
+                        <img class="card-img-top" src="{{trade.image.url}}" alt="Image with a photo of clouds.">
+                      </div>
+                      <!-- Content -->
+                        <div class="card-body">
+                          {% if trade.status == 'Available' %}
+                          <a class="btn rgba-gradient1 btn-rounded" style="color: white;" href="{% url 'makeTrade_page' trade.slug %}">{{trade.status}}</a>
+                          {% else %}
+                          <a class="btn btn-danger btn-rounded">Sold Out</a>
+                          {% endif %}
+                          <hr>
+                          <span class="badge badge-success mb-2">{{ trade.start_date|timesince:trade.end_date }}</span>
+                          <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
+                          <dl class="row">
+                              <dd class="col-sm-6">
+                               Cost Per Unit
+                              </dd>
+                              <dd class="col-sm-6 green-text">
+                                $ GH {{trade.price|intcomma}}
+                              </dd>
+                            </dl>
+                            <hr>
+                            <dl class="row">
+                              <dd class="col-sm-6">
+                               Trade Start Date
+                              </dd>
+                              <dd class="col-sm-6 green-text">
+                                {{trade.start_date | date:'jS M, Y'}}
+                              </dd>
+                            </dl>
+                            <hr>
+                            <dl class="row">
+                              <dd class="col-sm-6">
+                                Trade End Date
+                              </dd>
+                              <dd class="col-sm-6 green-text">
+                                {{trade.end_date | date:'jS M, Y'}} 
+                              </dd>
+                            </dl>
+                            <!-- <hr> -->
+                            <!-- 
+                              <dl class="row">
+                                <dd class="col-sm-6">
+                                  Profit Margin
+                                </dd>
+                                <dd class="col-sm-6 green-text">
+                                  {{trade.ros_min}}% - {{trade.ros_max}}%
+                                </dd>
+                              </dl>
+                              <hr>
+                            -->
+                        <!-- Triggering button -->
+                        <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
+                      </div>
+                    </div>
+                    <!-- Front Side -->
+                
+                    <!-- Back Side -->
+                    <div class="face back">
+                      <div class="card-body">
+                       <h5 class="green-text">Details</h5>
+                       <hr>
+                       <p>{{trade.description|slice:":150"}}</p>
+                       <a href="{% url 'makeTrade_page' trade.slug %}" class="btn rgba-gradient1 btn-rounded" style="color: white;">Sponsor Trade</a>
+                       <br>
+                          <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
+                      </div>
+                    </div>
+                    <!-- Back Side -->
+                  </div>
+          </div>
+          </div>
+          {% endfor %}
+      </div>
+      <hr>
+      {% endfor %}
+    </div>
+  {% endif %}
+<!-- Rotating card -->
+
 <br>
 <br>
 <br>

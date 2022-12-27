@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 import requests,json
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.http import JsonResponse
 from Log.models import User, Sponsor
 from Asset.models import Trade, Farm, Market
@@ -8,6 +9,20 @@ from Transaction.models import FarmInvoice,FarmLog,TradeInvoice,TradeLog
 import math
 
 def trades(request):
+    if request.method == 'POST':
+        active = 'yes'
+        search = request.POST.get('search')
+        res = Trade.objects.filter(name__contains = search)
+        res.count()
+        print(res.count())
+        if res.count() > 0:
+            result_page = Paginator(res,3)
+        else:
+            result_page = ''
+            messages.error(request, f"Couldn't find a match, Try something else")
+    else:
+        active = 'no'
+        result_page = None
     z = math.ceil(Trade.objects.all().count()/3)
     s = -3
     e = 0
@@ -18,12 +33,14 @@ def trades(request):
         trade = Trade.objects.all()[s:e]
         tradeRow.append(trade)
     context = {
-        'tradeRow': tradeRow
+        'tradeRow': tradeRow,
+        'active' : active,
+        'result_page' : result_page
     }
     return render(request, 'Trades/trades.html', context)
 
-def makeTrade(request, id):
-    trade = Trade.objects.get(id=id)
+def makeTrade(request, slug):
+    trade = Trade.objects.get(slug=slug)
     if request.method == 'POST':
         if request.user.is_authenticated:
             customer = User.objects.get(username=request.user)
@@ -111,8 +128,24 @@ def makeTrade(request, id):
     }
     return render(request, 'Trades/makeTrade.html', context)
 
+
+
 def farms(request):
-    z = math.ceil(Trade.objects.all().count()/3)
+    if request.method == 'POST':
+        active = 'yes'
+        search = request.POST.get('search')
+        res = Farm.objects.filter(name__contains = search)
+        res.count()
+        print(res.count())
+        if res.count() > 0:
+            result_page = Paginator(res,3)
+        else:
+            result_page = ''
+            messages.error(request, f"Couldn't find a match, Try something else")
+    else:
+        active = 'no'
+        result_page = None
+    z = math.ceil(Farm.objects.all().count()/3)
     s = -3
     e = 0
     farmRow = []
@@ -121,15 +154,19 @@ def farms(request):
         e = e+3
         farm = Farm.objects.all()[s:e]
         farmRow.append(farm)
+    if result_page:
+        for page in result_page:
+            print(page)
     context = {
-        'farmRow': farmRow
+        'farmRow': farmRow,
+        'active' : active,
+        'result_page' : result_page
     }
     return render(request, 'Farms/farms.html', context)
 
-def makeFarm(request, id):
-    farm = Farm.objects.get(id=id)
-    end = farm.end_date
-    start = farm.start_date
+def makeFarm(request, slug):
+    farm = Farm.objects.get(slug=slug)
+    partners = farm.partners.all()
     if request.method == 'POST':
         if request.user.is_authenticated:
             customer = User.objects.get(username=request.user)
@@ -183,6 +220,7 @@ def makeFarm(request, id):
             messages.error(request, 'Create Account to continue')
     context = {
         'farm': farm,
+        'partners' : partners,
     }
     return render(request, 'Farms/makeFarm.html', context)
 

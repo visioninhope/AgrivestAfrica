@@ -10,7 +10,6 @@ import threading
 from .models import User, Sponsor, Farmer, Offtaker
 from Cache.models import Password_Token
 
-
 def welcome(request):
     return render(request, 'welcome.html')
 
@@ -25,9 +24,7 @@ def s_register(request):
         elif User.objects.filter(email=email).exists():
             messages.info(request, f"email already registered with us")
         else:
-            if len(name) < 4:
-                messages.info(request, f"username too short")
-            elif len(pass1) < 4:
+            if len(pass1) < 4:
                 messages.info(request, f"password too short")
             elif pass1 != pass2:
                 messages.info(request, f"Passwords don't match")
@@ -46,12 +43,82 @@ def s_register(request):
                 sponsor.save()
                 if user.is_active:
                     authenticate(username=name,pasword=pass1)
-                    login(request,user)
-                
+                    login(request,user)   
                 welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
                 welcome_mail.start()
+                messages.success(request, 'Account Created Successfully')
                 return redirect('trades_page')
     return render(request, 'registration/s_register.html')
+
+def f_register(request):
+    if request.method == 'POST':
+        name = request.POST.get('username')
+        email = request.POST.get('email')
+        pass1 = request.POST.get('pass1')
+        pass2 = request.POST.get('pass2')
+        if User.objects.filter(username=name).exists():
+            messages.info(request, f"username already taken")
+        else:
+            if len(pass1) < 4:
+                messages.info(request, f"password too short")
+            elif pass1 != pass2:
+                messages.info(request, f"Passwords don't match")
+            else:
+                user = User()
+                user.username = name
+                user.email = email
+                pass1_ = make_password(pass1)
+                user.password = pass1_
+                user.is_sponsor = True
+                user.save()
+                farmer = Farmer()
+                farmer.username = name
+                farmer.user = user
+                res_email = user.email
+                farmer.save()
+                if user.is_active:
+                    authenticate(username=name,pasword=pass1)
+                    login(request,user)   
+                welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
+                welcome_mail.start()
+                messages.success(request, 'Account Created Successfully')
+                return redirect('trades_page')
+    return render(request, 'registration/f_register.html')
+
+def o_register(request):
+    if request.method == 'POST':
+        name = request.POST.get('username')
+        email = request.POST.get('email')
+        pass1 = request.POST.get('pass1')
+        pass2 = request.POST.get('pass2')
+        if User.objects.filter(username=name).exists():
+            messages.info(request, f"username already taken")
+        else:
+            if len(pass1) < 4:
+                messages.info(request, f"password too short")
+            elif pass1 != pass2:
+                messages.info(request, f"Passwords don't match")
+            else:
+                user = User()
+                user.username = name
+                user.email = email
+                pass1_ = make_password(pass1)
+                user.password = pass1_
+                user.is_sponsor = True
+                user.save()
+                offtaker = Offtaker()
+                offtaker.username = name
+                offtaker.user = user
+                res_email = user.email
+                offtaker.save()
+                if user.is_active:
+                    authenticate(username=name,pasword=pass1)
+                    login(request,user)   
+                welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
+                welcome_mail.start()
+                messages.success(request, 'Account Created Successfully')
+                return redirect('trades_page')
+    return render(request, 'registration/o_register.html')
 
 def send_welcome_mail(name,res_email):
     info = {'username' : name}
@@ -63,66 +130,6 @@ def send_welcome_mail(name,res_email):
     message = EmailMessage(subject, welcome_message, sender, [recipient])
     message.content_subtype = 'html'
     message.send()
-
-def f_register(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        pass1 = request.POST.get('pass1')
-        pass2 = request.POST.get('pass2')
-        if User.objects.filter(username=username).exists():
-            messages.info(request, f"username already taken")
-        else:
-            if len(username) < 4:
-                messages.info(request, f"username too short")
-            elif len(pass1) < 4:
-                messages.info(request, f"password too short")
-            elif pass1 != pass2:
-                messages.info(request, f"Passwords don't match")
-            else:
-                user = User()
-                user.username = username
-                user.email = email
-                pass1_ = make_password(pass1)
-                user.password = pass1_
-                user.is_sponsor = True
-                user.save()
-                farmer = Farmer()
-                farmer.username = username
-                farmer.user = user
-                farmer.save()
-                return redirect('trades_page')
-    return render(request, 'registration/f_register.html')
-
-def o_register(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        pass1 = request.POST.get('pass1')
-        pass2 = request.POST.get('pass2')
-        if User.objects.filter(username=username).exists():
-            messages.info(request, f"username already taken")
-        else:
-            if len(username) < 4:
-                messages.info(request, f"username too short")
-            elif len(pass1) < 4:
-                messages.info(request, f"password too short")
-            elif pass1 != pass2:
-                messages.info(request, f"Passwords don't match")
-            else:
-                user = User()
-                user.username = username
-                user.email = email
-                pass1_ = make_password(pass1)
-                user.password = pass1_
-                user.is_sponsor = True
-                user.save()
-                offtaker = Offtaker()
-                offtaker.username = username
-                offtaker.user = user
-                offtaker.save()
-                return redirect('trades_page')
-    return render(request, 'registration/o_register.html')
 
 def login_user(request):
     if request.method == 'POST':

@@ -106,7 +106,7 @@ DATABASES = {
         'HOST': 'containers-us-west-66.railway.app',
         'PORT': '6274'
     }
- }
+}
 
 
 # Password validation
