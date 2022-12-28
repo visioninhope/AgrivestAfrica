@@ -1,9 +1,18 @@
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar justify-content-center">
   <div class="container">
+    
+    {% if user.is_authenticated %}
     <a class="navbar-brand" href="{% url 'trades_page' %}">
       <strong>AgriVestAfrica</strong>
     </a>
+    {% else %}
+    <a class="navbar-brand" href="{% url 'homepage' %}">
+      <strong>AgriVestAfrica</strong>
+    </a>
+    {% endif %}
+      
+    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
       aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -23,34 +32,34 @@
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">About</a>
           <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="about.html">About Us</a>
-            <a class="dropdown-item" href="traction.html">Our Traction</a>
-            <a class="dropdown-item" href="meet team.html">Team</a>
-            <a class="dropdown-item" href="board.html">Our Board</a>
-            <a class="dropdown-item" href="Advisores.html">What we do</a>
-            <a class="dropdown-item" href="testimonial.html">Testimonials</a>
+            <a class="dropdown-item" href="{% url 'about_page' %}">About Us</a>
+            <a class="dropdown-item" href="{% url 'traction_page' %}">Our Traction</a>
+            <a class="dropdown-item" href="{% url 'team_page' %}">Team</a>
+            <a class="dropdown-item" href="{% url 'board_page' %}">Our Board</a>
+            <a class="dropdown-item" href="{% url 'what_we_do_page' %}">What we do</a>
+            <a class="dropdown-item" href="">Testimonials</a>
           </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">How It Works</a>
           <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="how to .html">Get Started</a>
-            <a class="dropdown-item" href="faq.html">FAQ</a>
-            <a class="dropdown-item" href="webinar.html">Webinar Registration</a>
-            <a class="dropdown-item" href="referral.html">Referrals</a>
-            <a class="dropdown-item" href="img/Agrivest africa.pdf">Offline Guide</a>
+            <a class="dropdown-item" href="{% url 'get_started_page' %}">Get Started</a>
+            <a class="dropdown-item" href="{% url 'faq_page' %}">FAQ</a>
+            <a class="dropdown-item" href="{% url 'webinar_page' %}">Webinar Registration</a>
+            <a class="dropdown-item" href="">Referrals</a>
+            <a class="dropdown-item" href="">Offline Guide</a>
           </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">Investors</a>
           <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="investors.html">Investors</a>
+            <a class="dropdown-item" href="">Investors</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="galllery.html">Our Gallery</a>
+          <a class="nav-link" href="{% url 'gallery_page' %}">Our Gallery</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">     
@@ -69,9 +78,9 @@
           <a class="nav-link" href="{% url 's_register_page' %}">Sign-Up</a>
         </li>
         {% endif %}
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#">NGO</a>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

@@ -1,0 +1,293 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="theme-color" content="#33b5e5">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet"  href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <meta charset="utf-8">
+  <meta name="description" content="
+  Sign Up with Grow For Me for the opportunity to invest in new farms, manage and monitor old farms. " />
+  <meta name="keywords" content=" Grow For Me, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+  crop, africa, ghana, nigeria, india, agriculture, green technology " />
+  <meta name="subject" content="AgriVestAfrica">
+  <meta name="copyright" content="AgriVestAfrica">
+  <link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+  <link rel="stylesheet" href="{% static 'extras/what_we_do.css' %}">
+  <header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar justify-content-center">
+      <div class="container">
+        {% if user.is_authenticated %}
+        <a class="navbar-brand" href="{% url 'trades_page' %}">
+          <strong>AgriVestAfrica</strong>
+        </a>
+        {% else %}
+        <a class="navbar-brand" href="{% url 'homepage' %}">
+          <strong>AgriVestAfrica</strong>
+        </a>
+        {% endif %}
+          
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
+          aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 's_register_page' %}">Sign-Up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Full Page Intro -->
+    <!-- Full Page Intro -->
+    <div class="view"
+      style="background-image: url('/media/img/farmers-holding-different-products_23-2148525754.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      <!-- Mask & flexbox options-->
+      <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+        <!-- Content -->
+        <div class="container">
+          <br>
+          <br>
+          <br>
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 ">
+              <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">What We Do</h1>
+              <hr class="hr-light">
+            </div>
+          </div>
+
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+    </div>
+    <!-- Full Page Intro -->
+
+  </header>
+  <!-- Main navigation -->
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Section -->
+    <section>
+
+     <br>
+      <p class="lead text-center text-muted pt-2 mb-5"></p>
+      <h3 class="font-weight-bold text-center green-text">AgrivestAfrica</h3>
+      <br>
+      <p class="text-center  text-muted">AgriVestAfrica is a farmer-owned and equity crowdfunding platform focused on bridging the gap between investors and agri-value chain. Our goal is to maximize the investors returns and help farmers get good returns while lowering risk.According to a survey conducted by Agri-Value Chain, the number one challenge facing farmers in Africa is access to capital. That's why we created AgrivestAfrica—to create passive income for investors, create opportunity for farmers to access funds and maximize production, and create a market place for buyers.</p>
+      <div class="container z-depth-1 my-5 py-5">
+
+    <!-- Section -->
+    <div class="container z-depth-1 my-5 py-5 px-4 px-lg-0">
+
+      <!-- Section -->
+      <section>
+        <h3 class="font-weight-bold text-center dark-grey-text pb-2">How It Works</h3>
+        <hr class="w-header my-4">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <ol class="timeline">
+              <li class="timeline-element">
+                <h5 class="font-weight-bold dark-grey-text mb-3">Sign-Up</h5>
+                <p><img class="img-fluid  rounded"
+                    src="/media/img/iphone-x-mockup.png" alt="..."
+                    height="300px" width="300px"></p>
+                <p class="text-muted">Sign up for a complimentary AgriVestAfrica Account to gain full access to high profit farmland investment opportunities in our easy-to-use portal.</p>
+              </li>
+              <li class="timeline-element">
+                <h5 class="font-weight-bold dark-grey-text mb-3">Invest In A Crop</h5>
+                <p><img class="img-fluid  rounded"
+                    src="/media/img/thanksgiving-illustration-with-wicker-basket-vegetables_87521-3100.webp" alt="..."
+                    height="200px" width="200px"></p>
+                <p class="text-muted">We offer variety of crops to give our customer maximum flexiblity.Profits from crop sales are distributed to investors after crops are harvested and sold each year. At the end of the holding period, they will receive their share from the sale of the the land.</p>
+              </li>
+
+              <li class="timeline-element">
+                <h5 class="font-weight-bold dark-grey-text mb-3">Pay And Monitor</h5>
+                <p><img class="img-fluid  rounded"
+                    src="/media/img/online-shopping-3d-illustration-online-shop-online-payment-delivery-concept-with-floating-elements-sale-banner-gift-box-discount-social-advertising-3d-vector-illustration_145666-1585.webp"
+                    alt="..."></p>
+                <p class="text-muted">Congratulations, you’re a farmer!  AgriVestAfrica manages all aspects of the farmland, from planting to harvesting to selling while you simply monitor your farm’s progress online.</p>
+              </li>
+
+              <li class="timeline-element">
+                <h5 class="font-weight-bold dark-grey-text mb-3">Collect</h5>
+                <p><img class="img-fluid  rounded" src="/media/img/happy-farmer-show-his-vegetables_9645-1378.webp" alt="...">
+                </p>
+                <p class="text-muted">Profits from crop sales are distributed to investors after crops are harvested and sold each year. At the end of the holding period, they will receive their share from the sale of the the land.</p>
+              </li>
+            </ol>
+
+          </div>
+        </div>
+        <div class="container my-5 py-5 z-depth-1">
+
+
+          <!--Section: Content-->
+          <section class="px-md-5 mx-md-5 dark-grey-text text-center text-lg-left">
+            <h5 class="font-weight-bold text-center">What You Stand to Benefit</h5>
+            <br>
+            <!--Grid row-->
+            <div class="row">
+
+              <!--Grid column-->
+              <div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+
+                <img
+                  src="/media/img/demand-analysts-shaking-hands-from-laptops-screens-planning-future-demand-demand-planning-demand-analytics-digital-sales-forecast-concept-illustration_335657-2098.webp"
+                  class="img-fluid" alt="" height="250px" width="250px">
+
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-6 mb-4 mb-lg-0">
+
+                <h6 class="font-weight-bold green-text">As A Sponsor</h6>
+                <p class="text-muted">Production is more reliable than open-market purchases and  also
+                  more consistent quality can be obtained than if purchases were made on the open market.</p>
+              </div>
+              <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+            <!--Grid row-->
+            <br>
+            <br>
+            <div class="row">
+
+              <!--Grid column-->
+              <div class="col-lg-6 mb-4 mb-lg-0">
+
+                <h6 class="font-weight-bold green-text text-center">As A Farmer</h6>
+                <p class="text-muted">The prime advantage for farmers is that the sponsor will normally undertake to purchase all produce grown, within specified quality and quantity parameters. Contracts will also provide farmers with access to a wide range of managerial, technical and extension services that otherwise may be unobtainable.  </p>
+
+              </div>
+              <!--Grid column-->
+              <!--Grid column-->
+              <div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+
+                <img src="/media/img/farmers-holding-different-products_23-2148525754.webp" class="img-fluid" alt=""
+                  height="250px" width="250px">
+
+              </div>
+              <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+            <br>
+            <!--Grid row-->
+            <div class="row">
+
+              <!--Grid column-->
+              <div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+
+                <img src="/media/img/van-side-view-mockup (1).png" class="img-fluid" alt="" height="350px" width="350px">
+
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-6 mb-4 mb-lg-0">
+                <br>
+                <br>
+                <h6 class="font-weight-bold green-text">As An Offtaker</h6>
+                <p class="text-muted">The Agrivest platform serves as a trusted hub for the sourcing of farm produce at farm gates prices. As a firm that deals directly with farmers and regulators, buyers are sure to get the quality produce they deserve from us at affordable prices.  The Agrivest platform also notify buyers what crops are available at when and at what prices to help them make proper decisions.</p>
+
+              </div>
+              <!--Grid column-->
+
+            </div>
+
+          </section>
+          <!--Section: Content-->
+
+
+        </div>
+        <br>
+        <h5 class="font-weight-bold dark-grey-text mb-3 text-center">Sponsor Farm With AgriVestAfrica</h5>
+        <p class=" text-center">We work very hard to ensure good ROS</p>
+        <div class="text-center">
+          <a href="{% url 's_register_page' %}"><button class="btn  btn-rounded rgba-gradient1 text-white">Sponsor Farm</button></a>
+        </div>
+      </section>
+      <!-- Section -->
+
+    </div>
+  </div>
+  </div>
+  <br>
+  <br>
+  <!-- Jumbotron -->
+  <div class="card card-image" style="background-image: url(/media/img/close-up-different-legumes-bowls_1205-86.webp);">
+    <div class="text-white text-center rgba-gradient py-5 px-4">
+      <div class="py-5">
+
+        <!-- Content -->
+        <h4 class="card-title font-weight-bold mb-4  ">Join AgriVestAfrica Today</h4>
+        <p class="mb-4 pb-2 px-md-5 mx-md-5">By 2050 the world population will grow to over 10 billion people. An additional 3 billion people will enter the middle class causing food demand to sky rocket.</p>
+        <a class="btn btn-success btn-outline-white btn-rounded" href="{% url 's_register_page' %}">AS A SPONSOR</a>
+        <a class="btn btn-outline-white btn-rounded" href="{% url 'o_register_page' %}">AS AN OFFTAKER</a>
+        <a class="btn btn-success btn-rounded" href="{% url 'f_register_page' %}">AS A FARMER</a>
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+
+
+
+
+  <!-- Footer -->
+
+  <!-- Footer Elements -->
+  <footer class="page-footer font-small green darken-3">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2022 Copyright:
+      {% if user.is_authenticated %}
+      <a href="{% url 'trades_page' %}"> AgriVestAfrica.com</a>
+      {% else %}
+      <a href="{% url 'homepage' %}"> AgriVestAfrica.com</a>
+      {% endif %}
+    </div>
+    <!-- Copyright -->
+
+
+
+  </footer>
+  <!-- Footer -->
+
+
+
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
+
+
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
+  <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+
+  <script>
+    AOS.init({
+      duration: 1200,
+    })
+
+  </script>
+
+</body>
+
+</html>

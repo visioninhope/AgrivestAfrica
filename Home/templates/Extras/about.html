@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#33b5e5">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
+
+    <meta charset="utf-8">
+    <meta name="description" content="
+    Sign Up with Grow For Me for the opportunity to invest in new farms, manage and monitor old farms. " />
+  <meta name="keywords" content=" Grow For Me, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+    crop, africa, ghana, nigeria, india, agriculture, green technology " />
+  <meta name="subject" content="AgriVestAfrica">
+  <meta name="copyright" content="AgriVestAfrica">
+
+    <link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+
+    <link rel="canonical" href="https://mdbootstrap.com/docs/b4/jquery/components/demo/" />
+
+
+    <script data-cfasync="false">
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '//www.googletagmanager.com/gtm.' + 'js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W7MBMN');
+    </script>
+
+
+
+  
+  <style>
+
+    html,
+    body,
+    header,
+    .view {
+      height: 80%;
+    }
+  
+    @media (max-width: 740px) {
+      html,
+      body,
+      header,
+      .view {
+        height: 400px;
+      }
+    }
+    @media (min-width: 800px) and (max-width: 850px) {
+      html,
+      body,
+      header,
+      .view {
+        height: 500px;
+      }
+    }
+  
+    .btn .fa {
+      margin-left: 3px;
+    }
+  
+    .top-nav-collapse {
+      background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(13, 211, 13, 0.7) 100%);
+      background: -webkit-linear-gradient(45deg, rgba(39, 126, 4, 0.7), rgba(11, 233, 66, 0.7) 100%);
+      background: -webkit-gradient(linear, 45deg, from(rgba(2, 168, 10, 0.7)), to(rgba(29, 210, 177, 0.7)));
+      background: -o-linear-gradient(45deg, rgba(26, 77, 6, 0.7), rgba(12, 228, 48, 0.7) 100%);
+      background: linear-gradient(to 45deg, rgba(4, 68, 4, 0.7), rgba(27, 194, 12, 0.7) 100%);
+
+    }
+  
+    .navbar:not(.top-nav-collapse) {
+      background: transparent !important;
+    }
+  
+    @media (max-width: 991px) {
+     .navbar:not(.top-nav-collapse) {
+      background: #06aa14 !important;
+     }
+    }
+  
+    .btn-white {
+      color: black !important;
+    }
+  
+   
+  
+    .rgba-gradient {
+        background: -moz-linear-gradient(45deg, rgba(42, 155, 7, 0.7), rgba(29, 210, 177, 0.7) 100%);
+      background: -webkit-linear-gradient(45deg, rgba(23, 100, 4, 0.7), rgba(29, 210, 177, 0.7) 100%);
+      background: -webkit-gradient(linear, 45deg, from(rgba(24, 122, 5, 0.7)), to(rgba(29, 210, 177, 0.7)));
+      background: -o-linear-gradient(45deg, rgba(38, 99, 3, 0.7), rgba(29, 210, 177, 0.7) 100%);
+      background: linear-gradient(to 45deg, rgba(10, 54, 2, 0.7), rgba(29, 210, 177, 0.7) 100%);
+    }
+
+    .rgba-gradient1 {
+      background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(29, 210, 177, 0.7) 60%);
+      background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 40%);
+      background: -webkit-gradient(linear, 45deg, from(rgba(42, 27, 161, 0.7)), to(rgba(29, 210, 177, 0.5)));
+      background: -o-linear-gradient(45deg, rgba(42, 27, 161, 0.2), rgba(29, 210, 177, 0.7) 50%);
+      background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 20%);
+    }
+  
+    .rgba-gradient2 {
+      background: -moz-linear-gradient(45deg, rgba(63, 1, 71, 0.1), rgba(29, 210, 177, 0.3) 60%);
+      background: -webkit-linear-gradient(45deg, rgba(230, 11, 200, 0.1), rgba(29, 210, 177, 0.3) 40%);
+      background: -webkit-gradient(linear, 45deg, from(rgba(212, 19, 203, 0.1)), to(rgba(29, 210, 177, 0.3)));
+      background: -o-linear-gradient(45deg, rgba(209, 10, 166, 0.1), rgba(189, 29, 210, 0.2) 50%);
+      background: linear-gradient(to 45deg, rgba(78, 4, 107, 0.2), rgba(180, 16, 158, 0.2) 20%);
+    }
+    
+  </style>
+
+    <header>
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+        <div class="container">
+          {% if user.is_authenticated %}
+          <a class="navbar-brand" href="{% url 'trades_page' %}">
+            <strong>AgriVestAfrica</strong>
+          </a>
+          {% else %}
+          <a class="navbar-brand" href="{% url 'homepage' %}">
+            <strong>AgriVestAfrica</strong>
+          </a>
+          {% endif %}
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
+            aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
+      </nav>
+      <!-- Full Page Intro -->
+      <div class="view" style="background-image: url('/media/img/farmers-holding-different-products_23-2148525754.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+          <!-- Content -->
+          <div class="container">
+            <br>
+            <br>
+            <br>
+            <!--Grid row-->
+            <div class="row">
+              <!--Grid column-->
+              <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 " >
+                <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">About Us</h1>
+                <hr class="hr-light">
+            </div>
+              </div>
+            
+            </div>
+            <!--Grid row-->
+          </div>
+          <!-- Content -->
+        </div>
+        <!-- Mask & flexbox options-->
+      </div>
+      <!-- Full Page Intro -->
+    </header>
+    <!-- Main navigation -->
+</head>
+
+<body>
+  <br>
+  <br>
+  <div class="container my-5">
+    <!--Section: who we are-->
+    <section class="dark-grey-text">
+
+      <div class="row pr-sm-5">
+        <div class="col-md-6 d-flex align-items-center">
+          <div>
+            <br>
+            <br>
+            <h4 class="font-weight-bold mb-4 text-center green-text">Who We Are</h4>
+
+            <p >Our company, AgrivestAfrica, is a youth centered social enterprise that   creates passive income for investors and maximize production for farmers. From a wide range of crop produce to choose from, our platform creates an open market place for buyers and sellers so that everyone involved in our Agri-business chain can benefit.
+              At AgrivestAfrica, we are directly involved in the promotion of the SDGs such as 1, 2 , 8 and 9. We seek to change the narrative of making agriculture in Africa a business of providing subsistence but rather a sustainable and scalable business of profit and partnerships.
+              We believe everyone should be involved in the agri-business chain in whatever way or form. As such, the AgrivestAfrica platform creates the opportunity to the general public to participate in the agri-business by partnering with farmers and aggregators directly for seasonal equity.</p>
+              
+          </div>
+        </div>
+     
+        <div class="col-md-6 mb-4" data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="slide-out-right"data-mdb-animation-on-scroll="repeat">
+
+          <div class="view">
+            <img src="/media/img/support-local-farmers-concept_52683-41846.webp" class="img-fluid" alt="smaple image">
+          </div>
+
+        </div>
+      
+      </div>
+
+    </section>
+    <!--Section: Content-->
+
+
+  </div>
+ 
+ 
+<hr>
+<!--vision/mission-->
+<div class="container my-5">
+          <section class="dark-grey-text">
+        
+            <div class="row pr-lg-5">
+              <div class="col-md-6 d-flex align-items-center">
+                <div>
+                  
+                  <h6 class="font-weight-bold mb-4 text-center green-text">Our Mission</h6>
+        
+                    <p class="text-center">
+                    Our mission is to promote  the agricultural sector  by providing framework, public investments, and support services needed to reform the agricultural value chain .
+                    </p>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-center">
+                <div>
+                  
+                  <h6 class="font-weight-bold mb-4 text-center green-text">Our Vison</h6>
+        
+                    <p class="text-center"> Our vision is to continue to grow as a leading web-based agro-industrial actor, providing innovative solutions that generate value all along our supply-chains, from countries of origin to final customers.</p>
+                </div>
+              </div>
+              
+            </div>
+        
+          </section>
+</div>
+<!--vision/mission-->
+<br>
+<!-- Jumbotron -->
+<div class="card card-image" style="background-image: url(/media/img/soybean-seeds-wooden-floor-hemp-sacks-food-nutrition-concept_1150-26324.webp);" >
+<div class="text-white text-center rgba-gradient py-5 px-4">
+ <div class="py-5">
+
+   <!-- Content -->
+   <h4 class="card-title font-weight-bold mb-4  ">Join AgriVestAfrica Today</h4>
+   <p class="mb-4 pb-2 px-md-5 mx-md-5">"Investing in agriculture  produces returns in the form of both income and capital growth and is a proven tool to protect investment portfolios against inflation"</p>
+      <a class="btn btn-success btn-outline-white btn-rounded" href="{% url 's_register_page' %}">AS A SPONSOR</a>
+      <a class="btn btn-outline-white btn-rounded" href="{% url 'o_register_page' %}">AS AN OFFTAKER</a>
+      <a class="btn btn-success btn-rounded" href="{% url 'f_register_page' %}">AS A FARMER</a>
+ </div>
+</div>
+</div>
+<!-- Jumbotron -->
+
+<!-- Footer Elements -->
+<footer class="page-footer font-small green darken-3" >
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2022 Copyright:
+  <a href="{% url 'trades_page' %}"> AgriVestAfrica.com</a>
+  </div>
+  <!-- Copyright -->
+
+
+
+
+    <script type="text/javascript"
+        src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
+
+
+    <script type="text/javascript"
+        src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
+    <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+
+
+
+</body>
+
+</html>

@@ -80,3 +80,27 @@ def dashboard(request):
 @login_required
 def profile(request):
     return render(request, 'Dashboard/profile.html')
+
+
+
+###EXTRAS###
+def about(request):
+    return render(request, 'Extras/about.html')
+def advisors(request):
+    return render(request, 'Extras/advisors.html')
+def board(request):
+    return render(request, 'Extras/board.html')
+def faq(request):
+    return render(request, 'Extras/faq.html')
+def gallery(request):
+    return render(request, 'Extras/gallery.html')
+def get_started(request):
+    return render(request, 'Extras/get_started.html')
+def team(request):
+    return render(request, 'Extras/team.html')
+def traction(request):
+    return render(request, 'Extras/traction.html')
+def webinar(request):
+    return render(request, 'Extras/webinar.html')
+def what_we_do(request):
+    return render(request, 'Extras/what_we_do.html')

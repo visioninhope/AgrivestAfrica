@@ -1,0 +1,188 @@
+
+html,
+body,
+header,
+.view {
+  height: 90%;
+}
+
+
+@media (max-width: 740px) {
+
+  html,
+  body,
+  header,
+  .view {
+    height: 400px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+
+  html,
+  body,
+  header,
+  .view {
+    height: 500px;
+  }
+}
+
+.btn .fa {
+  margin-left: 3px;
+}
+
+.top-nav-collapse {
+  background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(13, 211, 13, 0.7) 100%);
+  background: -webkit-linear-gradient(45deg, rgba(39, 126, 4, 0.7), rgba(11, 233, 66, 0.7) 100%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(2, 168, 10, 0.7)), to(rgba(29, 210, 177, 0.7)));
+  background: -o-linear-gradient(45deg, rgba(26, 77, 6, 0.7), rgba(12, 228, 48, 0.7) 100%);
+  background: linear-gradient(to 45deg, rgba(4, 68, 4, 0.7), rgba(27, 194, 12, 0.7) 100%);
+
+}
+
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
+
+@media (max-width: 991px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #06aa14 !important;
+  }
+}
+
+.btn-white {
+  color: black !important;
+}
+
+
+
+.rgba-gradient {
+  background: -moz-linear-gradient(45deg, rgba(42, 155, 7, 0.7), rgba(29, 210, 177, 0.7) 100%);
+  background: -webkit-linear-gradient(45deg, rgba(23, 100, 4, 0.7), rgba(29, 210, 177, 0.7) 100%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(24, 122, 5, 0.7)), to(rgba(29, 210, 177, 0.7)));
+  background: -o-linear-gradient(45deg, rgba(38, 99, 3, 0.7), rgba(29, 210, 177, 0.7) 100%);
+  background: linear-gradient(to 45deg, rgba(10, 54, 2, 0.7), rgba(29, 210, 177, 0.7) 100%);
+}
+
+.rgba-gradient1 {
+  background: -moz-linear-gradient(45deg, rgba(57, 221, 16, 0.7), rgba(19, 77, 5, 0.7) 60%);
+  background: -webkit-linear-gradient(45deg, rgba(14, 233, 25, 0.7), rgba(3, 46, 3, 0.7) 40%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(7, 226, 36, 0.7)), to(rgba(103, 224, 87, 0.5)));
+  background: -o-linear-gradient(45deg, rgba(60, 230, 8, 0.2), rgba(20, 85, 3, 0.7) 50%);
+  background: linear-gradient(to 45deg, rgba(57, 238, 11, 0.7), rgba(9, 61, 4, 0.7) 20%);
+}
+
+.rgba-gradient2 {
+  background: -moz-linear-gradient(45deg, rgba(63, 1, 71, 0.1), rgba(29, 210, 177, 0.3) 60%);
+  background: -webkit-linear-gradient(45deg, rgba(230, 11, 200, 0.1), rgba(29, 210, 177, 0.3) 40%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(212, 19, 203, 0.1)), to(rgba(29, 210, 177, 0.3)));
+  background: -o-linear-gradient(45deg, rgba(209, 10, 166, 0.1), rgba(189, 29, 210, 0.2) 50%);
+  background: linear-gradient(to 45deg, rgba(78, 4, 107, 0.2), rgba(180, 16, 158, 0.2) 20%);
+}
+
+.firstedit {
+  border-radius: 35px;
+  border-bottom: 5px solid #26A65B;
+
+}
+
+
+.timeline {
+  position: relative;
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background-color: #0f9c0b;
+}
+
+.timeline-element {
+  position: relative;
+  width: 50%;
+  padding: 1rem 0;
+  padding-right: 2.5rem;
+  text-align: right;
+}
+
+.timeline-element::before {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 1.35rem;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #21ca0a;
+  background-color: #fff;
+}
+
+.timeline-element:nth-child(even)::before {
+  right: auto;
+  left: -8px;
+}
+
+.timeline-element:nth-child(even) {
+  margin-left: 50%;
+  padding-left: 2.5rem;
+  padding-right: 0;
+  text-align: left;
+}
+
+@media (max-width: 767.98px) {
+  .timeline::before {
+    left: 8px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .timeline-element {
+    width: 100%;
+    text-align: left;
+    padding-left: 2.5rem;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .timeline-element::before {
+    top: 1.25rem;
+    left: 1px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .timeline-element:nth-child(even) {
+    margin-left: 0rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .timeline-element {
+    width: 100%;
+    text-align: left;
+    padding-left: 2.5rem;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .timeline-element:nth-child(even)::before {
+    left: 1px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .timeline-element::before {
+    top: 1.25rem;
+  }
+}
