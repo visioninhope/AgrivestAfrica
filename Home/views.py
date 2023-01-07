@@ -29,7 +29,6 @@ def home(request):
         'slide2' : slide2,
         'slide3' : slide3,
         'x' : x,
-
         'min_slide1' : min_slide1,
         'min_slide2' : min_slide2,
         'min_slide3' : min_slide3,
@@ -48,40 +47,13 @@ def check_job(request):
     elif Offtaker.objects.filter(user=request.user).exists():
         print('offtaker')
 
-def check_rank(request):
-    user = request.user
-    if user.is_authenticated:
-        if user.is_sponsor and user.is_farmer and user.is_offtaker:
-            rank = 's_f_o'
-        elif user.is_sponsor and user.is_farmer:
-            rank = 's_f'
-        elif user.is_sponsor and user.is_offtaker:
-            rank = 's_o'
-        elif user.is_farmer and user.is_offtaker:
-            rank = 'f_o'
-        elif user.is_sponsor:
-            rank = 's'
-        elif user.is_farmer:
-            rank = 'f'
-        elif user.is_offtaker:
-            rank = 'o'
-        print(rank)
-        return rank
-
 @login_required
 def dashboard(request):
-    check_job(request)
-    check_rank(request)
-    #context = {
-    #    'rank' : rank
-    #}
     return render(request,'Dashboard/dashboard.html')
 
 @login_required
 def profile(request):
     return render(request, 'Dashboard/profile.html')
-
-
 
 ###EXTRAS###
 def about(request):

@@ -21,6 +21,10 @@ class TradeInvoice(models.Model):
     totalreturn_min = models.FloatField()
     totalreturn_max = models.FloatField()
     extra_notes = models.CharField(max_length=200, blank=True, null=True)
+    ##roll on option
+    #when user started trade
+        #hide in trade logs interval b/n start and finish//
+    
     CHOICES = (
         ("Pending", "Pending"),
         ("Active", "Active"),
