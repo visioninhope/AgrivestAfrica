@@ -47,7 +47,7 @@ def s_register(request):
                 welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
                 welcome_mail.start()
                 messages.success(request, 'Account Created Successfully')
-                return redirect('trades_page')
+                return redirect('dashboard')
     return render(request, 'registration/s_register.html')
 
 def f_register(request):
@@ -82,7 +82,7 @@ def f_register(request):
                 welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
                 welcome_mail.start()
                 messages.success(request, 'Account Created Successfully')
-                return redirect('trades_page')
+                return redirect('dashboard')
     return render(request, 'registration/f_register.html')
 
 def o_register(request):
@@ -117,7 +117,7 @@ def o_register(request):
                 welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
                 welcome_mail.start()
                 messages.success(request, 'Account Created Successfully')
-                return redirect('trades_page')
+                return redirect('dashboard')
     return render(request, 'registration/o_register.html')
 
 def send_welcome_mail(name,res_email):
@@ -141,7 +141,7 @@ def login_user(request):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return redirect('trades_page')
+                    return redirect('dashboard')
             else:
                 messages.info(request, 'invalid credentials')
         elif User.objects.filter(email=username).exists():
@@ -149,7 +149,7 @@ def login_user(request):
             user = authenticate(username=user_username, password=user_password)
             if user.is_active:
                 login(request, user)
-                return redirect('trades_page')
+                return redirect('dashboard')
         else:
             messages.info(request, 'invalid credentials')
     return render(request, 'generic/login.html')
@@ -213,7 +213,7 @@ def reset_password(request, token):
             user.password = make_password(pass1)
             user.save()
             Password_Token.objects.last().delete()
-            return redirect('trades_page')
+            return redirect('dashboard')
     return render(request, 'generic/reset_password.html')
 
 
