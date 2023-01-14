@@ -31,6 +31,11 @@
                             <i class="fas fa-bars"></i>
                         </button>
                     </div>
+                    {% if messages %}
+                      {% for message in messages %}
+                      <div class="text-center"><button type="button" class="btn btn-sm  btn-success  btn-rounded">{{message}}</div>
+                      {% endfor %}
+                    {% endif %}
                     <div class="navigation-bar-right col-6 d-flex align-items-center justify-content-end">
                         <a href="#" class="profile-btn bg-blue  btn-circle me-3">
                             <i class="fas fa-user"></i>
@@ -54,7 +59,7 @@
                         <div class="dashboard-title-text">
                             <h2 class="font-weight-bold green-text">AgrivestAfrica Dashboard</h2>
                             <p class="text-grey">Support farmers today</p>
-                            <span>{{rank}}</span>
+                            <!-- <span>{{rank}}</span> -->
                         </div>
                         <button type="button" class="fs-18 text-grey-blue">
                             <i class="fas fa-ellipsis-vertical"></i>
