@@ -54,6 +54,13 @@ def dashboard(request):
 @login_required
 def profile(request):
     return render(request, 'Dashboard/profile.html')
+def dash_overview(request):
+    return render(request, 'Dashboard/overview.html')
+def dash_transactions(request):
+    return render(request, 'Dashboard/transactions.html')
+def dash_produce(request):
+    return render(request, 'Dashboard/produce.html')
+
 
 ###EXTRAS###
 def about(request):
@@ -76,3 +83,7 @@ def webinar(request):
     return render(request, 'Extras/webinar.html')
 def what_we_do(request):
     return render(request, 'Extras/what_we_do.html')
+
+
+
+
