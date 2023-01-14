@@ -20,4 +20,5 @@ urlpatterns = [
     path('traction/', views.traction, name='traction_page'),
     path('webinar/', views.webinar, name='webinar_page'),
     path('what_we_do/', views.what_we_do, name='what_we_do_page'),
+
 ]
