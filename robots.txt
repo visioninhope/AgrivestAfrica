@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /AgrivestAfrica/
-Disallow: /AgrivestAfrica/*
-
-User-agent: Googlebot
-Disallow: /AgrivestAfrica/*

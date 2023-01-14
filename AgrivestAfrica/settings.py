@@ -39,13 +39,15 @@ INSTALLED_APPS = [
     'Transaction.apps.TransactionConfig',
     'Cache.apps.CacheConfig',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'cloudinary',
-    'cloudinary_storage'
+    'cloudinary_storage',
+    'robots'
 ]
 
 SITE_ID = 1

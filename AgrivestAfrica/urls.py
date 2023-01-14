@@ -9,6 +9,7 @@ urlpatterns = [
     path('',include('Log.urls')),
     path('',include('Transaction.urls')),
     path('',include('allauth.urls')),
+    path('robots.txt', include('robots.urls')),
 ]
 
 if settings.DEBUG:
