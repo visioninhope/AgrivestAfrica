@@ -86,3 +86,5 @@ def what_we_do(request):
 
 
 
+def sitemap(request):
+    return render(request, 'sitemap.xml')
