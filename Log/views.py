@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
-from django.core.mail import send_mail,EmailMessage
+from django.core.mail import send_mail,EmailMessage,get_connection
 from django.template.loader import render_to_string
 from django.conf import settings 
 from random import randint
@@ -113,12 +113,13 @@ def o_register(request):
     return render(request, 'registration/o_register.html')
 
 def send_welcome_mail(name,res_email):
+    print('sent_email')
     info = {'username' : name}
     html_template = 'welcome.html'
     welcome_message = render_to_string(html_template, context=info)
     recipient = res_email
     subject = 'Welcome To AgriVest Africa'
-    sender = settings.EMAIL_HOST_USER
+    sender = 'support@agrivestafrica.com'
     message = EmailMessage(subject, welcome_message, sender, [recipient])
     message.content_subtype = 'html'
     message.send()
