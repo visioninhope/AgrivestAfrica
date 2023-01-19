@@ -113,7 +113,6 @@ def o_register(request):
     return render(request, 'registration/o_register.html')
 
 def send_welcome_mail(name,res_email):
-    print('sent_email')
     info = {'username' : name}
     html_template = 'welcome.html'
     welcome_message = render_to_string(html_template, context=info)
@@ -186,7 +185,7 @@ def send_reset_email(user,email):
         'token' : token
     }
     html_message = render_to_string(html_template, context=lis)
-    mail_from = settings.EMAIL_HOST_USER
+    mail_from = 'noreply@agrivestafrica.com'
     message = EmailMessage(subject, html_message, mail_from, [email])
     message.content_subtype = 'html'
     message.send()
