@@ -133,10 +133,9 @@ def send_welcome_mail(name,res_email):
 
 def login_user(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        user_username = request.POST.get('username')
         user_password = request.POST.get('pass1')
-        if User.objects.filter(username=username).exists():
-            user_username = User.objects.get(username=username).username
+        if User.objects.filter(username=user_username).exists():
             user = authenticate(username=user_username, password=user_password)
             if user:
                 if user.is_active:
@@ -144,8 +143,8 @@ def login_user(request):
                     return redirect('dashboard')
             else:
                 messages.info(request, 'invalid credentials')
-        elif User.objects.filter(email=username).exists():
-            user_username = User.objects.get(email=username).username
+        elif User.objects.filter(email=user_username).exists():
+            user_username = User.objects.get(email=user_username).username
             user = authenticate(username=user_username, password=user_password)
             if user.is_active:
                 login(request, user)
