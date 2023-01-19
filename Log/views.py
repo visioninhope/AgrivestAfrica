@@ -23,31 +23,27 @@ def s_register(request):
             messages.info(request, f"username already taken")
         elif User.objects.filter(email=email).exists():
             messages.info(request, f"email already registered with us")
-        else:
-            if len(pass1) < 4:
-                messages.info(request, f"password too short")
-            elif pass1 != pass2:
+        elif len(pass1) < 4:
+            messages.info(request, f"password too short")
+        elif pass1 != pass2:
                 messages.info(request, f"Passwords don't match")
-            else: 
-                user = User()
-                user.username = name
-                user.email = email
-                pass1_ = make_password(pass1)
-                user.password = pass1_
-                user.is_sponsor = True
-                user.save()
-                sponsor = Sponsor()
-                sponsor.username = name
-                sponsor.user = user
-                res_email = user.email
-                sponsor.save()
-                if user.is_active:
-                    authenticate(username=name,pasword=pass1)
-                    login(request,user)   
-                welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
-                welcome_mail.start()
-                messages.success(request, 'Account Created Successfully')
-                return redirect('dashboard')
+        else: 
+            user = User()
+            user.username = name
+            user.email = email
+            pass1_ = make_password(pass1)
+            user.password = pass1_
+            user.is_sponsor = True
+            user.save()
+            sponsor = Sponsor()
+            sponsor.user = user
+            res_email = user.email
+            sponsor.save()
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')   
+            welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
+            welcome_mail.start()
+            messages.success(request, 'Account Created Successfully')
+            return redirect('dashboard')
     return render(request, 'registration/s_register.html')
 
 def f_register(request):
@@ -58,31 +54,29 @@ def f_register(request):
         pass2 = request.POST.get('pass2')
         if User.objects.filter(username=name).exists():
             messages.info(request, f"username already taken")
+        elif User.objects.filter(email=email).exists():
+            messages.info(request, f"email already registered with us")
+        elif len(pass1) < 4:
+            messages.info(request, f"password too short")
+        elif pass1 != pass2:
+            messages.info(request, f"Passwords don't match")
         else:
-            if len(pass1) < 4:
-                messages.info(request, f"password too short")
-            elif pass1 != pass2:
-                messages.info(request, f"Passwords don't match")
-            else:
-                user = User()
-                user.username = name
-                user.email = email
-                pass1_ = make_password(pass1)
-                user.password = pass1_
-                user.is_sponsor = True
-                user.save()
-                farmer = Farmer()
-                farmer.username = name
-                farmer.user = user
-                res_email = user.email
-                farmer.save()
-                if user.is_active:
-                    authenticate(username=name,pasword=pass1)
-                    login(request,user)   
-                welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
-                welcome_mail.start()
-                messages.success(request, 'Account Created Successfully')
-                return redirect('dashboard')
+            user = User()
+            user.username = name
+            user.email = email
+            pass1_ = make_password(pass1)
+            user.password = pass1_
+            user.is_sponsor = True
+            user.save()
+            farmer = Farmer()
+            farmer.user = user
+            res_email = user.email
+            farmer.save()
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')    
+            welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
+            welcome_mail.start()
+            messages.success(request, 'Account Created Successfully')
+            return redirect('dashboard')
     return render(request, 'registration/f_register.html')
 
 def o_register(request):
@@ -93,31 +87,29 @@ def o_register(request):
         pass2 = request.POST.get('pass2')
         if User.objects.filter(username=name).exists():
             messages.info(request, f"username already taken")
-        else:
-            if len(pass1) < 4:
-                messages.info(request, f"password too short")
-            elif pass1 != pass2:
+        elif User.objects.filter(email=email).exists():
+            messages.info(request, f"email already registered with us")
+        elif len(pass1) < 4:
+            messages.info(request, f"password too short")
+        elif pass1 != pass2:
                 messages.info(request, f"Passwords don't match")
-            else:
-                user = User()
-                user.username = name
-                user.email = email
-                pass1_ = make_password(pass1)
-                user.password = pass1_
-                user.is_sponsor = True
-                user.save()
-                offtaker = Offtaker()
-                offtaker.username = name
-                offtaker.user = user
-                res_email = user.email
-                offtaker.save()
-                if user.is_active:
-                    authenticate(username=name,pasword=pass1)
-                    login(request,user)   
-                welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
-                welcome_mail.start()
-                messages.success(request, 'Account Created Successfully')
-                return redirect('dashboard')
+        else:
+            user = User()
+            user.username = name
+            user.email = email
+            pass1_ = make_password(pass1)
+            user.password = pass1_
+            user.is_sponsor = True
+            user.save()
+            offtaker = Offtaker()
+            offtaker.user = user
+            res_email = user.email
+            offtaker.save()
+            login(request,user,backend='django.contrib.auth.backends.ModelBackend')    
+            welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
+            welcome_mail.start()
+            messages.success(request, 'Account Created Successfully')
+            return redirect('dashboard')
     return render(request, 'registration/o_register.html')
 
 def send_welcome_mail(name,res_email):
@@ -139,7 +131,7 @@ def login_user(request):
             user = authenticate(username=user_username, password=user_password)
             if user:
                 if user.is_active:
-                    login(request, user)
+                    login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                     return redirect('dashboard')
             else:
                 messages.info(request, 'invalid credentials')
