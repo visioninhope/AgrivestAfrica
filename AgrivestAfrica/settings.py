@@ -186,11 +186,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-
-# EMAIL_HOST_USER = 'agrivestafrica.info@gmail.com'
-# EMAIL_HOST_PASSWORD = 'glgugicguwebemnr'
-
-
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME' : 'dvnemzw0z',
     'API_KEY' : '482295267852992',
