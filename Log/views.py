@@ -218,15 +218,16 @@ def tes(request):
 import requests,json
 def hubtel(request):
     url = "https://payproxyapi.hubtel.com/items/initiate"
+    ref = randint(1000,9999)
 
     payload = json.dumps({
     "totalAmount": 1,
     "description": "Test with Joseph",
-    "callbackUrl": "http://google.com/",
-    "returnUrl": "http://google.com/",
+    "callbackUrl": "https://www.agrivestafrica.com/hub_call/",
+    "returnUrl": "https://www.agrivestafrica.com/hub_cancel/",
     "merchantAccountNumber": "2017279",
-    "cancellationUrl": "http://google.com/",
-    "clientReference": "asdasdasdadasdad"
+    "cancellationUrl": "https://www.agrivestafrica.com/hub_cancel/",
+    "clientReference": ref
     })
     headers = {
     'Content-Type': 'application/json',
@@ -234,14 +235,12 @@ def hubtel(request):
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
-
     print(response.text)
 
     context = {
         'response' : response.status_code,
         'res_text' : response.text
     }
-
     return render(request, 'hubtel.html', context)
 
 def hub_call(request):
