@@ -224,7 +224,7 @@ def hubtel(request):
     "totalAmount": 1,
     "description": "Test with Joseph",
     "callbackUrl": "https://www.agrivestafrica.com/hub_call/",
-    "returnUrl": "https://www.agrivestafrica.com/hub_cancel/",
+    "returnUrl": "https://www.agrivestafrica.com/hub_call/",
     "merchantAccountNumber": "2017279",
     "cancellationUrl": "https://www.agrivestafrica.com/hub_cancel/",
     "clientReference": ref
