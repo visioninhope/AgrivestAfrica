@@ -214,3 +214,38 @@ def tes(request):
         'token' : 0000
     }
     return render(request, 'generic/reset_mail.html')
+
+import requests,json
+def hubtel(request):
+    url = "https://payproxyapi.hubtel.com/items/initiate"
+
+    payload = json.dumps({
+    "totalAmount": 1,
+    "description": "Test with Joseph",
+    "callbackUrl": "http://google.com/",
+    "returnUrl": "http://google.com/",
+    "merchantAccountNumber": "2017279",
+    "cancellationUrl": "http://google.com/",
+    "clientReference": "asdasdasdadasdad"
+    })
+    headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Basic UjZOeXlKUjpiN2E1ZjI5YTg0YTQ0NTRkYWYwMWE3NzllYWU1ZmZkMQ=='
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
+
+    context = {
+        'response' : response.status_code,
+        'res_text' : response.text
+    }
+
+    return render(request, 'hubtel.html', context)
+
+def hub_call(request):
+    return render(request, 'hub_call.html')
+
+def hub_cancel(request):
+    return render(request, 'hub_cancel.html')
