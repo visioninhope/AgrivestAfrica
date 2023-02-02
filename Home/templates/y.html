@@ -1,0 +1,79 @@
+<!--Slides-->
+<div class="carousel-inner" role="listbox">
+
+    <!--First slide-->
+    <div class="carousel-item active text-center">
+
+      {% for trade in slide1 %}
+      <div class="col-md-4 overlay zoom text-center ">
+        <div class="card mb-2">
+          <img class="card-img-top" src="{{trade.image.url}}"
+            alt="Card image cap">
+          <div class="card-body">
+              {% if trade.status == 'Available' %}
+              <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
+              {% else %}
+              <a class="btn btn-danger btn-rounded">Sold Out</a>
+              {% endif %}
+            <hr>
+            <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
+            <p class="card-text">{{trade.description|slice:":230"}}...</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    <!--/.First slide-->
+
+    <!--Second slide-->
+    <div class="carousel-item">
+      
+      {% for trade in slide2 %}
+      <div class="col-md-4 overlay zoom text-center ">
+        <div class="card mb-2">
+          <img class="card-img-top" src="{{trade.image.url}}"
+            alt="Card image cap">
+          <div class="card-body">
+              {% if trade.status == 'Available' %}
+              <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
+              {% else %}
+              <a class="btn btn-danger btn-rounded">Sold Out</a>
+              {% endif %}
+            <hr>
+            <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
+            <p class="card-text">{{trade.description|slice:":230"}}...</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    <!--/.Second slide-->
+
+    <!--Third slide-->
+    <div class="carousel-item">
+      {% for trade in slide3 %}
+      <div class="col-md-4 overlay zoom text-center ">
+        <div class="card mb-2">
+          <img class="card-img-top" src="{{trade.image.url}}"
+            alt="Card image cap">
+          <div class="card-body">
+              {% if trade.status == 'Available' %}
+              <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
+              {% else %}
+              <a class="btn btn-danger btn-rounded">Sold Out</a>
+              {% endif %}
+            <hr>
+            <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
+            <p class="card-text">{{trade.description|slice:":230"}}...</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    <!--/.Third slide-->
+
+  </div>
+  <!--/.Slides-->

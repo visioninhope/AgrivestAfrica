@@ -1,0 +1,62 @@
+<section class="section-preview container">
+    <h3 class="font-weight-bold mb-4 text-center green-text">What We Trade  {{min_slide2.image.url}}</h3>
+    <!--Carousel Wrapper-->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="1800">
+      <div class="carousel-inner">
+      <!--Slides-->
+      
+      <div class="carousel-item active text-center">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-2  overlay zoom z-depth-1">                             
+              <img class="card-img-top" src="{{min_slide1.image.url}}" alt="Card image cap">
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            {% for i in min_slide2 %}
+            <div class="card mb-2 overlay zoom">
+              <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap">
+            </div>
+            {% endfor %}
+          </div>
+          <div class="col-md-4 overlay zoom text-center">
+            {% for i in min_slide3 %}
+            <div class="card mb-2">
+              <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="310px" height="310px">
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="row">
+        <div class="col-md-4 overlay zoom text-center">
+          {% for i in min_slide4 %}
+          <div class="card mb-2">
+            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="300px" height="300px">
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 overlay zoom text-center">
+          {% for i in min_slide5 %}
+          <div class="card mb-2">
+            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="280px"
+              height="280px">
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-4 overlay zoom text-center">
+          {% for i in min_slide6 %}
+          <div class="card mb-2">
+            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="320px"
+              height="320px">
+          </div>
+          {% endfor %}
+        </div>
+        </div>
+      </div>
+    <!--/.Carousel Wrapper-->
+</div>
+
+  </section>

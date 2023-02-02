@@ -4,7 +4,7 @@
   body,
   header,
   .view {
-    height: 93%;
+    height: 98%;
     
   }
 
@@ -15,7 +15,7 @@
     body,
     header,
     .view {
-      height: 400px;
+      height: 600px;
     }
   }
 
@@ -25,7 +25,7 @@
     body,
     header,
     .view {
-      height: 500px;
+      height: 600px;
     }
   }
 

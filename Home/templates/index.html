@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>AgrivestAfrica</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -13,18 +12,28 @@
     href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <meta charset="utf-8">
-  <meta name="description" content="Sign Up with AgrivestAfrica for the opportunity to invest in new farms, manage and monitor old farms. " />
-  <meta name="keywords" content=" AgrivestAfrica, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+  <meta name="description" content="
+  Sign Up with Agrivest Africa for the opportunity to invest in new farms, manage and monitor old farms. " />
+  <meta name="keywords" content=" Agrivest Africa, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
   crop, africa, ghana, nigeria, india, agriculture, green technology " />
-  <meta name="subject" content="AgrivestAfrica">
-  <meta name="copyright" content="AgrivestAfrica">
-  <link rel="shortcut icon" href="media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+  <meta name="subject" content="Agrivest Africa">
+  <meta name="copyright" content="Agrivest Africa">
+  <link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
   <link rel="stylesheet" href="{% static 'home/index.css' %}">
+<head>
+  <style>
+    .card-img-top{
+      height: 250px;
+      width: 300px ;
+    }
+  </style>
+</head>
+
   <header>
     {% include 'navbar.html' %}
     <!-- Full Page Intro -->
     <div class="view"
-      style="background-image: url('media/img/soybean-isolated-white-background_74190-7801.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      style="background-image: url('/media/img/corn-isolated_93675-33173.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <!-- Mask & flexbox options-->
       <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
         <!-- Content -->
@@ -32,26 +41,31 @@
           <br>
           <br>
           <br>
+          <br>
+       
           <!--Grid row-->
           <div class="row">
             <!--Grid column-->
             <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 ">
-              <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">Join AgrivestAfrica
+              <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">Join Agrivest Africa
               </h1>
               <hr class="hr-light">
-              <h6 class="mb-4">AgrivestAfrica is a farmer-owned and equity crowdfunding platform focused on bridging the gap between investors and agri-value chain. Our goal is to maximize the investors returns and help farmers get good returns while lowering risk. </h6>
-              <a class="btn btn-outline-white btn-rounded"
-                href="{% url 's_register_page' %}">As
-                A Sponsor</a>
-              <a class="btn btn-success btn-rounded"
-                href="{% url 'f_register_page' %}">As
+              <h6 class="mb-4">
+                Agrivest Africa is an equity crowd-funding platform focused on connecting agtivestors and small to
+                medium scale farmers, farms and commodities in Africa. Our goal is to maximize our agtivestors returns
+                and continue to sustainably improve the yield of our farmers and aggregators
+              </h6>
+              <h5><b>Join As:</b></h5>
+              <a class="btn btn-outline-white btn-rounded animated rotateIn slower" href="{% url 's_register_page' %}">
+                An Agrivestor</a>
+              <a class="btn btn-success btn-rounded animated rotateIn slower" href="{% url 'f_register_page' %}">
                 A Farmer</a>
-              <a class="btn btn-outline-white btn-rounded"
-                href="{% url 'o_register_page' %}">As
-                An Offtaker</a>
+              <a class="btn btn-outline-white btn-rounded animated rotateIn slower" href="{% url 'o_register_page' %}">
+                An Aggregator</a>
             </div>
           </div>
-
+          <br>
+          <br>
         </div>
         <!--Grid row-->
       </div>
@@ -70,7 +84,7 @@
   <br>
 
   <section class="section-preview container">
-    <h3 class="font-weight-bold mb-4 text-center green-text">What We Grow</h3>
+    <h3 class="font-weight-bold mb-4 text-center green-text">What We Farm</h3>
     <!--Carousel Wrapper-->
     <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
 
@@ -87,225 +101,161 @@
       <ol class="carousel-indicators">
         <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
         <li data-target="#multi-item-example" data-slide-to="1"></li>
-        <li data-target="#multi-item-example" data-slide-to="2"></li>
       </ol>
       <!--/.Indicators-->
 
-      <!--Slides-->
-      <div class="carousel-inner" role="listbox">
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
 
-        <!--First slide-->
-        <div class="carousel-item active text-center">
-  
-          {% for trade in slide1 %}
-          <div class="col-md-4 overlay zoom text-center ">
-            <div class="card mb-2">
-              <img class="card-img-top" src="{{trade.image.url}}"
-                alt="Card image cap">
-              <div class="card-body">
-                  {% if trade.status == 'Available' %}
-                  <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
-                  {% else %}
-                  <a class="btn btn-danger btn-rounded">Sold Out</a>
-                  {% endif %}
-                <hr>
-                <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
-                <p class="card-text">{{trade.description|slice:":230"}}...</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-  
-        </div>
-        <!--/.First slide-->
-  
-        <!--Second slide-->
-        <div class="carousel-item">
-          
-          {% for trade in slide2 %}
-          <div class="col-md-4 overlay zoom text-center ">
-            <div class="card mb-2">
-              <img class="card-img-top" src="{{trade.image.url}}"
-                alt="Card image cap">
-              <div class="card-body">
-                  {% if trade.status == 'Available' %}
-                  <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
-                  {% else %}
-                  <a class="btn btn-danger btn-rounded">Sold Out</a>
-                  {% endif %}
-                <hr>
-                <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
-                <p class="card-text">{{trade.description|slice:":230"}}...</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-  
-        </div>
-        <!--/.Second slide-->
-  
-        <!--Third slide-->
-        <div class="carousel-item">
-          {% for trade in slide3 %}
-          <div class="col-md-4 overlay zoom text-center ">
-            <div class="card mb-2">
-              <img class="card-img-top" src="{{trade.image.url}}"
-                alt="Card image cap">
-              <div class="card-body">
-                  {% if trade.status == 'Available' %}
-                  <a class="btn rgba-gradient1 btn-rounded">{{trade.status}}</a>
-                  {% else %}
-                  <a class="btn btn-danger btn-rounded">Sold Out</a>
-                  {% endif %}
-                <hr>
-                <h4 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h4>
-                <p class="card-text">{{trade.description|slice:":230"}}...</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-  
-        </div>
-        <!--/.Third slide-->
-  
-      </div>
-      <!--/.Slides-->
-
-    </div>
-    <!--/.Carousel Wrapper-->
-
-  </section>
-
-  <hr>
- 
-
-  <section class="section-preview container">
-    <h3 class="font-weight-bold mb-4 text-center green-text">What We Trade  {{min_slide2.image.url}}</h3>
-    <!--Carousel Wrapper-->
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="1800">
-      <div class="carousel-inner">
-      <!--Slides-->
-      
+      <!--First slide-->
       <div class="carousel-item active text-center">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card mb-2  overlay zoom z-depth-1">                             
-              <img class="card-img-top" src="{{min_slide1.image.url}}" alt="Card image cap">
-            </div>
-          </div>
-          <div class="col-md-4 text-center">
-            {% for i in min_slide2 %}
-            <div class="card mb-2 overlay zoom">
-              <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap">
-            </div>
-            {% endfor %}
-          </div>
-          <div class="col-md-4 overlay zoom text-center">
-            {% for i in min_slide3 %}
-            <div class="card mb-2">
-              <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="310px" height="310px">
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
 
-      <div class="carousel-item">
-        <div class="row">
-        <div class="col-md-4 overlay zoom text-center">
-          {% for i in min_slide4 %}
+        {% for trade in slide1 %}
+        <div class="col-md-4  overlay zoom"">
           <div class="card mb-2">
-            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="300px" height="300px">
-          </div>
-          {% endfor %}
-        </div>
-        <div class="col-md-4 overlay zoom text-center">
-          {% for i in min_slide5 %}
-          <div class="card mb-2">
-            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="280px"
-              height="280px">
-          </div>
-          {% endfor %}
-        </div>
-        <div class="col-md-4 overlay zoom text-center">
-          {% for i in min_slide6 %}
-          <div class="card mb-2">
-            <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" width="320px"
+            <img class="card-img-top" src="{{trade.image.url}}" alt="Card image cap" width="320px"
               height="320px">
+            <div class="card-body">
+              <center>
+                {% if trade.status == 'Available' %}
+                <a class="btn rgba-gradient1 btn-rounded btn-sm animated bounce white-text" href="{% url 'makeTrade_page' trade.slug %}">Available</a>
+                {% else %}
+                <a class="btn btn-danger btn-rounded btn-sm">Sold Out</a>
+                {% endif %}
+              </center>
+              <hr>
+             <center> <h5 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}<br> <span class="badge badge-success mb-2">{{trade.scientific_name}}</span></h5> </center>
+              <p class="card-text">{{trade.description|slice:":150"}}...</p>
+            </div>
+            <br>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+      <!--/.First slide-->
+
+      <!--Second slide-->
+      
+      <div class="carousel-item">
+          {% for trade in slide2 %}
+          <div class="col-md-4  overlay zoom"">
+            <div class="card mb-2">
+              <img class="card-img-top" src="{{trade.image.url}}" alt="Card image cap" width="320px"
+                height="320px">
+              <div class="card-body">
+                <center>
+                  {% if trade.status == 'Available' %}
+                  <a class="btn rgba-gradient1 btn-rounded btn-sm animated bounce white-text" href="{% url 'makeTrade_page' trade.slug %}">Available</a>
+                  {% else %}
+                  <a class="btn btn-danger btn-rounded btn-sm">Sold Out</a>
+                  {% endif %}
+                </center>
+                <hr>
+               <center> <h5 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}<br> <span class="badge badge-success mb-2">{{trade.scientific_name}}</span></h5> </center>
+                <p class="card-text">{{trade.description|slice:":150"}}...</p>
+              </div>
+              <br>
+            </div>
           </div>
           {% endfor %}
-        </div>
-        </div>
-      </div>
-    <!--/.Carousel Wrapper-->
-</div>
 
-  </section>
-
-  </div>
-
-  <div class="container mt-5 z-depth-3">
-    <br>
-    <h5 class="font-weight-bold text-center green-text">How We Operate</h5>
-    <br>
-    <div class="row">
-      <div class="col-md-4 text-center">
-        <div class="card mb-2 overlay zoom">
-          <img class="card-img-top"
-            src="media/img/Pink Green Organic Don't Waste Your Energy Quote Instagram Post (4).gif"
-            alt="Card image cap">
-        </div>
       </div>
-      
-      <div class="col-md-4 overlay zoom text-center">
-        <div class="card mb-2">
-          <img src="media/img/Pink Green Organic Don't Waste Your Energy Quote Instagram Post (5).gif">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card mb-2  overlay zoom z-depth-1">
-          <img src="media/img/Pink Green Organic Don't Waste Your Energy Quote Instagram Post (6).gif" alt="Card image cap">
-        </div>
-        <br>
-        <br>
-        <a class="btn btn-outline-white btn-rounded"
-        href="{% url 'what_we_do_page' %}">Read More</a>
-        <a class="btn btn-outline-white btn-rounded"
-        href="{% url 'o_register_page' %}">As
-        An Offtaker</a>
-      </div>
-      
+      <!--/.Second slide-->
     </div>
-  </div>
-   
-  <br>
+    <!--/.Slides-->
+
+      </div>
+      <!--/.Carousel Wrapper-->
+  </section>
+  <hr>
+
+      <section class="section-preview container">
+        <h3 class="font-weight-bold mb-4 text-center green-text">What We Trade</h3>
+        <!--Carousel Wrapper-->
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="2000">
+          <div class="carousel-inner">
+            <!-- First slide -->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+
+              <!--First slide-->
+              <div class="carousel-item active text-center">
+                <div class="row">
+                  <div class="col-md-4 overlay zoom ">
+                    {% for i in min_slide1 %}
+                    <div class="card mb-2 ">
+                    <a href="{% url 'makeTrade_page' i.slug %}">
+                      <img class="card-img-top"
+                      src="{{i.image.url}}"
+                      alt="Card image cap" height="250px" width="100%">
+                    </a>
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <div class="col-md-4 overlay zoom  text-center">
+                    {% for i in min_slide2 %}
+                    <div class="card mb-2 ">
+                    <a href="{% url 'makeTrade_page' i.slug %}">
+                      <img class="card-img-top"
+                      src="{{i.image.url}}"
+                      alt="Card image cap" height="250px" width="100%">
+                    </a>
+                    </div>
+                    {% endfor %}
+                  </div>
+
+                  <div class="col-md-4 overlay zoom text-center">
+                    {% for i in min_slide3 %}
+                    <div class="card mb-2 ">
+                    <a href="{% url 'makeTrade_page' i.slug %}">
+                      <img class="card-img-top"
+                      src="{{i.image.url}}"
+                      alt="Card image cap" height="250px" width="100%">
+                    </a>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <!--/.First slide-->
+
+          
 
 
-  
+            </div>
+            <!--/.Slides-->
+
+          </div>
+          <!--/.Carousel Wrapper-->
+        </div>
+
+      </section>
+
+      </div>
+      <br>
+
+
 
 
   <!-- Jumbotron -->
-  <div class="card card-image" style="background-image: url(media/img/close-up-different-legumes-bowls_1205-86.webp);">
+  <div class="card card-image" style="background-image: url(/media/img/close-up-different-legumes-bowls_1205-86.webp);">
     <div class="text-white text-center rgba-gradient py-5 px-4">
       <div class="py-5">
 
         <!-- Content -->
-        <h4 class="card-title font-weight-bold mb-4  ">Join AgrivestAfrica Today</h4>
         <p class="mb-4 pb-2 px-md-5 mx-md-5">
           As seen in the above benefits, the farming and agriculture industry overall can really benefit from
           implementation of such an IoT solution or platform. Not only is a smart agriculture solution the innovative
           farming method of today, it is the key solution to the growing concern of the global population’s food
           consumption and environmental footprint.
           comfort zone as well</p>
-          <a class="btn btn-outline-white btn-rounded"
-          href="{% url 's_register_page' %}">As
-          A Sponsor</a>
-        <a class="btn btn-success btn-rounded"
-          href="{% url 'f_register_page' %}">As
+        <a class="btn btn-outline-white btn-rounded animated rotateIn slower" href="{% url 's_register_page' %}">As
+          An Agrivestor</a>
+        <a class="btn btn-success btn-rounded animated rotateIn slower" href="{% url 'f_register_page' %}">As
           A Farmer</a>
-        <a class="btn btn-outline-white btn-rounded"
-          href="{% url 'o_register_page' %}">As
-          An Offtaker</a>
+        <a class="btn btn-outline-white btn-rounded animated rotateIn slower" href="{% url 'o_register_page' %}">As
+          An Aggregator</a>
       </div>
     </div>
   </div>
@@ -315,7 +265,6 @@
 
   </div>
   </section>
-
 
   <div class="container z-depth-1 my-5">
 
@@ -330,107 +279,34 @@
           <div class="carousel-item active">
             <!--Grid row-->
             <div class="row">
-
-              <!--First column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/5.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/First column-->
-
+             <!--/Second column-->
               <!--Second column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/7.png" class="img-fluid px-4" alt="Logo">
+              <div class="col-lg-4 col-md-4 d-flex align-items-center justify-content-center">
+                <img src="/media/img/download (1).png" class="img-fluid px-4" alt="Logo">
               </div>
               <!--/Second column-->
-
-              <!--Third column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/6.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/Third column-->
-
-              <!--Fourth column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/9.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/Fourth column-->
-
-            </div>
+           
             <!--/Grid row-->
+            <!--Second column-->
+            <div class="col-lg-4 col-md-4 d-flex align-items-center justify-content-center">
+          <br>
+          <br>
+            </div>
+             <!--Second column-->
+             <div class="col-lg-4 col-md-4 d-flex align-items-center justify-content-center">
+              <img src="/media/img/WhatsApp Image 2023-01-14 at 6.33-PhotoRoom (1).png" class="img-fluid px-4" alt="Logo">
+            </div>
+            <!--/Second column-->
+            
           </div>
           <!-- First slide -->
 
-          <!-- Second slide -->
-          <div class="carousel-item">
-            <!--Grid row-->
-            <div class="row">
 
-              <!--First column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/11.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/First column-->
-
-              <!--Second column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/10.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/Second column-->
-
-              <!--Third column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/12.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/Third column-->
-
-              <!--Fourth column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/13.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/Fourth column-->
-
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!-- Second slide -->
-
-          <!-- Third slide -->
-          <div class="carousel-item">
-            <!--Grid row-->
-            <div class="row">
-
-              <!--First column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/1a.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/First column-->
-
-              <!--Second column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/2a.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/Second column-->
-
-              <!--Third column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/3a.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/Third column-->
-
-              <!--Fourth column-->
-              <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                <img src="https://mdbootstrap.com/img/Photos/Template/4a.png" class="img-fluid px-4" alt="Logo">
-              </div>
-              <!--/Fourth column-->
-
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!-- Third slide -->
         </div>
 
       </div>
       <!-- Logo carousel -->
+    </div>
 
     </section>
 
@@ -439,49 +315,7 @@
 
 
 
-  <!-- Footer -->
-
-  <!-- Footer Elements -->
-  <footer class="page-footer font-small green darken-3">
-    <div class="container">
-
-      <!-- Grid row-->
-      <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-md-12 py-5">
-          <h4 class="card-title font-weight-bold mb-4  text-center animated tada infinite ">Follow Us On:</h4>
-
-          <div class="mb-1 flex-center">
-
-            <!-- Facebook -->
-            <a type="button" href="https://web.facebook.com/agrivestafrica" class="btn-floating"><i
-                class="fab fa-facebook-f"></i></a>
-            <!-- Twitter -->
-            <a type="button" class="btn-floating"><i class="fab fa-twitter"></i></a>
-            <!-- Google + -->
-            <a type="button" href="https://www.linkedin.com/in/agrivestafrica-bb6a23258/" class="btn-floating"><i
-                class="fab fa-linkedin-in"></i></a>
-            <a type="button" class="btn-floating"><i class="fab fa-instagram"></i></a>
-
-          </div>
-        </div>
-        <!-- Grid column -->
-
-      </div>
-      <!-- Grid row-->
-
-    </div>
-    <!-- Footer Elements -->
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2022 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/"> AgriVestAfrica.com</a>
-    </div>
-    <!-- Copyright -->
-
-  </footer>
-  <!-- Footer -->
+ {% include 'low_nav.html' %}
 
 
 
@@ -494,9 +328,7 @@
   <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
 
   <script>
-    AOS.init({
-      duration: 1800,
-    })
+
     $('.carousel.carousel-multi-item.v-2 .carousel-item').each(function () {
       var next = $(this).next();
       if (!next.length) {

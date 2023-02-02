@@ -23,6 +23,7 @@ class Trade(models.Model):
     end_date = models.DateField(default=timezone.now)
     slug = models.SlugField(max_length=300,blank=True, null=True)
     payback_date = models.DateField(blank=True, null=True)
+    scientific_name = models.CharField(max_length=300, blank=True, null=True)
     
     def save(self, *args, **kwargs):
         if self.slug is None:

@@ -10,31 +10,23 @@ def home(request):
     logout(request)
     trades = Trade.objects.all()
     sliderT = Trade.objects.all().order_by('-id')[:3]
-    x = (Trade.objects.all().count() / 3)
-    slide1 = Trade.objects.all().order_by('-id')[x*2:x*3]
-    slide2 = Trade.objects.all().order_by('-id')[x:x*2]
-    slide3 = Trade.objects.all().order_by('-id')[:x]
+    x =  math.floor(Trade.objects.all().count() / 3)
+    slide1 = Trade.objects.all()[:3]
+    slide2 = Trade.objects.all()[3:6]
 
-    min_slide1 = Trade.objects.last()
+    min_slide1 = Trade.objects.all()[2:3]
     min_slide2 = Trade.objects.all()[:1]
     min_slide3 = Trade.objects.all()[1:2]
-    min_slide4 = Trade.objects.all()[2:3]
-    min_slide5 = Trade.objects.all()[3:4]
-    min_slide6 = Trade.objects.all()[4:5]
 
     context = {
         'trades' : trades,
         'sliderT' : sliderT,
         'slide1' : slide1,
         'slide2' : slide2,
-        'slide3' : slide3,
         'x' : x,
         'min_slide1' : min_slide1,
         'min_slide2' : min_slide2,
         'min_slide3' : min_slide3,
-        'min_slide4' : min_slide4,
-        'min_slide5' : min_slide5, 
-        'min_slide6' : min_slide6
     }
     return render(request,'index.html', context)
 
@@ -83,8 +75,18 @@ def webinar(request):
     return render(request, 'Extras/webinar.html')
 def what_we_do(request):
     return render(request, 'Extras/what_we_do.html')
-
-
+def testimonials(request):
+    return render(request, 'Extras/testimonials.html')    
+def referrals(request):
+    return render(request, 'Extras/referrals.html') 
+def investors(request):
+    return render(request, 'Extras/investors.html')
+def blog(request):
+    return render(request, 'Extras/blog.html')
+def contact(request):
+    return render(request, 'Extras/contact.html')
+def how_to(request):
+    return render(request, 'Extras/how_to.html')
 
 def sitemap(request):
     return render(request, 'sitemap.xml')

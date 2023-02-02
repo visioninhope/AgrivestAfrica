@@ -20,6 +20,12 @@ urlpatterns = [
     path('traction/', views.traction, name='traction_page'),
     path('webinar/', views.webinar, name='webinar_page'),
     path('what_we_do/', views.what_we_do, name='what_we_do_page'),
+    path('testimonials/', views.testimonials, name='testimonials_page'),
+    path('referrals/', views.referrals, name='referrals_page'),
+    path('investors/', views.investors, name='investors_page'),
+    path('blog/', views.blog, name='blog_page'),
+    path('contact', views.contact, name='contact_page'),
+    path('how_to/', views.how_to, name='how_to_page'),
 
     path('sitemap/', views.sitemap),
 ]

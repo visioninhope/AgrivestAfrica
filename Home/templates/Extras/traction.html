@@ -245,29 +245,15 @@
 <br>
 <!-- Jumbotron -->
 <div class="card card-image" style="background-image: url(/media/img/tomato-isolated-tomato-with-clipping-path-full-depth-field_179068-1652.webp);" >
-<div class="text-white text-center rgba-gradient py-5 px-4">
- <div class="py-5">
-   <!-- Content -->
-   <h4 class="card-title font-weight-bold mb-4  ">Join AgriVestAfrica TODAY</h4>
-   <p class="mb-4 pb-2 px-md-5 mx-md-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur obcaecati vero aliquid libero doloribus ad, unde tempora maiores, ullam, modi qui quidem minima debitis perferendis vitae cumque et quo impedit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta mollitia vitae placeat similique ipsam et id, voluptas architecto atque minima? Impedit ea incidunt eaque temporibus deserunt excepturi, cum numquam! Sequi!</p>
-   <a class="btn btn-success btn-outline-white btn-rounded" href="{% url 's_register_page' %}">AS A SPONSOR</a>
-           <a class="btn btn-outline-white btn-rounded" href="{% url 'o_register_page' %}">AS AN OFFTAKER</a>
-           <a class="btn btn-success btn-rounded" href="{% url 'f_register_page' %}">AS A FARMER</a>
- </div>
-</div>
+  <div class="text-white text-center rgba-gradient py-5 px-4">
+    {% include 'foot.html' %}
+  </div>
 </div>
 <!-- Jumbotron -->
 
 <!-- Footer Elements -->
-<footer class="page-footer font-small green darken-3" >
+{% include 'footer.html' %}
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2022 Copyright:
-  <a href="{% url 'trades_page' %}"> AgriVestAfrica.com</a>
-  </div>
-  <!-- Copyright -->
-
-
-
 
     <script type="text/javascript"
         src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
