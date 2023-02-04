@@ -24,19 +24,16 @@ def trades(request):
     else:
         active = 'no'
         result_page = None
-    z = math.ceil(Trade.objects.all().count()/3)
-    s = -3
-    e = 0
-    tradeRow = []
-    for i in range(z):
-        s = s+3
-        e = e+3
-        trade = Trade.objects.all()[s:e]
-        tradeRow.append(trade)
+    trades = Trade.objects.all()
+    tradePages = Paginator(trades, 3)
+    pageList = []
+    for page in tradePages:
+        pageList.append(page.object_list)
+    
     context = {
-        'tradeRow': tradeRow,
         'active' : active,
-        'result_page' : result_page
+        'result_page' : result_page,
+        'pageList' : pageList,
     }
     return render(request, 'Trades/trades.html', context)
 

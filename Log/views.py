@@ -248,3 +248,18 @@ def hub_call(request):
 
 def hub_cancel(request):
     return render(request, 'hub_cancel.html')
+
+
+from Asset.models import Trade
+from django.core.paginator import Paginator
+
+def temp(request):
+    trades = Trade.objects.all().order_by('id')
+    tradePages = Paginator(trades, 3)
+    pageList = []
+    for page in tradePages:
+        pageList.append(page.object_list)
+    context = {
+        'pageList' : pageList
+    }
+    return render(request, 'registration/temp.html', context)

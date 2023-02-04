@@ -3,139 +3,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AgrivestAfrica Registration</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="theme-color" content="#33b5e5">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <meta charset="utf-8">
-    <link rel="canonical" href="https://mdbootstrap.com/docs/standard/content-styles/animations/" />
-    <meta name="description" content="Sign Up with AgrivestAfrica for the opportunity to invest in new farms, manage and monitor old farms. " />
-    <meta name="keywords" content=" AgrivestAfrica, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+  {% block title %}
+  <title>Agrivestor</title>
+  {% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="theme-color" content="#33b5e5">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet"
+    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://mdbootstrap.com/docs/standard/content-styles/animations/" />
+  <meta name="description" content="
+    Sign Up with Agrivest Africa for the opportunity to invest in new farms, manage and monitor old farms. " />
+  <meta name="keywords" content=" Agrivest Africa, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
     crop, africa, ghana, nigeria, india, agriculture, green technology " />
-    <meta name="subject" content="AgriVestAfrica">
-    <meta name="copyright" content="AgriVestAfrica">
-    <link rel="shortcut icon" href="img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="{% static 'Log/signup.css' %}">
-    <!-- <head> -->
-         <!--Navbar-->
-          {% include 'navbar.html' %}
-      <!-- Full Page Intro -->
-</head>
-
+  <meta name="subject" content="Agrivest Africa">
+  <meta name="copyright" content="Agrivest Africa">
+  <link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="{% static 'Log/signup.css' %}">
+  <head>
+    <!--Navbar-->
+    {% include 'navbar.html' %}
+    <!-- Full Page Intro -->
+  </head>
 <body>
-    <br>
-    <br>
-    <br>
-    <br>
-    <form method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class=" col-md-4  mb-4">
-                <section class="form-elegant">
-                    <!--Form without header-->
-                    <div class="card">
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class=" col-md-4  mb-4">
 
-                        <div class="card-body mx-6">
-                            <!--Header-->
-                            <div class="text-center">
-                              <h6 class="green-text mb-5">
-                                  {% block header %}
-                                  <strong>Sign up As A Sponsor</strong>
-                                  {% endblock header %}
-                                  <hr>
-                              </h6>
-                            </div>
-                            {% if messages %}
-                              {% for message in messages %}
-                              <div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div>
-                              {% endfor %}
-                            {% endif %}
-                            <div class="row my-3 d-flex justify-content-center">
-                                <!--Google +-->
-                                <a href="{% provider_login_url 'google'%}?next=/dashboard">
-                                  <button type="button" class="btn btn-white btn-rounded z-depth-1a animated rotateIn">
-                                      <i class="fab fa-google-plus-g green-text"></i>
-                                  </button>
-                                </a>
-                            </div>
-                            <h5 class="text-center text-muted">or</h5>
-                            <!--Body-->
-                            <div class="md-form">
-                                <input type="text" id="Form-FullName" class="form-control" name="username" required>
-                                <label for="Form-FullName">Your Username</label>
-                            </div>
-                            <div class="md-form mb-5">
-                                <input type="email" id="defaultForm-email" class="form-control validate" name="email" required>
-                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your
-                                    email</label>
-                            </div>
-                            <div class="md-form pb-3">
-                                <input type="password" id="Form-pass1" class="form-control" name="pass1" required>
-                                <label for="Form-pass1">Your password</label>
-                            </div>
-                            <div class="md-form pb-3">
-                                <input type="password" id="Form-conpass1" class="form-control" name="pass2" required>
-                                <label for="Form-conpass1">Confirm password</label>
-                            </div>
+      <form class="form-elegant" method="post">
+        <!--Form without header-->
+        <div class="card z-depth-4">
 
-                            <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="materialInline4" required>
-                                <label class="form-check-label text-muted" for="materialInline4">Accept all our <a
-                                        href="">Terms</a> and <a href="">Conditions</a></label>
-                            </div>
-                            <br>
-                            <br>
-                            <div class="text-center mb-3">
-                                <button type="submit" class="btn green btn-block btn-rounded z-depth-1a  white-text">Sign
-                                    Up</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Form without header-->
-
-                </section>
-
+          <div class="card-body mx-6">
+            <center> <img src="/media/img/sponsor2.gif" class="img-fluid center" height="200px" width="200px"></center>
+            <!--Header-->
+            <div class="text-center">
+              <h6 class="green-text mb-5">
+                {% block header %}
+                <strong>Sign up As An Agrivestor</strong>
+                {% endblock header %}
+                <hr>
+              </h6>
             </div>
-            <div class="col-md-4"></div>
+            <div class="bg-white  rounded-5 ">
+            </div>
+            <br>
+            <center>
+              <!--Google +-->
+              <a href="{% provider_login_url 'google'%}?next=/dashboard"  class="btn btn-rounded  z-depth-1a animated rotateIn slower " style="color: black;">
+                <span><small>  <img src="/media/img/7611770.png" alt="" srcset="" class="img-fluid" height="30px" width="30px">Login with Google</small></span>
+              </a>
+            </center>
+            <h5 class="text-center text-muted">or</h5>
+            <!--Body-->
+            <div class="md-form">
+              <input type="text" id="Form-FullName" class="form-control" name="name" required>
+              <label for="Form-FullName">Your Full Name</label>
+            </div>
+            <div class="md-form mb-5">
+              <input type="email" id="defaultForm-email" class="form-control validate" name="email" required>
+              <label data-error="wrong" data-success="right" for="defaultForm-email">Your
+                email</label>
+            </div>
+            <div class="md-form pb-3">
+              <input type="text" id="Form-Phone" class="form-control">
+              <label for="Form-Phone">Phone Number</label>
+            </div>
+            <div class="md-form pb-3">
+              <input type="password" id="Form-pass1" class="form-control" name="pass1" required>
+              <label for="Form-pass1">Your password</label>
+            </div>
+            <div class="md-form pb-3">
+              <input type="password" id="Form-conpass1" class="form-control" name="pass2" required>
+              <label for="Form-conpass1">Confirm password</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input type="checkbox" class="form-check-input" id="materialInline4" required>
+              <label class="form-check-label text-muted" for="materialInline4">Accept all our <a
+                  href="terms and conditions.html">Terms</a> and <a
+                  href="terms and conditions.html">Conditions</a></label>
+            </div>
+            <br>
+            <br>
+            <div class="text-center mb-3">
+              <button type="submit" class="btn green btn-block btn-rounded z-depth-1a  white-text">Sign
+                Up</button>
+            </div>
+          </div>
         </div>
+        <!--/Form without header-->
+
     </form>
 
-    <!-- Footer -->
-    <footer class="page-footer font-small green darken-3">
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright:
-            <a href=""> AgriVestAfrica.com</a>
-        </div>
-        <!-- Copyright -->
+    </div>
+    <div class="col-md-4"></div>
+  </div>
 
-    </footer>
-    <!-- Footer -->
+
+  <!-- Footer -->
+  {% include 'footer.html' %}
+  <!-- Footer -->
 
 
 
-    <script type="text/javascript"
-        src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
 
 
-    <script type="text/javascript"
-        src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
-    <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+  <script type="text/javascript"
+    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
+  <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
 
-    <script>
-        AOS.init({
-            duration: 1200,
-        })
+  <script>
+    AOS.init({
+      duration: 1200,
+    })
 
-    </script>
+  </script>
 
 </body>
 

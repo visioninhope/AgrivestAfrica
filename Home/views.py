@@ -11,8 +11,9 @@ def home(request):
     trades = Trade.objects.all()
     sliderT = Trade.objects.all().order_by('-id')[:3]
     x =  math.floor(Trade.objects.all().count() / 3)
-    slide1 = Trade.objects.all()[:3]
-    slide2 = Trade.objects.all()[3:6]
+
+    slide1 = Trade.objects.all().order_by('id')[:3]
+    slide2 = Trade.objects.all().order_by('id')[3:7]
 
     min_slide1 = Trade.objects.all()[2:3]
     min_slide2 = Trade.objects.all()[:1]

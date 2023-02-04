@@ -20,5 +20,8 @@ urlpatterns = [
 
     path('hubtel/', views.hubtel),
     path('hub_call/',views.hub_call),
-    path('hub_cancel/',views.hub_cancel)
+    path('hub_cancel/',views.hub_cancel),
+
+
+    path('temp/', views.temp),
 ]
