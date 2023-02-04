@@ -1,0 +1,29 @@
+'''
+mobileNumber = request.POST.get('mobile')
+amount = int(request.POST.get('amount'))
+ref = request.POST.get('ref')
+user2 = 'evviouhu'
+pass2 = 'lrrnebkb'
+
+data = {
+    "amount": amount,
+    "title": trade_name,
+    "description": trade.name,
+    "clientReference": ref,
+    "callbackUrl": "https://edmanager-production.up.railway.app/callback",
+    #"cancellationUrl": "http://127.0.0.1:8000/cancel",
+    #"returnUrl": "http://127.0.0.1:8000/return",
+}
+url = f'https://devp-reqsendmoney-230622-api.hubtel.com/request-money/{mobileNumber}'
+headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "authorization": "Basic ZXZ2aW91aHU6bHJybmVia2I="
+    }
+response = requests.post(url, headers, json=data)
+raws = response.text
+raw = json.loads(raws)
+v = raw['data']['paylinkUrl']
+if response.status_code == 201:
+    return redirect(f'{v}')
+'''

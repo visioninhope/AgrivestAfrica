@@ -127,6 +127,7 @@ def login_user(request):
     if request.method == 'POST':
         user_username = request.POST.get('username')
         user_password = request.POST.get('pass1')
+        print(user_username,user_password)
         if User.objects.filter(username=user_username).exists():
             user = authenticate(username=user_username, password=user_password)
             if user:
@@ -138,9 +139,10 @@ def login_user(request):
         elif User.objects.filter(email=user_username).exists():
             user_username = User.objects.get(email=user_username).username
             user = authenticate(username=user_username, password=user_password)
-            if user.is_active:
-                login(request, user)
-                return redirect('dashboard')
+            if user:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('dashboard')
         else:
             messages.info(request, 'invalid credentials')
     return render(request, 'generic/login.html')
@@ -168,7 +170,7 @@ def forgot_password(request):
             mail_thread.start()
             messages.info(request, f'An email has been sent to {email}')
         else:
-            print('user non existent')
+            messages.info(request, f'User does not exist, try again')
     return render(request, 'generic/forgot_password.html')
 
 def send_reset_email(user,email):

@@ -61,6 +61,7 @@ class TradeLog(models.Model):
         max_length=50, choices=CHOICES, default='Pending')
     start_time = models.DateTimeField(default=timezone.now)
     actual_return = models.FloatField(default=0.00)
+    token = models.CharField(max_length=300,default=1)
 
     def __str__(self):
         return self.trade_name

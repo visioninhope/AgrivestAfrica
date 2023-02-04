@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from Log.models import User, Sponsor
 from Asset.models import Trade, Farm, Market
 from Transaction.models import FarmInvoice,FarmLog,TradeInvoice,TradeLog
+from random import randint
 import math
 
 
@@ -29,7 +30,6 @@ def trades(request):
     pageList = []
     for page in tradePages:
         pageList.append(page.object_list)
-    
     context = {
         'active' : active,
         'result_page' : result_page,
@@ -84,40 +84,33 @@ def makeTrade(request, slug):
                 tradeLog.base_cost = tradeInvoice.base_cost
                 tradeLog.service_charge = trade.service_charge
                 tradeLog.total_cost = tradeInvoice.total_cost
+                token = randint(1000,9999)
+                tradeLog.token = token
                 tradeLog.status = 'Pending'
                 tradeLog.save()
-                return redirect('trades_page')
+
+                print(total_cost, 'total')
+                url = "https://payproxyapi.hubtel.com/items/initiate"
+
+                payload = json.dumps({
+                    "totalAmount": total_cost,
+                    "description": trade_name,
+                    "callbackUrl": "https://www.agrivestafrica.com/dashboard/",
+                    "returnUrl": "https://www.agrivestafrica.com/dashboard/",
+                    "merchantAccountNumber": "2017279",
+                    "cancellationUrl": "https://www.agrivestafrica.com/trades/",
+                    "clientReference": token
+                })
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic bXkxS0ExUjphMjgzNGM3NjA2NzY0MzY2ODdhNTBjZGJkYTM0OGJlNA=='
+                }
+                response = requests.request("POST", url, headers=headers, data=payload)
+                link = json.loads(response.text)['data']['checkoutUrl']
+                return redirect(f'{link}')
         else:
             messages.error(request, 'Create Account to continue')
-            '''
-            mobileNumber = request.POST.get('mobile')
-            amount = int(request.POST.get('amount'))
-            ref = request.POST.get('ref')
-            user2 = 'evviouhu'
-            pass2 = 'lrrnebkb'
 
-            data = {
-                "amount": amount,
-                "title": trade_name,
-                "description": trade.name,
-                "clientReference": ref,
-                "callbackUrl": "https://edmanager-production.up.railway.app/callback",
-                #"cancellationUrl": "http://127.0.0.1:8000/cancel",
-                #"returnUrl": "http://127.0.0.1:8000/return",
-            }
-            url = f'https://devp-reqsendmoney-230622-api.hubtel.com/request-money/{mobileNumber}'
-            headers = {
-                    "accept": "application/json",
-                    "content-type": "application/json",
-                    "authorization": "Basic ZXZ2aW91aHU6bHJybmVia2I="
-                }
-            response = requests.post(url, headers, json=data)
-            raws = response.text
-            raw = json.loads(raws)
-            v = raw['data']['paylinkUrl']
-            if response.status_code == 201:
-                return redirect(f'{v}')
-            '''
     w = trade.name.split()
     crop = w[0]
     context = {
@@ -143,24 +136,18 @@ def farms(request):
     else:
         active = 'no'
         result_page = None
-    z = math.ceil(Farm.objects.all().count()/3)
-    s = -3
-    e = 0
-    farmRow = []
-    for i in range(z):
-        s = s+3
-        e = e+3
-        farm = Farm.objects.all()[s:e]
-        farmRow.append(farm)
-    if result_page:
-        for page in result_page:
-            print(page)
+    farms = Farm.objects.all()
+    farmPages = Paginator(farms, 3)
+    pageList = []
+    for page in farmPages:
+        pageList.append(page.object_list)
     context = {
-        'farmRow': farmRow,
+        'pageList' : pageList,
         'active' : active,
         'result_page' : result_page
     }
     return render(request, 'Farms/farms.html', context)
+
 
 def makeFarm(request, slug):
     farm = Farm.objects.get(slug=slug)

@@ -1,15 +1,10 @@
-{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>AgriVestAfrica - Farms</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="theme-color" content="#33b5e5">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&display=swap');
-  </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet"
@@ -17,27 +12,12 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <meta charset="utf-8">
   <meta name="description" content="
-  Sign Up with AgrivestAfrica for the opportunity to invest in new farms, manage and monitor old farms. " />
-<meta name="keywords" content=" AgrivestAfrica, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+  Sign Up with Grow For Me for the opportunity to invest in new farms, manage and monitor old farms. " />
+<meta name="keywords" content=" Grow For Me, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farm,
   crop, africa, ghana, nigeria, india, agriculture, green technology " />
-<meta name="subject" content="AgriVestAfrica">
-<meta name="copyright" content="AgriVestAfrica">
+<meta name="subject" content="Agrivest Africa">
+<meta name="copyright" content="Agrivest Africa">
   <link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
-
-  <script data-cfasync="false">
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          '//www.googletagmanager.com/gtm.' + 'js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-W7MBMN');
-  </script>
-
-
-
-
   <style>
     html,
     body,
@@ -119,17 +99,19 @@
       background: -o-linear-gradient(45deg, rgba(209, 10, 166, 0.1), rgba(189, 29, 210, 0.2) 50%);
       background: linear-gradient(to 45deg, rgba(78, 4, 107, 0.2), rgba(180, 16, 158, 0.2) 20%);
     }
-    .firstedit{
-      border-radius: 35px;
-     border-bottom: 5px solid #26A65B;
-            
+  
+
+  
+    .box2 {
+    margin-bottom: 2rem;
     }
+  
   </style>
 
   <header>
-    <!--Navbar-->
-    {% include 'navbar.html' %}
-    <!-- Full Page Intro -->
+      <!--Navbar-->
+      {% include 'navbar.html' %}
+      <!-- Full Page Intro -->
     <div class="view"
       style="background-image: url('/media/img/golden-potatoes-levitate-white-background_485709-65.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <!-- Mask & flexbox options-->
@@ -161,217 +143,131 @@
 </head>
 
 <body>
-  <div class="row">
-    <div class="col-md-2"></div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="col-md-2"></div>
+  <center>
     <div class="col-md-8">
-      <form class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2" method="post">
-        {% csrf_token %}
-        <i class="fas fa-search" aria-hidden="true"></i>
-        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Farm" aria-label="Search" name="search">
-      </form>
+      <h6 class=" mb-4 green-text text-center font-small ">
+        By trading in a crop, you are virtually buying harvested produce to be warehoused on your behalf for prices to appreciate. When the produce value appreciates, they are sold on the Ghana Commodity and Exchange (GCX) platform or open market.
+        <b> <br>There Is Risk In Farming. We dont Guarantee
+          returns of your sponsorship or profit.</b>
+      </h6>
     </div>
+  </center>
+  <div class="col-md-2"></div>
+<!-- Rotating card -->
+<div class="row">
+  <div class="col-md-2">
   </div>
-  
-  
-  {% if active == 'yes' %}
-    {% if result_page %}
-    <div class="container">
-      {% for page in result_page %}
-      <div class="row">
-        {% for farm in page %}
-        <div class="col-md-4 verlay zoom">
-          <div class="card-wrapper">
-            <div id="card-1" class="card card-rotating text-center">
-              <!-- Front Side -->
-              <div class="face front">
-                <!-- Image-->
-                <div class="card-up">
-                  <img class="card-img-top" src="{{farm.image.url}}" alt="Image with a photo of clouds.">
-                </div>
-                <!-- Content -->
-                <div class="card-body">
-                  <a class="btn rgba-gradient1 btn-rounded white-text" href="{% url 'makeFarm_page' farm.slug %}">Sponsor Farm</a>
-                  <hr>
-                  <h4 class="card-title font-weight-bold mb-4 green-text ">{{farm.name}}</h4>
-                  <span class="badge badge-success mb-2">{{farm.start_date|timesince:farm.end_date }}</span>
-                  <span class="badge badge-success mb-2">Located In {{farm.location}}</span>
-                  <dl class="row">
-                    <dd class="col-sm-6">
-                      Cost Per Unit
-                    </dd>
-                    <dd class="col-sm-6 green-text">
-                      GH₵ {{farm.price}}
-                    </dd>
-                  </dl>
-                  <hr>
-                  <dl class="row">
-                    <dd class="col-sm-6">
-                      Farming Start Date
-                    </dd>
-                    <dd class="col-sm-6 green-text">
-                      {{farm.start_date |date:'jS b, Y'}}
-                    </dd>
-                  </dl>
-                  <hr>
-                  <dl class="row">
-                    <dd class="col-sm-6">
-                      Farming End Date
-                    </dd>
-                    <dd class="col-sm-6 green-text">
-                      {{farm.end_date |date:'jS b, Y'}}
-                    </dd>
-                  </dl>
-                  <hr>
-                  <dl class="row">
-                    <dd class="col-sm-6">
-                      Profit Margin
-                    </dd>
-                    <dd class="col-sm-6 green-text">
-                      {{farm.ros_min}}% - {{farm.ros_max}}%
-                    </dd>
-                  </dl>
-                  <hr>
-                  <!-- Triggering button -->
-                  <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
-                </div>
-              </div>
-              <!-- Front Side -->
-              <!-- Back Side -->
-              <div class="face back">
-                <div class="card-body">
-                  <h5 class="green-text">Details</h5>
-                  <hr>
-                  <p>{{farm.description|slice:":150"}}</p>
-                  <a class="btn rgba-gradient1 btn-rounded" href="{% url 'makeFarm_page' farm.slug %}">Sponsor Farm</a>
-                  <br>
-                  <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
-                </div>
-              </div>
-              <!-- Back Side -->
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      <hr>
-      {% endfor %}
-      {% else %}
-        {% if messages %}
-          {% for message in messages %}
-            <a><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div></a>
-          {% endfor %}
-        {% endif %}
-    </div>
-    {% endif %}
-    {% else %}
-    <div class="container">
-    {% for farms in farmRow %}
-    <div class="row">
-    {% for farm in farms %}
-      <div class="col-md-4 verlay zoom">
-        <div class="card-wrapper">
-          <div id="card-1" class="card card-rotating text-center">
-            <!-- Front Side -->
-            <div class="face front">
-              <!-- Image-->
-              <div class="card-up">
-                <img class="card-img-top" src="{{farm.image.url}}" alt="Image with a photo of clouds.">
-              </div>
-              <!-- Content -->
-              <div class="card-body">
-                <a class="btn rgba-gradient1 btn-rounded white-text" href="{% url 'makeFarm_page' farm.slug %}">Sponsor Farm</a>
-                <hr>
-                <h4 class="card-title font-weight-bold mb-4 green-text ">{{farm.name}}</h4>
-                <span class="badge badge-success mb-2">{{farm.start_date|timesince:farm.end_date }}</span>
-                <span class="badge badge-success mb-2">Located In {{farm.location}}</span>
-                <dl class="row">
-                  <dd class="col-sm-6">
-                    Cost Per Unit
-                  </dd>
-                  <dd class="col-sm-6 green-text">
-                    GH₵ {{farm.price}}
-                  </dd>
-                </dl>
-                <hr>
-                <dl class="row">
-                  <dd class="col-sm-6">
-                    Farming Start Date
-                  </dd>
-                  <dd class="col-sm-6 green-text">
-                    {{farm.start_date |date:'jS b, Y'}}
-                  </dd>
-                </dl>
-                  <hr>
-                <dl class="row">
-                  <dd class="col-sm-6">
-                    Farming End Date
-                  </dd>
-                  <dd class="col-sm-6 green-text">
-                    {{farm.end_date |date:'jS b, Y'}}
-                  </dd>
-                </dl>
-                <hr>
-                <dl class="row">
-                  <dd class="col-sm-6">
-                    Profit Margin
-                  </dd>
-                  <dd class="col-sm-6 green-text">
-                    {{farm.ros_min}}% - {{farm.ros_max}}%
-                  </dd>
-                </dl>
-                <hr>
-                <!-- Triggering button -->
-                <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
-              </div>
-            </div>
-            <!-- Front Side -->
-            <!-- Back Side -->
-            <div class="face back">
-              <div class="card-body">
-                <h5 class="green-text">Details</h5>
-                <hr>
-                <p>{{farm.description|slice:":150"}}</p>
-                <a class="btn rgba-gradient1 btn-rounded" href="{% url 'makeFarm_page' farm.slug %}">Sponsor Farm</a>
-                <br>
-                <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
-              </div>
-            </div>
-            <!-- Back Side -->
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    <hr>
-    {% endfor %}
+  <div class="col-md-6">
+    <form class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Trade"
+        aria-label="Search">
+    </form>
   </div>
-  {% endif %}
-  <br>
-  <br>
-  <br>
-<!-- Footer -->
-
-<!-- Footer Elements -->
-<footer class="page-footer font-small green darken-3" >
-<!-- Copyright -->
-<div class="footer-copyright text-center py-3">© 2022 Copyright:
-<a href="https://mdbootstrap.com/education/bootstrap/"> AgriVestAfrica.com</a>
+  <div class="col-md-3">
+  </div>
 </div>
-<!-- Copyright -->
+<small>
+  <!-- Rotating card -->
+  <div class="container">
+    {% for page in pageList %}    
+   <div class="row">
+     {% for farm in page %}   
+     <div class="col-md-4 box2 ">
+       <div class="card-wrapper">
+         <div id="card-1" class="card card-rotating text-center">
+           <!-- Front Side -->
+           <div class="face front">
+             <!-- Image-->
+             <div class="card-up">
+               <img class="card-img-top" src="{{farm.image.url}}" alt="Image with a photo of clouds.">
+             </div>
+             <!-- Content -->
+             <div class="card-body">
+               <a class="btn rgba-gradient1 btn-rounded white-text btn-sm  animated rotateIn slower" href="{% url 'makeFarm_page' farm.slug %}">Farm Now</a>
+               <hr>
+               <h5 class="card-title font-weight-bold mb-4 green-text ">{{farm.name}}</h5>
+               <span class="badge badge-success mb-2">{{farm.scientific_name}}</span><span class="badge badge-success mb-2">{{farm.start_date|timesince:farm.end_date}}</span>
+               <span class="badge badge-success mb-2">Located In The Northen Region</span>
+               <dl class="row">
+                 <dd class="col-sm-6">
+                   Cost Per Unit
+                 </dd>
+                 <dd class="col-sm-6 green-text">
+                   GH₵ {{farm.price}}
+                 </dd>
+               </dl>
 
-</footer>
+               <hr>
+
+               <dl class="row">
+                 <dd class="col-sm-6">
+                   Farm Start Date
+                 </dd>
+                 <dd class="col-sm-6 green-text">
+                   {{farm.start_date}}
+                 </dd>
+               </dl>
+               <dl class="row">
+                <dd class="col-sm-6">
+                  Farm End Date
+                </dd>
+                <dd class="col-sm-6 green-text">
+                  {{farm.end_date}}
+                </dd>
+              </dl>
+               <hr>
+               <dl class="row">
+                 <dd class="col-sm-6">
+                   Profit Margin
+                 </dd>
+                 <dd class="col-sm-6 green-text">
+                    {{farm.ros_min}}% - {{farm.ros_max}}%
+                 </dd>
+               </dl>
+               <hr>
+               <!-- Triggering button -->
+               <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
+             </div>
+           </div>
+           <!-- Front Side -->
+           <!-- Back Side -->
+           <div class="face back">
+             <div class="card-body">
+               <h5 class="green-text">Details</h5>
+               <hr>
+               <p> {{farm.description}} </p>
+               <a href="{% url 'makeFarm_page' farm.slug %}" class="btn rgba-gradient1 btn-rounded white-text btn-sm  animated rotateIn slower">farm Now</a>
+               <br>
+               <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
+             </div>
+           </div>
+           <!-- Back Side -->
+         </div>
+       </div>
+     </div>
+     {% endfor %}
+    </div>
+   <hr>
+   {% endfor %}
+ </div>
+ <!-- Rotating card -->
+</small>
+  <!-- Rotating card -->
+   </div>
+<br>
+<br>
+<br>
+<!-- Footer Elements -->
+{% include 'footer.html' %}
 <!-- Footer -->
-
-  <script>
-    if ( window.history.replaceState ) {
-      window.history.replaceState( null, null, window.location.href );
-    }
-  </script>
-
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
-
-
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
   <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
