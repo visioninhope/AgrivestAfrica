@@ -5,7 +5,11 @@ urlpatterns = [
     path('',views.home,name='homepage'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('dashboard/profile/', views.profile, name='profile_page'),
+    path('dashboard/tradeLog', views.trade_log, name='tradeLog_page'),
+    path('dashboard/tradeLog_info/<str:slug>', views.tradeLog_info, name='tradeLog_info'),
+
     path('dashboard/overview', views.dash_overview, name='dash_overview'),
+
     path('dashboard/transactions', views.dash_transactions, name='dash_transactions'),
     path('dashboard/produce', views.dash_produce, name='dash_produce'),
 

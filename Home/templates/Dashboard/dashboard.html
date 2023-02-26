@@ -1,299 +1,212 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>agrivestafrica</title>
-    <!-- font awesome icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <meta charset="utf-8">
-    <meta name="description" content="Sign Up with AgrivestAfrica for the opportunity to invest in new farms, manage and monitor old farms. " />
-    <meta name="keywords" content=" AgrivestAfrica, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
-  crop, africa, ghana, nigeria, india, agriculture, green technology " />
-    <meta name="subject" content="AgriVestAfrica">
-    <meta name="copyright" content="AgriVestAfrica">
-    <link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
-    <link rel="stylesheet" href="{% static 'dashboard/main.css' %}">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <title>Agrivest - Dashboard</title>
 </head>
 <body>
-    <div class="dashboard-pg text-grey-blue">
-        <nav class="navigation-bar d-flex align-items-center">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="navigation-bar-left col-6 d-flex align-items-center">
-                        <button type="button" class="navbar-open-btn text-grey-blue me-3">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                    </div>
-                    <!-- {% if messages %}
-                      {% for message in messages %}
-                      <div class="text-center"><button type="button" class="btn btn-sm  btn-success  btn-rounded">{{message}}</div>
-                      {% endfor %}
-                    {% endif %} -->
-                    <div class="navigation-bar-right col-6 d-flex align-items-center justify-content-end">
-                        <a href="#" class="profile-btn bg-blue  btn-circle me-3">
-                            <i class="fas fa-user"></i>
-                        </a>
-                        <button type="button" class="notification-btn text-grey-blue">
-                            <i class="fa-regular fa-bell"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <div class="navigation-overlay position-fixed"></div>
-
-        {% include 'Dashboard/nav.html' %}
-
-        <div class="dashboard-main">
-            <div class="container">
-                <div class="row py-3">
-                    <div class="col-12 d-flex justify-content-between align-items-center">
-                        <div class="dashboard-title-text">
-                            <h2 class="font-weight-bold green-text">AgrivestAfrica Dashboard</h2>
-                            <p class="text-grey">Support farmers today</p>
-                            <!-- <span>{{rank}}</span> -->
-                        </div>
-                        <button type="button" class="fs-18 text-grey-blue">
-                            <i class="fas fa-ellipsis-vertical"></i>
-                        </button>
-                    </div>
-                </div>
-
-                
-            </div>
+  <section class="page">
+    {% include 'Dashboard/sideBar.html' %}
+    <section class="main">
+      <div class="main_cover"></div>
+      <section class="main_top">
+        <div class="mt_left">
+          <div class="box" id="mt_box">
+            <i class="material-symbols-outlined" style="color: salmon;">numbers</i>
+            <p>Total Transactions</p>
+            <span>1250</span>
+          </div>
+          <div class="box" id="mt_box">
+            <i class="material-symbols-outlined" style="color: skyblue;">payments</i>
+            <p>Total Transactions</p>
+            <span>Ghc 10,425</span>
+          </div>
+          <div class="box" id="mt_box">
+            <i class="material-symbols-outlined" style="color: burlywood;">savings</i>
+            <p>Total Balance</p>
+            <span>Ghc 2,425</span>
+          </div>
         </div>
-        <br>
-    </div>
- <div class="container">
-    <div class="overview-section p-4">
-    <div class="row">
-        <div class="col-md-4 box2">
-            <!-- Card -->
-        <div class="card">
-        <!-- Card content -->
-        <div class="card-body">
-            <div class="item-top d-flex align-items-center justify-content-between mb-3">
-                <span
-                    class="info-icon d-flex align-items-center justify-content-center bg-grey green-text fs-8">
-                    <i class="fa fa-plus"></i>
-                </span>
-            </div>
-        
-        <!-- Title -->
-        <h4 class="card-title font-weight-bold green-text text-center"><a>Sponsor Farm</a></h4>
-        <!-- Card image -->
-        <br>
-        <br>
-        <img class="card-img-top" src="/media/img/two-businessmen-deal-shake-hands-exchange-money-idea-investment-creative-projects-buy-idea-vector-illustration-flat-design-isolated-white-background_153097-2398.webp" alt="Card image cap">
-        <br>
-        <!-- Button -->
-        <div class="text-center"> <button type="button" class="btn btn-success btn-rounded" data-toggle="modal" data-target="#centralModalInfo">Proceed</button>
-        </div> 
-        <br>
-        <br>   
-          <!-- Central Modal Medium Info -->
-          <div class="modal fade" id="centralModalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-notify modal-success" role="document">
-              <!--Content-->
-              <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                  <p class="heading lead font-weight-bold">Sponsor Farm</p>
-         
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                  </button>
+        <div class="mt_right">
+          <div class="box">
+            <div class="quick_box swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <i class="material-symbols-outlined">shopping_cart</i>
+                  <a href="{% url 'trades_page' %}">Sponsor Trade</a>
                 </div>
-         
-                <!--Body-->
-                <div class="modal-body">
-                  <div class="text-center">
-                    <i class="fa fa-thumbs-up fa-4x mb-3 animated rotateIn"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis
-                      ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim,
-                      ab officiis totam.</p>
-                  </div>
+                <div class="swiper-slide">
+                  <i class="material-symbols-outlined">agriculture</i>
+                  <a href="{% url 'farms_page' %}">Sponsor Farm</a>
                 </div>
-         
-                <!--Footer-->
-                <div class="modal-footer justify-content-center">
-                  <a type="button" href="{% url 'farms_page' %}" class="btn btn-success white-text">Get it now <i class="far fa-gem ml-1 text-white"></i></a>
-                  <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No, thanks</a>
+                <div class="swiper-slide">
+                  <i class="material-symbols-outlined">store</i>
+                  <a href="{% url 'markets_page' %}">Buy Produce</a>
                 </div>
               </div>
-              <!--/.Content-->
+              <div class="swiper-pagination"></div>
+              <div class="quick_prev"><i class="material-symbols-outlined">arrow_back_ios</i></div>
+              <div class="quick_next"><i class="material-symbols-outlined">arrow_forward_ios</i></div>
             </div>
           </div>
-          <!-- Central Modal Medium Info-->
         </div>
-        
-        </div>
-        <!-- Card -->
-        </div>
-        <br>
-        <div class="col-md-4 box2">
-            <!-- Card -->
-        <div class="card">
-        <!-- Card content -->
-        <div class="card-body">
-            <div class="item-top d-flex align-items-center justify-content-between mb-3">
-                <span
-                    class="info-icon d-flex align-items-center justify-content-center bg-grey green-text fs-8">
-                    <i class="fa fa-plus"></i>
-                </span>
-            </div>
-        <!-- Title -->
-        <h4 class="card-title font-weight-bold green-text text-center"><a>Trade Produce</a></h4>
-        <!-- Card image -->
-        <br>
-        <br>
-        <img class="card-img-top" src="/media/img/stock-exchange-data_52683-40757.webp" alt="Card image cap">
-        <!-- Button -->
-        <br>
-        <br>
-       <div class="text-center"> <button type="button" class="btn btn-success btn-rounded" data-toggle="modal" data-target="#centralModalSuccess">Proceed
-    </button></div>
-    <br>
-   
-          <!-- Central Modal Medium Success -->
-          <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-notify modal-success" role="document">
-              <!--Content-->
-              <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                  <p class="heading lead font-weight-bold">Trade Produce</p>
-         
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                  </button>
-                </div>
-         
-                <!--Body-->
-                <div class="modal-body">
-                  <div class="text-center">
-                    <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis
-                      ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim,
-                      ab officiis totam.</p>
-                  </div>
-                </div>
-         
-                <!--Footer-->
-                <div class="modal-footer justify-content-center">
-                  <a type="button" href="{% url 'trades_page' %}" class="btn btn-success white-text">Get it now <i class="far fa-gem ml-1 text-white"></i></a>
-                  <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No, thanks</a>
-                </div>
+      </section>
+      <section class="main_low">
+        <section class="order_box">
+          <div class="order_box_h">
+            <p>Recent Orders</p>
+            <form>
+              <input type="text" placeholder="Search Here">
+              <button><i class="material-symbols-outlined">search</i></button>
+              <select name="" id="">
+                <option selected hidden value="none">Filter</option>
+                <option value="">Pending</option>
+                <option value="">Active</option>
+                <option value="">Completed</option>
+              </select>
+            </form>
+          </div>
+          <div class="order_box_con">
+            <a class="con" id="conH">
+              <div class="prod">
+                <span>Order Name</span>
               </div>
-              <!--/.Content-->
-            </div>
-          </div>
-          <!-- Central Modal Medium Success-->
-        </div>
-        
-        </div>
-        <!-- Card -->
-        </div>
-        <br>
-        <div class="col-md-4 box2">
-            <!-- Card -->
-        <div class="card">
-        <!-- Card content -->
-        <div class="card-body">
-            <div class="item-top d-flex align-items-center justify-content-between mb-3">
-                <span
-                    class="info-icon d-flex align-items-center justify-content-center bg-grey green-text fs-8">
-                    <i class="fa fa-plus"></i>
-                </span>
-            </div>
-        <!-- Title -->
-        <h4 class="card-title font-weight-bold green-text text-center"><a>Buy Produce</a></h4>
-        <!-- Card image -->
-        <img class="card-img-top" src="/media/img/no-time-concept-illustration_114360-4209.webp" alt="Card image cap">
-        <!-- Button -->
-        <div class="text-center"><button type="button" class="btn btn-success btn-rounded" data-toggle="modal" data-target="#centralModalDanger">Proceed
-        </button></div>
-         
-          <!-- Central Modal Medium Danger -->
-          <div class="modal fade" id="centralModalDanger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-notify modal-success" role="document">
-              <!--Content-->
-              <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                  <p class="heading lead font-weight-bold">Buy Produce</p>
-         
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                  </button>
-                </div>
-         
-                <!--Body-->
-                <div class="modal-body">
-                  <div class="text-center">
-                    <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis
-                      ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim,
-                      ab officiis totam.</p>
+              <p class="type">Order Type</p>
+              <p class="date">Start Date</p>
+              <p class="date">End Date</p>
+              <p>Total Cost(Ghc)</p>
+              <p class="status">Status</p>
+            </a>
+            {% if trades %}
+              {% for trade in trades %}
+                <a class="con">
+                  <div class="prod">
+                    <img src="{{trade.image_url}}" alt="">
+                    <span>{{trade.trade_name}}</span>
                   </div>
-                </div>
-         
-                <!--Footer-->
-                <div class="modal-footer justify-content-center">
-                  <a type="button" href="{% url 'markets_page' %}" class="btn btn-success white-text">Get it now <i class="far fa-gem ml-1 text-white"></i></a>
-                  <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No, thanks</a>
-                </div>
-              </div>
-              <!--/.Content-->
-            </div>
-          </div>
-          <!-- Central Modal Medium Danger-->
-
-
-        </div>
-        
-        </div>
-        <!-- Card -->
-        </div>
-      </div>
-    </div>
- </div>
-    <br>
-    <br>
-
-
-    <!-- Footer Elements -->
-    <footer class="page-footer font-small green darken-3">
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright:
-            <a href=""> AgriVestAfrica.com</a>
-        </div>
-        <!-- Copyright -->
-
-    </footer>
-    <!-- Footer -->
-
-
-   <script type="text/javascript"
-    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
-  <script type="text/javascript"
-    src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
-  <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src = "{% static 'dashboard/script.js' %}"></script>
+                  <p class="type">Trade
+                  </p>
+                  <p class="date">{{trade.start_date|date:'d b, Y'}}</p>
+                  <p class="date">{{trade.end_date|date:'d b, Y'}}</p>
+                  <p>{{trade.total_cost|intcomma}}</p>
+                  <p class="status">{{trade.status}}</p>
+                  
+                  {% if trade.status == 'Pending' %}
+                  <div id="t_stat_tag" style="background: #ff6364;"></div>
+                  {% elif trade.status == 'Active' %}
+                  <div id="t_stat_tag" style="background: #00acea;"></div>
+                  {% else %}
+                  <div id="t_stat_tag" style="background: #aeecc1;"></div>
+                  {% endif %}
+                    
+                </a>
+              {% endfor %}
+            {% endif %}
+            
   
-</body>
+            
+          </div>
+        </section>
+      </section>
+    </section>
+  </section>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    var swiper = new Swiper('.quick_box', {
+      direction: 'vertical',
+      loop: true,
+      speed:1500,
+      autoplay:{
+        delay:3000
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      navigation: {
+        nextEl: '.quick_next',
+        prevEl: '.quick_prev',
+      },
+
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+    });
+  </script>
+  <script>
+    const left = document.querySelector('.left')
+    const left_top = document.getElementById('left_top')
+    const user_con = document.querySelector('.user_con')
+    const menu_a = document.querySelectorAll('[id=menu_a]')
+    const menu_ab = document.querySelectorAll('[id=menu_ab]')
+    const left_tag = document.getElementById('left_tag')
+    const logout = document.getElementById('logout')
+    const main = document.querySelector('.main')
+    const main_cover = document.querySelector('.main_cover')
+
+    const expand = document.getElementById('expand')
+    const exp_menu = document.getElementById('exp_menu')
+    expand.onclick =()=>{
+      exp_menu.classList.toggle('change')
+    }
+  
+  left_tag.onclick =()=>{
+    handleScreen()
+  }
+
+  window.onresize =()=>{
+    left_tag.onclick =()=>{
+    handleScreen()
+    }
+  }
+
+  const handleScreen =()=>{   
+    if(window.innerWidth > 900){   
+      left_tag.classList.toggle('change')
+      left.classList.toggle('change')
+      left_top.classList.toggle('change')
+      user_con.classList.toggle('change')
+      logout.classList.toggle('change')
+      main.classList.toggle('change')
+      menu_a.forEach(a=>{
+        a.classList.toggle('change')
+      })
+      menu_ab.forEach(a=>{
+        a.classList.toggle('change')
+      })
+      exp_menu.classList.toggle('mini')
+    }else{
+      left.classList.toggle('mini')
+      main_cover.classList.toggle('change')
+    }
+  }
+  </script>
+
+  <script>
+    const mt_boxes = document.querySelectorAll('[id=mt_box]')
+    console.log(mt_boxes)
+
+    for (let i = 0; i < mt_boxes.length; i++) {
+      mt_boxes[i]
+      console.log()
+      anime({
+        targets: mt_boxes[i],
+        opacity : [0,1],
+        translateY: [-100,0],
+        duration: parseInt(800) * parseInt(i+1),
+        delay: parseInt(300) * parseInt(i+1)
+      });
+    }
+  </script>
+
+</body>
 </html>

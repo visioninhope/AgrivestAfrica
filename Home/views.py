@@ -3,6 +3,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 import math
 from Log.models import User,Sponsor,Farmer,Offtaker
+from Transaction.models import TradeInvoice,TradeLog,FarmInvoice,FarmLog
 from Asset.models import Trade
 
 
@@ -42,7 +43,43 @@ def check_job(request):
 
 @login_required
 def dashboard(request):
-    return render(request,'Dashboard/dashboard.html')
+    context = {
+        'trades' : TradeInvoice.objects.all(),
+        'farms' : FarmInvoice.objects.all()
+    }
+    return render(request,'Dashboard/dashboard.html', context)
+
+@login_required
+def trade_log(request):
+    trades = TradeInvoice.objects.all()
+    pend_count = TradeInvoice.objects.filter(status='Pending').count()
+    act_count = TradeInvoice.objects.filter(status='Active').count()
+    comp_count = TradeInvoice.objects.filter(status='Completed').count()
+    print(pend_count)
+    trades_bought = 0
+    trades_sold = 0
+    for trade in trades:
+        trades_bought = trades_bought + trade.total_cost
+        trades_sold = trades_sold + trade.actual_return
+    trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
+    context = {
+        'trades' : trades,
+        'trades_bought' : trades_bought,
+        'trades_sold' : trades_sold,
+        'trades_bal' : trades_bal,
+        'pend_count' : pend_count,
+        'act_count' : act_count,
+        'comp_count' : comp_count
+    }
+    return render(request,'Dashboard/tradeLog.html', context)
+
+@login_required
+def tradeLog_info(request,slug):
+    trade = TradeInvoice.objects.get(slug=slug)
+    context ={
+        'trade' : trade
+    }
+    return render(request, 'Dashboard/tradeLog_info.html', context)
 
 @login_required
 def profile(request):

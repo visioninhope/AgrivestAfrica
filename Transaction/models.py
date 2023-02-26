@@ -1,6 +1,7 @@
 from Log.models import User
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 
 
 class TradeInvoice(models.Model):
@@ -21,6 +22,7 @@ class TradeInvoice(models.Model):
     totalreturn_min = models.FloatField()
     totalreturn_max = models.FloatField()
     extra_notes = models.CharField(max_length=200, blank=True, null=True)
+    image_url = models.CharField(max_length=300, blank=True, null=True)
     ##roll on option
     #when user started trade
         #hide in trade logs interval b/n start and finish//
@@ -35,6 +37,11 @@ class TradeInvoice(models.Model):
     start_time = models.DateTimeField(default=timezone.now)
     actual_return = models.FloatField(default=0.00)
     payment = models.CharField(max_length=100, blank=True, null=True)
+    slug = models.SlugField(max_length=250, blank=True, null=True)
+    def save(self, *args, **kwargs):
+        if self.slug == None:
+            self.slug = slugify(self.trade_name)
+        super().save(*args,**kwargs)
 
     def __str__(self):
         return self.trade_name

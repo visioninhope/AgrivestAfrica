@@ -1,0 +1,292 @@
+.main_low .prod_box{
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+.prod_box_h{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 98%;
+  padding: 1% 1%;
+  max-height: 10%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.prod_box_h p{
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+.prod_box form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 45px;
+}
+.prod_box_h form input{
+  border-radius: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  font-size: 1.1rem;
+  padding: 10px 25px;
+}
+.prod_box_h form input::placeholder{
+  font-size: 1rem;
+  text-align: center;
+}
+.prod_box_h form button{
+  background: transparent;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.prod_box_h form select{
+  padding: 5px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+#prod_box_tag{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  background: white;
+  transition: 0.5s ease;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+#prod_box_tag.change{
+  transform: rotate(180deg);
+}
+
+.prod_box_list{
+  display: flex;
+  justify-content:flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.8%;
+  height: 88%;
+  overflow-y: auto;
+}
+/* .prod_box */
+.prod_box_list a{
+  background: white;
+  width: 21%;
+  padding: 1%;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.prod_box_list a .top{
+  display: flex;
+  justify-content: space-between;
+}
+.prod_box_list a .top p, .prod_box_list a .low p{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.prod_box_list a .top div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.prod_box_list a .mid img{
+  height:210px; 
+  width: 100%;
+  /* max-width:300px; */
+}
+
+.prod_box_list a #s1, .tb_right #s1{
+  color: rgb(117, 117, 117);
+  font-size: 0.9rem;
+}
+.prod_box_list a #s2, .tb_right #s2{
+  color: black;
+  font-weight: 600;
+}
+.prod_box_list a .mid{
+  display: flex;
+  justify-content: center;
+}
+.prod_box_list a .low{
+  display: flex;
+  justify-content: space-around;
+}
+#stat_tag{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+
+
+.prod_box_info{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  height: 100%;
+  background: whitesmoke;
+}
+
+.tradeInfo_box{
+  width: 85%;
+  min-height: 65vh;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: white;
+  display: flex;
+  position: relative;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn{
+  0%{top: -50px;opacity: 0;}
+  100%{top: 0;opacity: 1;}
+}
+
+
+.tb_left{
+  width: 60%;
+}
+.tb_left img{
+  height:100%; 
+  width:100%;
+}
+.tb_right{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.tb_right section{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+}
+.tb_right section #th{
+  font-family: 'Alegreya Sans SC', sans-serif;
+  border-bottom: 1px dotted rgb(117, 117, 117);
+  font-size: 1.2rem;
+}
+.tb_right section p{
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  flex-direction: column;
+}
+.tb_right section div{
+  width: 90%;
+  padding: 3%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main_top{
+  display: none;
+  height: 0;
+}
+.main_low{
+  height: 100%;
+}
+
+.main_top.change{
+  display: flex;
+  height: 30%;
+}
+
+.main_low.change{
+  height: 70%;
+}
+
+@media all and (max-width:1350px){
+  .prod_box_list a{
+    width: 28%;
+    padding: 1%;
+  }
+  .main .main_top.change{
+    height: auto;
+  }
+  .main_low.change{
+    height: auto;
+  }
+  #prod_box_tag{
+    position: fixed;
+    right: 0;
+    top: 50px;
+    z-index: 1000;
+  }
+}
+@media all and (max-width:750px){
+  .prod_box_list{
+    justify-content:center;
+    align-items: center;
+    gap: 0.8%;
+    overflow-y: auto;
+  }
+
+
+  .prod_box_h{
+    align-items: center;
+    justify-content: center;
+    min-height: 10%;
+  }
+  .prod_box_h form{
+    flex-wrap: wrap;
+  }
+  
+  .prod_box_list a{
+    width: 42%;
+    padding: 1%;
+  }
+}
+@media all and (max-width:470px){
+  .prod_box_list{
+    align-items: center;
+    justify-content: center;
+  }
+  .prod_box_list a{
+    width: 96%;
+    padding: 1%;
+  }
+}
+
+
+@media all and (max-width:750px){
+  .main_low{
+    overflow-y: auto;
+  }
+  .prod_box_info{
+    height: auto;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+  .tradeInfo_box{
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .tb_left,.tb_right{
+    width: 100%;
+    overflow-y: auto;
+  }
+  .tb_left{
+    min-height: 30vh;
+  }
+  .tb_right section div p{
+    align-items: center;
+  }
+}

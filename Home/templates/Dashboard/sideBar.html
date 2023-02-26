@@ -1,0 +1,35 @@
+<section class="left">
+  <div id="left_tag"><i class="material-symbols-outlined">menu_open</i></div>
+  <div class="top" id="left_top">
+    <a href="{% url 'homepage' %}">AgrivestAfrica</a>
+  </div>
+  <div class="user_con">
+    <div class="uc_top">
+      <p>welcome Back</p>
+      <span>{{user.username}}</span>
+    </div>
+    <hr id="uc_hr">
+    <div class="uc_low">
+      <p>Monthly Expense</p>
+      <span>Ghc 43,500</span>
+    </div>
+  </div>
+  <div class="menu">
+    <a href="{% url 'dashboard' %}" id="menu_ab"><i class="material-symbols-outlined">overview</i><span id="menu_a">overview</span></a>
+    <a id="menu_ab"><i class="material-symbols-outlined">photo_camera_front</i><span id="menu_a">profile</span></a>
+    <a id="menu_ab"><i class="material-symbols-outlined">attach_money</i><span id="menu_a">Transactions</span><i class="material-symbols-outlined" id="expand">expand_more</i></a>
+      <div id="exp_menu">
+        <a href="{% url 'tradeLog_page' %}"><i class="material-symbols-outlined">receipt_long</i><p>Trades</p></a>
+        <a href=""><i class="material-symbols-outlined">psychiatry</i><p>Farms</p></a>
+        <a href=""><i class="material-symbols-outlined">shopping_bag</i><p>Market</p></a>
+      </div>
+      <hr id="uc_hr">
+    <a id="menu_ab" ><i class="material-symbols-outlined">shopping_cart</i><span style="font-weight: 600;" id="menu_a">Sponor Trade</span></a>
+    <a id="menu_ab"><i class="material-symbols-outlined">agriculture</i><span style="font-weight: 600;" id="menu_a">Sponsor Farm</span></a>
+    <a id="menu_ab"><i class="material-symbols-outlined">store</i><span style="font-weight: 600;" id="menu_a">Buy Produce</span></a>
+    <a id="menu_ab"><i class="material-symbols-outlined">forward_to_inbox</i><span id="menu_a">My Produce</span></a>
+  </div>
+  <div class="low">
+    <a><i class="material-symbols-outlined">logout</i><span id="logout">Logout</span></a>
+  </div>
+</section>
