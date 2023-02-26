@@ -66,6 +66,7 @@ def makeTrade(request, slug):
                 tradeInvoice.pros_max = round((units * trade.price) * (trade.ros_max/100))
                 tradeInvoice.totalreturn_min = (int(tradeInvoice.base_cost) + int(tradeInvoice.pros_min))
                 tradeInvoice.totalreturn_max = (int(tradeInvoice.base_cost) + int(tradeInvoice.pros_max))
+                tradeInvoice.image_url = trade.image.url
                 if extra_notes != '':
                     tradeInvoice.extra_notes = extra_notes
                 tradeInvoice.status = 'Pending'
