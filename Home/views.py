@@ -41,11 +41,8 @@ def check_job(request):
     elif Offtaker.objects.filter(user=request.user).exists():
         print('offtaker')
 
-from django.views.decorators.csrf import csrf_exempt
 
-
-# @login_required
-@csrf_exempt 
+@login_required
 def dashboard(request):
     # url = 'http://127.0.0.1:8000/dashboard/'
     # data = {'name' : 'omar'}
