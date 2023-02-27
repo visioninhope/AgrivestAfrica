@@ -64,10 +64,11 @@ def trade_log(request):
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
     query_params = request.GET 
-    check_id = query_params['checkoutid']
-    if check_id:
-        trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
-        trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
+    if query_params['checkoutid'] :
+        check_id = query_params['checkoutid']
+        # if check_id:
+        #     trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
+        #     trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
 
 
     context = {
@@ -78,7 +79,7 @@ def trade_log(request):
         'pend_count' : pend_count,
         'act_count' : act_count,
         'comp_count' : comp_count,
-        'stat' : trade_invoice
+        'stat' : check_id
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
