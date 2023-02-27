@@ -74,7 +74,8 @@ def trade_log(request):
         'act_count' : act_count,
         'comp_count' : comp_count,
         'stat' : request,
-        # 'bat' : request,
+        'bat' : request.body,
+        # 'plat' : request.
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
