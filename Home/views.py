@@ -73,7 +73,9 @@ def trade_log(request):
         if request.GET['checkoutid']:
             stat = request.GET['checkoutid']
             trade_receipt = TradeReceipt.objects.get(check_id=stat).trade
-            trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
+            trade_invoice = TradeInvoice.objects.get(trade_name=trade_receipt)
+            trade_invoice.status = 'Active'
+            trade_invoice.save()
     else:
         stat = request.POST
 
