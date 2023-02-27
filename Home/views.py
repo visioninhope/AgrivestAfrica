@@ -68,10 +68,6 @@ def trade_log(request):
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
-    url = request.build_absolute_uri()
-    r = requests.get(url=url, headers={'Content-Type':'application/json'})
-    data = r.text 
-
     context = {
         'trades' : trades,
         'trades_bought' : trades_bought,
@@ -80,7 +76,7 @@ def trade_log(request):
         'pend_count' : pend_count,
         'act_count' : act_count,
         'comp_count' : comp_count,
-        'stat' : data,
+        'request' : request
         # 'bat' : data,
         # 'nat' : response.text
         # 'plat' : request.
