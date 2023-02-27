@@ -69,17 +69,8 @@ def trade_log(request):
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
     url = request.build_absolute_uri()
-    # payload = {}
-    # headers = {
-    #     'Cookie': 'csrftoken=QTSDFSte0ajtE0KgLN5xY1jxgNBN9j3A'
-    # }
-    # response = requests.request("POST", url, headers=headers, data=payload)
-    # print(response.text)
-    data = ''
-    if request.method == 'POST':
-        data = request.json
-    else:
-        data = 'flop'
+    r = requests.post(url=url, headers={'Content-Type':'application/json'})
+    data = r.text 
 
     context = {
         'trades' : trades,
