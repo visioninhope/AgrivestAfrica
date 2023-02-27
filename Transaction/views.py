@@ -104,7 +104,7 @@ def makeTrade(request, slug):
                 })
                 headers = {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Basic bXkxS0ExUjphMjgzNGM3NjA2NzY0MzY2ODdhNTBjZGJkYTM0OGJlNA=='
+                    'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
                 }
                 response = requests.request("POST", url, headers=headers, data=payload)
                 
