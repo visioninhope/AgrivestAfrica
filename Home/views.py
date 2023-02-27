@@ -71,6 +71,8 @@ def trade_log(request):
     # response = requests.request("POST", url, headers=headers, data=payload)
     # print(response.text)
 
+    data = json.loads(request.body)
+
     context = {
         'trades' : trades,
         'trades_bought' : trades_bought,
@@ -79,8 +81,8 @@ def trade_log(request):
         'pend_count' : pend_count,
         'act_count' : act_count,
         'comp_count' : comp_count,
-        'stat' : request,
-        'bat' : request.json,
+        # 'stat' : request,
+        'bat' : data,
         # 'nat' : response.text
         # 'plat' : request.
     }
