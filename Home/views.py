@@ -81,8 +81,10 @@ def trade_log(request):
         'act_count' : act_count,
         'comp_count' : comp_count,
         # 'stat' : check_id,
-        'stat' : request.GET
+        'stat' : request.GET,
         # 'bat' : TradeReceipt.objects.last().check_id
+        'bat' : request.POST,
+        'tat' : request.body
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
