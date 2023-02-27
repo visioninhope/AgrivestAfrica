@@ -70,7 +70,7 @@ def trade_log(request):
         #     trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
         #     trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
     if request.method == 'GET':
-        stat = request.GET
+        stat = request.GET['checkoutid']
     else:
         stat = request.POST
 
