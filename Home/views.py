@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-import math
+import math,requests,json
 from Log.models import User,Sponsor,Farmer,Offtaker
-from Transaction.models import TradeInvoice,TradeLog,FarmInvoice,FarmLog
+from Transaction.models import TradeInvoice,TradeLog,TradeReceipt,FarmInvoice,FarmLog
 from Asset.models import Trade
 
 
@@ -44,14 +44,14 @@ def check_job(request):
 @login_required
 def dashboard(request):
     context = {
-        'trades' : TradeInvoice.objects.all(),
-        'farms' : FarmInvoice.objects.all()
+        'trades' : TradeInvoice.objects.filter(customer=request.user),
+        'farms' : FarmInvoice.objects.filter(customer=request.user)
     }
     return render(request,'Dashboard/dashboard.html', context)
 
 @login_required
 def trade_log(request):
-    trades = TradeInvoice.objects.all()
+    trades = TradeInvoice.objects.filter(customer=request.user)
     pend_count = TradeInvoice.objects.filter(status='Pending').count()
     act_count = TradeInvoice.objects.filter(status='Active').count()
     comp_count = TradeInvoice.objects.filter(status='Completed').count()
@@ -62,6 +62,29 @@ def trade_log(request):
         trades_bought = trades_bought + trade.total_cost
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
+
+    trade_target = TradeInvoice.objects.filter(customer=request.user).last()
+    total_cost = trade_target.total_cost
+    trade_name = trade_target.trade_name
+    token = TradeReceipt.objects.get(trade=trade_target).token
+
+    url = "https://payproxyapi.hubtel.com/items/initiate"
+    payload = json.dumps({
+        "totalAmount": total_cost,
+        "description": trade_name,
+        "callbackUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
+        "returnUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
+        "merchantAccountNumber": "2017279",
+        "cancellationUrl": "https://www.agrivestafrica.com/trades/",
+        "clientReference": token
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic bXkxS0ExUjphMjgzNGM3NjA2NzY0MzY2ODdhNTBjZGJkYTM0OGJlNA=='
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    print(response)
+
     context = {
         'trades' : trades,
         'trades_bought' : trades_bought,
@@ -80,6 +103,36 @@ def tradeLog_info(request,slug):
         'trade' : trade
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
+
+def farm_log(request):
+    farms = FarmInvoice.objects.filter(customer=request.user)
+    pend_count = FarmInvoice.objects.filter(status='Pending').count()
+    act_count = FarmInvoice.objects.filter(status='Active').count()
+    comp_count = FarmInvoice.objects.filter(status='Completed').count()
+    farms_bought = 0
+    farms_sold = 0
+    for farm in farms:
+        farms_bought = farms_bought + farm.total_cost
+        farms_sold = farms_sold + farm.actual_return
+    farms_bal = "{:.2f}".format(farms_sold - farms_bought) 
+    context = {
+        'farms' : farms,
+        'farms_bought' : farms_bought,
+        'farms_sold' : farms_sold,
+        'farms_bal' : farms_bal,
+        'pend_count' : pend_count,
+        'act_count' : act_count,
+        'comp_count' : comp_count
+    }
+    return render(request,'Dashboard/farmLog.html', context)
+
+@login_required
+def farmLog_info(request,slug):
+    farm = FarmInvoice.objects.get(slug=slug)
+    context ={
+        'farm' : farm
+    }
+    return render(request, 'Dashboard/farmLog_info.html', context)
 
 @login_required
 def profile(request):

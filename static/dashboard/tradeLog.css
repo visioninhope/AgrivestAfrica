@@ -1,6 +1,7 @@
 .main_low .prod_box{
   width: 100%;
   height: 100%;
+  /* min-height: 100vh; */
   background: white;
 }
 .prod_box_h{
@@ -69,6 +70,7 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 0.8%;
+  /* min-height: 88vh; */
   height: 88%;
   overflow-y: auto;
 }
@@ -211,6 +213,59 @@
 .main_low.change{
   height: 70%;
 }
+.empty_box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 88vh;
+}
+.empty_box i{
+  color: #71d574;
+  font-size: 10rem;
+}
+.empty_box a{
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  animation: move 0.5s ease;
+  position: relative;
+}
+#tl,#tr{
+  position: absolute;
+  background: white;
+  padding: 5px;
+  font-size: 1.8rem;
+  border-radius: 50%;
+  color: #7ac691;
+  transition: 0.8s ease;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+#tl{
+  left: -10px;
+}
+#tr{
+  right: -10px;
+}
+.empty_box a:hover #tl, .empty_box a:hover #tr{
+  transform: rotate(360deg);
+}
+
+
+
+.empty_box button{
+  min-width: max-content;
+  padding: 10px;
+  color: white;
+  background: #71d574;
+}
+
+
 
 @media all and (max-width:1350px){
   .prod_box_list a{
@@ -237,8 +292,13 @@
     gap: 0.8%;
     overflow-y: auto;
   }
-
-
+  .empty_box{
+    align-items: flex-start;
+  }
+  .main{
+    background: white;
+    justify-content: flex-start;
+  }
   .prod_box_h{
     align-items: center;
     justify-content: center;

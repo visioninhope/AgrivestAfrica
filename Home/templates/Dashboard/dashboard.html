@@ -74,8 +74,8 @@
             </form>
           </div>
           <div class="order_box_con">
-            <a class="con" id="conH">
-              <div class="prod">
+            <div class="con" id="conH">
+              <div class="prod" style="justify-content: center;">
                 <span>Order Name</span>
               </div>
               <p class="type">Order Type</p>
@@ -83,16 +83,15 @@
               <p class="date">End Date</p>
               <p>Total Cost(Ghc)</p>
               <p class="status">Status</p>
-            </a>
+            </div>
             {% if trades %}
               {% for trade in trades %}
-                <a class="con">
+                <a class="con" href="{% url 'tradeLog_info' trade.slug %}" style="color: black;">
                   <div class="prod">
                     <img src="{{trade.image_url}}" alt="">
                     <span>{{trade.trade_name}}</span>
                   </div>
-                  <p class="type">Trade
-                  </p>
+                  <p class="type">Trade</p>
                   <p class="date">{{trade.start_date|date:'d b, Y'}}</p>
                   <p class="date">{{trade.end_date|date:'d b, Y'}}</p>
                   <p>{{trade.total_cost|intcomma}}</p>

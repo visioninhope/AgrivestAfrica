@@ -5,7 +5,7 @@ from django.utils.text import slugify
 
 
 class TradeInvoice(models.Model):
-    trade_name = models.CharField(max_length=100)
+    trade_name = models.CharField(max_length=100,unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     trade = models.CharField(max_length=200)
     price = models.FloatField()
@@ -48,7 +48,7 @@ class TradeInvoice(models.Model):
 
 
 class TradeLog(models.Model):
-    trade_name = models.CharField(max_length=100)
+    trade = models.ForeignKey(TradeInvoice,on_delete=models.CASCADE,default=7)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     price = models.FloatField()
     units = models.PositiveIntegerField()
@@ -68,14 +68,13 @@ class TradeLog(models.Model):
         max_length=50, choices=CHOICES, default='Pending')
     start_time = models.DateTimeField(default=timezone.now)
     actual_return = models.FloatField(default=0.00)
-    token = models.CharField(max_length=300,default=1)
 
     def __str__(self):
         return self.trade_name
 
 
 class FarmInvoice(models.Model):
-    farm_name = models.CharField(max_length=100)
+    farm_name = models.CharField(max_length=100,unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     farm = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
@@ -93,6 +92,7 @@ class FarmInvoice(models.Model):
     totalreturn_min = models.FloatField()
     totalreturn_max = models.FloatField()
     extra_notes = models.CharField(max_length=200, blank=True, null=True)
+    image_url = models.CharField(max_length=300, blank=True, null=True)
     CHOICES = (
         ("Pending", "Pending"),
         ("Active", "Active"),
@@ -103,13 +103,18 @@ class FarmInvoice(models.Model):
     start_time = models.DateTimeField(default=timezone.now)
     actual_return = models.FloatField(default=0.00)
     payment = models.CharField(max_length=100, blank=True, null=True)
+    slug = models.SlugField(max_length=250, blank=True, null=True)
+    def save(self, *args, **kwargs):
+        if self.slug == None:
+            self.slug = slugify(self.farm_name)
+        super().save(*args,**kwargs)
 
     def __str__(self):
         return self.farm_name
 
 
 class FarmLog(models.Model):
-    farm_name = models.CharField(max_length=100)
+    farm = models.ForeignKey(FarmInvoice,on_delete=models.CASCADE, default=3)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=200)
     price = models.FloatField()
@@ -133,3 +138,18 @@ class FarmLog(models.Model):
 
     def __str__(self):
         return self.farm_name
+
+
+
+class TradeReceipt(models.Model):
+    token = models.UUIDField(max_length=300,default=1,unique=True)
+    trade = models.ForeignKey(TradeInvoice,on_delete=models.CASCADE)
+    paylink = models.CharField(max_length=500)
+    status = (
+        ('unpaid','unpaid'),
+        ('paid','paid')
+    )
+    status = models.CharField(max_length=50, choices=status, default='unpaid')
+    timestamp = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return self.trade.trade_name

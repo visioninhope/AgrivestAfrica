@@ -5,9 +5,10 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from Log.models import User, Sponsor
 from Asset.models import Trade, Farm, Market
-from Transaction.models import FarmInvoice,FarmLog,TradeInvoice,TradeLog
+from Transaction.models import FarmInvoice,FarmLog,TradeReceipt,TradeInvoice,TradeLog
 from random import randint
 import math
+from uuid import uuid4
 
 
 def trades(request):
@@ -16,7 +17,6 @@ def trades(request):
         search = request.POST.get('search')
         res = Trade.objects.filter(name__icontains = search)
         res.count()
-        print(res.count())
         if res.count() > 0:
             result_page = Paginator(res,3)
         else:
@@ -85,19 +85,19 @@ def makeTrade(request, slug):
                 tradeLog.base_cost = tradeInvoice.base_cost
                 tradeLog.service_charge = trade.service_charge
                 tradeLog.total_cost = tradeInvoice.total_cost
-                token = randint(1000,9999)
-                tradeLog.token = token
                 tradeLog.status = 'Pending'
                 tradeLog.save()
 
-                print(total_cost, 'total')
-                url = "https://payproxyapi.hubtel.com/items/initiate"
 
+                token = str(uuid4())
+                # print(total_cost, 'total')
+
+                url = "https://payproxyapi.hubtel.com/items/initiate"
                 payload = json.dumps({
                     "totalAmount": total_cost,
                     "description": trade_name,
-                    "callbackUrl": "https://www.agrivestafrica.com/dashboard/",
-                    "returnUrl": "https://www.agrivestafrica.com/dashboard/",
+                    "callbackUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
+                    "returnUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
                     "merchantAccountNumber": "2017279",
                     "cancellationUrl": "https://www.agrivestafrica.com/trades/",
                     "clientReference": token
@@ -107,8 +107,14 @@ def makeTrade(request, slug):
                     'Authorization': 'Basic bXkxS0ExUjphMjgzNGM3NjA2NzY0MzY2ODdhNTBjZGJkYTM0OGJlNA=='
                 }
                 response = requests.request("POST", url, headers=headers, data=payload)
+                
                 link = json.loads(response.text)['data']['checkoutUrl']
-                return redirect(f'{link}')
+                tradeReceipt = TradeReceipt()
+                tradeReceipt.trade = TradeInvoice.objects.get(trade_name=trade_name)
+                tradeReceipt.token = token
+                tradeReceipt.paylink = f'{link}'
+                tradeReceipt.save()
+                return redirect(f'{link}')           
         else:
             messages.error(request, 'Create Account to continue')
 
@@ -164,6 +170,7 @@ def makeFarm(request, slug):
             if FarmInvoice.objects.filter(customer=request.user).filter(farm_name=farm_name).exists():
                 messages.info(request, f"You already have a farm named {farm_name}")
             else:
+                print(farm_name)
                 farmInvoice.farm_name = farm_name
                 farmInvoice.customer = customer
                 farmInvoice.farm = farm.name
@@ -177,6 +184,7 @@ def makeFarm(request, slug):
                 farmInvoice.base_cost = units * farm.price
                 farmInvoice.service_charge = farm.service_charge
                 farmInvoice.total_cost = total_cost
+                farmInvoice.image_url = farm.image.url
                 farmInvoice.pros_min = round((units * farm.price) * (farm.ros_min/100))
                 farmInvoice.pros_max = round((units * farm.price) * (farm.ros_max/100))
                 farmInvoice.totalreturn_min = (int(farmInvoice.base_cost) + int(farmInvoice.pros_min))
@@ -187,6 +195,8 @@ def makeFarm(request, slug):
                 payment = request.POST.get('payment')
                 farmInvoice.payment = payment
                 farmInvoice.save()
+
+
                 farmLog = FarmLog()
                 farmLog.farm_name = farm_name
                 farmLog.customer = customer

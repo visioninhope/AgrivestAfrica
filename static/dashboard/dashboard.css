@@ -148,6 +148,7 @@
   border-radius: 10px;
   transition: 0.3s ease;
   font-size: 1rem;
+  color: black;
   position: relative; 
 }
 .left .menu a.change{
@@ -375,6 +376,8 @@
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .order_box_con{
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   height: 80%;
 }
@@ -383,13 +386,17 @@
   padding: 10px;
   display: flex;
   align-items: center;
+  gap: 10px;
   justify-content: space-around;
+  transition: 0.3s ease;
+}
+.order_box_con .con:hover{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .order_box_con .con .prod{
   width: 25%;
   display: flex;
-  justify-content: space-around;
-  /* border: 1px solid gold; */
+  justify-content: flex-start;
 }
 .order_box_con #conH{
   padding: 20px 0;
@@ -441,7 +448,8 @@
 @media all and (max-width:900px){
   .left{
     position: fixed;
-    width: 75%;
+    width: auto;
+    padding: 0 10px;
     left: -1000px;
     background: white;
   }
@@ -547,13 +555,14 @@
     height: auto;
   }
   .main_low .order_box{
+    border-radius: 0;
     height: auto;
-    border-radius: 10px;
   }
   .order_box_h form{
     gap: 5px;
   }
   .order_box form input{
+    font-size: 0.9rem;
     border: 1px solid transparent;
     border-radius: 0;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -565,12 +574,22 @@
     font-family: 'Alegreya Sans SC', sans-serif;
     font-family: 'Bebas Neue', cursive;
   }
-  .order_box_h{
-    justify-content: center;
+  .main_low .order_box{
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 1%;
+    width: 100%;
+    padding: 0;
+    gap: 10px;
+  }
+  .order_box_h{
+    justify-content: space-around;
+    align-items: center;
+    padding: 2%;
+    width: 93%;
     flex-wrap: wrap;
     height: auto;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
   }
   .order_box form{
     width: auto;
@@ -581,19 +600,62 @@
     width: auto;
     height: auto;
   }
+  .order_box .con .prod{
+    width: 60%;
+    gap: 5px;
+    font-size: 0.8rem;
+    justify-content: flex-start;
+  }
+  .order_box .con .prod img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  .order_box_con{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+  .order_box .con{
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    padding: 4px;
+    border-radius: 5px;
+    display: flex;
+    width: 90%;
+  }
+  #conH{
+    border-radius: 0;
+    width: 100%;
+    display: flex;
+  }
+  #conH span,#conH p{
+    font-size: 0.8rem;
+    text-align: center;
+    justify-content: center;
+  }
+  #conH span{
+    width: 100%;
+  }
+  #conH p{
+    width: 40%;
+  }
+  .order_box .con p{
+    width: 40%;
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
   .order_box_con{
     height: 50vh;
     overflow-y: auto;
   }
-  .order_box .con .date{
-    display: none;
-  }
-  .order_box .con .status{
+  .order_box .con .date, .order_box .con .type,.order_box .con .status{
     display: none;
   }
   .order_box .con #t_stat_tag{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    top: 5px;
+    top: 3px;
     display: flex;
   }
 }
