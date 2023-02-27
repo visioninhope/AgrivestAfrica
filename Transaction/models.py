@@ -48,7 +48,7 @@ class TradeInvoice(models.Model):
 
 
 class TradeLog(models.Model):
-    trade = models.ForeignKey(TradeInvoice,on_delete=models.CASCADE,default=7)
+    trade_name = models.CharField(max_length=300)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     price = models.FloatField()
     units = models.PositiveIntegerField()
@@ -114,7 +114,7 @@ class FarmInvoice(models.Model):
 
 
 class FarmLog(models.Model):
-    farm = models.ForeignKey(FarmInvoice,on_delete=models.CASCADE, default=3)
+    farm_name = models.CharField(max_length=300)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=200)
     price = models.FloatField()

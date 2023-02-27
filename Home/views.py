@@ -63,30 +63,7 @@ def trade_log(request):
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
-    if TradeInvoice.objects.count() > 0:
-        trade_target = TradeInvoice.objects.filter(customer=request.user).last()
-        total_cost = trade_target.total_cost
-        trade_name = trade_target.trade_name
-        token = TradeReceipt.objects.get(trade=trade_target).token
 
-        url = "https://payproxyapi.hubtel.com/items/initiate"
-        payload = json.dumps({
-            "totalAmount": total_cost,
-            "description": trade_name,
-            "callbackUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
-            "returnUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
-            "merchantAccountNumber": "2017279",
-            "cancellationUrl": "https://www.agrivestafrica.com/trades/",
-            "clientReference": str(token) 
-        })
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic bXkxS0ExUjphMjgzNGM3NjA2NzY0MzY2ODdhNTBjZGJkYTM0OGJlNA=='
-        }
-        response = requests.request("POST", url, headers=headers, data=payload)
-        stat =response
-    else:
-        stat = 'empty'
 
     context = {
         'trades' : trades,
@@ -96,7 +73,7 @@ def trade_log(request):
         'pend_count' : pend_count,
         'act_count' : act_count,
         'comp_count' : comp_count,
-        'stat' : stat
+        'stat' : request.body
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
