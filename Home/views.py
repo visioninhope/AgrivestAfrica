@@ -69,7 +69,7 @@ def trade_log(request):
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
     url = request.build_absolute_uri()
-    r = requests.post(url=url, headers={'Content-Type':'application/json'})
+    r = requests.get(url=url, headers={'Content-Type':'application/json'})
     data = r.text 
 
     context = {
