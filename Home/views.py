@@ -71,6 +71,7 @@ def trade_log(request):
         #     trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
 
 
+
     context = {
         'trades' : trades,
         'trades_bought' : trades_bought,
@@ -80,6 +81,7 @@ def trade_log(request):
         'act_count' : act_count,
         'comp_count' : comp_count,
         # 'stat' : check_id,
+        'stat' : request.GET
         # 'bat' : TradeReceipt.objects.last().check_id
     }
     return render(request,'Dashboard/tradeLog.html', context)
