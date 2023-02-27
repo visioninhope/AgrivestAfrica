@@ -63,13 +63,13 @@ def trade_log(request):
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
-    url = request.build_absolute_uri()
-    payload = {}
-    headers = {
-        'Cookie': 'csrftoken=QTSDFSte0ajtE0KgLN5xY1jxgNBN9j3A'
-    }
-    response = requests.request("POST", url, headers=headers, data=payload)
-    print(response.text)
+    # url = request.build_absolute_uri()
+    # payload = {}
+    # headers = {
+    #     'Cookie': 'csrftoken=QTSDFSte0ajtE0KgLN5xY1jxgNBN9j3A'
+    # }
+    # response = requests.request("POST", url, headers=headers, data=payload)
+    # print(response.text)
 
     context = {
         'trades' : trades,
@@ -80,8 +80,8 @@ def trade_log(request):
         'act_count' : act_count,
         'comp_count' : comp_count,
         'stat' : request,
-        'bat' : request.body.get('checkout_id'),
-        'nat' : response.text
+        'bat' : json.loads(request.body),
+        # 'nat' : response.text
         # 'plat' : request.
     }
     return render(request,'Dashboard/tradeLog.html', context)
