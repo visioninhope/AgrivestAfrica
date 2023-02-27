@@ -80,7 +80,7 @@ def trade_log(request):
         'act_count' : act_count,
         'comp_count' : comp_count,
         'stat' : request,
-        'bat' : json.loads(request.body),
+        'bat' : request.body,
         # 'nat' : response.text
         # 'plat' : request.
     }
