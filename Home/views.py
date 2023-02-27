@@ -41,8 +41,16 @@ def check_job(request):
     elif Offtaker.objects.filter(user=request.user).exists():
         print('offtaker')
 
-@login_required
+from django.views.decorators.csrf import csrf_exempt
+
+
+# @login_required
+@csrf_exempt 
 def dashboard(request):
+    # url = 'http://127.0.0.1:8000/dashboard/'
+    # data = {'name' : 'omar'}
+    # requests.post(url, data=data, headers={'Content-Type':'application/json'})
+
     context = {
         'trades' : TradeInvoice.objects.filter(customer=request.user),
         'farms' : FarmInvoice.objects.filter(customer=request.user)
@@ -63,15 +71,18 @@ def trade_log(request):
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
-    # url = request.build_absolute_uri()
+    url = request.build_absolute_uri()
     # payload = {}
     # headers = {
     #     'Cookie': 'csrftoken=QTSDFSte0ajtE0KgLN5xY1jxgNBN9j3A'
     # }
     # response = requests.request("POST", url, headers=headers, data=payload)
     # print(response.text)
-
-    data = json.loads(request.body)
+    data = ''
+    if request.method == 'POST':
+        data = request.json
+    else:
+        data = 'flop'
 
     context = {
         'trades' : trades,
@@ -81,8 +92,8 @@ def trade_log(request):
         'pend_count' : pend_count,
         'act_count' : act_count,
         'comp_count' : comp_count,
-        # 'stat' : request,
-        'bat' : data,
+        'stat' : data,
+        # 'bat' : data,
         # 'nat' : response.text
         # 'plat' : request.
     }
