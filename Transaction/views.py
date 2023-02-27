@@ -109,9 +109,11 @@ def makeTrade(request, slug):
                 response = requests.request("POST", url, headers=headers, data=payload)
                 
                 link = json.loads(response.text)['data']['checkoutUrl']
+                check_id = json.loads(response.text)['data']['checkoutId']
                 tradeReceipt = TradeReceipt()
                 tradeReceipt.trade = TradeInvoice.objects.get(trade_name=trade_name)
                 tradeReceipt.token = token
+                tradeReceipt.check_id = check_id
                 tradeReceipt.paylink = f'{link}'
                 tradeReceipt.save()
                 return redirect(f'{link}')           

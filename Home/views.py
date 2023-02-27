@@ -44,10 +44,6 @@ def check_job(request):
 
 @login_required
 def dashboard(request):
-    # url = 'http://127.0.0.1:8000/dashboard/'
-    # data = {'name' : 'omar'}
-    # requests.post(url, data=data, headers={'Content-Type':'application/json'})
-
     context = {
         'trades' : TradeInvoice.objects.filter(customer=request.user),
         'farms' : FarmInvoice.objects.filter(customer=request.user)
@@ -60,13 +56,19 @@ def trade_log(request):
     pend_count = TradeInvoice.objects.filter(status='Pending').count()
     act_count = TradeInvoice.objects.filter(status='Active').count()
     comp_count = TradeInvoice.objects.filter(status='Completed').count()
-    print(pend_count)
     trades_bought = 0
     trades_sold = 0
     for trade in trades:
         trades_bought = trades_bought + trade.total_cost
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
+
+    query_params = request.GET 
+    check_id = query_params['checkoutid']
+    if check_id:
+        trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
+        trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
+
 
     context = {
         'trades' : trades,
@@ -76,10 +78,7 @@ def trade_log(request):
         'pend_count' : pend_count,
         'act_count' : act_count,
         'comp_count' : comp_count,
-        'request' : request
-        # 'bat' : data,
-        # 'nat' : response.text
-        # 'plat' : request.
+        'stat' : trade_invoice
     }
     return render(request,'Dashboard/tradeLog.html', context)
 

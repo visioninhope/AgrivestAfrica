@@ -144,6 +144,7 @@ class FarmLog(models.Model):
 class TradeReceipt(models.Model):
     token = models.UUIDField(max_length=300,default=1,unique=True)
     trade = models.ForeignKey(TradeInvoice,on_delete=models.CASCADE)
+    check_id = models.CharField(max_length=500, unique=True)
     paylink = models.CharField(max_length=500)
     status = (
         ('unpaid','unpaid'),
