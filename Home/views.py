@@ -63,7 +63,7 @@ def trade_log(request):
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
-    if TradeInvoice.objects.count > 0:
+    if TradeInvoice.objects.count() > 0:
         trade_target = TradeInvoice.objects.filter(customer=request.user).last()
         total_cost = trade_target.total_cost
         trade_name = trade_target.trade_name
