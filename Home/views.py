@@ -76,14 +76,14 @@ def trade_log(request):
         "returnUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
         "merchantAccountNumber": "2017279",
         "cancellationUrl": "https://www.agrivestafrica.com/trades/",
-        "clientReference": token
+        "clientReference": str(token) 
     })
     headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Basic bXkxS0ExUjphMjgzNGM3NjA2NzY0MzY2ODdhNTBjZGJkYTM0OGJlNA=='
     }
     response = requests.request("POST", url, headers=headers, data=payload)
-    print(response)
+    stat =response
 
     context = {
         'trades' : trades,
@@ -92,7 +92,8 @@ def trade_log(request):
         'trades_bal' : trades_bal,
         'pend_count' : pend_count,
         'act_count' : act_count,
-        'comp_count' : comp_count
+        'comp_count' : comp_count,
+        'stat' : stat
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
