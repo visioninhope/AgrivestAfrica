@@ -73,8 +73,8 @@ def trade_log(request):
         'pend_count' : pend_count,
         'act_count' : act_count,
         'comp_count' : comp_count,
-        'stat' : request.data,
-        'bat' : request,
+        'stat' : request,
+        # 'bat' : request,
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
