@@ -27,17 +27,17 @@
           <div class="box" id="mt_box">
             <i class="material-symbols-outlined" style="color: skyblue;">payments</i>
             <p>Total Bought</p>
-            <span>Ghc {{trades_bought|intcomma}}</span>
+            <span>Ghc {{trades_bought|intcomma|floatformat:2}}</span>
           </div>
           <div class="box" id="mt_box">
             <i class="material-symbols-outlined" style="color: burlywood;">savings</i>
             <p>Total Sold</p>
-            <span> Ghc {{trades_sold|intcomma}}</span>
+            <span> Ghc {{trades_sold|intcomma|floatformat:2}}</span>
             
             {% if trades_bal > '0' %}
-            <p style="color:#7ac691;" id="trade_bal">+ {{trades_bal|intcomma}}</p>
+            <p style="color:#7ac691;" id="trade_bal">+ {{trades_bal|intcomma|floatformat:2}}</p>
             {% else %}
-            <p style="color:#ff6364;" id="trade_bal">{{trades_bal|intcomma}}</p>
+            <p style="color:#ff6364;" id="trade_bal">{{trades_bal|intcomma|floatformat:2}}</p>
             {% endif %}
               
 
