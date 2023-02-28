@@ -78,7 +78,7 @@ def trade_log(request):
     #         trade_invoice.save()
     # else:
     #     stat = request.POST
-    url = request.get_full_path()
+    url = request.build_absolute_uri()
     query_params = request.GET 
     if query_params['checkoutid'] :
         check_id = query_params['checkoutid']
