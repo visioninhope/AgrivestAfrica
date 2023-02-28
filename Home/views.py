@@ -64,28 +64,25 @@ def trade_log(request):
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
     # query_params = request.GET 
-    # if query_params['checkoutid'] :
-    #     check_id = query_params['checkoutid']
-        # if check_id:
-        #     trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
-        #     trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
-    # if request.method == 'GET':
-    #     if request.GET['checkoutid']:
-    #         stat = request.GET['checkoutid']
-    #         trade_receipt = TradeReceipt.objects.get(check_id=stat).trade
-    #         trade_invoice = TradeInvoice.objects.get(trade_name=trade_receipt)
-    #         trade_invoice.status = 'Active'
-    #         trade_invoice.save()
+    if request.has_key('checkoutid'):
+        query_params = request.GET
+        check_id = query_params['checkoutid']
+        trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
+        trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
+        trade_invoice.status = 'Active'
+        trade_invoice.save()
     # else:
     #     stat = request.POST
-    if request.method == 'POST':
-        url = request.build_absolute_uri()
-        query_params = request.GET
-        data ={} 
-        if query_params['checkoutid'] :
-            check_id = query_params['checkoutid']
-        r = requests.get(url=url,params=check_id,data=data)
-        stat = r.text
+    # if request.method == 'POST':
+    #     if request.has_key()
+    #     url = request.build_absolute_uri()
+    #     query_params = request.GET
+        
+    #     data ={} 
+    #     if query_params['checkoutid'] :
+    #         check_id = query_params['checkoutid']
+    #     r = requests.get(url=url,params=check_id,data=data)
+    #     stat = r.text
 
     context = {
         'trades' : trades,
@@ -96,7 +93,7 @@ def trade_log(request):
         'act_count' : act_count,
         'comp_count' : comp_count,
         # 'stat' : check_id,
-        'stat' : stat,
+        # 'stat' : stat,
         # 'bat' : TradeReceipt.objects.last().check_id
         # 'bat' :trade_invoice,
         # 'tat' : request.body
