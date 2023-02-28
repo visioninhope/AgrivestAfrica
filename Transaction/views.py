@@ -88,11 +88,8 @@ def makeTrade(request, slug):
                 tradeLog.status = 'Pending'
                 tradeLog.save()
 
-
-                token = str(uuid4())
-                # print(total_cost, 'total')
-
                 url = "https://payproxyapi.hubtel.com/items/initiate"
+                token = str(uuid4())
                 payload = json.dumps({
                     "totalAmount": total_cost,
                     "description": trade_name,

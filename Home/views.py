@@ -64,9 +64,10 @@ def trade_log(request):
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
     # query_params = request.GET 
-    if request.has_key('checkoutid'):
-        query_params = request.GET
-        check_id = query_params['checkoutid']
+    
+
+    if request.GET.get('checkoutid'):
+        check_id = request.GET.get('checkoutid')
         trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
         trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
         trade_invoice.status = 'Active'
