@@ -78,13 +78,14 @@ def trade_log(request):
     #         trade_invoice.save()
     # else:
     #     stat = request.POST
-    url = request.build_absolute_uri()
-    query_params = request.GET
-    data ={} 
-    if query_params['checkoutid'] :
-        check_id = query_params['checkoutid']
-    r = requests.get(url=url,params=check_id,data=data)
-    stat = r.text
+    if request.method == 'POST':
+        url = request.build_absolute_uri()
+        query_params = request.GET
+        data ={} 
+        if query_params['checkoutid'] :
+            check_id = query_params['checkoutid']
+        r = requests.get(url=url,params=check_id,data=data)
+        stat = r.text
 
     context = {
         'trades' : trades,
