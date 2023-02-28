@@ -69,16 +69,21 @@ def trade_log(request):
         # if check_id:
         #     trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
         #     trade_invoice = TradeInvoice.objects.get(trade=trade_receipt)
-    if request.method == 'GET':
-        if request.GET['checkoutid']:
-            stat = request.GET['checkoutid']
-            trade_receipt = TradeReceipt.objects.get(check_id=stat).trade
-            trade_invoice = TradeInvoice.objects.get(trade_name=trade_receipt)
-            trade_invoice.status = 'Active'
-            trade_invoice.save()
-    else:
-        stat = request.POST
-
+    # if request.method == 'GET':
+    #     if request.GET['checkoutid']:
+    #         stat = request.GET['checkoutid']
+    #         trade_receipt = TradeReceipt.objects.get(check_id=stat).trade
+    #         trade_invoice = TradeInvoice.objects.get(trade_name=trade_receipt)
+    #         trade_invoice.status = 'Active'
+    #         trade_invoice.save()
+    # else:
+    #     stat = request.POST
+    url = request.get_full_path()
+    query_params = request.GET 
+    if query_params['checkoutid'] :
+        check_id = query_params['checkoutid']
+    r = requests.get(url=url, params=check_id)
+    stat = r.text
 
     context = {
         'trades' : trades,
@@ -91,7 +96,7 @@ def trade_log(request):
         # 'stat' : check_id,
         'stat' : stat,
         # 'bat' : TradeReceipt.objects.last().check_id
-        'bat' :trade_invoice,
+        # 'bat' :trade_invoice,
         # 'tat' : request.body
     }
     return render(request,'Dashboard/tradeLog.html', context)
