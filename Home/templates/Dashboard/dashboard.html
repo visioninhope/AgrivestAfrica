@@ -94,7 +94,7 @@
                   <p class="type">Trade</p>
                   <p class="date">{{trade.start_date|date:'d b, Y'}}</p>
                   <p class="date">{{trade.end_date|date:'d b, Y'}}</p>
-                  <p>{{trade.total_cost|intcomma}}</p>
+                  <p>{{trade.total_cost|intcomma|floatformat:2}}</p>
                   <p class="status">{{trade.status}}</p>
                   
                   {% if trade.status == 'Pending' %}
