@@ -42,7 +42,7 @@ def check_job(request):
         print('offtaker')
 
 
-@login_required
+#@login_required
 def dashboard(request):
     context = {
         'trades' : TradeInvoice.objects.filter(customer=request.user),
@@ -50,7 +50,7 @@ def dashboard(request):
     }
     return render(request,'Dashboard/dashboard.html', context)
 
-@login_required
+#@login_required
 def trade_log(request):
     trades = TradeInvoice.objects.filter(customer=request.user)
     pend_count = TradeInvoice.objects.filter(status='Pending').count()
@@ -81,7 +81,7 @@ def trade_log(request):
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
-@login_required
+#@login_required
 def tradeLog_info(request,slug):
     trade = TradeInvoice.objects.get(slug=slug)
     context ={
@@ -111,7 +111,7 @@ def farm_log(request):
     }
     return render(request,'Dashboard/farmLog.html', context)
 
-@login_required
+#@login_required
 def farmLog_info(request,slug):
     farm = FarmInvoice.objects.get(slug=slug)
     context ={
@@ -119,7 +119,7 @@ def farmLog_info(request,slug):
     }
     return render(request, 'Dashboard/farmLog_info.html', context)
 
-@login_required
+#@login_required
 def profile(request):
     return render(request, 'Dashboard/profile.html')
 def dash_overview(request):
