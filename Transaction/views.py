@@ -93,8 +93,8 @@ def makeTrade(request, slug):
                 payload = json.dumps({
                     "totalAmount": total_cost,
                     "description": trade_name,
-                    "callbackUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
-                    "returnUrl": "https://www.agrivestafrica.com/dashboard/tradeLog",
+                    "callbackUrl": "https://www.agrivestafrica.com/empty",
+                    "returnUrl": "https://www.agrivestafrica.com/empty",
                     "merchantAccountNumber": "2017279",
                     "cancellationUrl": "https://www.agrivestafrica.com/trades/",
                     "clientReference": token

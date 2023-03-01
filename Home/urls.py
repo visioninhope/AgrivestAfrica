@@ -34,4 +34,9 @@ urlpatterns = [
     path('how_to/', views.how_to, name='how_to_page'),
 
     path('sitemap/', views.sitemap),
+
+
+    path('empty', views.empty),
+
+
 ]

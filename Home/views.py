@@ -55,7 +55,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def trade_log(request):
-    trades = TradeInvoice.objects.filter(customer=request.user)
+    # trades = TradeInvoice.objects.filter(customer=request.user)
+    trades = TradeInvoice.objects.all()
     pend_count = TradeInvoice.objects.filter(status='Pending').count()
     act_count = TradeInvoice.objects.filter(status='Active').count()
     comp_count = TradeInvoice.objects.filter(status='Completed').count()
@@ -67,12 +68,12 @@ def trade_log(request):
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
 
 
-    if request.GET.get('checkoutid'):
-        check_id = request.GET.get('checkoutid')
-        trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
-        trade_invoice = TradeInvoice.objects.get(trade_name=trade_receipt)
-        trade_invoice.status = 'Active'
-        trade_invoice.save()
+    # if request.GET.get('checkoutid'):
+    #     check_id = request.GET.get('checkoutid')
+    #     trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
+    #     trade_invoice = TradeInvoice.objects.get(trade_name=trade_receipt)
+    #     trade_invoice.status = 'Active'
+    #     trade_invoice.save()
 
     context = {
         'trades' : trades,
@@ -170,3 +171,8 @@ def how_to(request):
 
 def sitemap(request):
     return render(request, 'sitemap.xml')
+
+
+@csrf_exempt
+def empty(request):
+    return render(request, 'Dashboard/empty.html')
