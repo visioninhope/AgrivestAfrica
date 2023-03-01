@@ -173,6 +173,19 @@ def sitemap(request):
     return render(request, 'sitemap.xml')
 
 
-@csrf_exempt
-def empty(request):
-    return render(request, 'Dashboard/empty.html')
+from rest_framework import generics
+from rest_framework.views import APIView,Response
+from .serializers import BagSerializer
+from rest_framework.permissions import AllowAny
+
+
+# @csrf_exempt
+class EmptyView(generics.ListAPIView):
+    authentication_classes = []
+    permission_classes = [AllowAny]
+    serializer_class = BagSerializer
+
+    def get(self, request):
+        return Response({'test':'good'})
+    def post(self, request):
+        return Response({'info':request.data})

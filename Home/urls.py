@@ -36,7 +36,7 @@ urlpatterns = [
     path('sitemap/', views.sitemap),
 
 
-    path('empty', views.empty),
+    path('empty', views.EmptyView.as_view()),
 
 
 ]

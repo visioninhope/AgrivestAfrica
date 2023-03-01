@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'robots',
+    'rest_framework',
+    'corsheaders'
 ]
 
 SITE_ID = 1
@@ -55,6 +57,7 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -175,7 +178,6 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
@@ -189,3 +191,6 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:8000']
