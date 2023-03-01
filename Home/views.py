@@ -51,6 +51,9 @@ def dashboard(request):
     return render(request,'Dashboard/dashboard.html', context)
 
 #@login_required
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def trade_log(request):
     trades = TradeInvoice.objects.filter(customer=request.user)
     pend_count = TradeInvoice.objects.filter(status='Pending').count()
@@ -62,6 +65,7 @@ def trade_log(request):
         trades_bought = trades_bought + trade.total_cost
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
+
 
     if request.GET.get('checkoutid'):
         check_id = request.GET.get('checkoutid')
