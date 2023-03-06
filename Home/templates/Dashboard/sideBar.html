@@ -16,7 +16,7 @@
   </div>
   <div class="menu">
     <a href="{% url 'dashboard' %}" id="menu_ab"><i class="material-symbols-outlined">overview</i><span id="menu_a">overview</span></a>
-    <a id="menu_ab"><i class="material-symbols-outlined">photo_camera_front</i><span id="menu_a">profile</span></a>
+    <a href="{% url 'profile_page' %}" id="menu_ab"><i class="material-symbols-outlined">photo_camera_front</i><span id="menu_a">profile</span></a>
     <a id="menu_ab"><i class="material-symbols-outlined">attach_money</i><span id="menu_a">Transactions</span><i class="material-symbols-outlined" id="expand">expand_more</i></a>
       <div id="exp_menu">
         <a style="color: rgb(48, 106, 128);" href="{% url 'tradeLog_page' %}"><i class="material-symbols-outlined">receipt_long</i><p>Trades</p></a>
