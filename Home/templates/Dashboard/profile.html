@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 {% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
@@ -8,158 +9,334 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard/profile.css' %}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <title>Agrivest - Dashboard</title>
 </head>
 <body>
   <section class="page">
     {% include 'Dashboard/sideBar.html' %}
-    <section class="main">
-        <div class="main_cover"></div>
-        <section class="profile_top">
-          <div class="profile_pic">
-            <img src="/media/img/00-cover.jpg" alt="" width="100%" height="100%" style="border-radius: 50%;">
-          </div>
-        </section>
-        <form class="profile_form_box">
-          <div class="profile_form_header">
-            <span> {{user.username}}'s Profile</span>
-            <img src="/media/img/agr.jpg" alt="" height="50px" width="50px">
-          </div>
-          <section class="profile_form swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <section>
-                  <div class="input_field">
-                    <div id="in_tag">
-                      <i class="material-symbols-outlined">signature</i>
-                    </div>
-                    <input type="text" name="first_name" placeholder="First Name" required>
-                  </div>
-                  <div class="input_field">
-                    <div id="in_tag">
-                      <i class="material-symbols-outlined">signature</i>
-                    </div>
-                    <input type="text" name="last_name" placeholder="Last Name" required>
-                  </div>
-                </section>
-                <section>
-                  <div class="input_field">
-                    <div id="in_tag">
-                      <i class="material-symbols-outlined">alternate_email</i>
-                    </div>
-                    <input type="text" name="email" placeholder="email" required>
-                  </div>
-                  <div class="input_field">
-                    <div id="in_tag">
-                      <i class="material-symbols-outlined">phone_iphone</i>
-                    </div>
-                    <input type="text" name="contact" placeholder="contact" required>
-                  </div>
-                </section>
-                <section>
-                  <div class="input_field">
-                    <div id="in_tag">
-                      <i class="material-symbols-outlined">calendar_month</i>
-                    </div>
-                    <input type="date" name="dob" required>
-                  </div>
-                  <div class="input_field">
-                    <div id="in_tag">
-                      <i class="material-symbols-outlined">home_pin</i>
-                    </div>
-                    <input type="text" name="address" placeholder="Residential Address" required>
-                  </div>
-                </section>
-                <section>
-                  <div class="input_field">
-                    <div id="in_tag">
-                      <i class="material-symbols-outlined">badge</i>
-                    </div>
-                    <select name="id_card" id="" required>
-                      <option selected hidden value="none">ID Card</option>
-                      <option value="">Passport</option>
-                      <option value="">Voters ID</option>
-                    </select>
-                  </div>
-                  <div class="input_field">
-                    <div id="in_tag">
-                      <i class="material-symbols-outlined">pin</i>
-                    </div>
-                    <input type="text" name="id_num" placeholder="ID Number" required>
-                  </div>
-                </section>
-                <a id="next" class="material-symbols-outlined">arrow_forward</a>
-            </div>
-            <div class="swiper-slide">
-              <section>
-                <div class="input_field">
-                  <div id="in_tag">
-                    <i class="material-symbols-outlined">group</i>
-                  </div>
-                  <input type="text" name="nok" placeholder="Next of kin" required>
-                </div>
-                <div class="input_field">
-                  <div id="in_tag">
-                    <i class="material-symbols-outlined">family_restroom</i>
-                  </div>
-                  <input type="text" name="nok_phone" placeholder="Relation" required>
-                </div>
-              </section>
-              <section>
-                <div class="input_field">
-                  <div id="in_tag">
-                    <i class="material-symbols-outlined">phone_iphone</i>
-                  </div>
-                  <input type="text" name="nok_phone" placeholder="next of kin's contact" required>
-                </div>
-                <div class="input_field">
-                  <div id="in_tag">
-                    <i class="material-symbols-outlined">123</i>
-                  </div>
-                  <input type="text" name="referral" placeholder="Referral code">
-                </div>
-              </section>
-              <section>
-                <div class="input_field" style="width: 85%; justify-content: flex-start;">
-                  <button type="submit" id="sub_but">Done</button>
-                </div>
-              </section>
-              <!-- <hr style="background: gold; width: 200px; height: 2px;"> -->
-              
-              <div class="swiper-pagination"></div>
-              <a id="prev" class="material-symbols-outlined" style="rotate: 180deg;">arrow_forward</a>
-              </div>
-            </div>
-          </section>
-        </form>
+    <form class="main" enctype="multipart/form-data" method="post" style="background: white;">
+      <div class="main_cover"></div>
+      <section class="profile_top">
+        <div class="profile_pic">
+          
+          {% if pro_exists %}
+          <img src="{{pro_info.profile_pic.url}}" id="pic_box" alt="" width="100%" height="100%" style="border-radius: 50%; border: 1px solid whitesmoke;">
+
+          {% else %}
+          <img src="/media/img/hand-draw-beautiful-girls-holding-planet-earth-watercolor-design_1035-20580.webp" id="pic_box" alt="" width="100%" height="100%" style="border-radius: 50%; border: 1px solid whitesmoke;">
+          {% endif %}
+          <label for="profile_pic" id="pro_pic_label">ADD PHOTO</label>
+          <input type="file" accept="image/*" class="pro_set" name="profile_pic" id="profile_pic" style="display: none;">
+
+        </div>
       </section>
+
+      <style>
+        #pro_pic_label{
+          padding: 5px;
+          display: flex;
+          min-width: 100px;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          background: #66923a;
+          color: white;
+        }
+      </style>
+
+      <section class="profile_form_box" >
+        {% csrf_token %}
+        <div class="profile_form_header">
+            <span> Omar's Profile</span>
+            <img src="/media/img/agr.jpg" alt="" height="50px" width="50px">
+        </div>
+        <section class="profile_form swiper">
+          <div class="part">
+            <section>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">signature</i>
+                </div>
+                <input type="text" name="first_name" placeholder="First Name" required
+                {% if pro_exists %}
+                  value="{{pro_info.first_name}}"
+                {% endif %}
+                >
+              </div>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">signature</i>
+                </div>
+                <input type="text" name="last_name" placeholder="Last Name" required
+                {% if pro_exists %}
+                  value="{{pro_info.last_name}}"
+                {% endif %}
+                >
+              </div>
+            </section>
+            <section>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">alternate_email</i>
+                </div>
+                <input type="email" name="email" placeholder="email" required
+                {% if pro_exists %}
+                  value="{{pro_info.email}}"
+                {% endif %}>
+              </div>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">phone_iphone</i>
+                </div>
+                <input type="text" name="contact" placeholder="contact" required
+                {% if pro_exists %}
+                  value="{{pro_info.contact}}"
+                {% endif %}>
+              </div>
+            </section>
+            <section>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">calendar_month</i>
+                </div>
+                {% if pro_exists %}
+                <input type="text" name="dob" required value="{{pro_info.dob}}" readonly>
+                {% else %}
+                <input type="date" name="dob" required>
+                {% endif %}
+              </div>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">flag</i>
+                </div>
+                <input type="text" name="nationality" placeholder="Nationality" required
+                {% if pro_exists %}
+                  value="{{pro_info.nationality}}"
+                {% endif %}>
+              </div>
+            </section>
+            <section>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">flag</i>
+                </div>
+                <input type="text" name="cor" placeholder="Country of Residence" required
+                {% if pro_exists %}
+                  value="{{pro_info.cor}}"
+                {% endif %}>
+              </div>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">home_pin</i>
+                </div>
+                <input type="text" name="address" placeholder="Residential Address" required
+                {% if pro_exists %}
+                  value="{{pro_info.address}}"
+                {% endif %}>
+              </div> 
+            </section>
+            <section>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">badge</i>
+                </div>
+                {% if pro_exists %}
+                <input type="text" value="{{pro_info.id_card}}">
+                {% else %}
+                  <select name="id_card" required>
+                    <option selected hidden value="none">ID Card</option>
+                    <option value="Passport">Passport</option>
+                    <option value="National ID">National ID</option>
+                    <option value="Driver's  License">Driver's  License</option>
+                  </select>
+                {% endif %}
+              </div>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">pin</i>
+                </div>
+                <input type="text" name="id_num" placeholder="ID Number" required
+                {% if pro_exists %}
+                  value="{{pro_info.id_number}}"
+                {% endif %}
+                >
+              </div>
+
+            </section>
+          </div>
+          <div class="part">
+            <section>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">group</i>
+                </div>
+                <input type="text" name="nok" placeholder="Next of kin" required
+                {% if pro_exists %}
+                  value="{{pro_info.next_of_kin}}"
+                {% endif %}>
+              </div>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">family_restroom</i>
+                </div>
+                <input type="text" name="nok_relation" placeholder="next of kin's relation" required
+                {% if pro_exists %}
+                  value="{{pro_info.nok_relation}}"
+                {% endif %}>
+              </div>
+            </section>
+            <section>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">phone_iphone</i>
+                </div>
+                <input type="text" name="nok_contact" placeholder="next of kin's contact" required
+                {% if pro_exists %}
+                  value="{{pro_info.nok_contact}}"
+                {% endif %}>
+              </div>
+              <div class="input_field">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">123</i>
+                </div>
+                <input type="text" name="referral" placeholder="Referral code"
+                {% if pro_exists %}
+                value="{{pro_info.referral}}"
+                {% endif %}>
+              </div>
+            </section>
+          </div>
+          <div class="part">
+            <section style="justify-content: space-around;">
+              <div class="id_box">
+                <input type="file" name="id_pic_front" class="pro_set" id="id_front" accept="image/*" style="display: none;" required>
+                <label for="id_front">
+                  ID Photo front
+                </label>
+                {% if pro_exists %}
+                <img src="{{pro_info.id_pic_front.url}}" id="pic_box" alt="">
+                {% else %}
+                <img src="/media/img/id_card.avif" alt="" id="pic_box">
+                {% endif %}
+              </div>
+              <div class="id_box">
+                <input type="file" name="id_pic_back" class="pro_set" id="id_back" accept="image/*" style="display: none;" required>
+                <label for="id_back">
+                  ID Photo back
+                </label>
+                {% if pro_exists %}
+                <img src="{{pro_info.id_pic_back.url}}" id="pic_box" alt="">
+                {% else %}
+                <img src="/media/img/id_card.avif" alt="" id="pic_box">
+                {% endif %}
+              </div>
+            </section>
+            <section>
+              <div class="input_field" >
+                <button type="submit" id="sub_but">Save</button>
+              </div>
+            </section>
+          </div>
+        </section>   
+      </section>   
     </section>
+  </section>
+
+  <script>
+    const inp = document.querySelectorAll('.pro_set')
+    const pic_box = document.querySelectorAll('[id=pic_box]')
+    console.log(inp)
+
+    for (let i = 0; i < inp.length; i++) {
+      inp[i].onchange =()=> {
+        const [file] = inp[i].files
+        pic_box[i].src = URL.createObjectURL(file)
+        console.log(pic_box[i].src) 
+      }
+    }
+  </script>
+
+  <style>
+    /* .part{
+      display: flex;
+      flex-direction: column;
+    } */
+    .part .id_box{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      justify-content: space-between;
+      gap: 15px;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    }
+    .part .id_box label{
+      background: skyblue;
+      background: salmon;
+      border-radius: 3px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      padding: 5px;
+      color: white;
+    }
+    .part .id_box img{
+      width: 25vw;
+      height: 200px;
+    }
+    @media all and (max-width:1300px){
+      .profile_pic{
+        top: 0;
+      }
+    }
+    @media all and (max-width:1000px){
+      .profile_form section{
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .profile_form section .input_field{
+        width: 100%;
+      }
+      .id_box{
+        display: flex;
+        width: 100%;
+      }
+      .part .id_box img{
+        /* border: 3px solid skyblue; */
+        width: 90%;
+        height: 250px;
+      }
+    }
+    @media all and (max-width:650px){
+      #id_box_holder{
+        /* flex-direction: column; */
+        width: 95%;
+        /* border: 3px solid salmon; */
+      }
+      .profile_form{
+        width: 99%;
+        align-items: center;
+      }
+      .profile_form .part{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 99%;
+      }
+    }
+      
+    </style>
+
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
   <script>
-    const profile_form_next = document.getElementById('next')
-    const profile_form_prev = document.getElementById('prev')
-    var profile_swiper = new Swiper('.profile_form', {
-      direction: 'horizontal',
-      effect:'rewind',
-      loop:false,
-      speed:1000,
-      navigation: {
-        nextEl: profile_form_next,
-        prevEl: profile_form_prev,
-      },
-      pagination: {
-                el: '.swiper-pagination',
-                clickable : true,
-            },
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
-    });
+    if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+}
   </script>
   <script>
     const left = document.querySelector('.left')
@@ -209,139 +386,5 @@
     }
   }
   </script>
-
 </body>
 </html>
-
-
-<style>
-  #sub_but{
-    background: #13bb82;
-    color: white;
-    padding: 10px 15px;
-  }
-  /* #sub_but:hover{
-    background: white;
-  } */
-  .profile_top{
-    min-height: 27vh;
-    width: 100%;
-    background-image: url(/media/img/plant\ coins.avif);
-    background-position: center;
-    background-size: cover;
-    position: relative;
-  }
-  .profile_pic{
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    bottom: -20%;
-    left: 6%;
-  }
-  .profile_form_header{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border-bottom: 1px solid rgb(58, 162, 58);
-    /* justify-content: flex-start; */
-    width: 80%;
-    /* border: 2px solid gold; */
-    /* height: 10vh; */
-  }
-  .profile_form_header span,.profile_form_header img{
-    margin-left: 10%;
-  }
-  .profile_form_header span{
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-size: 2rem;
-  }
-  .profile_form_box{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: white;
-    /* border: 2px solid salmon; */
-    min-height: 60vh;
-    padding: 4% 0;
-    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
-  }
-  .profile_form{
-    width: 80%;
-
-    /* border: 2px solid saddlebrown; */
-    /* min-height: 60vh; */
-  }
-  .profile_form .swiper-slide{
-    width: 100%;
-    height: 100%;
-    /* border: 2px solid skyblue; */
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    /* justify-content: center; */
-    /* border: 2px solid skyblue; */
-  }
-
-  .profile_form section{
-    /* border: 2px solid black; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 15px;
-  }
-  .profile_form section .input_field{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45%;
-    height: 50px;
-  }
-  .input_field #in_tag{
-    width: 13%;
-    height: 100%;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .input_field #in_tag i{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #cff3e7;
-    width: 30px;
-    height: 30px;
-    padding: 5px;
-    color: #13bb82;
-    border-radius: 50%;
-  }
-  .profile_form section .input_field input, select{
-    width: 70%;
-    height: 100%;
-    padding: 0 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    transition: 0.3s ease;
-  }
-  select{
-    width: 74%;
-  }
-  .profile_form #next, .profile_form #prev{
-    cursor: pointer;
-    position: absolute;
-    background: springgreen;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    color: white;
-    font-size: 2.3rem;
-    bottom: 20px;
-    right: 20px;
-    transition: 0.3s ease;
-  }
-  .profile_form #next:hover, .profile_form #prev:hover{
-    background: white;
-    color: springgreen;
-    border: 2px dotted springgreen;
-  }
-</style>

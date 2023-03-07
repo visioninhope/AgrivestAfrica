@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-import math,requests,json
-from Log.models import User,Sponsor,Farmer,Offtaker
+import math
+from Log.models import User,Sponsor,Farmer,Offtaker,Profile
 from Transaction.models import TradeInvoice,TradeLog,TradeReceipt,FarmInvoice,FarmLog
 from Asset.models import Trade
 
@@ -124,9 +124,51 @@ def farmLog_info(request,slug):
     }
     return render(request, 'Dashboard/farmLog_info.html', context)
 
+from django.utils import timezone
 #@login_required
 def profile(request):
-    return render(request, 'Dashboard/profile.html')
+    pro_exists = False
+    user = User.objects.get(username=request.user)
+    if Profile.objects.filter(user=user).exists():
+        pro_exists = True
+        pro_info = Profile.objects.get(user=user)
+    else:
+        pro_info = ''
+    if request.method == 'POST':
+        if pro_exists:
+            profile = Profile.objects.get(user=user)
+        else:
+            profile = Profile()
+            profile.user = user
+            profile.first_name = request.POST.get('first_name')
+            profile.last_name = request.POST.get('last_name')
+            profile.other_name = request.POST.get('other_name')
+            profile.profile_pic = request.FILES.get('profile_pic')
+            profile.email = request.POST.get('email')
+            profile.contact = request.POST.get('contact')
+            profile.dob = request.POST.get('dob')
+            profile.cor = request.POST.get('cor')
+            profile.nationality = request.POST.get('nationality')
+            profile.address = request.POST.get('address')
+            profile.id_card = request.POST.get('id_card')
+            profile.id_number = request.POST.get('id_num')
+            profile.next_of_kin = request.POST.get('nok')
+            profile.nok_relation = request.POST.get('nok_relation')
+            profile.nok_contact = request.POST.get('nok_contact')
+            profile.id_pic_front = request.FILES.get('id_pic_front')
+            profile.id_pic_back = request.FILES.get('id_pic_back')
+            profile.last_updated = timezone.now()
+            if request.POST.get('referral'):
+                profile.referral_code = request.POST.get('referral')
+            profile.save()
+            return redirect('dashboard')
+    context = {
+        'pro_exists' : pro_exists,
+        'pro_info' : pro_info,
+    }
+    return render(request, 'Dashboard/profile.html', context)
+
+
 def dash_overview(request):
     return render(request, 'Dashboard/overview.html')
 def dash_transactions(request):

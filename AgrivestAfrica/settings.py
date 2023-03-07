@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'cloudinary',
     'cloudinary_storage',
+    'widget_tweaks',
     'robots',
     'rest_framework',
     'corsheaders'
