@@ -21,15 +21,15 @@
               </section>
               <section>
                 <div>
-                  <p><span id="s1">Unit Price[kg]</span> <span id="s2">Ghc {{farm.price|intcomma|floatformat:2}}</span></p>
+                  <p><span id="s1">Unit Price[kg]</span> <span id="s2">Ghc {{farm.price|intcomma}}</span></p>
                   <p><span id="s1">Units Bought</span> <span id="s2">{{farm.units}}</span></p>
                 </div>
                 <div>
-                  <p><span id="s1">Base Cost</span> <span id="s2">Ghc {{farm.base_cost|intcomma|floatformat:2}}</span></p>
+                  <p><span id="s1">Base Cost</span> <span id="s2">Ghc {{farm.base_cost|intcomma}}</span></p>
                   <p><span id="s1">Service Charge</span> <span id="s2">{{farm.service_charge}}%</span></p>
                 </div>
                 <div>
-                  <p><span id="s1">Total Cost</span> <span id="s2">Ghc {{farm.total_cost|intcomma|floatformat:2}}</span></p>
+                  <p><span id="s1">Total Cost</span> <span id="s2">Ghc {{farm.total_cost|intcomma}}</span></p>
                   <p><span id="s1">Pros(%)</span> <span id="s2">{{farm.profit_range_min}}% -{{farm.profit_range_max}}%</span></p>
                 </div>
                 <div>
@@ -37,6 +37,7 @@
                   <p><span id="s1">End Date</span> <span id="s2">{{farm.end_date|date:'d b, Y'}}</span></p>
                 </div>
                 <div>
+                  <p><span id="s1">Partner</span> <span id="s2">{{farm.partner}}</span></p>
                   <p><span id="s1">Status</span> <span id="s2">{{farm.status}}</span></p>
                 </div>
               </section>

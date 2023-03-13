@@ -1,3 +1,4 @@
+{% load  humanize %}
 <section class="left">
   <div id="left_tag"><i class="material-symbols-outlined">menu_open</i></div>
   <div class="top" id="left_top">
@@ -11,7 +12,10 @@
     <hr id="uc_hr">
     <div class="uc_low">
       <p>Monthly Expense</p>
-      <span>Ghc 43,500</span>
+      <span id="monthly"> </span>
+      <script>
+        document.getElementById('monthly').innerHTML = 'Ghc' + ' ' + sessionStorage.getItem('total_trans').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      </script>
     </div>
   </div>
   <div class="menu">

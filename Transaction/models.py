@@ -2,6 +2,7 @@ from Log.models import User
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from Asset.models import Partner
 
 
 class TradeInvoice(models.Model):
@@ -78,6 +79,7 @@ class FarmInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     farm = models.CharField(max_length=200)
+    partner  = models.ForeignKey(Partner, on_delete=models.PROTECT, default=2)
     location = models.CharField(max_length=200)
     price = models.FloatField()
     units = models.PositiveIntegerField()
@@ -118,6 +120,7 @@ class FarmInvoice(models.Model):
 class FarmLog(models.Model):
     name = models.CharField(max_length=300)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    partner  = models.ForeignKey(Partner, on_delete=models.PROTECT, default=2)
     location = models.CharField(max_length=200)
     price = models.FloatField()
     units = models.PositiveIntegerField()

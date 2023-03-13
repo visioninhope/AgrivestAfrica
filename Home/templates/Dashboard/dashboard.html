@@ -35,13 +35,16 @@
           <div class="box" id="mt_box">
             <i class="material-symbols-outlined" style="color: salmon;">numbers</i>
             <p>Total Transactions</p>
-            <span>1250</span>
+            <span>{{total_count|intcomma}}</span>
           </div>
           <div class="box" id="mt_box">
             <i class="material-symbols-outlined" style="color: skyblue;">payments</i>
             <p>Total Transactions</p>
-            <span>Ghc 10,425</span>
+            <span>Ghc {{total_trans|intcomma}}</span>
           </div>
+          <script>
+            sessionStorage.setItem('total_trans','{{total_trans}}')
+          </script>
           <div class="box" id="mt_box">
             <i class="material-symbols-outlined" style="color: burlywood;">savings</i>
             <p>Total Balance</p>

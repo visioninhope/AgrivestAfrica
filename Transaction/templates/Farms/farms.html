@@ -17,7 +17,11 @@
   crop, africa, ghana, nigeria, india, agriculture, green technology " />
 <meta name="subject" content="Agrivest Africa">
 <meta name="copyright" content="Agrivest Africa">
-  <link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+{% block staticBlock %}
+  
+{% endblock staticBlock %}
+
+<link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
   <style>
     html,
     body,
@@ -112,8 +116,13 @@
       <!--Navbar-->
       {% include 'navbar.html' %}
       <!-- Full Page Intro -->
+      
+      
+    {% block backgroundImage %}
     <div class="view"
-      style="background-image: url('/media/img/golden-potatoes-levitate-white-background_485709-65.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    style="background-image: url('/media/img/golden-potatoes-levitate-white-background_485709-65.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    {% endblock backgroundImage %}
+      
       <!-- Mask & flexbox options-->
       <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
         <!-- Content -->
@@ -125,7 +134,9 @@
           <div class="row">
             <!--Grid column-->
             <div class="col-md-6 white-text text-center text-md-center mt-xl-5 mb-5 ">
+              {% block headerBlock %}
               <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">Let's Farm</h1>
+              {% endblock headerBlock %}
               <hr class="hr-light">
             </div>
           </div>
@@ -147,7 +158,16 @@
   <br>
   <br>
   <br>
-  <div class="col-md-2"></div>
+  
+  {% if messages %}
+  <div style="text-align: center; width: 100%;">
+      {% for message in messages %}
+      <div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div>
+      {% endfor %}
+  </div>
+  {% endif %}
+  
+  {% block content %}
   <center>
     <div class="col-md-8">
       <h6 class=" mb-4 green-text text-center font-small ">
@@ -163,9 +183,10 @@
   <div class="col-md-2">
   </div>
   <div class="col-md-6">
-    <form class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2">
+    <form method="post" class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2">
+      {% csrf_token %}
       <i class="fas fa-search" aria-hidden="true"></i>
-      <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Trade"
+      <input id="search" name="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Farm"
         aria-label="Search">
     </form>
   </div>
@@ -258,8 +279,9 @@
  </div>
  <!-- Rotating card -->
 </small>
+{% endblock content %}
+  
   <!-- Rotating card -->
-   </div>
 <br>
 <br>
 <br>
@@ -271,12 +293,17 @@
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
   <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
   AOS.init({
   duration: 1200,
 })
 
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
 </script>
 
 </body>

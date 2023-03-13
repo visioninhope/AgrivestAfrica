@@ -43,23 +43,32 @@ def check_job(request):
         print('offtaker')
 
 
-#@login_required
+@login_required
 def dashboard(request):
+    total_trans = 0
+    ts = TradeInvoice.objects.filter(customer=request.user)
+    fs = FarmInvoice.objects.filter(customer=request.user)
+    ps = ProduceInvoice.objects.filter(customer=request.user)
+    total_count = ts.count() + fs.count() + ps.count()
+    for t in ts:
+        total_trans = total_trans + t.total_cost
+    for f in fs:
+        total_trans = total_trans + f.total_cost
+    for p in ps:
+        total_trans = total_trans + p.total_cost
     trades = TradeInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
     farms = FarmInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
     trans = trades.union(farms)
     context = {
-        'trans' : trans
+        'trans' : trans,
+        'total_trans' : total_trans,
+        'total_count' : total_count
     }
     return render(request,'Dashboard/dashboard.html', context)
 
-#@login_required
-from django.views.decorators.csrf import csrf_exempt
-
-@csrf_exempt
+@login_required
 def trade_log(request):
-    # trades = TradeInvoice.objects.filter(customer=request.user)
-    trades = TradeInvoice.objects.all()
+    trades = TradeInvoice.objects.filter(customer=request.user)
     pend_count = TradeInvoice.objects.filter(status='Pending').count()
     act_count = TradeInvoice.objects.filter(status='Active').count()
     comp_count = TradeInvoice.objects.filter(status='Completed').count()
@@ -81,7 +90,7 @@ def trade_log(request):
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
-#@login_required
+@login_required
 def tradeLog_info(request,slug):
     trade = TradeInvoice.objects.get(slug=slug)
     context ={
@@ -89,6 +98,7 @@ def tradeLog_info(request,slug):
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
 
+@login_required
 def farm_log(request):
     farms = FarmInvoice.objects.filter(customer=request.user)
     pend_count = FarmInvoice.objects.filter(status='Pending').count()
@@ -111,7 +121,7 @@ def farm_log(request):
     }
     return render(request,'Dashboard/farmLog.html', context)
 
-#@login_required
+@login_required
 def farmLog_info(request,slug):
     farm = FarmInvoice.objects.get(slug=slug)
     context ={
@@ -119,6 +129,7 @@ def farmLog_info(request,slug):
     }
     return render(request, 'Dashboard/farmLog_info.html', context)
 
+@login_required
 def produce_log(request):
     produces =ProduceInvoice.objects.filter(customer=request.user)
     produces_bought = 0
@@ -187,7 +198,7 @@ def profile(request):
     }
     return render(request, 'Dashboard/profile.html', context)
 
-
+@login_required
 def inbox(request):
     return render(request, 'Dashboard/inbox.html')
 
@@ -236,20 +247,3 @@ def how_to(request):
 def sitemap(request):
     return render(request, 'sitemap.xml')
 
-
-from rest_framework import generics
-from rest_framework.views import APIView,Response
-from .serializers import BagSerializer
-from rest_framework.permissions import AllowAny
-
-
-# @csrf_exempt
-class EmptyView(generics.ListAPIView):
-    authentication_classes = []
-    permission_classes = [AllowAny]
-    serializer_class = BagSerializer
-
-    def get(self, request):
-        return Response({'test':'good'})
-    def post(self, request):
-        return Response({'info':request.data})

@@ -1,36 +1,11 @@
 {% load static %}
 {% load humanize %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>AgriVestAfrica - Make Farm</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="theme-color" content="#33b5e5">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
-  </style>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link rel="stylesheet"
-    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <meta charset="utf-8">
-  <meta name="description" content="
-  Sign Up with AgrivestAfrica for the opportunity to invest in new farms, manage and monitor old farms. " />
-  <meta name="keywords" content=" AgrivestAfrica, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
-  crop, africa, ghana, nigeria, india, agriculture, green technology " />
-  <meta name="subject" content="AgriVestAfrica">
-  <meta name="copyright" content="AgriVestAfrica">
-  <link rel="shortcut icon" href="{{farm.image.url}}" />
-<link rel="stylesheet" href="{% static 'home/checkout.css' %}">
 
+  {% include 'makeHeader.html' %}
+  <title>AgriVestAfrica - Make Farm</title>
+  <link rel="shortcut icon" href="{{farm.image.url}}" />
   <header>
-    <!--Navbar-->
+  <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar justify-content-center">
       <div class="container">
         <a class="navbar-brand" href="{% url 'dashboard' %}">
@@ -82,7 +57,7 @@
       <div class="messBox">
         {% for message in messages %} 
           {% if message.tags == 'error' %}
-          <a href="{% url 's_register_page' %}"><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">Create account to continue</div></a>
+          <a href="{% url 'login_page' %}"><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">Create account to continue</div></a>
           {% else %}
           <a><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div></a>
           {% endif %}
@@ -199,7 +174,7 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6 mb-4">
 
-                  <label class="green-text"> Unit Cost [kg]</label>
+                  <label class="green-text"> Unit Cost [plot]</label>
                   <br>
                   <td class="font-weight-bold">
                     <strong>GHS {{farm.price|intcomma}}</strong>
@@ -223,7 +198,7 @@
                 </div>
                 <div class="col">
                   <!-- Last name -->
-                  <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="1/8 of land">
+                  <input  type="text" id="land_size"  class="form-control" placeholder="1/8 of land" readonly style="background: transparent; cursor: pointer;">
                 </div>
               </div>
               <hr>
@@ -303,15 +278,16 @@
     const ros_min = document.getElementById('profit_margin').dataset.low
     const ros_max = document.getElementById('profit_margin').dataset.high
     const amount = document.getElementById('amount')
-    console.log(amount)
+    const land_size = document.getElementById('land_size')
 
     units.oninput = () => {
       service_charge.innerHTML = 'GHS' + ' ' + (Math.round((units.value * price) * (serve / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       total.innerHTML = 'GHS' + ' ' + ((units.value * price) + Math.round((units.value * price) * (serve / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       pros_low.innerHTML = '+' + ' ' + 'GHS' + ' ' + (Math.round((units.value * price) * (ros_min / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       pros_high.innerHTML = '+' + ' ' + 'GHS' +' ' + (Math.round((units.value * price) * (ros_max / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      amount.value = (units.value * price) + Math.round((units.value * price) * (serve / 100))
+      land_size.value = (units.value/4) + ' ' + 'Achres'
     }
+
   </script>
 
   <!-- Footer -->
@@ -333,6 +309,7 @@
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
 
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
   <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
@@ -341,8 +318,6 @@
     AOS.init({
       duration: 1200,
     })
-
-
   </script>
 
 </body>

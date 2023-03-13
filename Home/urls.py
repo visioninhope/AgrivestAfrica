@@ -38,8 +38,4 @@ urlpatterns = [
 
     path('sitemap/', views.sitemap),
 
-
-    path('empty', views.EmptyView.as_view()),
-
-
 ]

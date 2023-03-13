@@ -2,33 +2,27 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.core.paginator import Paginator
 from Log.models import User, Sponsor
-from Asset.models import Trade, Farm, Produce
+from Asset.models import Trade, Farm, Produce,Partner
 from Transaction.models import FarmInvoice,FarmLog,TradeReceipt,TradeInvoice,TradeLog,ProduceInvoice,ProduceLog
 from uuid import uuid4
 
-
 def trades(request):
     if request.method == 'POST':
-        active = 'yes'
         search = request.POST.get('search')
-        res = Trade.objects.filter(name__icontains = search)
-        res.count()
-        if res.count() > 0:
-            result_page = Paginator(res,3)
+        trades = Trade.objects.filter(name__icontains = search)
+        tradePages = Paginator(trades, 3)
+        pageList = []
+        for page in tradePages:
+            pageList.append(page.object_list)
         else:
-            result_page = ''
             messages.error(request, f"Couldn't find a match, Try something else")
     else:
-        active = 'no'
-        result_page = None
-    trades = Trade.objects.all()
-    tradePages = Paginator(trades, 3)
-    pageList = []
-    for page in tradePages:
-        pageList.append(page.object_list)
+        trades = Trade.objects.all()
+        tradePages = Paginator(trades, 3)
+        pageList = []
+        for page in tradePages:
+            pageList.append(page.object_list)
     context = {
-        'active' : active,
-        'result_page' : result_page,
         'pageList' : pageList,
     }
     return render(request, 'Trades/trades.html', context)
@@ -123,31 +117,28 @@ def makeTrade(request, slug):
     return render(request, 'Trades/makeTrade.html', context)
 
 
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
+@csrf_exempt
 def farms(request):
     if request.method == 'POST':
-        active = 'yes'
         search = request.POST.get('search')
-        res = Farm.objects.filter(name__icontains = search)
-        res.count()
-        print(res.count())
-        if res.count() > 0:
-            result_page = Paginator(res,3)
+        farms = Farm.objects.filter(name__icontains = search)
+        farmPages = Paginator(farms, 3)
+        pageList = []
+        for page in farmPages:
+            pageList.append(page.object_list)
         else:
-            result_page = ''
             messages.error(request, f"Couldn't find a match, Try something else")
     else:
-        active = 'no'
-        result_page = None
-    farms = Farm.objects.all()
-    farmPages = Paginator(farms, 3)
-    pageList = []
-    for page in farmPages:
-        pageList.append(page.object_list)
+        farms = Farm.objects.all()
+        farmPages = Paginator(farms, 3)
+        pageList = []
+        for page in farmPages:
+            pageList.append(page.object_list)
     context = {
         'pageList' : pageList,
-        'active' : active,
-        'result_page' : result_page
     }
     return render(request, 'Farms/farms.html', context)
 
@@ -169,6 +160,7 @@ def makeFarm(request, slug):
                 farmInvoice.name = farm_name
                 farmInvoice.customer = customer
                 farmInvoice.farm = farm.name
+                farmInvoice.partner = Partner.objects.get(name=request.POST.get('partner'))
                 farmInvoice.location = farm.location
                 farmInvoice.price = farm.price
                 farmInvoice.units = units
@@ -194,6 +186,7 @@ def makeFarm(request, slug):
                 farmLog = FarmLog()
                 farmLog.name = farm_name
                 farmLog.customer = customer
+                farmLog.partner = Partner.objects.get(name=request.POST.get('partner'))
                 farmLog.location = farm.location
                 farmLog.price = farm.price
                 farmLog.units = units
@@ -208,7 +201,7 @@ def makeFarm(request, slug):
                 farmLog.save()
                 return redirect('dashboard')
         else:
-            messages.error(request, 'Create Account to continue')
+            messages.error(request, 'login to continue')
     context = {
         'farm': farm,
         'partners' : partners,

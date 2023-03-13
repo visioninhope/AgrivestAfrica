@@ -9,7 +9,7 @@ class TradeAdmin(admin.ModelAdmin):
 
 class PartnerAdmin(admin.ModelAdmin):
   readonly_fields = ('slug',)
-  list_display = ('name','email','contact','date_joined')
+  list_display = ('id','name','email','contact','date_joined')
   class Meta:
     model = Partner
 
