@@ -100,7 +100,7 @@
 }
 .left .top a{
   color: #4caf50;
-  font-size: 2vw;
+  font-size: 2.3rem;
 }
 
 .left .top.change,.left .user_con.change{
@@ -229,23 +229,29 @@
   justify-content: space-around;
 }
 .mt_left{
-  width: 100%;
+  width: 75%;
 }
-.mt_left .box{
+.mt_right{
+  border-radius: 10px;
+  width: 25%;
+  height: 100%;
+}
+.mt_right .box2{
+  display: none;
+}
+
+.mt_left .box,.mt_right .box{
   background: white;
-  height: 60%;
+  height: 70%;
   border-radius: 10px;
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
 .mt_left .box{
-  width: 18%;
+  width: 26%;
   padding: 2%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
-.mt_left .hid{
-  display: none;
 }
 .mt_left .box i{
   font-size: 3rem;
@@ -287,9 +293,8 @@
 .quick_next{
   right: 0;
 }
-.quick_prev span, .quick_next span{
+.quick_prev i, .quick_next i{
   font-weight: 600;
-  font-size: 1rem;
 }
 
 .quick_box .swiper-slide{
@@ -335,13 +340,15 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .order_box_h p{
-  color: #346e36;
+  font-size: 1.4rem;
   letter-spacing: 1px;
+  font-family: 'Alegreya Sans SC', sans-serif;
 }
 .order_box form{
   display: flex;
   border-radius: 40px;
   align-items: center;
+  /* border: 1px solid gold; */
   justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   padding: 10px 5px;
@@ -349,7 +356,6 @@
 .order_box_h form input{
   font-size: 0.9rem;
   padding: 5px 15px;
-  max-width: 200px;
 }
 .order_box_h form input::placeholder{
   font-size: 1rem;
@@ -365,8 +371,7 @@
   padding: 5px;
   text-align: center;
   height: 100%;
-  background: transparent;
-  border-left: 2px dotted darkgray;
+  border-left: 1px dotted darkgray;
 }
 .order_box_con{
   display: flex;
@@ -396,8 +401,9 @@
   border-bottom: 1px dotted rgb(100, 99, 99);
 }
 #conH span, #conH p{
-  color: #4caf50;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: 600;
 }
 .order_box .con p{
   display: flex;
@@ -440,9 +446,9 @@
 @media all and (max-width:900px){
   .left{
     position: fixed;
-    width: 100%;
+    width: auto;
     padding: 0 10px;
-    left: -120%;
+    left: -1000px;
     background: white;
   }
   .left.mini{
@@ -498,15 +504,13 @@
     width: 26%;
     height: auto;
     padding: 2%;
+    display: flex;
     flex-direction: column;
     margin: 10px;
     background: white;
     justify-content: space-around;
     border-radius: 10px;
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
-  }
-  .mt_left .hid{
-    display: flex;
   }
   .mt_right .box{
     display: none;
@@ -523,9 +527,24 @@
 }
 
 @media all and (max-width:680px){
-  .mt_left .box{
+  .mt_left .box, .mt_right .box2{
     margin: 3px;
-    width: 42%;
+    width: 43%;
+  }
+  .mt_right .box2{
+    display: flex;
+    flex-direction: row;
+  }
+  .mt_right .box2 a{
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    color: #4caf50;
   }
   .main{
     height: auto;
@@ -542,6 +561,8 @@
   }
   .order_box form input{
     font-size: 0.9rem;
+    border: 1px solid black;
+    /* border: 1px solid transparent; */
     border-radius: 0;
   }
   .order_box_h p{
@@ -627,7 +648,7 @@
     height: 50vh;
     overflow-y: auto;
   }
-  .order_box .con .date,.order_box .con .status{
+  .order_box .con .date, .order_box .con .type,.order_box .con .status{
     display: none;
   }
   .order_box .con #t_stat_tag{

@@ -1,160 +1,54 @@
+{% extends "Dashboard/dashboard.html" %}
 {% load static %}
 {% load humanize %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
-  <link rel="stylesheet" href="{% static 'dashboard/tradeLog.css' %}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-  <title>Agrivest - Dashboard</title>
-</head>
-<body>
-  <section class="page">
-    {% include 'Dashboard/sideBar.html' %}
-    <section class="main">
-      <div class="main_cover"></div>
-      <section class="main_low" >
-        <section class="prod_box">
-          <div class="prod_box_info">
-            <section class="tradeInfo_box">
 
-              <div class="tb_left">
-                <img src="{{trade.image_url}}" alt="">
-              </div>
-              <div class="tb_right">
-                <section>
-                  <span id="th">{{trade.trade_name}}</span>
-                </section>
-                <section>
-                  <div>
-                    <p><span id="s1">Unit Price[kg]</span> <span id="s2">Ghc {{trade.price|intcomma|floatformat:2}}</span></p>
-                    <p><span id="s1">Units Bought</span> <span id="s2">{{trade.units}}</span></p>
-                  </div>
-                  <div>
-                    <p><span id="s1">Base Cost</span> <span id="s2">Ghc {{trade.base_cost|intcomma|floatformat:2}}</span></p>
-                    <p><span id="s1">Service Charge</span> <span id="s2">{{trade.service_charge}}%</span></p>
-                  </div>
-                  <div>
-                    <p><span id="s1">Total Cost</span> <span id="s2">Ghc {{trade.total_cost|intcomma|floatformat:2}}</span></p>
-                    <p><span id="s1">Pros(%)</span> <span id="s2">{{trade.profit_range_min}}% -{{trade.profit_range_max}}%</span></p>
-                  </div>
-                  <div>
-                    <p><span id="s1">Start Date</span> <span id="s2">{{trade.start_date|date:'d b, Y'}}</span></p>
-                    <p><span id="s1">End Date</span> <span id="s2">{{trade.end_date|date:'d b, Y'}}</span></p>
-                  </div>
-                  <div>
-                    <p><span id="s1">Status</span> <span id="s2">{{trade.status}}</span></p>
-                  </div>
-                </section>
-                
+  {% block cssBlock %}
+    <link rel="stylesheet" href="{% static 'dashboard/tradeLog.css' %}">
+  {% endblock cssBlock %}
 
-              </div>
-            </section>  
-            
-            
-          </div>
-        </section>
+  {% block main %}
+  <section class="main" >
+    <div class="main_cover"></div>
+    <section class="main_low" >
+      <section class="prod_box" >
+        <div class="prod_box_info">
+          <section class="tradeInfo_box">
+            <div class="tb_left">
+              <img src="{{trade.image_url}}" alt="">
+            </div>
+            <div class="tb_right">
+              <section>
+                <span id="th">{{trade.name}}</span>
+              </section>
+              <section>
+                <div>
+                  <p><span id="s1">Unit Price[kg]</span> <span id="s2">Ghc {{trade.price|intcomma}}</span></p>
+                  <p><span id="s1">Units Bought</span> <span id="s2">{{trade.units}}</span></p>
+                </div>
+                <div>
+                  <p><span id="s1">Base Cost</span> <span id="s2">Ghc {{trade.base_cost|intcomma}}</span></p>
+                  <p><span id="s1">Service Charge</span> <span id="s2">{{trade.service_charge}}%</span></p>
+                </div>
+                <div>
+                  <p><span id="s1">Total Cost</span> <span id="s2">Ghc {{trade.total_cost|intcomma}}</span></p>
+                  <p><span id="s1">Pros(%)</span> <span id="s2">{{trade.profit_range_min}}% -{{trade.profit_range_max}}%</span></p>
+                </div>
+                <div>
+                  <p><span id="s1">Start Date</span> <span id="s2">{{trade.start_date|date:'d b, Y'}}</span></p>
+                  <p><span id="s1">End Date</span> <span id="s2">{{trade.end_date|date:'d b, Y'}}</span></p>
+                </div>
+                <div>
+                  <p><span id="s1">Status</span> <span id="s2">{{trade.status}}</span></p>
+                </div>
+              </section>            
+            </div>
+          </section>  
+        </div>
       </section>
-      
     </section>
   </section>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  {% endblock main %}
 
 
-  <script>
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3],
-          borderWidth: 1
-        }]
-      },
-    });
 
 
-    const prods = document.querySelectorAll('[id=prod_a]')
-
-    for (let i = 0; i < prods.length; i++) {
-      prods[i]
-      console.log()
-      anime({
-        targets: prods[i],
-        opacity : [0,1],
-        translateX: [-100,0],
-        duration: parseInt(200) * parseInt(i+1),
-        delay: parseInt(100) * parseInt(i+1)
-      });
-    }
-  </script>
-
-  <script>
-    const main_top = document.querySelector('.main_top')
-    const main_low  = document.querySelector('.main_low')
-    const prod_box_tag = document.getElementById('prod_box_tag')
-
-    prod_box_tag.onclick =()=>{
-      main_top.classList.toggle('change')
-      main_low.classList.toggle('change')
-      prod_box_tag.classList.toggle('change')
-    }
-  </script>
-  <script>
-    const left = document.querySelector('.left')
-    const left_top = document.getElementById('left_top')
-    const user_con = document.querySelector('.user_con')
-    const menu_a = document.querySelectorAll('[id=menu_a]')
-    const menu_ab = document.querySelectorAll('[id=menu_ab]')
-    const left_tag = document.getElementById('left_tag')
-    const logout = document.getElementById('logout')
-    const main = document.querySelector('.main')
-    const main_cover = document.querySelector('.main_cover')
-
-    const expand = document.getElementById('expand')
-    const exp_menu = document.getElementById('exp_menu')
-    expand.onclick =()=>{
-      exp_menu.classList.toggle('change')
-    }
-  
-  left_tag.onclick =()=>{
-    handleScreen()
-  }
-
-  window.onresize =()=>{
-    left_tag.onclick =()=>{
-    handleScreen()
-    }
-  }
-
-  const handleScreen =()=>{   
-    if(window.innerWidth > 900){   
-      left_tag.classList.toggle('change')
-      left.classList.toggle('change')
-      left_top.classList.toggle('change')
-      user_con.classList.toggle('change')
-      logout.classList.toggle('change')
-      main.classList.toggle('change')
-      menu_a.forEach(a=>{
-        a.classList.toggle('change')
-      })
-      menu_ab.forEach(a=>{
-        a.classList.toggle('change')
-      })
-      exp_menu.classList.toggle('mini')
-    }else{
-      left.classList.toggle('mini')
-      main_cover.classList.toggle('change')
-    }
-  }
-  </script>
-</body>
-</html>

@@ -1,0 +1,83 @@
+{% extends "Dashboard/dashboard.html" %}
+{% load static %}
+{% load humanize %}
+
+  {% block cssBlock %}
+    <link rel="stylesheet" href="{% static 'dashboard/inbox.css' %}">
+  {% endblock cssBlock %}
+
+  {% block main %}
+  <section class="main">
+    <div class="main_cover"></div>
+    <section class="mail">
+      <section class="mail_top">
+        <p>All Messages</p>
+      </section>
+      <section class="mail_box">
+        <div class="box">
+          <span id="duration">6 days ago</span>
+          <img src="/media/img/cocoa-pods-cocoa-beans-cacao-powder-with-leaves-isolated-white-background_38145-733.webp" alt="">
+          <p class="con">
+            <span id="s1">AgrivestAfrica</span>
+            <span id="s2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis repellat eius, tempore obcaecati perspiciatis odit voluptatem id maxime reprehenderit omnis, ipsa unde vero enim aliquam nesciunt maiores iste, numquam veniam.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, eligendi. Vero culpa delectus molestias facilis labore iure distinctio. Ipsa quasi necessitatibus ipsum eligendi expedita illo magni qui nam quod repellendus.</span>
+          </p>
+        </div>
+        <div class="box">
+          <span id="duration">6 days ago</span>
+          <img src="/media//img/fresh-peanuts_144627-16149.webp" alt="">
+          <p class="con">
+            <span id="s1">AgrivestAfrica</span>
+            <span id="s2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis repellat eius, tempore obcaecati perspiciatis odit voluptatem id maxime reprehenderit omnis, ipsa unde vero enim aliquam nesciunt maiores iste, numquam veniam.
+          </p>
+        </div>
+        <div class="box">
+          <span id="duration">6 days ago</span>
+          <img src="/media/img/fresh-juicy-pink-tomato-isolated-white-background_414617-732.webp" alt="">
+          <p class="con">
+            <span id="s1">AgrivestAfrica</span>
+            <span id="s2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis repellat eius, tempore obcaecati perspiciatis odit voluptatem id maxime reprehenderit omnis, ipsa unde vero enim aliquam nesciunt maiores iste, numquam veniam.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, eligendi. Vero culpa delectus molestias facilis labore iure distinctio. Ipsa quasi necessitatibus ipsum eligendi expedita illo magni qui nam quod repellendus.</span>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit amet a, itaque maxime ipsam consequatur animi tenetur odit pariatur nihil, quae perspiciatis quibusdam. Aliquam dicta cum, alias quos libero voluptas.
+          </p>
+        </div>
+        <div class="box">
+          <span id="duration">6 days ago</span>
+          <img src="/media/img/fresh-cocoa-fruits-isolated-white_252965-259.webp" alt="">
+          <p class="con">
+            <span id="s1">AgrivestAfrica</span>
+            <span id="s2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis repellat eius, tempore obcaecati perspiciatis odit voluptatem id maxime reprehenderit omnis, ipsa unde vero enim aliquam nesciunt maiores iste, numquam veniam.
+          </p>
+        </div>
+        <div class="box">
+          <span id="duration">6 days ago</span>
+          <img src="/media/img/coffee-beans-levitate-white-background_485709-33.webp" alt="">
+          <p class="con">
+            <span id="s1">AgrivestAfrica</span>
+            <span id="s2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis repellat eius, tempore obcaecati perspiciatis odit voluptatem id maxime reprehenderit omnis, ipsa unde vero enim aliquam nesciunt maiores iste, numquam veniam.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, eligendi. Vero culpa delectus molestias facilis labore iure distinctio. Ipsa quasi necessitatibus ipsum eligendi expedita illo magni qui nam quod repellendus.</span>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit amet a, itaque maxime ipsam consequatur animi tenetur odit pariatur nihil, quae perspiciatis quibusdam. Aliquam dicta cum, alias quos libero voluptas.
+          </p>
+        </div>
+      </section>
+    </section>
+    <section class="nav">
+      <section class="nav_top">
+        <div>
+          <span>History</span>
+          <span>Write</span>
+        </div>
+        <form action="">
+          search
+          <input type="text" name="" id="">
+        </form>
+      </section>
+    </section>
+  </section>
+  {% endblock main %}
+    

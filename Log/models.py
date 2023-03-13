@@ -28,6 +28,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
+    other_name = models.CharField(max_length=200)
+    gender =(
+        ('male','male'),
+        ('female','female')
+    )
+    gender = models.CharField(max_length=50, choices=gender)
     profile_pic = models.ImageField(default='default.jpg', upload_to='profile_pics')
     email = models.EmailField()
     contact = models.CharField(max_length=200)
@@ -35,6 +41,12 @@ class Profile(models.Model):
     address = models.CharField(max_length=200)
     nationality = models.CharField(max_length=200)
     cor = models.CharField(max_length=300)
+    profession = models.CharField(max_length=200)
+    relationship = (
+        ('single','single'),
+        ('married', 'married')
+    )
+    relationship = models.CharField(max_length=50, choices=relationship)
     id_card = (
         ('Passport','Passport'),
         ('National ID','National ID'),

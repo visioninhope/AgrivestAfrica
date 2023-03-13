@@ -1,0 +1,38 @@
+{% extends "Dashboard/dashboard.html" %}
+{% load static %}
+{% load humanize %}
+  {% block cssBlock %}
+  <link rel="stylesheet" href="{% static 'dashboard/tradeLog.css' %}">
+  {% endblock cssBlock %}
+
+  {% block main %}
+  <section class="main">
+    <div class="main_cover"></div>
+    <section class="main_low" >
+      <section class="prod_box">
+        <div class="prod_box_info">
+          <section class="tradeInfo_box">
+            <div class="tb_left">
+              <img src="{{produce.image_url}}" alt="">
+            </div>
+            <div class="tb_right">
+              <section>
+                <span id="th">{{produce.name}}</span>
+              </section>
+              <section>
+                <div>
+                  <p><span id="s1">Unit Price[kg]</span> <span id="s2">Ghc {{produce.price|intcomma}}</span></p>
+                  <p><span id="s1">Units Bought</span> <span id="s2">{{produce.units}}</span></p>
+                </div>
+                
+                <div>
+                  <p><span id="s1">Total Cost</span> <span id="s2">Ghc {{produce.total_cost|intcomma}}</span></p>
+                </div>
+              </section>
+            </div>
+          </section>            
+        </div>
+      </section>
+    </section>
+  </section>
+  {% endblock main %}

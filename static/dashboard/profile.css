@@ -59,7 +59,7 @@
   align-items: center;
   justify-content: center;
   width: 45%;
-  height: 50px;
+  /* height: 50px; */
 }
 .input_field #in_tag{
   width: 13%;
@@ -89,4 +89,80 @@
 }
 select{
   width: 74%;
+}
+
+.part .id_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+  gap: 15px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.part .id_box label{
+  background: skyblue;
+  /* background: salmon; */
+  border-radius: 3px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 5px;
+  color: white;
+}
+.part .id_box img{
+  width: 25vw;
+  height: 200px;
+}
+#pro_pic_label{
+      padding: 5px;
+      display: flex;
+      min-width: 100px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      background: #66923a;
+      color: white;
+    }
+@media all and (max-width:1300px){
+  .profile_pic{
+    /* border: 3px solid red; */
+    top: 0;
+    /* position: relative; */
+  }
+}
+@media all and (max-width:1000px){
+  .profile_form section{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .profile_form section .input_field{
+    width: 100%;
+  }
+  .id_box{
+    display: flex;
+    width: 100%;
+  }
+  .part .id_box img{
+    /* border: 3px solid skyblue; */
+    width: 90%;
+    height: 250px;
+  }
+}
+@media all and (max-width:650px){
+  #id_box_holder{
+    /* flex-direction: column; */
+    width: 95%;
+    /* border: 3px solid salmon; */
+  }
+  .profile_form{
+    width: 99%;
+    align-items: center;
+  }
+  .profile_form .part{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 99%;
+  }
 }

@@ -21,13 +21,13 @@
       <div id="exp_menu">
         <a style="color: rgb(48, 106, 128);" href="{% url 'tradeLog_page' %}"><i class="material-symbols-outlined">receipt_long</i><p>Trades</p></a>
         <a style="color: rgb(48, 106, 128);" href="{% url 'farmLog_page' %}"><i class="material-symbols-outlined">psychiatry</i><p>Farms</p></a>
-        <a style="color: rgb(48, 106, 128);" href=""><i class="material-symbols-outlined">shopping_bag</i><p>Market</p></a>
+        <a style="color: rgb(48, 106, 128);" href="{% url 'produceLog_page' %}"><i class="material-symbols-outlined">shopping_bag</i><p>My Produce</p></a>
       </div>
       <hr id="uc_hr">
     <a id="menu_ab" href="{% url 'trades_page' %}" ><i class="material-symbols-outlined">shopping_cart</i><span style="font-weight: 600;" id="menu_a">Sponor Trade</span></a>
     <a id="menu_ab" href="{% url 'farms_page' %}"><i class="material-symbols-outlined">agriculture</i><span style="font-weight: 600;" id="menu_a">Sponsor Farm</span></a>
-    <a id="menu_ab" href="{% url 'markets_page' %}"><i class="material-symbols-outlined">store</i><span style="font-weight: 600;" id="menu_a">Buy Produce</span></a>
-    <a id="menu_ab"><i class="material-symbols-outlined">forward_to_inbox</i><span id="menu_a">Inbox</span></a>
+    <a id="menu_ab" href="{% url 'produce_page' %}"><i class="material-symbols-outlined">store</i><span style="font-weight: 600;" id="menu_a">Buy Produce</span></a>
+    <a id="menu_ab" href="{% url 'inbox_page' %}"><i class="material-symbols-outlined">forward_to_inbox</i><span id="menu_a">Inbox</span></a>
   </div>
   <div class="low">
     <a><i class="material-symbols-outlined">logout</i><span id="logout">Logout</span></a>

@@ -79,10 +79,10 @@ class Farm(models.Model):
     def __str__(self):
         return self.name
 
-class Market(models.Model):
+class Produce(models.Model):
     name = models.CharField(max_length=300)
     price = models.FloatField(default=1)
-    image = models.ImageField(default='default.jpg', upload_to='market_pics')
+    image = models.ImageField(default='default.jpg', upload_to='produce_pics')
     description = models.TextField(max_length=800)
     STATUS = (
         ("Available", "Available"),

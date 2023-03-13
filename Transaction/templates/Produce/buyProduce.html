@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>AgriVestAfrica - Make Trade</title>
+  <title>AgriVestAfrica - Buy Produce</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet"
     href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />  
   <meta charset="utf-8">
   <meta name="description" content="
   Sign Up with AgrivestAfrica for the opportunity to invest in new farms, manage and monitor old farms. " />
@@ -26,7 +26,7 @@
   crop, africa, ghana, nigeria, india, agriculture, green technology " />
   <meta name="subject" content="AgriVestAfrica">
   <meta name="copyright" content="AgriVestAfrica">
-  <link rel="shortcut icon" href="{{trade.image.url}}" />
+  <link rel="shortcut icon" href="{{produce.image.url}}" />
 <link rel="stylesheet" href="{% static 'home/checkout.css' %}">
 
   <header>
@@ -44,7 +44,7 @@
     </nav>
     <!-- Full Page Intro -->
     <div class="view"
-      style="background-image: url('{{trade.image.url}}'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      style="background-image: url('{{produce.image.url}}'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <!-- Mask & flexbox options-->
       <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
         <!-- Content -->
@@ -56,7 +56,7 @@
           <div class="row">
             <!--Grid column-->
             <div class="col-md-6 white-text text-center text-md-center mt-xl-5 mb-5 ">
-              <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">New Trade</h1>
+              <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">New Produce</h1>
               <hr class="hr-light">
             </div>
           </div>
@@ -105,7 +105,6 @@
 
           <!-- Card image -->
           <div class="view view-cascade overlay view" style="position: relative";>
-            <span class="badge badge-success mb-2">{{trade.start_date|timesince:trade.end_date}}</span>
             <style>
               .trade_tag{
                 font-family: 'Alegreya Sans SC', sans-serif;
@@ -119,7 +118,7 @@
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
               }
             </style>
-            <img class="card-img-top" src="{{trade.image.url}}" alt="Card image cap">
+            <img class="card-img-top" src="{{produce.image.url}}" alt="Card image cap">
             <a href="#!">
               <div class="mask rgba-white-slight"></div>
             </a>
@@ -129,11 +128,11 @@
           <div class="card-body card-body-cascade text-center">
 
             <!-- Title -->
-            <h4 class="card-title"><strong>{{trade.name}}</strong></h4>
+            <h4 class="card-title"><strong>{{produce.name}}</strong></h4>
             <!-- Subtitle -->
             <h5 class="blue-text pb-2"><strong></strong></h5>
             <!-- Text -->
-            <p class="card-text">{{trade.description|slice:":100"}} </p>
+            <p class="card-text">{{produce.description|slice:":100"}} </p>
 
           </div>
         </div>
@@ -144,7 +143,7 @@
         <div class="card card-cascade narrower">
           <!-- Card content -->
           <div class="card-body card-body-cascade">
-            <p class="font-weight-bold text-center">Trade Details</p>
+            <p class="font-weight-bold text-center">Produce Details</p>
             <!--Grid column-->
             <div class="row">
               <!--Grid column-->
@@ -155,31 +154,13 @@
             <!--Grid column-->
             <!--Grid column-->
             <div class=" mb-4">
-
               <!--lastName-->
-              <label for="lastName" class="">Expected Farm Schedule</label>
-              <input type="text" id="schedule" class="form-control" value="{{trade.start_date|date:'jS b, Y'}} - {{trade.end_date|date:'jS b, Y'}}" readonly style="cursor: pointer; background-color: #d4edda; border: none; font-weight: 500;">
-
-            </div>
-            <div class=" mb-4">
-              <!--lastName-->
-              <label for="lastName" class="">Preferred Name For Your Trade</label>
-              <input type="text" id="lastName" class="form-control" name="trade_name" required>
+              <label for="lastName" class="">Preferred Name For Your Produce</label>
+              <input type="text" id="lastName" class="form-control" name="produce_name" required>
             </div>
 
             <!--Grid column-->
             <!--Grid row-->
-            <div class="row">
-              <!--Grid column-->
-              <div class="col-lg-12">
-                <label for="country">Harvest Proceeds as:</label>
-                <select class="custom-select d-block w-100" id="country" name="">
-                  <option selected hidden value>select harvest type</option>
-                  <option value="cash">cash</option>
-                  <option value="trade">Roll On to Trade</option>
-                </select>
-              </div>
-            </div>
             <br>
             
             <!--Material textarea-->
@@ -199,7 +180,7 @@
         <div class="card card-cascade narrower">
           <!-- Card content -->
           <div class="card-body card-body-cascade">
-            <p class="font-weight-bold text-center">Trade Financial Summary</p>
+            <p class="font-weight-bold text-center">Produce Financial Summary</p>
             <div class="container my-5 py-3  rounded">
               <div class="row">
                 <div class="col-lg-6 col-md-6 mb-4">
@@ -207,16 +188,9 @@
                   <label class="green-text"> Unit Cost [kg]</label>
                   <br>
                   <td class="font-weight-bold">
-                    <strong>GHS {{trade.price|intcomma}}</strong>
+                    <strong>GHS {{produce.price|intcomma}}</strong>
                   </td>
 
-                </div>
-                <div class="col-lg-6 col-md-6 mb-4">
-                  <label class="green-text">Profit Margin</label>
-                  <br>
-                  <td class="font-weight-bold">
-                    <strong id="profit_margin" data-low="{{trade.ros_min}}" data-high="{{trade.ros_max}}">{{trade.ros_min}}%-{{trade.ros_max}}%</strong>
-                  </td>
                 </div>
                 <!--Grid column-->
               </div>
@@ -228,36 +202,12 @@
               </div>
               <hr>
               <div class="row">
-                <div class="col-lg-6 col-md-6 mb-4">
-                  <label class="green-text"> Potential Ros(Low)</label>
-                  <br>
-                  <td class="font-weight-bold">
-                    <strong id="pros_low"></strong>
-                  </td>
-                </div>
-                <div class="col-lg-6 col-md-6 mb-4">
-                  <label class="green-text">Potential Ros(High)</label>
-                  <br>
-                  <td class="font-weight-bold">
-                    <strong id="pros_high"></strong>
-                  </td>
-                </div>
                 <!--Grid column-->
-              </div>
-              <div class="row">
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-6 mb-4">
-                  <label class="green-text">+service charge</label>
-                  <br>
-                  <td class="font-weight-bold">
-                    <strong id="service_span" data-serve="{{trade.service_charge}}"></strong>
-                  </td>
-                </div>
                 <div class="col-lg-6 col-md-6 mb-4">
                   <label class="green-text">Total Cost</label>
                   <br>
                   <td class="font-weight-bold">
-                    <strong id="price" data-price="{{trade.price}}"></strong>
+                    <strong id="price" data-price="{{produce.price}}"></strong>
                   </td>
                 </div>
               </div>
@@ -291,21 +241,14 @@
     const units = document.getElementById('units')
     const price = document.getElementById('price').dataset.price
     const total = document.getElementById('price')
-    const pros_low = document.getElementById('pros_low')
-    const pros_high = document.getElementById('pros_high')
-    const service_charge = document.getElementById('service_span')
-    const serve = document.getElementById('service_span').dataset.serve
-    const ros_min = document.getElementById('profit_margin').dataset.low
-    const ros_max = document.getElementById('profit_margin').dataset.high
+
+
     const amount = document.getElementById('amount')
-    console.log(amount)
+    console.log(units)
 
     units.oninput = () => {
-      service_charge.innerHTML = 'GHS' + ' ' + (Math.round((units.value * price) * (serve / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      total.innerHTML = 'GHS' + ' ' + ((units.value * price) + Math.round((units.value * price) * (serve / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      pros_low.innerHTML = '+' + ' ' + 'GHS' + ' ' + (Math.round((units.value * price) * (ros_min / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      pros_high.innerHTML = '+' + ' ' + 'GHS' +' ' + (Math.round((units.value * price) * (ros_max / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      amount.value = (units.value * price) + Math.round((units.value * price) * (serve / 100))
+      total.innerHTML = 'GHS' + ' '  + Math.round((units.value * price)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      // amount.value = (units.value * price) + Math.round((units.value * price))
     }
   </script>
 
@@ -331,7 +274,7 @@
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
   <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
-
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({
       duration: 1200,

@@ -12,35 +12,20 @@
         <div class="mt_left">
           <div class="box" id="mt_box">
             <i class="material-symbols-outlined" style="color: salmon;">numbers</i>
-            <p>Total Farms</p>
-            <span>{{farms.count|intcomma}}</span>
+            <p>Total Produces</p>
+            <span>{{produces.count|intcomma}}</span>
           </div>
           <div class="box" id="mt_box">
             <i class="material-symbols-outlined" style="color: skyblue;">payments</i>
             <p>Total Bought</p>
-            <span>Ghc {{farms_bought|intcomma}}</span>
-          </div>
-          <div class="box" id="mt_box">
-            <i class="material-symbols-outlined" style="color: burlywood;">savings</i>
-            <p>Total Sold</p>
-            <span> Ghc {{farms_sold|intcomma}}</span>
-            {% if farms_bal > '0' %}
-            <p style="color:#7ac691;" id="trade_bal">+ {{farms_bal|intcomma}}</p>
-            {% else %}
-            <p style="color:#ff6364;" id="trade_bal">{{farms_bal|intcomma}}</p>
-            {% endif %}
-          </div>
-          <div class="box" >
-            <div style="width: 100%; height: 100%;display: flex; justify-content: center; align-items: center;">
-              <canvas id="myChart"></canvas>
-            </div>
+            <span>Ghc {{produces_bought|intcomma}}</span>
           </div>
         </div>
       </section>
       <section class="main_low" >
         <section class="prod_box">
           <div class="prod_box_h">
-            <p>Farms</p>
+            <p>Produces</p>
             <form>
               <input type="text" placeholder="Search Here">
               <button><i class="material-symbols-outlined">search</i></button>
@@ -54,42 +39,33 @@
             <button id="prod_box_tag"><i class="material-symbols-outlined">arrow_downward</i></button>
           </div>
           <div class="prod_box_list">           
-            {% if farms %}
-              {% for farm in farms %}
-              <a href="{% url 'farmLog_info' farm.slug %}" id="prod_a">
+            {% if produces %}
+              {% for produce in produces %}
+              <a href="{% url 'produceLog_info' produce.slug %}" id="prod_a">
                 <div class="top">
                   <p>
-                    <span id="s1">{{farm.units|intcomma}} units</span>
-                    <span id="s2">{{farm.name}}</span>
+                    <span id="s1">{{produce.units|intcomma}} units</span>
+                    <span id="s2">{{produce.name}}</span>
                   </p>
                   <div>         
-                    {% if farm.status == 'Pending' %}
-                    <span id="s1" style="color: rgb(36, 194, 115);">Pay here</span>
-                    <div id="stat_tag" style="background: #ff6364;"></div>
-                    {% elif farm.status == 'Active' %}
-                    <span id="s1" style="color: rgb(36, 194, 115);">{{farm.start_date|timesince:farm.end_date}} left</span>
-                    <div id="stat_tag" style="background: #00acea;"></div>
-                    {% else %}
-                    <div id="stat_tag" style="background: #aeecc1;"></div>
-                    {% endif %}                     
+                    <div id="stat_tag" style="background: #aeecc1;"></div>           
                   </div>
                 </div>
                 <div class="mid">
-                  <img src="{{farm.image_url}}" alt="">
+                  <img src="{{produce.image_url}}" alt="">
                 </div>
                 <div class="low">
-                  <p><span id="s1">Cost</span> <span id="s2">Ghc {{farm.total_cost|intcomma}}</span></p>
-                  <p><span id="s1">Ros%</span> <span id="s2">{{farm.profit_range_min}} - {{farm.profit_range_max}}</span></p>
+                  <p><span id="s1">Cost</span> <span id="s2">Ghc {{produce.total_cost|intcomma}}</span></p>
                 </div>
               </a>
               {% endfor %}
             {% else %}
             <div class="empty_box">
-              <a href="{% url 'farms_page' %}">
+              <a href="{% url 'produce_page' %}">
                 <span class="material-symbols-outlined" id="tl">currency_exchange</span>
                 <span class="material-symbols-outlined" id="tr">potted_plant</span>
-                <button>Sponsor A Farm</button>
-                <i class="material-symbols-outlined">agriculture</i>
+                <button>Buy Produce</button>
+                <i class="material-symbols-outlined">store</i>
               </a>
             </div>
             {% endif %}            

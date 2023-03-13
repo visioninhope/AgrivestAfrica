@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>AgriVestAfrica - Markets</title>
+  <title>AgriVestAfrica - Produce</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -173,14 +173,14 @@
             <!-- Grid row -->
           <div class="row">
             
-            {% for market in markets %}
+            {% for produce in produces %}
             <!-- Grid column -->
             <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
               <!-- Card -->
               <div class="card align-items-center">
                 <!-- Card image -->
                 <div class="view overlay">
-                  <img src="{{market.image.url}}" class="card-img-top"
+                  <img src="{{produce.image.url}}" class="card-img-top"
                     alt="">
                   <a>
                     <div class="mask rgba-white-slight"></div>
@@ -191,17 +191,17 @@
                 <div class="card-body text-center">
                   <!-- Category & Title -->
                   <a href="" class="grey-text">
-                    <h6>{{market.name}}</h6>
+                    <h6>{{produce.name}}</h6>
                   </a>
                   <h5 class="mb-3">
                     <strong>
-                      <a href="" class="dark-grey-text">
-                        <span class="badge badge-pill danger-color">New</span>
+                      <a href="{% url 'buyProduce_page' produce.slug %}" class="dark-grey-text">
+                        <span class="badge badge-pill danger-color">Buy</span>
                       </a>
                     </strong>
                   </h5>
                   <h5 class="font-weight-bold blue-text mb-0">
-                    <strong>GH¢{{market.price}}</strong>
+                    <strong>GH¢{{produce.price}}</strong>
                   </h5>
                 </div>
                 <!-- Card content -->

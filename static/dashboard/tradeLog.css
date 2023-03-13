@@ -15,21 +15,21 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .prod_box_h p{
-  font-size: 1.4rem;
+  color: #38723a;
   letter-spacing: 1px;
-  font-family: 'Alegreya Sans SC', sans-serif;
 }
 .prod_box form{
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 45px;
+  border-radius: 40px;
+  padding: 0 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .prod_box_h form input{
-  border-radius: 20px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  font-size: 1.1rem;
-  padding: 10px 25px;
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  max-width: 200px;
 }
 .prod_box_h form input::placeholder{
   font-size: 1rem;
@@ -37,18 +37,16 @@
 }
 .prod_box_h form button{
   background: transparent;
-  padding: 5px;
-  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .prod_box_h form select{
   padding: 5px;
   text-align: center;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  height: 100%;
+  background: transparent;
+  border-left: 1px dotted darkgray;
 }
 #prod_box_tag{
   display: flex;
@@ -70,7 +68,6 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 0.8%;
-  /* min-height: 88vh; */
   height: 88%;
   overflow-y: auto;
 }
@@ -104,7 +101,6 @@
 .prod_box_list a .mid img{
   height:210px; 
   width: 100%;
-  /* max-width:300px; */
 }
 
 .prod_box_list a #s1, .tb_right #s1{
@@ -137,7 +133,7 @@
   justify-content:center;
   align-items: center;
   height: 100%;
-  background: whitesmoke;
+  /* background: whitesmoke; */
 }
 
 .tradeInfo_box{
@@ -252,11 +248,17 @@
 #tr{
   right: -10px;
 }
+#trade_bal{
+  letter-spacing: 1px;
+  font-weight: 600;
+}
 .empty_box a:hover #tl, .empty_box a:hover #tr{
   transform: rotate(360deg);
 }
 
-
+.hid{
+  display: none;
+}
 
 .empty_box button{
   min-width: max-content;
@@ -286,6 +288,23 @@
   }
 }
 @media all and (max-width:750px){
+  #prod_box_tag{
+    display: none;
+  }
+  .hid{
+    display: flex;
+  }
+  .main_top{
+    display: flex;
+    height: 30%;
+  }
+  
+  .main_low{
+    height: 70%;
+  }
+  .prod_box_h p{
+    display: none;
+  }
   .prod_box_list{
     justify-content:center;
     align-items: center;
@@ -325,14 +344,16 @@
 }
 
 
-@media all and (max-width:750px){
+@media all and (max-width:950px){
   .main_low{
     overflow-y: auto;
   }
   .prod_box_info{
-    height: auto;
-    align-items: flex-start;
+    min-height: 100vh;
+    align-items: center;
     padding: 10px 0;
+    overflow: auto;
+    /* border:; */
   }
   .tradeInfo_box{
     justify-content: flex-start;

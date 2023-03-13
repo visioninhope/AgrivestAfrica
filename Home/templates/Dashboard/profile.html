@@ -1,202 +1,313 @@
+{% extends "Dashboard/dashboard.html" %}
 {% load static %}
 {% load humanize %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
-  <link rel="stylesheet" href="{% static 'dashboard/profile.css' %}">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-  <title>Agrivest - Dashboard</title>
-</head>
-<body>
-  <section class="page">
-    {% include 'Dashboard/sideBar.html' %}
-    <form class="main" enctype="multipart/form-data" method="post" style="background: white;">
-      <div class="main_cover"></div>
-      <section class="profile_top">
-        <div class="profile_pic">
-          
-          {% if pro_exists %}
-          <img src="{{pro_info.profile_pic.url}}" id="pic_box" alt="" width="100%" height="100%" style="border-radius: 50%; border: 1px solid whitesmoke;">
 
-          {% else %}
-          <img src="/media/img/hand-draw-beautiful-girls-holding-planet-earth-watercolor-design_1035-20580.webp" id="pic_box" alt="" width="100%" height="100%" style="border-radius: 50%; border: 1px solid whitesmoke;">
-          {% endif %}
-          <label for="profile_pic" id="pro_pic_label">ADD PHOTO</label>
-          <input type="file" accept="image/*" class="pro_set" name="profile_pic" id="profile_pic" style="display: none;">
+  {% block cssBlock %}
+    <link rel="stylesheet" href="{% static 'dashboard/profile.css' %}">
+  {% endblock cssBlock %}
 
-        </div>
-      </section>
-
-      <style>
-        #pro_pic_label{
-          padding: 5px;
-          display: flex;
-          min-width: 100px;
-          text-align: center;
-          align-items: center;
-          justify-content: center;
-          background: #66923a;
-          color: white;
-        }
-      </style>
-
-      <section class="profile_form_box" >
-        {% csrf_token %}
-        <div class="profile_form_header">
-            <span> Omar's Profile</span>
-            <img src="/media/img/agr.jpg" alt="" height="50px" width="50px">
-        </div>
-        <section class="profile_form swiper">
-          <div class="part">
-            <section>
-              <div class="input_field">
+  {% block main %}
+  <form class="main" enctype="multipart/form-data" method="post" style="background: white;">
+    <div class="main_cover"></div>
+    <section class="profile_top">
+      <div class="profile_pic">
+        {% if pro_exists %}
+        <img src="{{pro_info.profile_pic.url}}" id="pic_box" alt="" width="100%" height="100%" style="border-radius: 50%; border: 1px solid whitesmoke;">
+        {% else %}
+        <img src="/media/img/hand-draw-beautiful-girls-holding-planet-earth-watercolor-design_1035-20580.webp" id="pic_box" alt="" width="100%" height="100%" style="border-radius: 50%; border: 1px solid whitesmoke;">
+        {% endif %}
+        <label for="profile_pic" id="pro_pic_label">ADD PHOTO</label>
+        <input type="file" accept="image/*" class="pro_set" name="profile_pic" id="profile_pic">
+      </div>
+    </section>
+    <section class="profile_form_box" >
+      {% csrf_token %}
+      <div class="profile_form_header">
+          <span> Omar's Profile</span>
+          <img src="/media/img/agr.jpg" alt="" height="50px" width="50px">
+      </div>
+      <section class="profile_form swiper">
+        <div class="part">
+          <section>
+            <div class="input_field">
+              <span class="sh">First Name</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">signature</i>
                 </div>
                 <input type="text" name="first_name" placeholder="First Name" required
                 {% if pro_exists %}
-                  value="{{pro_info.first_name}}"
+                value="{{pro_info.first_name}}"
                 {% endif %}
                 >
               </div>
-              <div class="input_field">
+            </div>
+            <style>
+              .input_field{
+                align-items: flex-start;
+                /* border: 2px solid red; */
+                flex-direction: column;
+              }
+              form .sh{
+                width: 90%;
+                font-size: 0.7rem;
+                color: rgb(37, 196, 117);
+                /* border: 1px solid black; */
+              }
+              .input_field #con{
+                width: 90%;
+                display: flex;
+                /* border: 2px solid gold; */
+                height: 100%;
+              }
+              .input_field #con #in_tag{
+                width: 15%;
+                cursor: pointer;
+                min-height: 50px;
+                /* border: 1px solid red; */
+              }
+              .input_field #con input{
+                min-height: 50px;
+                /* border: 2px solid skyblue; */
+                width: 80%;
+              }
+            </style>
+            <div class="input_field">
+              <span class="sh">Last Name</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">signature</i>
                 </div>
                 <input type="text" name="last_name" placeholder="Last Name" required
                 {% if pro_exists %}
-                  value="{{pro_info.last_name}}"
+                value="{{pro_info.last_name}}"
                 {% endif %}
                 >
               </div>
-            </section>
-            <section>
-              <div class="input_field">
+            </div>
+          </section>
+          <section>
+            <div class="input_field">
+              <span class="sh">Other Name</span>
+              <div id="con">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">signature</i>
+                </div>
+                <input type="text" name="other_name" placeholder="Other Name" required
+                {% if pro_exists %}
+                  value="{{pro_info.other_name}}"
+                {% endif %}
+                >
+              </div>
+            </div>
+            <div class="input_field">
+              <span class="sh">Gender</span>
+              <div id="con">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">person_play</i>
+                </div>
+                {% if pro_exists %}
+                <input type="text" name="gender" value="{{pro_info.gender}}" readonly>
+                {% else %}
+                <select name="gender" required>
+                  <option selected hidden value="none">Gender</option>
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                </select>
+                {% endif %}
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="input_field">
+              <span class="sh">Relationship</span>
+              <div id="con">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">partner_exchange</i>
+                </div>
+                {% if pro_exists %}
+                <input type="text" name="relationship" value="{{pro_info.relationship}}" readonly>
+                {% else %}
+                <select name="relationship" required>
+                  <option selected hidden value="none">Relationship</option>
+                  <option value="single">single</option>
+                  <option value="married">married</option>
+                </select>
+                {% endif %}
+              </div>
+            </div>
+            <div class="input_field">
+              <span class="sh">Profession</span>
+              <div id="con">
+                <div id="in_tag">
+                  <i class="material-symbols-outlined">work</i>
+                </div>
+                <input type="text" name="profession" placeholder="Profession" required
+                {% if pro_exists %}
+                value="{{pro_info.profession}}"
+                {% endif %}
+                >
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="part">
+          <section>
+            <div class="input_field">
+              <span class="sh">Email</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">alternate_email</i>
                 </div>
                 <input type="email" name="email" placeholder="email" required
                 {% if pro_exists %}
-                  value="{{pro_info.email}}"
+                value="{{pro_info.email}}"
                 {% endif %}>
               </div>
-              <div class="input_field">
+            </div>
+            <div class="input_field">
+              <span class="sh">Contact</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">phone_iphone</i>
                 </div>
                 <input type="text" name="contact" placeholder="contact" required
                 {% if pro_exists %}
-                  value="{{pro_info.contact}}"
+                value="{{pro_info.contact}}"
                 {% endif %}>
               </div>
-            </section>
-            <section>
-              <div class="input_field">
+            </div>
+          </section>
+          <section>
+            <div class="input_field">
+              <span class="sh">Date Of Birth</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">calendar_month</i>
                 </div>
                 {% if pro_exists %}
-                <input type="text" name="dob" required value="{{pro_info.dob}}" readonly>
+                <input type="text" name="dob" id="dob" data-date="{{pro_info.dob|date:'Y-m-d'}}" required value="{{pro_info.dob}}" readonly>
                 {% else %}
-                <input type="date" name="dob" required>
+                <input id="dob" type="text" name="dob" placeholder="Date Of Birth" required>
                 {% endif %}
               </div>
-              <div class="input_field">
+            </div>
+            <div class="input_field">
+              <span class="sh">Nationality</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">flag</i>
                 </div>
-                <input type="text" name="nationality" placeholder="Nationality" required
+                <input type="text" name="nationality" placeholder="Nationality" required readonly
                 {% if pro_exists %}
-                  value="{{pro_info.nationality}}"
+                value="{{pro_info.nationality}}"
                 {% endif %}>
               </div>
-            </section>
-            <section>
-              <div class="input_field">
+            </div>
+          </section>
+          <section>
+            <div class="input_field">
+              <span class="sh">Country Of Residence</span>
+              <div id="con">
                 <div id="in_tag">
-                  <i class="material-symbols-outlined">flag</i>
+                  <i class="material-symbols-outlined">flag_circle</i>
                 </div>
                 <input type="text" name="cor" placeholder="Country of Residence" required
                 {% if pro_exists %}
-                  value="{{pro_info.cor}}"
+                value="{{pro_info.cor}}"
                 {% endif %}>
               </div>
-              <div class="input_field">
+            </div>
+            <div class="input_field">
+              <span class="sh">Address</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">home_pin</i>
                 </div>
                 <input type="text" name="address" placeholder="Residential Address" required
                 {% if pro_exists %}
-                  value="{{pro_info.address}}"
+                value="{{pro_info.address}}"
                 {% endif %}>
               </div> 
-            </section>
-            <section>
-              <div class="input_field">
+            </div>
+          </section>
+          <section>
+            <div class="input_field">
+              <span class="sh">ID Card</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">badge</i>
                 </div>
                 {% if pro_exists %}
-                <input type="text" value="{{pro_info.id_card}}">
+                <input type="text" name="id_card" value="{{pro_info.id_card}}" readonly>
                 {% else %}
-                  <select name="id_card" required>
-                    <option selected hidden value="none">ID Card</option>
-                    <option value="Passport">Passport</option>
-                    <option value="National ID">National ID</option>
-                    <option value="Driver's  License">Driver's  License</option>
-                  </select>
+                <select name="id_card" required>
+                  <option selected hidden value="none">ID Card</option>
+                  <option value="Passport">Passport</option>
+                  <option value="National ID">National ID</option>
+                  <option value="Driver's  License">Driver's  License</option>
+                </select>
                 {% endif %}
               </div>
-              <div class="input_field">
-                <div id="in_tag">
+            </div>
+            <div class="input_field">
+              <span class="sh">ID Number</span>
+              <div id="con">
+                <div id="in_tag" class="hid_tag">
                   <i class="material-symbols-outlined">pin</i>
                 </div>
-                <input type="text" name="id_num" placeholder="ID Number" required
+                <input type="password" id="hid" name="id_num" placeholder="ID Number"  required readonly
                 {% if pro_exists %}
-                  value="{{pro_info.id_number}}"
+                value="{{pro_info.id_number}}"
                 {% endif %}
                 >
               </div>
-
-            </section>
-          </div>
-          <div class="part">
-            <section>
-              <div class="input_field">
+            </div>
+          </section>
+        </div>
+        <div class="part">
+          <section>
+            <div class="input_field">
+              <span class="sh">Next Of Kin</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">group</i>
                 </div>
                 <input type="text" name="nok" placeholder="Next of kin" required
                 {% if pro_exists %}
-                  value="{{pro_info.next_of_kin}}"
+                value="{{pro_info.next_of_kin}}"
                 {% endif %}>
               </div>
-              <div class="input_field">
+            </div>
+            <div class="input_field">
+              <span class="sh">Next of kin's relation</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">family_restroom</i>
                 </div>
                 <input type="text" name="nok_relation" placeholder="next of kin's relation" required
                 {% if pro_exists %}
-                  value="{{pro_info.nok_relation}}"
+                value="{{pro_info.nok_relation}}"
                 {% endif %}>
               </div>
-            </section>
-            <section>
-              <div class="input_field">
+            </div>
+          </section>
+          <section>
+            <div class="input_field">
+              <span class="sh">Next of kin's Contact</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">phone_iphone</i>
                 </div>
                 <input type="text" name="nok_contact" placeholder="next of kin's contact" required
                 {% if pro_exists %}
-                  value="{{pro_info.nok_contact}}"
+                value="{{pro_info.nok_contact}}"
                 {% endif %}>
               </div>
-              <div class="input_field">
+            </div>
+            <div class="input_field">
+              <span class="sh">Referral code</span>
+              <div id="con">
                 <div id="in_tag">
                   <i class="material-symbols-outlined">123</i>
                 </div>
@@ -205,185 +316,103 @@
                 value="{{pro_info.referral}}"
                 {% endif %}>
               </div>
-            </section>
-          </div>
-          <div class="part">
-            <section style="justify-content: space-around;">
-              <div class="id_box">
-                <input type="file" name="id_pic_front" class="pro_set" id="id_front" accept="image/*" style="display: none;" required>
-                <label for="id_front">
-                  ID Photo front
-                </label>
-                {% if pro_exists %}
-                <img src="{{pro_info.id_pic_front.url}}" id="pic_box" alt="">
-                {% else %}
-                <img src="/media/img/id_card.avif" alt="" id="pic_box">
-                {% endif %}
-              </div>
-              <div class="id_box">
-                <input type="file" name="id_pic_back" class="pro_set" id="id_back" accept="image/*" style="display: none;" required>
-                <label for="id_back">
-                  ID Photo back
-                </label>
-                {% if pro_exists %}
-                <img src="{{pro_info.id_pic_back.url}}" id="pic_box" alt="">
-                {% else %}
-                <img src="/media/img/id_card.avif" alt="" id="pic_box">
-                {% endif %}
-              </div>
-            </section>
-            <section>
-              <div class="input_field" >
-                <button type="submit" id="sub_but">Save</button>
-              </div>
-            </section>
-          </div>
-        </section>   
+            </div>
+          </section>
+        </div>
+        <div class="part">
+          <section style="justify-content: space-around;">
+            <div class="id_box">
+              {% if pro_exists %}
+              <span class="sh">ID Photo Front</span>
+              <img src="{{pro_info.id_pic_front.url}}" id="pic_box" alt="">
+              {% else %}
+              <input type="file" name="id_pic_front" class="pro_set" id="id_front" accept="image/*"  required>
+              <label for="id_front">
+                ID Photo front
+              </label>
+              <img src="/media/img/id_card.avif" alt="" id="pic_box">
+              {% endif %}
+            </div>
+            <div class="id_box">
+              {% if pro_exists %}
+              <span class="sh">ID Photo Back</span>
+              <img src="{{pro_info.id_pic_back.url}}" id="pic_box" alt="">
+              {% else %}
+              <input type="file" name="id_pic_back" class="pro_set" id="id_back" accept="image/*" required>
+              <label for="id_back">
+                ID Photo back
+              </label>
+              <img src="/media/img/id_card.avif" alt="" id="pic_box">
+              {% endif %}
+            </div>
+          </section>
+          <style>
+            input[type='file']{
+              width: 0; 
+              height: 0; 
+              margin: 0; 
+              padding: 0;
+            }
+          </style>
+          <section>
+            <div class="input_field" >
+              <button type="submit" id="sub_but">Save</button>
+            </div>
+          </section>
+        </div>
       </section>   
-    </section>
-  </section>
+    </section>   
+  </form>
+  {% endblock main %}
 
-  <script>
-    const inp = document.querySelectorAll('.pro_set')
-    const pic_box = document.querySelectorAll('[id=pic_box]')
-    console.log(inp)
+  
+  {% block scriptBlock %}
+    <script>
+      var pro_exists = '{{pro_exists|safe}}'
+      const form = document.querySelector('.main')
+      const dob = document.getElementById('dob')
+      const pro_set = document.querySelectorAll('.pro_set')
 
-    for (let i = 0; i < inp.length; i++) {
-      inp[i].onchange =()=> {
-        const [file] = inp[i].files
-        pic_box[i].src = URL.createObjectURL(file)
-        console.log(pic_box[i].src) 
+      if(pro_exists === 'True'){
+        document.querySelector('.hid_tag').onclick =()=>{
+          if(document.getElementById('hid').type === 'password'){
+            document.getElementById('hid').type = 'text'
+          }else{
+            document.getElementById('hid').type = 'password'
+          }
+        }
+        pro_set.forEach(pro=>{
+          pro.required = false
+        })
+        form.onsubmit =()=>{
+          dob.value = dob.dataset.date
+        }
+      }else{
+        dob.onmouseover =()=>{
+          dob.type = 'date'
+        }
+        dob.onmouseleave =()=>{
+          dob.type = 'text'
+        }
       }
-    }
-  </script>
+
+      const inputs_h = document.getElementsByTagName('input');
+      const inputs = [...inputs_h]
+      // console.log(inputs)
+      inputs.forEach(input=>{
+        if(input.readOnly){
+          input.style.background = 'rgb(225, 255, 225)'
+          input.style.cursor = 'pointer'
+        }
+      })
+    </script>
+  {% endblock scriptBlock %}
+    
+    
+
 
   <style>
-    /* .part{
-      display: flex;
-      flex-direction: column;
-    } */
-    .part .id_box{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px;
-      border-radius: 10px;
-      justify-content: space-between;
-      gap: 15px;
-      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    .main{
+      color: rgb(225, 255, 225);
     }
-    .part .id_box label{
-      background: skyblue;
-      background: salmon;
-      border-radius: 3px;
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-      padding: 5px;
-      color: white;
-    }
-    .part .id_box img{
-      width: 25vw;
-      height: 200px;
-    }
-    @media all and (max-width:1300px){
-      .profile_pic{
-        top: 0;
-      }
-    }
-    @media all and (max-width:1000px){
-      .profile_form section{
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .profile_form section .input_field{
-        width: 100%;
-      }
-      .id_box{
-        display: flex;
-        width: 100%;
-      }
-      .part .id_box img{
-        /* border: 3px solid skyblue; */
-        width: 90%;
-        height: 250px;
-      }
-    }
-    @media all and (max-width:650px){
-      #id_box_holder{
-        /* flex-direction: column; */
-        width: 95%;
-        /* border: 3px solid salmon; */
-      }
-      .profile_form{
-        width: 99%;
-        align-items: center;
-      }
-      .profile_form .part{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 99%;
-      }
-    }
-      
-    </style>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script>
-    if ( window.history.replaceState ) {
-    window.history.replaceState( null, null, window.location.href );
-}
-  </script>
-  <script>
-    const left = document.querySelector('.left')
-    const left_top = document.getElementById('left_top')
-    const user_con = document.querySelector('.user_con')
-    const menu_a = document.querySelectorAll('[id=menu_a]')
-    const menu_ab = document.querySelectorAll('[id=menu_ab]')
-    const left_tag = document.getElementById('left_tag')
-    const logout = document.getElementById('logout')
-    const main = document.querySelector('.main')
-    const main_cover = document.querySelector('.main_cover')
-
-    const expand = document.getElementById('expand')
-    const exp_menu = document.getElementById('exp_menu')
-    expand.onclick =()=>{
-      exp_menu.classList.toggle('change')
-    }
-  
-  left_tag.onclick =()=>{
-    handleScreen()
-  }
-
-  window.onresize =()=>{
-    left_tag.onclick =()=>{
-    handleScreen()
-    }
-  }
-
-  const handleScreen =()=>{   
-    if(window.innerWidth > 900){   
-      left_tag.classList.toggle('change')
-      left.classList.toggle('change')
-      left_top.classList.toggle('change')
-      user_con.classList.toggle('change')
-      logout.classList.toggle('change')
-      main.classList.toggle('change')
-      menu_a.forEach(a=>{
-        a.classList.toggle('change')
-      })
-      menu_ab.forEach(a=>{
-        a.classList.toggle('change')
-      })
-      exp_menu.classList.toggle('mini')
-    }else{
-      left.classList.toggle('mini')
-      main_cover.classList.toggle('change')
-    }
-  }
-  </script>
-</body>
-</html>
+  </style>

@@ -50,7 +50,6 @@ if(left_tag){
   }
 }
 
-
 window.onresize =()=>{
 if(left_tag){
   left_tag.onclick =()=>{
@@ -78,4 +77,22 @@ if(window.innerWidth > 900){
   left.classList.toggle('mini')
   main_cover.classList.toggle('change')
 }
+}
+
+const inp = document.querySelectorAll('.pro_set')
+const pic_box = document.querySelectorAll('[id=pic_box]')
+if (inp) { 
+  for (let i = 0; i < inp.length; i++) {
+    inp[i].onchange =()=> {
+      const [file] = inp[i].files
+      pic_box[i].src = URL.createObjectURL(file)
+      console.log(pic_box[i].src) 
+    }
+  }
+}
+
+
+
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
 }

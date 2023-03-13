@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import logout
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 import math
 from Log.models import User,Sponsor,Farmer,Offtaker,Profile
-from Transaction.models import TradeInvoice,TradeLog,TradeReceipt,FarmInvoice,FarmLog
+from Transaction.models import TradeInvoice,TradeLog,TradeReceipt,FarmInvoice,FarmLog,ProduceInvoice,ProduceLog
 from Asset.models import Trade
 
 
@@ -44,9 +45,11 @@ def check_job(request):
 
 #@login_required
 def dashboard(request):
+    trades = TradeInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+    farms = FarmInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+    trans = trades.union(farms)
     context = {
-        'trades' : TradeInvoice.objects.filter(customer=request.user),
-        'farms' : FarmInvoice.objects.filter(customer=request.user)
+        'trans' : trans
     }
     return render(request,'Dashboard/dashboard.html', context)
 
@@ -66,14 +69,6 @@ def trade_log(request):
         trades_bought = trades_bought + trade.total_cost
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
-
-
-    # if request.GET.get('checkoutid'):
-    #     check_id = request.GET.get('checkoutid')
-    #     trade_receipt = TradeReceipt.objects.get(check_id=check_id).trade
-    #     trade_invoice = TradeInvoice.objects.get(trade_name=trade_receipt)
-    #     trade_invoice.status = 'Active'
-    #     trade_invoice.save()
 
     context = {
         'trades' : trades,
@@ -124,8 +119,25 @@ def farmLog_info(request,slug):
     }
     return render(request, 'Dashboard/farmLog_info.html', context)
 
-from django.utils import timezone
-#@login_required
+def produce_log(request):
+    produces =ProduceInvoice.objects.filter(customer=request.user)
+    produces_bought = 0
+    for prod in produces:
+        produces_bought = produces_bought + prod.total_cost
+    context = {
+        'produces' : produces,
+        'produces_bought' : produces_bought
+    }
+    return render(request,'Dashboard/produceLog.html', context)
+
+def produceLog_info(request,slug):
+    produce = ProduceInvoice.objects.get(slug=slug)
+    context = {
+        'produce' : produce,
+    }
+    return render(request, 'Dashboard/produceLog_info.html', context)
+
+@login_required
 def profile(request):
     pro_exists = False
     user = User.objects.get(username=request.user)
@@ -137,37 +149,47 @@ def profile(request):
     if request.method == 'POST':
         if pro_exists:
             profile = Profile.objects.get(user=user)
+            print(profile)
         else:
             profile = Profile()
             profile.user = user
-            profile.first_name = request.POST.get('first_name')
-            profile.last_name = request.POST.get('last_name')
-            profile.other_name = request.POST.get('other_name')
+        profile.first_name = request.POST.get('first_name')
+        profile.last_name = request.POST.get('last_name')
+        profile.other_name = request.POST.get('other_name')
+        profile.gender = request.POST.get('gender')
+        profile.relationship = request.POST.get('relationship')
+        profile.profession = request.POST.get('profession')
+        profile.email = request.POST.get('email')
+        profile.contact = request.POST.get('contact')
+        profile.dob = request.POST.get('dob')
+        profile.cor = request.POST.get('cor')
+        profile.nationality = request.POST.get('nationality')
+        profile.address = request.POST.get('address')
+        profile.id_card = request.POST.get('id_card')
+        profile.id_number = request.POST.get('id_num')
+        profile.next_of_kin = request.POST.get('nok')
+        profile.nok_relation = request.POST.get('nok_relation')
+        profile.nok_contact = request.POST.get('nok_contact')
+        if request.FILES.get('profile_pic'):
             profile.profile_pic = request.FILES.get('profile_pic')
-            profile.email = request.POST.get('email')
-            profile.contact = request.POST.get('contact')
-            profile.dob = request.POST.get('dob')
-            profile.cor = request.POST.get('cor')
-            profile.nationality = request.POST.get('nationality')
-            profile.address = request.POST.get('address')
-            profile.id_card = request.POST.get('id_card')
-            profile.id_number = request.POST.get('id_num')
-            profile.next_of_kin = request.POST.get('nok')
-            profile.nok_relation = request.POST.get('nok_relation')
-            profile.nok_contact = request.POST.get('nok_contact')
+        if request.FILES.get('id_pic_front'):
             profile.id_pic_front = request.FILES.get('id_pic_front')
+        if request.FILES.get('id_pic_back'):
             profile.id_pic_back = request.FILES.get('id_pic_back')
-            profile.last_updated = timezone.now()
-            if request.POST.get('referral'):
-                profile.referral_code = request.POST.get('referral')
-            profile.save()
-            return redirect('dashboard')
+        if request.POST.get('referral'):
+            profile.referral_code = request.POST.get('referral')
+        profile.last_updated = timezone.now()
+        profile.save()
+        return redirect('profile_page')
     context = {
         'pro_exists' : pro_exists,
         'pro_info' : pro_info,
     }
     return render(request, 'Dashboard/profile.html', context)
 
+
+def inbox(request):
+    return render(request, 'Dashboard/inbox.html')
 
 def dash_overview(request):
     return render(request, 'Dashboard/overview.html')

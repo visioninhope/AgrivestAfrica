@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Trade,Partner,Farm,Market
+from .models import Trade,Partner,Farm,Produce
 
 
 class TradeAdmin(admin.ModelAdmin):
@@ -18,12 +18,12 @@ class FarmAdmin(admin.ModelAdmin):
   class Meta:
     model = Farm
 
-class MarketAdmin(admin.ModelAdmin):
+class ProduceAdmin(admin.ModelAdmin):
   readonly_fields = ('slug',)
   class Meta:
-    model = Market
+    model = Produce
 
 admin.site.register(Trade, TradeAdmin)
 admin.site.register(Partner,PartnerAdmin)
 admin.site.register(Farm, FarmAdmin)
-admin.site.register(Market, MarketAdmin)
+admin.site.register(Produce, ProduceAdmin)
