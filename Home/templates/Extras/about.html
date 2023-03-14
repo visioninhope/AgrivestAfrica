@@ -121,7 +121,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <div class="container">
           {% if user.is_authenticated %}
-          <a class="navbar-brand" href="{% url 'trades_page' %}">
+          <a class="navbar-brand" href="{% url 'dashboard' %}">
             <strong>AgriVestAfrica</strong>
           </a>
           {% else %}
@@ -134,9 +134,9 @@
             aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
         </div>
       </nav>
+
       <!-- Full Page Intro -->
       <div class="view" style="background-image: url('/media/img/farmers-holding-different-products_23-2148525754.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
         <!-- Mask & flexbox options-->

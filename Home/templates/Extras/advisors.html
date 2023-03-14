@@ -1,24 +1,17 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-    <title>AgriVestAfrica - Advisors</title>
+    <title>AgriVestAfrica - About</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="theme-color" content="#33b5e5">
-
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet"
-        href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
-
+    <link rel="stylesheet"href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
     <meta charset="utf-8">
-    <meta name="description" content="
-    Sign Up with Grow For Me for the opportunity to invest in new farms, manage and monitor old farms. " />
-  <meta name="keywords" content=" Grow For Me, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
+    <meta name="description" content="Sign Up with AgrivestAfrica for the opportunity to invest in new farms, manage and monitor old farms. " />
+  <meta name="keywords" content=" AgrivestAfrica, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farming,
     crop, africa, ghana, nigeria, india, agriculture, green technology " />
   <meta name="subject" content="AgriVestAfrica">
   <meta name="copyright" content="AgriVestAfrica">
@@ -127,9 +120,8 @@
       <!--Navbar-->
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <div class="container">
-          
           {% if user.is_authenticated %}
-          <a class="navbar-brand" href="{% url 'trades_page' %}">
+          <a class="navbar-brand" href="{% url 'dashboard' %}">
             <strong>AgriVestAfrica</strong>
           </a>
           {% else %}
@@ -137,24 +129,11 @@
             <strong>AgriVestAfrica</strong>
           </a>
           {% endif %}
-            
           
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
             aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                {% if user.is_authenticated %}
-                <a class="nav-link" href="{% url 'trades_page' %}">Home</a>
-                {% else %}
-                <a class="nav-link" href="{% url 'homepage' %}">Home</a>
-                {% endif %}
-              </li>
-            </ul>
-           
-          </div>
         </div>
       </nav>
       <!-- Full Page Intro -->

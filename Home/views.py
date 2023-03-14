@@ -3,6 +3,7 @@ from django.contrib.auth import logout
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 import math
+from .models import Inbox
 from Log.models import User,Sponsor,Farmer,Offtaker,Profile
 from Transaction.models import TradeInvoice,TradeLog,TradeReceipt,FarmInvoice,FarmLog,ProduceInvoice,ProduceLog
 from Asset.models import Trade
@@ -200,7 +201,11 @@ def profile(request):
 
 @login_required
 def inbox(request):
-    return render(request, 'Dashboard/inbox.html')
+    inboxes = Inbox.objects.all()
+    context = {
+        'inboxes' : inboxes
+    }
+    return render(request, 'Dashboard/inbox.html', context)
 
 def dash_overview(request):
     return render(request, 'Dashboard/overview.html')
