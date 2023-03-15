@@ -193,4 +193,4 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
-CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:8000']
+# CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:8000']

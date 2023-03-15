@@ -43,8 +43,12 @@ def check_job(request):
     elif Offtaker.objects.filter(user=request.user).exists():
         print('offtaker')
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 @login_required
+@csrf_exempt
 def dashboard(request):
     total_trans = 0
     ts = TradeInvoice.objects.filter(customer=request.user)
@@ -57,8 +61,22 @@ def dashboard(request):
         total_trans = total_trans + f.total_cost
     for p in ps:
         total_trans = total_trans + p.total_cost
-    trades = TradeInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
-    farms = FarmInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+    if request.method == 'POST':
+        search_in = request.POST.get('search')
+        search_status = request.POST.get('status')
+        if search_in and search_status:
+            trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).filter(status = search_status).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+            farms = FarmInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).filter(status = search_status).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+        else:
+            if search_in:
+                trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+                farms = FarmInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+            if search_status:
+                trades = TradeInvoice.objects.filter(customer=request.user).filter(status = search_status).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+                farms = FarmInvoice.objects.filter(customer=request.user).filter(status = search_status).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+    else:
+        trades = TradeInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+        farms = FarmInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
     trans = trades.union(farms)
     context = {
         'trans' : trans,
@@ -69,12 +87,30 @@ def dashboard(request):
 
 @login_required
 def trade_log(request):
-    trades = TradeInvoice.objects.filter(customer=request.user)
+    if request.method == 'POST':
+        search_in = request.POST.get('search')
+        search_status = request.POST.get('status')
+        print(search_status)
+        if search_in and search_status:
+            print(1)
+            trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).filter(status = search_status)
+            print(trades)
+        else:
+            print(3)
+            if search_in:
+                trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in)
+            if search_status:
+                trades = TradeInvoice.objects.filter(customer=request.user).filter(status = search_status)    
+        # print(trades)
+    else:
+        trades = TradeInvoice.objects.filter(customer=request.user)
+
     pend_count = TradeInvoice.objects.filter(status='Pending').count()
     act_count = TradeInvoice.objects.filter(status='Active').count()
     comp_count = TradeInvoice.objects.filter(status='Completed').count()
     trades_bought = 0
     trades_sold = 0
+    tradeList = TradeInvoice.objects.filter(customer=request.user)
     for trade in trades:
         trades_bought = trades_bought + trade.total_cost
         trades_sold = trades_sold + trade.actual_return

@@ -291,8 +291,15 @@
   #prod_box_tag{
     display: none;
   }
-  .hid{
-    display: flex;
+  .empty_box{
+    width: 90%;
+    min-height: auto;
+    overflow: hidden;
+    box-shadow: none;
+  }
+  .empty_box a{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /* border-radius: 0;  */
   }
   .main_top{
     display: flex;

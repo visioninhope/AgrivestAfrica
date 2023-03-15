@@ -77,14 +77,15 @@
         <section class="order_box">
           <div class="order_box_h">
             <p>Recent Orders</p>
-            <form>
-              <button><i class="material-symbols-outlined">search</i></button>
-              <input type="text" placeholder="Search Here">
-              <select name="" id="">
-                <option selected hidden value="none">Filter</option>
-                <option value="">Pending</option>
-                <option value="">Active</option>
-                <option value="">Completed</option>
+            <form method="post" id="search_form">
+              {% csrf_token %}
+              <button type="submit"><i class="material-symbols-outlined">search</i></button>
+              <input type="text" name="search" placeholder="Search Here" id="search">
+              <select name="status" id="status">
+                <option selected hidden value="">Filter</option>
+                <option value="Pending">Pending</option>
+                <option value="Active">Active</option>
+                <option value="Completed">Completed</option>
               </select>
             </form>
           </div>
@@ -149,10 +150,21 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="{% static 'dashboard/dashboard.js' %}"></script>
+  <script>
+    const search_form = document.getElementById('search_form')
+    const status = document.getElementById('status')
+    if(status){
+      status.onchange =()=>{
+        search_form.submit()
+      }
+    }
+  </script>
   
   {% block scriptBlock %}
     <script src="{% static 'dashboard/swiper.js' %}"></script>
+    
   {% endblock scriptBlock %}
     
 </body>

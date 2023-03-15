@@ -41,14 +41,15 @@
       <section class="prod_box">
         <div class="prod_box_h">
           <p>Trades <br> </p>
-          <form>
+          <form method="post" id="search_form">
+            {% csrf_token %}
             <button><i class="material-symbols-outlined">search</i></button>
-            <input type="text" placeholder="Search Here">
-            <select name="" id="">
-              <option selected hidden value="none">Filter</option>
-              <option value="">Pending</option>
-              <option value="">Active</option>
-              <option value="">Completed</option>
+            <input type="text" placeholder="Search Here" name="search" id="search">
+            <select name="status" id="status">
+              <option selected hidden value="">Filter</option>
+              <option value="Pending">Pending</option>
+              <option value="Active">Active</option>
+              <option value="Completed">Completed</option>
             </select>
           </form>
           <button id="prod_box_tag"><i class="material-symbols-outlined">arrow_downward</i></button>
