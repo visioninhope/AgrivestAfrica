@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <title>Agrivest - MailPortal</title>
+</head>
+<body>
+  <section class="page">
+    <form method="post" class="mail_form" enctype="multipart/form-data">
+      {% csrf_token %}
+      <p>AgrivestAfrica</p>
+      <input type="file" accept="image/*" name="image" id="image" style="display: none;">
+      <div class="imageBox">
+        <img src="/media/img/agr.jpg" alt="" id="pic_box">
+        <label for="image">Add An image</label>
+      </div>
+      <input type="text" name="title" placeholder="title" required>
+      <textarea name="content" placeholder="type content..." required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <script>
+    const image = document.getElementById('image')
+    const pic_box = document.getElementById('pic_box')
+
+    image.onchange =()=> {
+      const [file] = image.files
+      pic_box.src = URL.createObjectURL(file)
+    }
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+  </script>
+
+  <style>
+    .mail_form p{
+      font-size: 1.5rem;
+      color: #6ed271;
+      border-bottom: 1px dotted springgreen;
+    }
+    .mail_form{
+      width: 100%;
+      min-height: 100vh;
+      flex-direction: column;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .imageBox{
+      display: flex;
+      align-items: center;
+    }
+    .imageBox img{
+      width: 200px;
+      height: 190px; 
+    }
+    .mail_form input ,.mail_form textarea{
+      width: 50%;
+      font-size: 1rem;
+      padding: 10px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+      /* border: 1px solid black; */
+    }
+    .mail_form input::placeholder, .mail_form textarea::placeholder{
+      font-size: 1.2rem;
+      color: darkgray;
+    }
+    .mail_form input{
+      min-height: 30px;
+    }
+    .mail_form textarea{
+      min-height: 40vh;
+      overflow-y: auto;
+      resize: none;
+    }
+    .mail_form label, .mail_form button{
+      padding: 10px;
+      background: #6ed271;
+      text-align: center;
+      color: white;
+    }
+
+    @media all and (max-width:1000px){
+      .mail_form input ,.mail_form textarea{
+        width: 85%;
+      }
+    }
+  </style>
+</body>
+</html>

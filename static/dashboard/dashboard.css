@@ -100,7 +100,7 @@
 }
 .left .top a{
   color: #4caf50;
-  font-size: 2vw;
+  font-size: 1.5rem;
 }
 
 .left .top.change,.left .user_con.change{
@@ -462,7 +462,7 @@
   }
   .main{
     position: relative;
-    justify-content: space-around;
+    gap: 20px;
     width: 100%;
   }
 
@@ -487,7 +487,7 @@
 
 @media all and (max-width:870px){
   .main_top{
-    margin: 10px 0;
+    margin: 10px 0 0 0;
     flex-direction: column;
   }
   .mt_left{
@@ -523,10 +523,17 @@
 }
 
 @media all and (max-width:680px){
+  .main_top .mt_left{
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+  }
   .mt_left .box{
     margin: 3px;
-    width: 42%;
-  }
+    width: 41%;
+    border-radius:0;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+ }
   .main{
     height: auto;
   }
@@ -541,6 +548,7 @@
     gap: 5px;
   }
   .order_box form input{
+    max-width: 150px;
     font-size: 0.9rem;
     border-radius: 0;
   }
@@ -566,7 +574,7 @@
     width: 93%;
     flex-wrap: wrap;
     height: auto;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    box-shadow: none;
   }
   .order_box form{
     width: auto;
@@ -574,7 +582,7 @@
   }
   .order_box form input{
     padding: 0;
-    width: auto;
+    max-width: 100px;
     height: auto;
   }
   .order_box .con .prod{

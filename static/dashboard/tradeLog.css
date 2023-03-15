@@ -23,12 +23,12 @@
   align-items: center;
   justify-content: center;
   border-radius: 40px;
-  padding: 0 5px;
+  padding: 10px 5px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .prod_box_h form input{
   font-size: 0.9rem;
-  padding: 10px 15px;
+  padding: 5px 15px;
   max-width: 200px;
 }
 .prod_box_h form input::placeholder{
@@ -322,9 +322,13 @@
     align-items: center;
     justify-content: center;
     min-height: 10%;
+    box-shadow: none;
   }
   .prod_box_h form{
     flex-wrap: wrap;
+  }
+  .prod_box_h form input{
+    max-width: 150px;
   }
   
   .prod_box_list a{
@@ -338,7 +342,7 @@
     justify-content: center;
   }
   .prod_box_list a{
-    width: 96%;
+    width: 90%;
     padding: 1%;
   }
 }
@@ -353,7 +357,6 @@
     align-items: center;
     padding: 10px 0;
     overflow: auto;
-    /* border:; */
   }
   .tradeInfo_box{
     justify-content: flex-start;

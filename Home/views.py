@@ -249,6 +249,15 @@ def contact(request):
 def how_to(request):
     return render(request, 'Extras/how_to.html')
 
+def mailPortal(request):
+    if request.method == 'POST':
+        inbox = Inbox()
+        inbox.title = request.POST.get('title')
+        inbox.content = request.POST.get('content')
+        inbox.image = request.FILES.get('image')
+        inbox.save()
+    return render(request, 'mailPortal.html')
+
 def sitemap(request):
     return render(request, 'sitemap.xml')
 

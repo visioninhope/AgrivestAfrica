@@ -17,7 +17,11 @@
         {% for inbox in inboxes %}
           <div class="box">
             <span id="duration" style="font-size: 0.85rem;">{{inbox.date_posted|timesince}} ago</span>
+            {% if inbox.image %}
             <img src="{{inbox.image.url}}" alt="">
+            {% else %}
+            <img src="/media/img/agr.jpg" alt="">
+            {% endif %}
             <p class="con">
               <span id="s1">{{inbox.title}}</span>
               <span id="s2">{{inbox.content}}</span>
