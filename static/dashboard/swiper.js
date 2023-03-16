@@ -13,9 +13,19 @@ if(document.querySelector('.quick_box')){
       nextEl: '.quick_next',
       prevEl: '.quick_prev',
     },
-    
-    scrollbar: {
-      el: '.swiper-scrollbar',
+  });
+}
+
+if(document.querySelector('.mid_box')){
+  var mid_box_swiper = new Swiper('.mid_box', {
+    direction: 'horizontal',
+    loop: true,
+    speed:2500,
+    autoplay:{
+      delay:5000
+    },
+    pagination: {
+      el: '.swiper-pagination',
     },
   });
 }

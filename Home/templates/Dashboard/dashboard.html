@@ -29,6 +29,11 @@
     
     {% block main %}
     <section class="main">
+      <nav class="mini_nav">
+        <i class="material-symbols-outlined">shopping_cart</i>
+        <i class="material-symbols-outlined">agriculture</i>
+        <i class="material-symbols-outlined">store</i>
+      </nav>
       <div class="main_cover"></div>
       <section class="main_top">
         <div class="mt_left">
@@ -72,6 +77,118 @@
             </div>
           </div>
         </div>
+      </section>
+      <section class="main_mid">
+        <div class="prod_box">
+          <a href="" class="prod">
+            <p id="p1">3000$</p>
+            <p id="p2">15%</p>
+          </a>
+          <a href="" class="prod">
+            <p id="p1">2400$</p>
+            <p id="p2">18%</p>
+            <div class="prod_cover">
+              <i class="material-symbols-outlined">paid</i>
+            </div>
+          </a>
+        </div>
+
+        <style>
+          .prod_box .prod .prod_cover{
+            width: 0;
+            height: 100%;
+            position: absolute;
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 100px 100px 15px 15px;
+            transition: 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .prod_box .prod .prod_cover i{
+            color: wheat;
+            font-size: 2rem;
+            transition: 0.3s ease;
+            opacity: 0;
+          }
+          .main_mid{
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+          }
+          .prod_box{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            background: white;
+            min-height: 28vh;
+          }
+          .prod_box .prod{
+            position: relative;
+            border: 3px solid #526b53;
+            width: 30%;
+            
+            border-radius: 100px 100px 15px 15px;
+            min-height: 25vh;
+            background: skyblue;
+            background-image: url(/media/img/cocoa-pods-cocoa-beans-cacao-powder-with-leaves-isolated-white-background_38145-707.webp);
+            background-position: center;
+            background-size: contain;
+          }
+          .prod_box .prod:hover .prod_cover{
+            width: 100%;
+          }
+          .prod_box .prod:hover .prod_cover i{
+            opacity: 1;
+          }
+          .prod_box .prod p{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            height: 40px;
+            padding: 5px;
+            width: 40px;
+            z-index: 10;
+            /* border: 3.5px solid black; */
+            color: white;
+            /* font-weight: 600; */
+            border-radius: 50%;
+          }
+          .prod_box .prod #p1{
+            background: #526b53;
+            left: -25px;
+            top: 50px;
+          }
+          .prod_box .prod #p2{
+            top: 10px;
+            right: -25px;
+            background: salmon;
+          }
+        </style>
+
+        <!-- <div class="mid_box swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="{% url 'trades_page' %}">
+                <img src="/media/img/cocoa-pods-cocoa-beans-cacao-powder-with-leaves-isolated-white-background_38145-707.webp" alt=""
+                width="100%" height="100%">
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <i class="material-symbols-outlined">agriculture</i>
+              <a href="{% url 'farms_page' %}">Sponsor Farm</a>
+            </div>
+            <div class="swiper-slide">
+              <i class="material-symbols-outlined">store</i>
+              <a href="{% url 'produce_page' %}">Buy Produce</a>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div> -->
       </section>
       <section class="main_low">
         <section class="order_box">

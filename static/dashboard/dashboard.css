@@ -19,6 +19,7 @@
   display: flex;
   width: 100%;
   overflow-y: auto;
+/*   background: whitesmoke; */
 }
 .left, .main, .right{
   height: 100vh;
@@ -420,6 +421,23 @@
   width: 120px;
   border-radius: 10px;
 }
+.main_mid{
+  min-height: 25vh;
+  display: none;
+}
+.main_mid img{
+  height: 35vh;
+  width: 100%;
+}
+.mini_nav{
+  min-height: 7vh;
+  background: #4caf50;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+/*   background: green; */
+  background: black;
+}
 
 
 @media all and (max-width:1300px){
@@ -520,16 +538,36 @@
 }
 
 @media all and (max-width:680px){
+  .quick_prev, .quick_next{
+    display: none;
+  }
+  .main_top{
+    margin: 0;
+  }
+  .mini_nav{
+    display: flex;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background: white;
+  }
+  .main_mid{
+    display: flex;
+  }
   .main_top .mt_left{
     align-items: center;
     justify-content: center;
     gap: 7px;
   }
   .mt_left .box{
-    margin: 3px;
+    background: #4caf50;
+    color: white;
+    margin: 0px;
     width: 41%;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 4px;
+    box-shadow: none;
  }
+  .mt_left .box i{
+    color: white !important;;
+  } 
   .main{
     height: auto;
   }
@@ -542,6 +580,10 @@
   }
   .order_box_h form{
     gap: 5px;
+    justify-content: space-around;
+    border-radius:0;
+    width: 95%;
+    flex-wrap: wrap;
   }
   .order_box form input{
     max-width: 150px;
@@ -572,10 +614,6 @@
     height: auto;
     box-shadow: none;
   }
-  .order_box form{
-    width: auto;
-    flex-wrap: wrap;
-  }
   .order_box form input{
     padding: 0;
     max-width: 120px;
@@ -597,6 +635,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    height: auto;
     gap: 10px;
   }
   .order_box .con{
@@ -628,7 +667,7 @@
     font-size: 0.9rem;
   }
   .order_box_con{
-    height: 50vh;
+/*     height: 50vh; */
     overflow-y: auto;
   }
   .order_box .con .date,.order_box .con .status{
