@@ -16,13 +16,13 @@ if(document.querySelector('.quick_box')){
   });
 }
 
-if(document.querySelector('.mid_box')){
-  var mid_box_swiper = new Swiper('.mid_box', {
+if(document.querySelector('.main_mid')){
+  var mid_box_swiper = new Swiper('.main_mid', {
     direction: 'horizontal',
     loop: true,
     speed:2500,
     autoplay:{
-      delay:5000
+      delay:3000
     },
     pagination: {
       el: '.swiper-pagination',

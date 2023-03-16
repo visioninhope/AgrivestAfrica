@@ -27,6 +27,8 @@ def trades(request):
     }
     return render(request, 'Trades/trades.html', context)
 
+import json,requests
+
 def makeTrade(request, slug):
     trade = Trade.objects.get(slug=slug)
     if request.method == 'POST':
@@ -78,33 +80,33 @@ def makeTrade(request, slug):
                 tradeLog.status = 'Pending'
                 tradeLog.save()
 
-                # url = "https://payproxyapi.hubtel.com/items/initiate"
-                # token = str(uuid4())
-                # payload = json.dumps({
-                #     "totalAmount": total_cost,
-                #     "description": trade_name,
-                #     "callbackUrl": "https://www.agrivestafrica.com/empty",
-                #     "returnUrl": "https://www.agrivestafrica.com/empty",
-                #     "merchantAccountNumber": "2017279",
-                #     "cancellationUrl": "https://www.agrivestafrica.com/trades/",
-                #     "clientReference": token
-                # })
-                # headers = {
-                #     'Content-Type': 'application/json',
-                #     'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
-                # }
-                # response = requests.request("POST", url, headers=headers, data=payload)
+                url = "https://payproxyapi.hubtel.com/items/initiate"
+                token = str(uuid4())
+                payload = json.dumps({
+                    "totalAmount": total_cost,
+                    "description": trade_name,
+                    "callbackUrl": "https://www.agrivestafrica.com/empty",
+                    "returnUrl": "https://www.agrivestafrica.com/empty",
+                    "merchantAccountNumber": "2017279",
+                    "cancellationUrl": "https://www.agrivestafrica.com/trades/",
+                    "clientReference": token
+                })
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
+                }
+                response = requests.request("POST", url, headers=headers, data=payload)
                 
-                # link = json.loads(response.text)['data']['checkoutUrl']
-                # check_id = json.loads(response.text)['data']['checkoutId']
-                # tradeReceipt = TradeReceipt()
-                # tradeReceipt.trade = TradeInvoice.objects.get(trade_name=trade_name)
-                # tradeReceipt.token = token
-                # tradeReceipt.check_id = check_id
-                # tradeReceipt.paylink = f'{link}'
-                # tradeReceipt.save()
-                # return redirect(f'{link}')      
-                return redirect('dashboard')     
+                link = json.loads(response.text)['data']['checkoutUrl']
+                check_id = json.loads(response.text)['data']['checkoutId']
+                tradeReceipt = TradeReceipt()
+                tradeReceipt.trade = TradeInvoice.objects.get(trade_name=trade_name)
+                tradeReceipt.token = token
+                tradeReceipt.check_id = check_id
+                tradeReceipt.paylink = f'{link}'
+                tradeReceipt.save()
+                return redirect(f'{link}')      
+                # return redirect('dashboard')     
         else:
             messages.error(request, 'Create Account to continue')
 

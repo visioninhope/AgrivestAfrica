@@ -332,6 +332,10 @@
     box-shadow: none;
   }
   .prod_box_h form{
+    gap: 5px;
+    justify-content: space-around;
+    border-radius:0;
+    width: 90%;
     flex-wrap: wrap;
   }
   .prod_box_h form input{
@@ -349,7 +353,7 @@
     justify-content: center;
   }
   .prod_box_list a{
-    width: 90%;
+    width: 85%;
     padding: 1%;
   }
 }

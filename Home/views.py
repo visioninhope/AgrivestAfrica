@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import logout
+from django.core.paginator import Paginator
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 import math
@@ -50,6 +51,7 @@ import json
 @login_required
 @csrf_exempt
 def dashboard(request):
+    print(request.body)
     total_trans = 0
     ts = TradeInvoice.objects.filter(customer=request.user)
     fs = FarmInvoice.objects.filter(customer=request.user)
@@ -78,10 +80,16 @@ def dashboard(request):
         trades = TradeInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
         farms = FarmInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
     trans = trades.union(farms)
+    tradeList = Trade.objects.all()[1:4]
+    tradePages = Paginator(tradeList, 2)
+    pageList = []
+    for page in tradePages:
+        pageList.append(page.object_list)
     context = {
         'trans' : trans,
         'total_trans' : total_trans,
-        'total_count' : total_count
+        'total_count' : total_count,
+        'pageList' : pageList
     }
     return render(request,'Dashboard/dashboard.html', context)
 
