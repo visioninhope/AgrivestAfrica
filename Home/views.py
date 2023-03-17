@@ -59,6 +59,7 @@ def dashboard(request):
     total_count = ts.count() + fs.count() + ps.count()
     for t in ts:
         total_trans = total_trans + t.total_cost
+        print(t.total_cost)
     for f in fs:
         total_trans = total_trans + f.total_cost
     for p in ps:
@@ -87,7 +88,7 @@ def dashboard(request):
         pageList.append(page.object_list)
     context = {
         'trans' : trans,
-        'total_trans' : total_trans,
+        'total_trans' : "{:.2f}".format(total_trans),
         'total_count' : total_count,
         'pageList' : pageList
     }
@@ -126,7 +127,7 @@ def trade_log(request):
 
     context = {
         'trades' : trades,
-        'trades_bought' : trades_bought,
+        'trades_bought' : "{:.2f}".format(trades_bought),
         'trades_sold' : trades_sold,
         'trades_bal' : trades_bal,
         'pend_count' : pend_count,

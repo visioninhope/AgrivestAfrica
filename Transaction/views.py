@@ -38,10 +38,10 @@ def makeTrade(request, slug):
             total_cost = (units * trade.price) + ((units * trade.price) * (trade.service_charge / 100))
             trade_name = request.POST.get('trade_name')
             extra_notes = request.POST.get('extra_notes')
-            tradeInvoice = TradeInvoice()
             if TradeInvoice.objects.filter(customer=request.user).filter(name=trade_name).exists():
                 messages.info(request, f"You already have a trade named |-> {trade_name}")
             else:
+                tradeInvoice = TradeInvoice()
                 tradeInvoice.name = trade_name
                 tradeInvoice.customer = customer
                 tradeInvoice.trade = trade
@@ -85,8 +85,8 @@ def makeTrade(request, slug):
                 payload = json.dumps({
                     "totalAmount": total_cost,
                     "description": trade_name,
-                    "callbackUrl": "https://www.agrivestafrica.com/empty",
-                    "returnUrl": "https://www.agrivestafrica.com/empty",
+                    "callbackUrl": f"https://www.agrivestafrica.com/dashboard/tradeLog_info/{TradeInvoice.objects.get(name=trade_name).slug}",
+                    "returnUrl": f"https://www.agrivestafrica.com/dashboard/tradeLog_info/{TradeInvoice.objects.get(name=trade_name).slug}",
                     "merchantAccountNumber": "2017279",
                     "cancellationUrl": "https://www.agrivestafrica.com/trades/",
                     "clientReference": token
@@ -96,17 +96,15 @@ def makeTrade(request, slug):
                     'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
                 }
                 response = requests.request("POST", url, headers=headers, data=payload)
-                
                 link = json.loads(response.text)['data']['checkoutUrl']
                 check_id = json.loads(response.text)['data']['checkoutId']
                 tradeReceipt = TradeReceipt()
-                tradeReceipt.trade = TradeInvoice.objects.get(trade_name=trade_name)
+                tradeReceipt.trade = TradeInvoice.objects.get(name=trade_name)
                 tradeReceipt.token = token
                 tradeReceipt.check_id = check_id
                 tradeReceipt.paylink = f'{link}'
                 tradeReceipt.save()
                 return redirect(f'{link}')      
-                # return redirect('dashboard')     
         else:
             messages.error(request, 'Create Account to continue')
 
