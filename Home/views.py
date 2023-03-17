@@ -135,12 +135,23 @@ def trade_log(request):
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
+from urllib.parse import urlparse, parse_qs
 @login_required
 def tradeLog_info(request,slug):
     trade = TradeInvoice.objects.get(slug=slug)
+    current_url = request.build_absolute_uri()
+
+    url = current_url
+    parse_result = urlparse(url)
+
+    # 👇️ "page=10&limit=15&price=ASC"
+    print(parse_result)
+
+    dict_result = parse_qs(parse_result.query)
+
     context ={
         'trade' : trade,
-        'info' : request.POST,
+        'info' : dict_result,
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
 
