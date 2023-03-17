@@ -147,8 +147,8 @@ def tradeLog_info(request,slug):
     # 👇️ "page=10&limit=15&price=ASC"
     print(parse_result)
 
-    dict_result = parse_qs(parse_result.query)['checkoutid']
-
+    dict_result = parse_qs(parse_result.query)['checkoutid'][0]
+    
     # request.GET.get('checkoutId')
 
     context ={
