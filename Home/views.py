@@ -147,13 +147,13 @@ def tradeLog_info(request,slug):
     # 👇️ "page=10&limit=15&price=ASC"
     print(parse_result)
 
-    dict_result = parse_qs(parse_result.query)
+    dict_result = parse_qs(parse_result.query)['checkoutid']
 
-    request.GET.get('checkoutId')
+    # request.GET.get('checkoutId')
 
     context ={
         'trade' : trade,
-        'det' : request.GET.get('checkoutId'),
+        # 'det' : request.GET.get('checkoutId'),
         'info' : dict_result,
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
