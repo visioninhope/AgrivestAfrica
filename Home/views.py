@@ -51,7 +51,6 @@ import json
 @login_required
 @csrf_exempt
 def dashboard(request):
-    print(request.body)
     total_trans = 0
     ts = TradeInvoice.objects.filter(customer=request.user)
     fs = FarmInvoice.objects.filter(customer=request.user)
@@ -140,7 +139,8 @@ def trade_log(request):
 def tradeLog_info(request,slug):
     trade = TradeInvoice.objects.get(slug=slug)
     context ={
-        'trade' : trade
+        'trade' : trade,
+        'info' : request.body,
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
 
