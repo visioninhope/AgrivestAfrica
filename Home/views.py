@@ -149,12 +149,13 @@ def tradeLog_info(request,slug):
 
     dict_result = parse_qs(parse_result.query)['checkoutid'][0]
 
-    TradeReceipt.objects.get(check_id=dict_result).trade.status = 'Active'
-    TradeReceipt.objects.get(check_id=dict_result).trade.save()
+    # TradeReceipt.objects.get(check_id=dict_result).trade
+    # TradeReceipt.objects.get(check_id=dict_result).trade.save()
+    cur_trade = TradeInvoice.objects.get(name=TradeReceipt.objects.get(check_id=dict_result).trade)
 
     context ={
         'trade' : trade,
-        # 'det' : request.GET.get('checkoutId'),
+        'det' : cur_trade,
         'info' : dict_result,
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
