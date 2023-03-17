@@ -148,8 +148,9 @@ def tradeLog_info(request,slug):
     print(parse_result)
 
     dict_result = parse_qs(parse_result.query)['checkoutid'][0]
-    
-    # request.GET.get('checkoutId')
+
+    TradeReceipt.objects.get(check_id=dict_result).trade.status = 'Active'
+    TradeReceipt.objects.get(check_id=dict_result).trade.save()
 
     context ={
         'trade' : trade,
