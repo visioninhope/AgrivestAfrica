@@ -140,7 +140,7 @@ def tradeLog_info(request,slug):
     trade = TradeInvoice.objects.get(slug=slug)
     context ={
         'trade' : trade,
-        'info' : request.body,
+        'info' : request.POST,
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
 
