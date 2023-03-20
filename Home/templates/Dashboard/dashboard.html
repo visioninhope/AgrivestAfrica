@@ -37,20 +37,20 @@
       <div class="main_cover"></div>
       <section class="main_top">
         <div class="mt_left">
-          <div class="box" id="mt_box">
-            <i class="material-symbols-outlined" style="color: salmon;">numbers</i>
+          <div class="box mt1" id="mt_box">
+            <i class="material-symbols-outlined" style="color: white;">numbers</i>
             <p>Total Transactions</p>
             <span>{{total_count|intcomma}}</span>
           </div>
-          <div class="box" id="mt_box">
-            <i class="material-symbols-outlined" style="color: skyblue;">payments</i>
+          <div class="box mt2" id="mt_box">
+            <i class="material-symbols-outlined" style="color: springgreen;">payments</i>
             <p>Total Transactions</p>
             <span>Ghc {{total_trans|intcomma}}</span>
           </div>
           <script>
             sessionStorage.setItem('total_trans','{{total_trans}}')
           </script>
-          <div class="box" id="mt_box">
+          <div class="box mt3" id="mt_box">
             <i class="material-symbols-outlined" style="color: burlywood;">savings</i>
             <p>Total Balance</p>
             <span>Ghc 2,425</span>
@@ -77,13 +77,14 @@
           </div>
         </div>
       </section>
+      
       <section class="main_mid swiper">
         <div class="swiper-wrapper">
           {% for page in pageList %}
           <div class="swiper-slide ad_box">
             {% for trade in page %}
             <a href="{% url 'makeTrade_page' trade.slug %}" class="swiper-slide ad" style="background-image: url({{trade.image.url}});">
-              <p id="p1">{{trade.price}}$</p>
+              <p id="p1">{{trade.price}} Ghc</p>
               <p id="p2">{{trade.ros_max}}%</p>
               <div class="ad_cover">
                 <i class="material-symbols-outlined">paid</i>
@@ -94,18 +95,16 @@
           {% endfor %}
         </div>
       </section>
-      
-
+    
       <section class="main_low">
         <section class="order_box">
           <div class="order_box_h">
             <p>Recent Orders</p>
             <form method="post" id="search_form">
               {% csrf_token %}
-              <button type="submit"><i class="material-symbols-outlined">search</i></button>
-              <input type="text" name="search" placeholder="Search Here" id="search">
-              <select name="status" id="status">
+              <select name="status" id="status" style="border: none;">
                 <option selected hidden value="">Filter</option>
+                <option value="all">All</option>
                 <option value="Pending">Pending</option>
                 <option value="Active">Active</option>
                 <option value="Completed">Completed</option>
@@ -113,58 +112,200 @@
             </form>
           </div>
           <div class="order_box_con">
-            <div class="con" id="conH">
-              <div class="prod" style="justify-content: center;">
-                <span>Order Name</span>
+            <div class="order_box_swiper swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <section class="con" id="conH">
+                    <div class="prod" style="justify-content: center;">
+                      <span style="font-weight: 600;">Trades</span>
+                    </div>
+                    <p class="date">Start Date</p>
+                    <div id="schedule">
+                      <i class="material-symbols-outlined">arrow_range</i>
+                    </div>
+                    <p class="date">End Date</p>
+                    <p>Total Cost</p>
+                    <p>Purchase Time</p>
+                    <p class="status">Status</p>
+                  </section>
+                  <section id="con_info">
+                  {% if trades %}  
+                    {% for trade in trades %}
+                    <a class="con" href="{% url 'tradeLog_info' trade.slug %}" style="color: black;">
+                      <div class="prod">
+                        <img src="{{trade.image_url}}" alt="">
+                        <span>{{trade.name}}</span>
+                      </div> 
+                        <p class="date">{{trade.start_date|date:'d b, Y'}}</p>
+                        <div id="schedule">
+                          <i class="material-symbols-outlined">schedule</i>
+                          <i class="material-symbols-outlined">arrow_range</i>
+                        </div>
+                        <p class="date">{{trade.end_date|date:'d b, Y'}}</p>
+                        <p>Ghc {{trade.total_cost|intcomma}}</p>
+                        <p>{{trade.start_time|naturaltime}}</p>
+                        <p class="status">
+                          {% if trade.status == 'Pending' %}
+                          <small style="background: #fcf1ed; color: salmon; ">
+                            {{trade.status}}
+                          </small>
+                          {% elif trade.status == 'Active' %}
+                          <small style="background: #e5fafb; color: #03c9d7; ">
+                            {{trade.status}}
+                          </small>
+                          {% else %}
+                          <small style="background: #ebfaf2; color: #34cea7;">
+                            {{trade.status}}
+                          </small>        
+                          {% endif %}                  
+                        </p>
+                      {% if trade.status == 'Pending' %}
+                      <div id="t_stat_tag" style="background: #ff6364;"></div>
+                      {% elif trade.status == 'Active' %}
+                      <div id="t_stat_tag" style="background: #00acea;"></div>
+                      {% else %}
+                      <div id="t_stat_tag" style="background: #aeecc1;"></div>
+                      {% endif %}
+                    </a>
+                    {% endfor %}
+                  {% else %}
+                    <a href="{% url 'trades_page' %}" class="prompt_box">
+                      <img src="/media/img/fresh-peanuts_144627-16149.webp" alt="">
+                      <button>Sponsor A Trade</button>
+                    </a>
+                  {% endif %}
+                  </section>
+                </div>
+                <div class="swiper-slide">
+                  <div class="con" id="conH">
+                    <div class="prod" style="justify-content: center;">
+                      <span style="font-weight: 600;">Farms</span>
+                    </div>
+                    <p class="date">Start Date</p>
+                    <div id="schedule">
+                      <i class="material-symbols-outlined">arrow_range</i>
+                    </div>
+                    <p class="date">End Date</p>
+                    <p>Total Cost</p>
+                    <p>Purchase Time</p>
+                    <p class="status">Status</p>
+                  </div>
+                  <section id="con_info">
+                  {% if farms %}  
+                    {% for farm in farms %}
+                      <a class="con" href="{% url 'farmLog_info' farm.slug %}" style="color: black;">
+                        <div class="prod">
+                          <img src="{{farm.image_url}}" alt="">
+                          <span>{{farm.name}}</span>
+                        </div>
+                          <p class="date">{{farm.start_date|date:'d b, Y'}}</p>
+                          <div class="date" id="schedule">
+                            <i class="material-symbols-outlined">schedule</i>
+                            <i class="material-symbols-outlined">arrow_range</i>
+                          </div>
+                          <p class="date">{{farm.end_date|date:'d b, Y'}}</p>
+                          <p>Ghc {{farm.total_cost|intcomma}}</p>
+                          <p>{{farm.start_time|naturaltime}} ago</p>
+                          <p class="status">
+                            {% if farm.status == 'Pending' %}
+                            <small style="background: #fcf1ed; color: salmon; ">
+                              {{farm.status}}
+                            </small>
+                            {% elif farm.status == 'Active' %}
+                            <small style="background: #e5fafb; color: #03c9d7; ">
+                              {{farm.status}}
+                            </small>
+                            {% else %}
+                            <small style="background: #ebfaf2; color: #34cea7;">
+                              {{farm.status}}
+                            </small>        
+                            {% endif %}                  
+                          </p>
+                          {% if farm.status == 'Pending' %}
+                          <div id="t_stat_tag" style="background: #ff6364;"></div>
+                          {% elif farm.status == 'Active' %}
+                          <div id="t_stat_tag" style="background: #00acea;"></div>
+                          {% else %}
+                          <div id="t_stat_tag" style="background: #aeecc1;"></div>
+                          {% endif %}
+                      </a>
+                    {% endfor %}
+                  {% else %}
+                  <a href="{% url 'farms_page' %}" class="prompt_box">
+                    <img src="/media/img/fresh-juicy-pink-tomato-isolated-white-background_414617-732.webp" alt="">
+                    <button href="{% url 'trades_page' %}">Sponsor A Farm</button>
+                  </a>
+                  {% endif %}
+                  </section>
+                </div>
+                <div class="swiper-slide">
+                  <div class="con" id="conH">
+                    <div class="prod" style="justify-content: center;">
+                      <span style="font-weight: 600;">Produce</span>
+                    </div>
+                    <p>units</p>
+                    <p class="date">Purchase Time</p>
+                    <p>Total Cost</p>
+                  </div>
+
+                  <section id="con_info">
+                  {% if produces %}    
+                    {% for produce in produces %}
+                      <a class="con" href="{% url 'produceLog_info' produce.slug %}" style="color: black;">
+                        <div class="prod">
+                          <img src="{{produce.image_url}}" alt="">
+                          <span>{{produce.name}}</span>
+                        </div>
+                        <p>{{produce.units|intcomma}}</p>
+                        <p class="date">{{produce.start_time|naturaltime}}</p>
+                        <p>Ghc {{produce.total_cost|intcomma}}</p>
+                      </a>
+                    {% endfor %}
+                  {% else %}
+                  <a href="{% url 'produce_page' %}" class="prompt_box">
+                    <img src="/media/img/cocoa-pods-cocoa-beans-cacao-powder-with-leaves-isolated-white-background_38145-707.webp" alt="">
+                    <button>Buy Produce</button>
+                  </a>
+                  {% endif %}
+                  </section>
+                </div>
               </div>
-              <p class="type">Order Type</p>
-              <p class="date">Start Date</p>
-              <p class="date">End Date</p>
-              <p>Total Cost</p>
-              <p class="status">Status</p>
+              <div class="swiper-pagination"></div>
             </div>
-      
-            {% if trans %}
-              {% for tran in trans %}
-                {% if tran.0 == 'trade' %}
-                <a class="con" href="{% url 'tradeLog_info' tran.6 %}" style="color: black;">
-                  <div class="prod">
-                    <img src="{{tran.7}}" alt="">
-                    <span>{{tran.1}}</span>
-                  </div>
-                  <p class="type">Trade</p>
-                {% else %}
-                <a class="con" href="{% url 'farmLog_info' tran.6 %}" style="color: black;">
-                  <div class="prod">
-                    <img src="{{tran.7}}" alt="">
-                    <span>{{tran.1}}</span>
-                  </div>
-                  <p class="type">Farm</p>
-                {% endif %}
-                    <p class="date">{{tran.3|date:'d b, Y'}}</p>
-                    <p class="date">{{tran.4|date:'d b, Y'}}</p>
-                    <p>Ghc {{tran.2|intcomma}}</p>
-                    <p class="status">{{tran.5}}</p>
-                    {% if tran.5 == 'Pending' %}
-                    <div id="t_stat_tag" style="background: #ff6364;"></div>
-                    {% elif tran.5 == 'Active' %}
-                    <div id="t_stat_tag" style="background: #00acea;"></div>
-                    {% else %}
-                    <div id="t_stat_tag" style="background: #aeecc1;"></div>
-                    {% endif %}
-                </a>
-              {% endfor %}
-            {% endif %}
           </div>
         </section>
+      </section>      
+
+      <section class="ad_swiper swiper">
+        <div class="swiper-wrapper">
+          {% for page in pageList_2 %}
+          <div class="swiper-slide ad_box_2">
+            {% for trade in page %}
+            <a href="{% url 'makeTrade_page' trade.slug %}" class="ad">
+              <img src="{{trade.image.url}}" alt="" height="100%" width="100%">
+              <p id="p1">{{trade.price}} Ghc</p>
+              <p id="p2">{{trade.ros_max}}%</p>
+              <p id="p3">{{trade.name}}</p>
+              <div class="ad_cover">
+                <span>{{trade.start_date|date:'d b,Y'}}</span> 
+                <i class="material-symbols-outlined">timer</i>
+                <span>{{trade.end_date|date:'d b,Y'}}</span>
+                <small>{{trade.start_date|timesince:trade.end_date}}</small>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
       </section>
-    </section>
+  </section>
     <style>
-      .prod{
+      
+      /* .prod{
         display: flex;
         justify-content: space-around;
         gap: 20px;
-      }
+      } */
     </style>
     {% endblock main %}
   </section>
@@ -174,6 +315,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="{% static 'dashboard/dashboard.js' %}"></script>
+  
+  <script>
+    var order_box_swiper = new Swiper('.order_box_swiper', {
+      direction: 'horizontal',
+      loop: true,
+      speed: 1000,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+  
   <script>
     const search_form = document.getElementById('search_form')
     const status = document.getElementById('status')

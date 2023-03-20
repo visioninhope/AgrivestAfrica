@@ -28,7 +28,6 @@ class TradeInvoice(models.Model):
     ##roll on option
     #when user started trade
         #hide in trade logs interval b/n start and finish//
-    
     CHOICES = (
         ("Pending", "Pending"),
         ("Active", "Active"),
@@ -36,9 +35,14 @@ class TradeInvoice(models.Model):
     )
     status = models.CharField(
         max_length=50, choices=CHOICES, default='Pending')
-    start_time = models.DateTimeField(default=timezone.now)
     actual_return = models.FloatField(default=0.00)
-    payment = models.CharField(max_length=100, blank=True, null=True)
+    # payment = models.CharField(max_length=100, blank=True, null=True)
+
+    #token = models.UUIDField(max_length=300,default=1)
+    check_id = models.CharField(max_length=500, blank=True, null=True)
+    paylink = models.CharField(max_length=500, blank=True,null=True)
+    start_time = models.DateTimeField(default=timezone.now, blank=True, null=True)
+
     slug = models.SlugField(max_length=250, blank=True, null=True)
     def save(self, *args, **kwargs):
         if self.slug == None:
@@ -47,33 +51,6 @@ class TradeInvoice(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class TradeLog(models.Model):
-    name = models.CharField(max_length=300)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    price = models.FloatField()
-    units = models.PositiveIntegerField()
-    profit_range_min = models.FloatField()
-    profit_range_max = models.FloatField()
-    start_date = models.DateField(default=timezone.now)
-    end_date = models.DateField(default=timezone.now)
-    base_cost = models.FloatField()
-    service_charge = models.FloatField()
-    total_cost = models.FloatField()
-    CHOICES = (
-        ("Pending", "Pending"),
-        ("Active", "Active"),
-        ("Completed", "Completed")
-    )
-    status = models.CharField(
-        max_length=50, choices=CHOICES, default='Pending')
-    start_time = models.DateTimeField(default=timezone.now)
-    actual_return = models.FloatField(default=0.00)
-
-    def __str__(self):
-        return self.name
-
 
 class FarmInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
@@ -106,7 +83,13 @@ class FarmInvoice(models.Model):
         max_length=50, choices=CHOICES, default='Pending')
     start_time = models.DateTimeField(default=timezone.now)
     actual_return = models.FloatField(default=0.00)
-    payment = models.CharField(max_length=100, blank=True, null=True)
+    # payment = models.CharField(max_length=100, blank=True, null=True)
+
+    #token = models.UUIDField(max_length=300,default=1)
+    check_id = models.CharField(max_length=500, blank=True, null=True)
+    paylink = models.CharField(max_length=500, blank=True,null=True)
+    start_time = models.DateTimeField(default=timezone.now, blank=True, null=True)
+
     slug = models.SlugField(max_length=250, blank=True, null=True)
     def save(self, *args, **kwargs):
         if self.slug == None:
@@ -116,51 +99,7 @@ class FarmInvoice(models.Model):
     def __str__(self):
         return self.name
 
-
-class FarmLog(models.Model):
-    name = models.CharField(max_length=300)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    partner  = models.ForeignKey(Partner, on_delete=models.PROTECT, default=2)
-    location = models.CharField(max_length=200)
-    price = models.FloatField()
-    units = models.PositiveIntegerField()
-    profit_range_min = models.FloatField()
-    profit_range_max = models.FloatField()
-    start_date = models.DateField(default=timezone.now)
-    end_date = models.DateField(default=timezone.now)
-    base_cost = models.FloatField()
-    service_charge = models.FloatField()
-    total_cost = models.FloatField()
-    CHOICES = (
-        ("Pending", "Pending"),
-        ("Active", "Active"),
-        ("Completed", "Completed")
-    )
-    status = models.CharField(
-        max_length=50, choices=CHOICES, default='Pending')
-    start_time = models.DateTimeField(default=timezone.now)
-    actual_return = models.FloatField(default=0.00)
-
-    def __str__(self):
-        return self.name
-
-
-
-class TradeReceipt(models.Model):
-    token = models.UUIDField(max_length=300,default=1,unique=True)
-    trade = models.ForeignKey(TradeInvoice,on_delete=models.CASCADE)
-    check_id = models.CharField(max_length=500, unique=True)
-    paylink = models.CharField(max_length=500)
-    status = (
-        ('unpaid','unpaid'),
-        ('paid','paid')
-    )
-    status = models.CharField(max_length=50, choices=status, default='unpaid')
-    timestamp = models.DateTimeField(default=timezone.now)
-    def __str__(self):
-        return self.trade.name
     
-
 class ProduceInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -172,24 +111,12 @@ class ProduceInvoice(models.Model):
     image_url = models.CharField(max_length=300, blank=True, null=True)
     payment = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(max_length=250, blank=True, null=True)
-    def save(self, *args, **kwargs):
-        if self.slug == None:
-            self.slug = slugify(self.name)
-        super().save(*args,**kwargs)
 
-    def __str__(self):
-        return self.name
+    #token = models.UUIDField(max_length=300,default=1)
+    check_id = models.CharField(max_length=500, blank=True, null=True)
+    paylink = models.CharField(max_length=500, blank=True,null=True)
+    start_time = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
-class ProduceLog(models.Model):
-    name = models.CharField(max_length=100,unique=True)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    produce = models.CharField(max_length=200)
-    price = models.FloatField()
-    units = models.PositiveIntegerField()
-    base_cost = models.FloatField()
-    total_cost = models.FloatField()
-    payment = models.CharField(max_length=100, blank=True, null=True)
-    slug = models.SlugField(max_length=250, blank=True, null=True)
     def save(self, *args, **kwargs):
         if self.slug == None:
             self.slug = slugify(self.name)

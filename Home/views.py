@@ -3,12 +3,12 @@ from django.contrib.auth import logout
 from django.core.paginator import Paginator
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from urllib.parse import urlparse, parse_qs
 import math
 from .models import Inbox
 from Log.models import User,Sponsor,Farmer,Offtaker,Profile
-from Transaction.models import TradeInvoice,TradeLog,TradeReceipt,FarmInvoice,FarmLog,ProduceInvoice,ProduceLog
+from Transaction.models import TradeInvoice,FarmInvoice,ProduceInvoice
 from Asset.models import Trade
-
 
 def home(request):
     logout(request)
@@ -55,41 +55,47 @@ def dashboard(request):
     ts = TradeInvoice.objects.filter(customer=request.user)
     fs = FarmInvoice.objects.filter(customer=request.user)
     ps = ProduceInvoice.objects.filter(customer=request.user)
+
     total_count = ts.count() + fs.count() + ps.count()
     for t in ts:
         total_trans = total_trans + t.total_cost
-        print(t.total_cost)
     for f in fs:
         total_trans = total_trans + f.total_cost
     for p in ps:
         total_trans = total_trans + p.total_cost
+
     if request.method == 'POST':
-        search_in = request.POST.get('search')
-        search_status = request.POST.get('status')
-        if search_in and search_status:
-            trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).filter(status = search_status).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
-            farms = FarmInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).filter(status = search_status).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+        status_val = request.POST.get('status') 
+        if status_val == 'all':
+            trades = ts.order_by('-id')[0:5]
+            farms = fs.order_by('-id')[0:5]
+            produces = ps.order_by('-id')[0:5]
         else:
-            if search_in:
-                trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
-                farms = FarmInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
-            if search_status:
-                trades = TradeInvoice.objects.filter(customer=request.user).filter(status = search_status).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
-                farms = FarmInvoice.objects.filter(customer=request.user).filter(status = search_status).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
+            trades = ts.filter(status=status_val).order_by('-id')[0:5]
+            farms = fs.filter(status=status_val).order_by('-id')[0:5]
+            produces = ps.order_by('-id')[0:5]
     else:
-        trades = TradeInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
-        farms = FarmInvoice.objects.filter(customer=request.user).values_list('type','name','total_cost','start_date','end_date','status','slug','image_url')
-    trans = trades.union(farms)
-    tradeList = Trade.objects.all()[1:4]
+        trades = ts.order_by('-id')[0:5]
+        farms = fs.order_by('-id')[0:5]
+        produces = ps.order_by('-id')[0:5]
+
+    tradeList = Trade.objects.all()[0:4]
     tradePages = Paginator(tradeList, 2)
+    tradePages_2 = Paginator(tradeList, 3)
     pageList = []
+    pageList_2 = []
     for page in tradePages:
         pageList.append(page.object_list)
+    for page in tradePages_2:
+        pageList_2.append(page.object_list)
     context = {
-        'trans' : trans,
+        'trades' : trades,
+        'farms': farms,
+        'produces' : produces,
         'total_trans' : "{:.2f}".format(total_trans),
         'total_count' : total_count,
-        'pageList' : pageList
+        'pageList' : pageList,
+        'pageList_2' : pageList_2
     }
     return render(request,'Dashboard/dashboard.html', context)
 
@@ -135,32 +141,26 @@ def trade_log(request):
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
-from urllib.parse import urlparse, parse_qs
+
 @login_required
 def tradeLog_info(request,slug):
     trade = TradeInvoice.objects.get(slug=slug)
-    current_url = request.build_absolute_uri()
-
-    url = current_url
-    parse_result = urlparse(url)
-
-    # 👇️ "page=10&limit=15&price=ASC"
-    print(parse_result)
-
-    dict_result = parse_qs(parse_result.query)['checkoutid'][0]
-
-    # TradeReceipt.objects.get(check_id=dict_result).status
-    # TradeReceipt.objects.get(check_id=dict_result).trade.save()
-    cur_trade = TradeInvoice.objects.get(name=TradeReceipt.objects.get(check_id=dict_result).trade)
-    cur_trade.status = 'Active'
-    cur_trade.save()
-
     context ={
         'trade' : trade,
-        'det' : cur_trade,
-        'info' : dict_result,
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
+
+@login_required
+def transaction_callback(request,slug):
+    current_url = request.build_absolute_uri()
+    url = current_url
+    parse_result = urlparse(url)
+    dict_result = parse_qs(parse_result.query)['checkoutid'][0]
+    print(parse_result)
+    cur_trade = TradeInvoice.objects.get(check_id=dict_result)
+    cur_trade.status = 'Active'
+    cur_trade.save()
+    
 
 @login_required
 def farm_log(request):

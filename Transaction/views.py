@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from Log.models import User, Sponsor
 from Asset.models import Trade, Farm, Produce,Partner
-from Transaction.models import FarmInvoice,FarmLog,TradeReceipt,TradeInvoice,TradeLog,ProduceInvoice,ProduceLog
+from Transaction.models import FarmInvoice,TradeInvoice,ProduceInvoice
 from uuid import uuid4
 
 def trades(request):
@@ -28,6 +28,8 @@ def trades(request):
     return render(request, 'Trades/trades.html', context)
 
 import json,requests
+
+
 
 def makeTrade(request, slug):
     trade = Trade.objects.get(slug=slug)
@@ -62,49 +64,11 @@ def makeTrade(request, slug):
                 if extra_notes != '':
                     tradeInvoice.extra_notes = extra_notes
                 tradeInvoice.status = 'Pending'
-                payment = request.POST.get('payment')
-                tradeInvoice.payment = payment
+                # payment = request.POST.get('payment')
+                # tradeInvoice.payment = payment
                 tradeInvoice.save()
-                tradeLog = TradeLog()
-                tradeLog.name = trade_name
-                tradeLog.customer = customer
-                tradeLog.price = trade.price
-                tradeLog.units = units
-                tradeLog.profit_range_min = tradeInvoice.profit_range_min
-                tradeLog.profit_range_max = tradeInvoice.profit_range_max
-                tradeLog.start_date = trade.start_date
-                tradeLog.end_date = trade.end_date
-                tradeLog.base_cost = tradeInvoice.base_cost
-                tradeLog.service_charge = trade.service_charge
-                tradeLog.total_cost = tradeInvoice.total_cost
-                tradeLog.status = 'Pending'
-                tradeLog.save()
-
-                url = "https://payproxyapi.hubtel.com/items/initiate"
-                token = str(uuid4())
-                payload = json.dumps({
-                    "totalAmount": total_cost,
-                    "description": trade_name,
-                    "callbackUrl": f"https://www.agrivestafrica.com/dashboard/tradeLog_info/{TradeInvoice.objects.get(name=trade_name).slug}",
-                    "returnUrl": f"https://www.agrivestafrica.com/dashboard/tradeLog_info/{TradeInvoice.objects.get(name=trade_name).slug}",
-                    "merchantAccountNumber": "2017279",
-                    "cancellationUrl": "https://www.agrivestafrica.com/trades/",
-                    "clientReference": token
-                })
-                headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
-                }
-                response = requests.request("POST", url, headers=headers, data=payload)
-                link = json.loads(response.text)['data']['checkoutUrl']
-                check_id = json.loads(response.text)['data']['checkoutId']
-                tradeReceipt = TradeReceipt()
-                tradeReceipt.trade = TradeInvoice.objects.get(name=trade_name)
-                tradeReceipt.token = token
-                tradeReceipt.check_id = check_id
-                tradeReceipt.paylink = f'{link}'
-                tradeReceipt.save()
-                return redirect(f'{link}')      
+                return redirect(trans_pay(total_cost,trade_name, TradeInvoice))
+                return redirect('dashboard')
         else:
             messages.error(request, 'Create Account to continue')
 
@@ -115,7 +79,6 @@ def makeTrade(request, slug):
         'crop': crop,
     }
     return render(request, 'Trades/makeTrade.html', context)
-
 
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -180,25 +143,8 @@ def makeFarm(request, slug):
                     farmInvoice.extra_notes = extra_notes
                 farmInvoice.status = 'Pending'
                 payment = request.POST.get('payment')
-                farmInvoice.payment = payment
                 farmInvoice.save()
-
-                farmLog = FarmLog()
-                farmLog.name = farm_name
-                farmLog.customer = customer
-                farmLog.partner = Partner.objects.get(name=request.POST.get('partner'))
-                farmLog.location = farm.location
-                farmLog.price = farm.price
-                farmLog.units = units
-                farmLog.profit_range_min = farm.ros_min
-                farmLog.profit_range_max = farm.ros_max
-                farmLog.start_date = farm.start_date
-                farmLog.end_date = farm.end_date
-                farmLog.base_cost = units * farm.price
-                farmLog.service_charge = farm.service_charge
-                farmLog.total_cost = total_cost
-                farmLog.status = 'Pending'
-                farmLog.save()
+                # return redirect(trans_pay(total_cost,farm_name, TradeInvoice))
                 return redirect('dashboard')
         else:
             messages.error(request, 'login to continue')
@@ -238,21 +184,40 @@ def buy_produce(request,slug):
                 payment = request.POST.get('payment')
                 produceInvoice.payment = payment
                 produceInvoice.save()
-
-                produceLog = ProduceLog()
-                produceLog.name = produce_name
-                produceLog.customer = customer
-                produceLog.price = produce.price
-                produceLog.units = units
-                produceLog.base_cost = units * produce.price
-                produceLog.total_cost = total_cost
-                produceLog.save()
+                # return redirect(trans_pay(total_cost,produce_name, ProduceInvoice))
                 return redirect('dashboard')
     context ={
         'produce' : produce
     }
     return render(request, 'Produce/buyProduce.html', context)    
-        
+
+def trans_pay(total_cost, trans_name,trans_obj):
+    cur_trans = trans_obj.objects.get(name=trans_name)
+    url = "https://payproxyapi.hubtel.com/items/initiate"
+    token = str(uuid4())
+    payload = json.dumps({
+        "totalAmount": total_cost,
+        "description": trans_name,
+        "callbackUrl": 'https://www.google.com/',
+        "returnUrl": 'https://www.google.com/',
+        "merchantAccountNumber": "2017279",
+        "cancellationUrl": "https://www.agrivestafrica.com/trades/",
+        "clientReference": token
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    link = json.loads(response.text)['data']['checkoutUrl']
+    check_id = json.loads(response.text)['data']['checkoutId']
+
+    cur_trans.check_id = check_id
+    cur_trans.paylink = f'{link}'
+    cur_trans.save()
+    link = f'{link}'
+    return link
+
 def callback(request):
 
     return render(request, 'callback.html')

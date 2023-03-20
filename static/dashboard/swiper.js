@@ -14,6 +14,12 @@ if(document.querySelector('.quick_box')){
       prevEl: '.quick_prev',
     },
   });
+  quick_box_swiper.el.onmouseenter =()=>{
+    quick_box_swiper.autoplay.stop()
+  }
+  quick_box_swiper.el.onmouseleave =()=>{
+    quick_box_swiper.autoplay.start()
+  }
 }
 
 if(document.querySelector('.main_mid')){
@@ -24,10 +30,37 @@ if(document.querySelector('.main_mid')){
     autoplay:{
       delay:3000
     },
-    pagination: {
-      el: '.swiper-pagination',
-    },
+    // pagination: {
+    //   el: '.swiper-pagination',
+    // },
   });
+  mid_box_swiper.el.onmouseenter =()=>{
+    mid_box_swiper.autoplay.stop()
+  }
+  mid_box_swiper.el.onmouseleave =()=>{
+    mid_box_swiper.autoplay.start()
+  }
+}
+
+if(document.querySelector('.ad_swiper')){
+  var mid_box_swiper = new Swiper('.ad_swiper', {
+    direction: 'horizontal',
+    loop: true,
+    speed:2500,
+    autoplay:{
+      delay:3000
+    },
+    disableOnInteraction:true,
+    // pagination: {
+    //   el: '.swiper-pagination',
+    // },
+  });
+  mid_box_swiper.el.onmouseenter =()=>{
+    mid_box_swiper.autoplay.stop()
+  }
+  mid_box_swiper.el.onmouseleave =()=>{
+    mid_box_swiper.autoplay.start()
+  }
 }
 
 const mt_boxes = document.querySelectorAll('[id=mt_box]')
