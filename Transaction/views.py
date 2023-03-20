@@ -68,7 +68,7 @@ def makeTrade(request, slug):
                 # tradeInvoice.payment = payment
                 tradeInvoice.save()
                 return redirect(trans_pay(total_cost,trade_name, TradeInvoice))
-                return redirect('dashboard')
+                # return redirect('dashboard')
         else:
             messages.error(request, 'Create Account to continue')
 

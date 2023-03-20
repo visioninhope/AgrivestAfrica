@@ -94,23 +94,23 @@ WSGI_APPLICATION = 'AgrivestAfrica.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'PO1FDQsDEWCVRGPZN6kl',
-#         'HOST': 'containers-us-west-66.railway.app',
-#         'PORT': '6274'
+#         'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'PO1FDQsDEWCVRGPZN6kl',
+        'HOST': 'containers-us-west-66.railway.app',
+        'PORT': '6274'
+    }
+}
 
 
 # Password validation
