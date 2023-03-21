@@ -17,7 +17,7 @@
     <section class="box">
       <section class="box_left">
         <div class="image_box">
-          <img src="{{cur_trade.image_url}}" alt="">
+          <img src="{{cur_trans.image_url}}" alt="">
         </div>
       </section>
       <section class="right">
@@ -28,11 +28,11 @@
         </p>
         <div class="row">
           <p>
-            <span>{{cur_trade.name}}</span>
-            <small style="font-size: 1.3rem;">Ghc {{cur_trade.total_cost}}</small>
+            <span>{{cur_trans.name}}</span>
+            <small style="font-size: 1.3rem;">Ghc {{cur_trans.total_cost}}</small>
           </p>
           <p>
-            <span>23 Mar, 2024</span>
+            <span>23 Mar, 2024</span> <span>{{res}}</span>
             <a href="{% url 'dashboard' %}" style="color: salmon;">more details...</a>
           </p>
           <a href="{% url 'dashboard' %}" id="a1">Continue</a>

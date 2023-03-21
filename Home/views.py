@@ -219,6 +219,7 @@ def trans_callback(request,slug):
     url = current_url
     parse_result = urlparse(url)
     dict_result = parse_qs(parse_result.query)['checkoutid'][0]
+    print(dict_result)
     if slug == 'trade':
         cur_trans = TradeInvoice.objects.get(check_id=dict_result)
         # cur_trans.start_time = timezone.now()
@@ -232,7 +233,8 @@ def trans_callback(request,slug):
         cur_trans = ProduceInvoice.objects.get(check_id=dict_result)
         cur_trans.save()
     context = {
-        'cur_trans' : cur_trans
+        'cur_trans' : cur_trans,
+        'res' : dict_result
     }
     return render(request, 'Dashboard/trans_callback.html', context)
 

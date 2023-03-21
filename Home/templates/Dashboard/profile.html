@@ -23,7 +23,7 @@
     <section class="profile_form_box" >
       {% csrf_token %}
       <div class="profile_form_header">
-          <span> Omar's Profile</span>
+          <span style="color: rgb(58, 162, 58);"> {{user.username}}'s Profile</span>
           <img src="/media/img/agr.jpg" alt="" height="50px" width="50px">
       </div>
       <section class="profile_form swiper">
@@ -339,6 +339,7 @@
       const pro_set = document.querySelectorAll('.pro_set')
 
       if(pro_exists === 'True'){
+        document.getElementById('hid').type = 'password'
         document.querySelector('.hid_tag').onclick =()=>{
           if(document.getElementById('hid').type === 'password'){
             document.getElementById('hid').type = 'text'
