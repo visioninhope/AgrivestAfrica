@@ -219,10 +219,10 @@
 
 
     const amount = document.getElementById('amount')
-    console.log(units)
 
     units.oninput = () => {
-      total.innerHTML = 'GHS' + ' '  + Math.round((units.value * price)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      console.log(Math.round((units.value * price)))
+      total.innerHTML = 'GHS' + ' '  + (units.value * price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       // amount.value = (units.value * price) + Math.round((units.value * price))
     }
   </script>

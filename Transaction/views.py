@@ -82,7 +82,6 @@ def makeTrade(request, slug):
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
-@csrf_exempt
 def farms(request):
     if request.method == 'POST':
         search = request.POST.get('search')
@@ -141,9 +140,9 @@ def makeFarm(request, slug):
                 if extra_notes != '':
                     farmInvoice.extra_notes = extra_notes
                 farmInvoice.status = 'Pending'
-                payment = request.POST.get('payment')
+                # payment = request.POST.get('payment')
                 farmInvoice.save()
-                return redirect(trans_pay(total_cost,farm_name, TradeInvoice, 'farm'))
+                return redirect(trans_pay(total_cost,farm_name, FarmInvoice, 'farm'))
         else:
             messages.error(request, 'login to continue')
     context = {

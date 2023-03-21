@@ -273,13 +273,16 @@
     const ros_min = document.getElementById('profit_margin').dataset.low
     const ros_max = document.getElementById('profit_margin').dataset.high
     const amount = document.getElementById('amount')
-    console.log(amount)
+
+    window.onload =()=>{
+      units.value = ''
+    }
 
     units.oninput = () => {
-      service_charge.innerHTML = 'GHS' + ' ' + (Math.round((units.value * price) * (serve / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      total.innerHTML = 'GHS' + ' ' + ((units.value * price) + Math.round((units.value * price) * (serve / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      pros_low.innerHTML = '+' + ' ' + 'GHS' + ' ' + (Math.round((units.value * price) * (ros_min / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      pros_high.innerHTML = '+' + ' ' + 'GHS' +' ' + (Math.round((units.value * price) * (ros_max / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      service_charge.innerHTML = 'GHS' + ' ' + (Math.round((units.value * price) * (serve / 100))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      total.innerHTML = 'GHS' + ' ' + ((units.value * price) + Math.round((units.value * price) * (serve / 100))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      pros_low.innerHTML = '+' + ' ' + 'GHS' + ' ' + (Math.round((units.value * price) * (ros_min / 100))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      pros_high.innerHTML = '+' + ' ' + 'GHS' +' ' + (Math.round((units.value * price) * (ros_max / 100))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       amount.value = (units.value * price) + Math.round((units.value * price) * (serve / 100))
     }
   </script>
