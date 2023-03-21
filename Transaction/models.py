@@ -2,13 +2,14 @@ from Log.models import User
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
-from Asset.models import Partner
+from Asset.models import Partner,Trade,Farm,Produce
 
 
 class TradeInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    trade = models.CharField(max_length=200)
+    # trade = models.CharField(max_length=200)
+    trade = models.ForeignKey(Trade, on_delete=models.CASCADE)
     price = models.FloatField()
     units = models.PositiveIntegerField()
     profit_range_min = models.FloatField()
@@ -36,8 +37,6 @@ class TradeInvoice(models.Model):
     status = models.CharField(
         max_length=50, choices=CHOICES, default='Pending')
     actual_return = models.FloatField(default=0.00)
-    # payment = models.CharField(max_length=100, blank=True, null=True)
-
     #token = models.UUIDField(max_length=300,default=1)
     check_id = models.CharField(max_length=500, blank=True, null=True)
     paylink = models.CharField(max_length=500, blank=True,null=True)
@@ -55,7 +54,8 @@ class TradeInvoice(models.Model):
 class FarmInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    farm = models.CharField(max_length=200)
+    farm = models.ForeignKey(Farm, on_delete=models.CASCADE)
+    # farm = models.CharField(max_length=200)
     partner  = models.ForeignKey(Partner, on_delete=models.PROTECT, default=2)
     location = models.CharField(max_length=200)
     price = models.FloatField()
@@ -83,8 +83,6 @@ class FarmInvoice(models.Model):
         max_length=50, choices=CHOICES, default='Pending')
     start_time = models.DateTimeField(default=timezone.now)
     actual_return = models.FloatField(default=0.00)
-    # payment = models.CharField(max_length=100, blank=True, null=True)
-
     #token = models.UUIDField(max_length=300,default=1)
     check_id = models.CharField(max_length=500, blank=True, null=True)
     paylink = models.CharField(max_length=500, blank=True,null=True)
@@ -103,13 +101,13 @@ class FarmInvoice(models.Model):
 class ProduceInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    produce = models.CharField(max_length=200)
+    # produce = models.CharField(max_length=200)
+    produce = models.ForeignKey(Produce, on_delete=models.CASCADE)
     price = models.FloatField()
     units = models.PositiveIntegerField()
     base_cost = models.FloatField()
     total_cost = models.FloatField()
     image_url = models.CharField(max_length=300, blank=True, null=True)
-    payment = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(max_length=250, blank=True, null=True)
     CHOICES = (
         ("Pending", "Pending"),
@@ -117,7 +115,6 @@ class ProduceInvoice(models.Model):
     )
     status = models.CharField(
         max_length=50, choices=CHOICES, default='Pending')
-    #token = models.UUIDField(max_length=300,default=1)
     check_id = models.CharField(max_length=500, blank=True, null=True)
     paylink = models.CharField(max_length=500, blank=True,null=True)
     start_time = models.DateTimeField(default=timezone.now, blank=True, null=True)

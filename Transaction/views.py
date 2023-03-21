@@ -5,6 +5,7 @@ from Log.models import User, Sponsor
 from Asset.models import Trade, Farm, Produce,Partner
 from Transaction.models import FarmInvoice,TradeInvoice,ProduceInvoice
 from uuid import uuid4
+import json,requests
 
 def trades(request):
     if request.method == 'POST':
@@ -26,10 +27,6 @@ def trades(request):
         'pageList' : pageList,
     }
     return render(request, 'Trades/trades.html', context)
-
-import json,requests
-
-
 
 def makeTrade(request, slug):
     trade = Trade.objects.get(slug=slug)
@@ -120,7 +117,7 @@ def makeFarm(request, slug):
             else:
                 farmInvoice.name = farm_name
                 farmInvoice.customer = customer
-                farmInvoice.farm = farm.name
+                farmInvoice.farm = farm
                 farmInvoice.partner = Partner.objects.get(name=request.POST.get('partner'))
                 farmInvoice.location = farm.location
                 farmInvoice.price = farm.price
@@ -172,7 +169,7 @@ def buy_produce(request,slug):
             else:
                 produceInvoice.name = produce_name
                 produceInvoice.customer = customer
-                produceInvoice.produce = produce.name
+                produceInvoice.produce = produce
                 produceInvoice.price = produce.price
                 produceInvoice.units = units
                 produceInvoice.base_cost = "{:.2f}".format(units * produce.price)
