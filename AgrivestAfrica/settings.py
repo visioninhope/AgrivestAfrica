@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'AgrivestAfrica.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse('postgresql://postgres:WzCyOqZN3oRnK0o8ErfN@containers-us-west-29.railway.app:5942/railway')
+    'default': dj_database_url.parse('postgresql://postgres:A0zqa3IMrKUHCxIojsQA@containers-us-west-18.railway.app:6743/railway')
 }
 
 # Password validation
