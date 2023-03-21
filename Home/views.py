@@ -8,7 +8,7 @@ import math
 from .models import Inbox
 from Log.models import User,Sponsor,Farmer,Offtaker,Profile
 from Transaction.models import TradeInvoice,FarmInvoice,ProduceInvoice
-from Asset.models import Trade
+from Asset.models import Trade,Farm
 
 def home(request):
     logout(request)
@@ -16,8 +16,8 @@ def home(request):
     sliderT = Trade.objects.all().order_by('-id')[:3]
     x =  math.floor(Trade.objects.all().count() / 3)
 
-    slide1 = Trade.objects.all().order_by('id')[:3]
-    slide2 = Trade.objects.all().order_by('id')[3:7]
+    slide1 = Farm.objects.all().order_by('id')[:3]
+    slide2 = Farm.objects.all().order_by('id')[3:7]
 
     min_slide1 = Trade.objects.all()[2:3]
     min_slide2 = Trade.objects.all()[:1]

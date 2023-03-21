@@ -20,7 +20,7 @@ class Trade(models.Model):
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(default=timezone.now)
     slug = models.SlugField(max_length=300,blank=True, null=True)
-    payback_date = models.DateField(blank=True, null=True)
+    # payback_date = models.DateField(blank=True, null=True)
     scientific_name = models.CharField(max_length=300, blank=True, null=True)
     
     def save(self, *args, **kwargs):
@@ -48,7 +48,7 @@ class Partner(models.Model):
 
 class Farm(models.Model):
     name = models.CharField(max_length=300)
-    crop = models.CharField(max_length=200)
+    # crop = models.CharField(max_length=200)
     image = models.ImageField(default='default.jpg', upload_to='farmCrop_pics')
     price = models.FloatField()
     service_charge = models.FloatField()
@@ -63,8 +63,6 @@ class Farm(models.Model):
         ("Available", "Available"),
         ("Unavailable", "Unavailable")
     )
-    units_total = models.PositiveIntegerField()
-    units_left = models.PositiveIntegerField()
     status = models.CharField(max_length=40, choices=STATUS, default="Available")
     slug = models.SlugField(max_length=300,blank=True, null=True)
     payback_date = models.DateField(blank=True, null=True)
