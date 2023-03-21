@@ -161,17 +161,25 @@ def tradeLog_info(request,slug):
     return render(request, 'Dashboard/tradeLog_info.html', context)
 
 @login_required
-def trans_callback(request):
+def trans_callback(request,slug):
     current_url = request.build_absolute_uri()
     url = current_url
     parse_result = urlparse(url)
     dict_result = parse_qs(parse_result.query)['checkoutid'][0]
-    print(parse_result)
-    cur_trade = TradeInvoice.objects.get(check_id=dict_result)
-    cur_trade.status = 'Active'
-    cur_trade.save()
+    if slug == 'trade':
+        cur_trans = TradeInvoice.objects.get(check_id=dict_result)
+        # cur_trans.start_time = timezone.now()
+        cur_trans.status = 'Active'
+        cur_trans.save()
+    elif slug == 'farm':
+        cur_trans = FarmInvoice.objects.get(check_id=dict_result)
+        cur_trans.status = 'Active'
+        cur_trans.save()
+    else:
+        cur_trans = ProduceInvoice.objects.get(check_id=dict_result)
+        cur_trans.save()
     context = {
-        'cur_trade' : cur_trade
+        'cur_trans' : cur_trans
     }
     return render(request, 'Dashboard/trans_callback.html', context)
 

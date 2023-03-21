@@ -67,8 +67,7 @@ def makeTrade(request, slug):
                 # payment = request.POST.get('payment')
                 # tradeInvoice.payment = payment
                 tradeInvoice.save()
-                return redirect(trans_pay(total_cost,trade_name, TradeInvoice))
-                # return redirect('dashboard')
+                return redirect(trans_pay(total_cost,trade_name, TradeInvoice, 'trade'))
         else:
             messages.error(request, 'Create Account to continue')
 
@@ -144,8 +143,7 @@ def makeFarm(request, slug):
                 farmInvoice.status = 'Pending'
                 payment = request.POST.get('payment')
                 farmInvoice.save()
-                # return redirect(trans_pay(total_cost,farm_name, TradeInvoice))
-                return redirect('dashboard')
+                return redirect(trans_pay(total_cost,farm_name, TradeInvoice, 'farm'))
         else:
             messages.error(request, 'login to continue')
     context = {
@@ -184,22 +182,21 @@ def buy_produce(request,slug):
                 payment = request.POST.get('payment')
                 produceInvoice.payment = payment
                 produceInvoice.save()
-                # return redirect(trans_pay(total_cost,produce_name, ProduceInvoice))
-                return redirect('dashboard')
+                return redirect(trans_pay(total_cost,produce_name, ProduceInvoice, 'produce'))
     context ={
         'produce' : produce
     }
     return render(request, 'Produce/buyProduce.html', context)    
 
-def trans_pay(total_cost, trans_name,trans_obj):
+def trans_pay(total_cost, trans_name,trans_obj,type):
     cur_trans = trans_obj.objects.get(name=trans_name)
     url = "https://payproxyapi.hubtel.com/items/initiate"
     token = str(uuid4())
     payload = json.dumps({
         "totalAmount": total_cost,
         "description": trans_name,
-        "callbackUrl": 'https://www.agrivestafrica.com/trans_callback/',
-        "returnUrl": 'https://www.agrivestafrica.com/trans_callback/',
+        "callbackUrl": f'https://www.agrivestafrica.com/trans_callback/{type}/',
+        "returnUrl": f'https://www.agrivestafrica.com/trans_callback/{type}/',
         "merchantAccountNumber": "2017279",
         "cancellationUrl": "https://www.agrivestafrica.com/trades/",
         "clientReference": token
@@ -217,7 +214,3 @@ def trans_pay(total_cost, trans_name,trans_obj):
     cur_trans.save()
     link = f'{link}'
     return link
-
-def callback(request):
-
-    return render(request, 'callback.html')

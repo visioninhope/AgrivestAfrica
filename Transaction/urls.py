@@ -8,5 +8,4 @@ urlpatterns = [
     path('makeFarm/<str:slug>/', views.makeFarm, name='makeFarm_page' ),
     path('produce/', views.produce, name='produce_page'),
     path('buyProduce/<str:slug>/', views.buy_produce, name='buyProduce_page'),
-    path('callback', views.callback, name='callback_page'),
 ]
