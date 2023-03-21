@@ -104,18 +104,13 @@ def trade_log(request):
     if request.method == 'POST':
         search_in = request.POST.get('search')
         search_status = request.POST.get('status')
-        print(search_status)
         if search_in and search_status:
-            print(1)
             trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).filter(status = search_status)
-            print(trades)
         else:
-            print(3)
             if search_in:
                 trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in)
             if search_status:
                 trades = TradeInvoice.objects.filter(customer=request.user).filter(status = search_status)    
-        # print(trades)
     else:
         trades = TradeInvoice.objects.filter(customer=request.user)
 
@@ -160,30 +155,7 @@ def tradeLog_info(request,slug):
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
 
-@login_required
-def trans_callback(request,slug):
-    current_url = request.build_absolute_uri()
-    url = current_url
-    parse_result = urlparse(url)
-    dict_result = parse_qs(parse_result.query)['checkoutid'][0]
-    if slug == 'trade':
-        cur_trans = TradeInvoice.objects.get(check_id=dict_result)
-        # cur_trans.start_time = timezone.now()
-        cur_trans.status = 'Active'
-        cur_trans.save()
-    elif slug == 'farm':
-        cur_trans = FarmInvoice.objects.get(check_id=dict_result)
-        cur_trans.status = 'Active'
-        cur_trans.save()
-    else:
-        cur_trans = ProduceInvoice.objects.get(check_id=dict_result)
-        cur_trans.save()
-    context = {
-        'cur_trans' : cur_trans
-    }
-    return render(request, 'Dashboard/trans_callback.html', context)
 
-    
 
 @login_required
 def farm_log(request):
@@ -211,6 +183,9 @@ def farm_log(request):
 @login_required
 def farmLog_info(request,slug):
     farm = FarmInvoice.objects.get(slug=slug)
+    if request.method == 'POST':
+        farm.delete()
+        return redirect('farmLog_page')
     context ={
         'farm' : farm
     }
@@ -230,10 +205,36 @@ def produce_log(request):
 
 def produceLog_info(request,slug):
     produce = ProduceInvoice.objects.get(slug=slug)
+    if request.method == 'POST':
+        produce.delete()
+        return redirect('produceLog_page')
     context = {
         'produce' : produce,
     }
     return render(request, 'Dashboard/produceLog_info.html', context)
+
+@csrf_exempt
+def trans_callback(request,slug):
+    current_url = request.build_absolute_uri()
+    url = current_url
+    parse_result = urlparse(url)
+    dict_result = parse_qs(parse_result.query)['checkoutid'][0]
+    if slug == 'trade':
+        cur_trans = TradeInvoice.objects.get(check_id=dict_result)
+        # cur_trans.start_time = timezone.now()
+        cur_trans.status = 'Active'
+        cur_trans.save()
+    elif slug == 'farm':
+        cur_trans = FarmInvoice.objects.get(check_id=dict_result)
+        cur_trans.status = 'Active'
+        cur_trans.save()
+    else:
+        cur_trans = ProduceInvoice.objects.get(check_id=dict_result)
+        cur_trans.save()
+    context = {
+        'cur_trans' : cur_trans
+    }
+    return render(request, 'Dashboard/trans_callback.html', context)
 
 @login_required
 def profile(request):

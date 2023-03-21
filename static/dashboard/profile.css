@@ -48,7 +48,6 @@
   gap: 20px;
 }
 .profile_form section{
-  /* border: 2px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +59,32 @@
   justify-content: center;
   width: 45%;
   /* height: 50px; */
+}
+.main{
+  color: rgb(225, 255, 225);
+}
+.input_field{
+  align-items: flex-start;
+  flex-direction: column;
+}
+form .sh{
+  width: 90%;
+  font-size: 0.7rem;
+  color: rgb(37, 196, 117);
+}
+.input_field #con{
+  width: 90%;
+  display: flex;
+  height: 100%;
+}
+.input_field #con #in_tag{
+  width: 15%;
+  cursor: pointer;
+  min-height: 50px;
+}
+.input_field #con input, .input_field #con select{
+  min-height: 50px;
+  width: 80%;
 }
 .input_field #in_tag{
   width: 13%;
@@ -79,6 +104,12 @@
   padding: 5px;
   color: #13bb82;
   border-radius: 50%;
+}
+input[type='file']{
+  width: 0; 
+  height: 0; 
+  margin: 0; 
+  padding: 0;
 }
 .profile_form section .input_field input, select{
   width: 70%;
@@ -103,7 +134,6 @@ select{
 }
 .part .id_box label{
   background: skyblue;
-  /* background: salmon; */
   border-radius: 3px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 5px;
@@ -125,9 +155,7 @@ select{
     }
 @media all and (max-width:1300px){
   .profile_pic{
-    /* border: 3px solid red; */
     top: 0;
-    /* position: relative; */
   }
 }
 @media all and (max-width:1000px){
@@ -143,16 +171,13 @@ select{
     width: 100%;
   }
   .part .id_box img{
-    /* border: 3px solid skyblue; */
     width: 90%;
     height: 250px;
   }
 }
 @media all and (max-width:650px){
   #id_box_holder{
-    /* flex-direction: column; */
     width: 95%;
-    /* border: 3px solid salmon; */
   }
   .profile_form{
     width: 99%;

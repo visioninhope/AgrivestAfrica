@@ -1,38 +1,83 @@
 {% extends "Dashboard/dashboard.html" %}
 {% load static %}
 {% load humanize %}
+
   {% block cssBlock %}
-  <link rel="stylesheet" href="{% static 'dashboard/tradeLog.css' %}">
+     <link rel="stylesheet" href="{% static 'dashboard/trans_info.css' %}">
   {% endblock cssBlock %}
 
   {% block main %}
-  <section class="main">
+  <section class="main" >
+    <nav class="mini_nav">
+      <a href="{% url 'trades_page' %}" class="material-symbols-outlined">shopping_cart</a>
+      <a href="{% url 'farms_page' %}" class="material-symbols-outlined">agriculture</a>
+      <a href="{% url 'produce_page' %}" class="material-symbols-outlined">store</a>
+    </nav>
     <div class="main_cover"></div>
     <section class="main_low" >
-      <section class="prod_box">
-        <div class="prod_box_info">
-          <section class="tradeInfo_box">
-            <div class="tb_left">
-              <img src="{{produce.image_url}}" alt="">
-            </div>
-            <div class="tb_right">
-              <section>
-                <span id="th">{{produce.name}}</span>
-              </section>
-              <section>
-                <div>
-                  <p><span id="s1">Unit Price[kg]</span> <span id="s2">Ghc {{produce.price|intcomma}}</span></p>
-                  <p><span id="s1">Units Bought</span> <span id="s2">{{produce.units}}</span></p>
-                </div>
-                
-                <div>
-                  <p><span id="s1">Total Cost</span> <span id="s2">Ghc {{produce.total_cost|intcomma}}</span></p>
-                </div>
-              </section>
-            </div>
-          </section>            
+      <div class="info_box">
+        <div class="i_left">
+          <img id="i1" src="{{produce.image_url}}" alt="">
+          
         </div>
-      </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+          const progress_bar = document.getElementById('progress_bar') 
+          const progress = document.getElementById('progress')
+          var total_duration = parseInt('{{total_duration}}')
+          var duration_left = parseInt('{{duration_left}}')
+
+          var width_value = 100 - ((duration_left * 100)/total_duration)
+          progress.style.width = `${width_value}%`
+
+
+          anime({
+          targets: progress,
+          opacity : [0,1],
+          // translateY: [-100,0],
+          width: [0, `${width_value}%`],
+          duration: parseInt(2800),
+          // delay: parseInt(300)
+          });
+          
+        </script>
+
+        <div class="i_right">
+          <p>
+            <span style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem;" >{{produce.name}}</span>
+          </p>
+          <div class="info_row">
+            <p>
+              <small>units</small>
+              <span>{{produce.units}}</span>
+            </p>
+            <p>
+              <small>unit price</small>
+              <span>Ghc {{produce.price}}</span>
+            </p>
+            <p>
+              <small>base cost</small>
+              <span>Ghc {{produce.base_cost|intcomma}}</span>
+            </p>
+          </div>
+          <strong>
+            <small style="border-bottom: 2px dotted darkgray; width: fit-content;">Total cost</small>
+            <span style="font-size: 2.2rem;">GHc {{produce.total_cost}}</span>
+        </div>
+      </div>
     </section>
   </section>
+
+  <style>
+    .main_low{
+      min-height: 100vh;
+      background: white;
+    }
+    
+
+  </style>
   {% endblock main %}
+
+
+
+

@@ -43,34 +43,7 @@
               </div>
             </div>
             <style>
-              .input_field{
-                align-items: flex-start;
-                /* border: 2px solid red; */
-                flex-direction: column;
-              }
-              form .sh{
-                width: 90%;
-                font-size: 0.7rem;
-                color: rgb(37, 196, 117);
-                /* border: 1px solid black; */
-              }
-              .input_field #con{
-                width: 90%;
-                display: flex;
-                /* border: 2px solid gold; */
-                height: 100%;
-              }
-              .input_field #con #in_tag{
-                width: 15%;
-                cursor: pointer;
-                min-height: 50px;
-                /* border: 1px solid red; */
-              }
-              .input_field #con input{
-                min-height: 50px;
-                /* border: 2px solid skyblue; */
-                width: 80%;
-              }
+              
             </style>
             <div class="input_field">
               <span class="sh">Last Name</span>
@@ -198,9 +171,9 @@
                 <div id="in_tag">
                   <i class="material-symbols-outlined">flag</i>
                 </div>
-                <input type="text" name="nationality" placeholder="Nationality" required readonly
+                <input type="text" name="nationality" placeholder="Nationality" required 
                 {% if pro_exists %}
-                value="{{pro_info.nationality}}"
+                value="{{pro_info.nationality}}" readonly
                 {% endif %}>
               </div>
             </div>
@@ -256,9 +229,9 @@
                 <div id="in_tag" class="hid_tag">
                   <i class="material-symbols-outlined">pin</i>
                 </div>
-                <input type="password" id="hid" name="id_num" placeholder="ID Number"  required readonly
+                <input  type="text"  id="hid" name="id_num" placeholder="ID Number"  required
                 {% if pro_exists %}
-                value="{{pro_info.id_number}}"
+                value="{{pro_info.id_number}}" readonly
                 {% endif %}
                 >
               </div>
@@ -346,14 +319,6 @@
               {% endif %}
             </div>
           </section>
-          <style>
-            input[type='file']{
-              width: 0; 
-              height: 0; 
-              margin: 0; 
-              padding: 0;
-            }
-          </style>
           <section>
             <div class="input_field" >
               <button type="submit" id="sub_but">Save</button>
@@ -398,7 +363,6 @@
 
       const inputs_h = document.getElementsByTagName('input');
       const inputs = [...inputs_h]
-      // console.log(inputs)
       inputs.forEach(input=>{
         if(input.readOnly){
           input.style.background = 'rgb(225, 255, 225)'
@@ -407,12 +371,3 @@
       })
     </script>
   {% endblock scriptBlock %}
-    
-    
-
-
-  <style>
-    .main{
-      color: rgb(225, 255, 225);
-    }
-  </style>
