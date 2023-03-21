@@ -16,12 +16,12 @@
       <section class="main_top">
         <div class="mt_left">
           <div class="box mt1" id="mt_box">
-            <i class="material-symbols-outlined" style="color: salmon;">numbers</i>
+            <i class="material-symbols-outlined">numbers</i>
             <p>Total Produces</p>
             <span>{{produces.count|intcomma}}</span>
           </div>
           <div class="box mt2" id="mt_box">
-            <i class="material-symbols-outlined" style="color: skyblue;">payments</i>
+            <i class="material-symbols-outlined">payments</i>
             <p>Total Bought</p>
             <span>Ghc {{produces_bought|intcomma}}</span>
           </div>
@@ -65,14 +65,10 @@
               </a>
               {% endfor %}
             {% else %}
-            <div class="empty_box">
-              <a href="{% url 'produce_page' %}">
-                <span class="material-symbols-outlined" id="tl">currency_exchange</span>
-                <span class="material-symbols-outlined" id="tr">potted_plant</span>
-                <button>Buy Produce</button>
-                <i class="material-symbols-outlined">store</i>
-              </a>
-            </div>
+            <a href="{% url 'produce_page' %}" class="prompt_box">
+              <img src="/media/img/cocoa-pods-cocoa-beans-cacao-powder-with-leaves-isolated-white-background_38145-707.webp" alt="">
+              <button>Buy Produce</button>
+            </a>
             {% endif %}            
         </section>
       </section>     

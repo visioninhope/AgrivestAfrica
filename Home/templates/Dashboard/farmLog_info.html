@@ -1,50 +1,145 @@
 {% extends "Dashboard/dashboard.html" %}
 {% load static %}
 {% load humanize %}
+
   {% block cssBlock %}
-  <link rel="stylesheet" href="{% static 'dashboard/tradeLog.css' %}">
+     <link rel="stylesheet" href="{% static 'dashboard/trans_info.css' %}">
   {% endblock cssBlock %}
 
   {% block main %}
-  <section class="main">
+  <section class="main" >
+    <nav class="mini_nav">
+      <a href="{% url 'trades_page' %}" class="material-symbols-outlined">shopping_cart</a>
+      <a href="{% url 'farms_page' %}" class="material-symbols-outlined">agriculture</a>
+      <a href="{% url 'produce_page' %}" class="material-symbols-outlined">store</a>
+    </nav>
     <div class="main_cover"></div>
     <section class="main_low" >
-      <section class="prod_box">
-        <div class="prod_box_info">
-          <section class="tradeInfo_box">
-            <div class="tb_left">
-              <img src="{{farm.image_url}}" alt="">
+      <div class="info_box">
+        <div class="i_left">
+          <img id="i1" src="{{farm.image_url}}" alt="">
+          <div class="stat_box">
+            <div class="st_top">
+              {% if farm.status == 'Pending' %}
+              <div id="spot" style="background: salmon;"></div> <span>Pending</span> <i class="material-symbols-outlined">hourglass_empty</i>
+              {% elif farm.status == 'Active' %}
+              <div id="spot" style="background: skyblue;"></div> <span style="color: skyblue;">Active</span> <i style="color: skyblue;" class="material-symbols-outlined">bolt</i>
+              {% else %}
+              <div id="spot" style="background: #71d574;"></div> <span style="color: #71d574;">Completed</span> <i style="color: #71d574;" class="material-symbols-outlined">hourglass_empty</i>
+              {% endif %}
             </div>
-            <div class="tb_right">
-              <section>
-                <span id="th">{{farm.name}}</span>
-              </section>
-              <section>
-                <div>
-                  <p><span id="s1">Unit Price[kg]</span> <span id="s2">Ghc {{farm.price|intcomma}}</span></p>
-                  <p><span id="s1">Units Bought</span> <span id="s2">{{farm.units}}</span></p>
+            <div class="st_mid">
+              <div class="progress_bar" id="progress_bar">
+                <div class="progress" id="progress">
+                  <img src="{{farm.image_url}}" alt="">
                 </div>
-                <div>
-                  <p><span id="s1">Base Cost</span> <span id="s2">Ghc {{farm.base_cost|intcomma}}</span></p>
-                  <p><span id="s1">Service Charge</span> <span id="s2">{{farm.service_charge}}%</span></p>
-                </div>
-                <div>
-                  <p><span id="s1">Total Cost</span> <span id="s2">Ghc {{farm.total_cost|intcomma}}</span></p>
-                  <p><span id="s1">Pros(%)</span> <span id="s2">{{farm.profit_range_min}}% -{{farm.profit_range_max}}%</span></p>
-                </div>
-                <div>
-                  <p><span id="s1">Start Date</span> <span id="s2">{{farm.start_date|date:'d b, Y'}}</span></p>
-                  <p><span id="s1">End Date</span> <span id="s2">{{farm.end_date|date:'d b, Y'}}</span></p>
-                </div>
-                <div>
-                  <p><span id="s1">Partner</span> <span id="s2">{{farm.partner}}</span></p>
-                  <p><span id="s1">Status</span> <span id="s2">{{farm.status}}</span></p>
-                </div>
-              </section>
+              </div>
+              <span style="font-size: 0.8rem;">{{time|timesince:farm.end_date}} left</span>
             </div>
-          </section>            
+            
+            {% if farm.status == 'Pending' %}
+            <form class="st_low" method="post">
+              {% csrf_token %}
+              <input type="text" name="farm_id" value="{{farm.id}}" style="display: none;" readonly>
+              <button type="submit" id="cancel">cancel</button>
+              <a href="{{farm.paylink}}" id="pay">pay here</a> 
+            </form>
+            {% endif %}
+          </div>
         </div>
-      </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+          const progress_bar = document.getElementById('progress_bar') 
+          const progress = document.getElementById('progress')
+          var total_duration = parseInt('{{total_duration}}')
+          var duration_left = parseInt('{{duration_left}}')
+
+          var width_value = 100 - ((duration_left * 100)/total_duration)
+          progress.style.width = `${width_value}%`
+
+
+          anime({
+          targets: progress,
+          opacity : [0,1],
+          // translateY: [-100,0],
+          width: [0, `${width_value}%`],
+          duration: parseInt(2800),
+          // delay: parseInt(300)
+          });
+          
+        </script>
+
+        <div class="i_right">
+          <p>
+            <span style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem;" >{{farm.name}}</span>
+            <span>{{farm.farm}} farm</span>
+            <span style="font-size: 0.8rem; color: salmon;">{{farm.profit_range_min}}% - {{farm.profit_range_max}}%</span>
+          </p>
+          <div class="info_row">
+            <p>
+              <small>units</small>
+              <span>{{farm.units}}</span>
+            </p>
+            <p>
+              <small>unit price</small>
+              <span>Ghc {{farm.price}}</span>
+            </p>
+            <p>
+              <small>base cost</small>
+              <span>Ghc {{farm.base_cost|intcomma}}</span>
+            </p>
+          </div>
+          <div class="info_row" style="box-shadow: none;">
+            <p>
+              <small>service charge</small>
+              <span>{{farm.service_charge}}%</span>
+            </p>
+            <p>
+              <small>Pros</small>
+              <span class="material-symbols-outlined" style="color: skyblue;">paid</span>
+            </p>
+            <p>
+              <small style="color: #71d574;">Ghc{{farm.pros_min}} <i class="material-symbols-outlined">trending_up</i></small>
+              <span style="color: salmon;">Ghc{{farm.pros_max}} <i class="material-symbols-outlined">trending_down</i></span>
+            </p>
+          </div>
+          <strong>
+            <small style="border-bottom: 2px dotted darkgray; width: fit-content;">Total cost</small>
+            <span style="font-size: 2.2rem;">GHc {{farm.total_cost}}</span>
+          </strong>
+          <div class="info_row">
+            <p>
+              <small>Start date</small>
+              <span>{{farm.start_date|date:'d b, Y'}}</span>
+            </p>
+            <p>
+              <span class="material-symbols-outlined" style="color: salmon;">schedule</span>
+              <span class="material-symbols-outlined" style="color: salmon;">arrow_range</span>
+            </p>
+            <p>
+              <small>End date</small>
+              <span>{{farm.end_date|date:'d b, Y'}}</span>
+            </p>
+          </div>
+          <strong>
+            <small style="border-bottom: 2px dotted darkgray; width: fit-content;">Duration</small>
+            <span style="font-size: 2.2rem;">{{farm.start_date|timesince:farm.end_date}}</span>
+          </strong>
+        </div>
+      </div>
     </section>
   </section>
+
+  <style>
+    .main_low{
+      min-height: 100vh;
+      background: white;
+    }
+    
+
+  </style>
   {% endblock main %}
+
+
+
+

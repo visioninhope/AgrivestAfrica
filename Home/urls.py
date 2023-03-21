@@ -18,6 +18,7 @@ urlpatterns = [
     path('dashboard/transactions', views.dash_transactions, name='dash_transactions'),
     path('dashboard/produce', views.dash_produce, name='dash_produce'),
 
+    path('trans_callback', views.trans_callback),
     
     path('about/', views.about, name='about_page'),
     path('advisors/', views.advisors, name='advisors_page'),

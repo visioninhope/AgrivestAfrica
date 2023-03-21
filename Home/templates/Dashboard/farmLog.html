@@ -16,17 +16,17 @@
       <section class="main_top">
         <div class="mt_left">
           <div class="box mt1" id="mt_box">
-            <i class="material-symbols-outlined" style="color: salmon;">numbers</i>
+            <i class="material-symbols-outlined">numbers</i>
             <p>Total Farms</p>
             <span>{{farms.count|intcomma}}</span>
           </div>
           <div class="box mt2" id="mt_box">
-            <i class="material-symbols-outlined" style="color: skyblue;">payments</i>
+            <i class="material-symbols-outlined">payments</i>
             <p>Total Bought</p>
             <span>Ghc {{farms_bought|intcomma}}</span>
           </div>
           <div class="box mt3" id="mt_box">
-            <i class="material-symbols-outlined" style="color: burlywood;">savings</i>
+            <i class="material-symbols-outlined">savings</i>
             <p>Total Sold</p>
             <span> Ghc {{farms_sold|intcomma}}</span>
             {% if farms_bal > '0' %}
@@ -89,14 +89,10 @@
               </a>
               {% endfor %}
             {% else %}
-            <div class="empty_box">
-              <a href="{% url 'farms_page' %}">
-                <span class="material-symbols-outlined" id="tl">currency_exchange</span>
-                <span class="material-symbols-outlined" id="tr">potted_plant</span>
-                <button>Sponsor A Farm</button>
-                <i class="material-symbols-outlined">agriculture</i>
-              </a>
-            </div>
+            <a href="{% url 'farms_page' %}" class="prompt_box">
+              <img src="/media/img/fresh-juicy-pink-tomato-isolated-white-background_414617-732.webp" alt="">
+              <button>Sponsor A Farm</button>
+            </a>
             {% endif %}            
         </section>
       </section>     

@@ -145,13 +145,23 @@ def trade_log(request):
 @login_required
 def tradeLog_info(request,slug):
     trade = TradeInvoice.objects.get(slug=slug)
+    time = timezone.now().date()
+    total_duration = (trade.end_date - trade.start_date).days
+    duration_left = (trade.end_date - time).days
+    if request.method == 'POST':
+        print(request.POST)
+        trade.delete()
+        return redirect('tradeLog_page')
     context ={
         'trade' : trade,
+        'time' : time,
+        'total_duration' : total_duration,
+        'duration_left' : duration_left,
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
 
 @login_required
-def transaction_callback(request,slug):
+def trans_callback(request):
     current_url = request.build_absolute_uri()
     url = current_url
     parse_result = urlparse(url)
@@ -160,6 +170,11 @@ def transaction_callback(request,slug):
     cur_trade = TradeInvoice.objects.get(check_id=dict_result)
     cur_trade.status = 'Active'
     cur_trade.save()
+    context = {
+        'cur_trade' : cur_trade
+    }
+    return render(request, 'Dashboard/trans_callback.html', context)
+
     
 
 @login_required

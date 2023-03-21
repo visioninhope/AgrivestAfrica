@@ -103,17 +103,6 @@ WSGI_APPLICATION = 'AgrivestAfrica.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'PO1FDQsDEWCVRGPZN6kl',
-#         'HOST': 'containers-us-west-66.railway.app',
-#         'PORT': '6274'
-#     }
-# }
-
 DATABASES = {
     'default': dj_database_url.parse('postgresql://postgres:WzCyOqZN3oRnK0o8ErfN@containers-us-west-29.railway.app:5942/railway')
 }

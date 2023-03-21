@@ -16,17 +16,17 @@
     <section class="main_top">
       <div class="mt_left">
         <div class="box mt1" id="mt_box">
-          <i class="material-symbols-outlined" style="color: salmon;">numbers</i>
+          <i class="material-symbols-outlined">numbers</i>
           <p>Total Trades</p>
           <span>{{trades.count|intcomma}}</span>
         </div>
         <div class="box mt2" id="mt_box">
-          <i class="material-symbols-outlined" style="color: skyblue;">payments</i>
+          <i class="material-symbols-outlined">payments</i>
           <p>Total Bought</p>
           <span>Ghc {{trades_bought|intcomma}}</span>
         </div>
         <div class="box mt3" id="mt_box">
-          <i class="material-symbols-outlined" style="color: burlywood;">savings</i>
+          <i class="material-symbols-outlined">savings</i>
           <p>Total Sold</p>
           <span> Ghc {{trades_sold|intcomma}}</span>         
           {% if trades_bal > '0' %}
@@ -91,14 +91,10 @@
             </a>
             {% endfor %}
             {% else %}
-            <div class="empty_box">
-              <a href="{% url 'trades_page' %}">
-                <span class="material-symbols-outlined" id="tl">currency_exchange</span>
-                <span class="material-symbols-outlined" id="tr">potted_plant</span>
-                <button>Sponsor A Trade</button>
-                <i class="material-symbols-outlined">shopping_cart</i>
-              </a>
-            </div>
+            <a href="{% url 'trades_page' %}" class="prompt_box">
+              <img src="/media/img/cocoa-pods-cocoa-beans-cacao-powder-with-leaves-isolated-white-background_38145-707.webp" alt="">
+              <button>Sponsor A Trade</button>
+            </a>
             {% endif %}         
       </section>
     </section>

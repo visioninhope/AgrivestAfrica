@@ -198,8 +198,8 @@ def trans_pay(total_cost, trans_name,trans_obj):
     payload = json.dumps({
         "totalAmount": total_cost,
         "description": trans_name,
-        "callbackUrl": 'https://www.google.com/',
-        "returnUrl": 'https://www.google.com/',
+        "callbackUrl": 'https://www.agrivestafrica.com/trans_callback/',
+        "returnUrl": 'https://www.agrivestafrica.com/trans_callback/',
         "merchantAccountNumber": "2017279",
         "cancellationUrl": "https://www.agrivestafrica.com/trades/",
         "clientReference": token

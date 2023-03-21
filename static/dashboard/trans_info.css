@@ -1,0 +1,171 @@
+.info_box{
+  display: flex;
+  width: 85%;
+  justify-content: space-between;
+  min-height: 85vh;
+}
+.info_box .i_left{
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  min-height: 80vh;
+}
+.info_box .i_left #i1{
+  width:100%; 
+  height:60vh;
+}
+.info_box .i_left .stat_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 40%;
+}
+.st_top{
+  color: salmon;
+  display: flex;
+  gap: 10px;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  align-items: center;
+}
+#spot{
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+.st_mid{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.progress_bar{
+  width: 350px;
+  height: 35px;
+  background: rgb(216, 216, 216);
+}
+.progress{
+  height: 100%;
+  width: 0;
+  display: flex;
+  /* transition: 1s ease 0.3s; */
+  justify-content: flex-end;
+  background: #71d574;
+  /* transition: 1s ease; */
+}
+.progress img{
+  height:100%; 
+  width:40px;
+}
+.st_low{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.st_low a, .st_low button{
+  cursor: pointer;
+  padding: 10px;
+}
+#cancel{
+  background: salmon;
+  color: white;
+}
+#pay{
+  background: #71d574;
+  color: white;
+}
+
+.info_box .i_right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 47%;
+  padding: 0 1.5%;
+  min-height: 80vh;
+}
+.info_box .i_right p, .info_box .i_right strong{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.info_box .i_right strong{
+  align-items: flex-end;
+  font-weight: 400;
+}
+.info_box .i_right .info_row{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 10px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.info_box .i_right .info_row p{
+  width: 30%;
+}
+.info_box .i_right small{
+  font-size: 1rem;
+  border-bottom: 1px dotted darkgray;
+}
+
+@media all and (max-width:1100px){
+  .main_low{
+    align-items: flex-start;
+    overflow: auto;
+    min-height: 100vh;
+  }
+  .info_box{
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    gap: 50px;
+    width: 100%;
+    min-height: auto;
+  }
+  .info_box .i_right strong{
+    align-items: center;
+  }
+  .info_box .i_left, .info_box .i_right{
+    justify-content: flex-start;
+    max-height:auto;
+    min-height: auto;
+    width: 80%;
+    text-align: center;
+  }
+  .info_box .i_left{
+    border-bottom: 1px solid black;
+  }
+  .info_box .i_right{
+    gap: 50px;
+  }
+  .info_box .i_left #i1{
+    height: 50vh;
+  }
+}
+@media all and (max-width:540px){
+  .info_box{
+    gap: 30px;
+  }
+  .info_box .i_left, .info_box .i_right{
+    width: 90%;
+    align-items: center;
+  }
+  .info_box .i_left #i1{
+    height: 35vh;
+  }
+  .st_mid{
+    width: 100%;
+  }
+  .progress_bar{
+    width: 95%;
+  }
+  .info_box .i_right .info_row{
+    width: 95%;
+  }
+  .info_box .i_right .info_row p{
+   width: auto;
+  }
+}
