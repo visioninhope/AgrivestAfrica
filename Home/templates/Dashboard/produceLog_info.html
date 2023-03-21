@@ -18,7 +18,23 @@
       <div class="info_box">
         <div class="i_left">
           <img id="i1" src="{{produce.image_url}}" alt="">
-          
+          <div class="stat_box">
+            <div class="st_top">
+              {% if produce.status == 'Pending' %}
+              <div id="spot" style="background: salmon;"></div> <span>Pending</span> <i class="material-symbols-outlined">hourglass_empty</i>
+              {% else %}
+              <div id="spot" style="background: #71d574;"></div> <span style="color: #71d574;">Completed</span> <i style="color: #71d574;" class="material-symbols-outlined">hourglass_empty</i>
+              {% endif %}
+            </div>
+            {% if produce.status == 'Pending' %}
+            <form class="st_low" method="post">
+              {% csrf_token %}
+              <input type="text" name="produce_id" value="{{produce.id}}" style="display: none;" readonly>
+              <button type="submit" id="cancel">cancel</button>
+              <a href="{{produce.paylink}}" id="pay">pay here</a> 
+            </form>
+          {% endif %}
+          </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>

@@ -5,6 +5,10 @@
   <link rel="stylesheet" href="{% static 'dashboard/tradeLog.css' %}">
   {% endblock cssBlock %}
 
+  {% block sideBar %}
+  {% include 'Dashboard/sideBar.html' %}
+
+  {% endblock sideBar %}
   {% block main %}
   <section class="main">
     <div class="main_cover"></div>

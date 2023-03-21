@@ -6,9 +6,6 @@ if(document.querySelector('.quick_box')){
     autoplay:{
       delay:3000
     },
-    pagination: {
-      el: '.swiper-pagination',
-    },
     navigation: {
       nextEl: '.quick_next',
       prevEl: '.quick_prev',
@@ -30,9 +27,6 @@ if(document.querySelector('.main_mid')){
     autoplay:{
       delay:3000
     },
-    // pagination: {
-    //   el: '.swiper-pagination',
-    // },
   });
   mid_box_swiper.el.onmouseenter =()=>{
     mid_box_swiper.autoplay.stop()
@@ -51,9 +45,6 @@ if(document.querySelector('.ad_swiper')){
       delay:3000
     },
     disableOnInteraction:true,
-    // pagination: {
-    //   el: '.swiper-pagination',
-    // },
   });
   mid_box_swiper.el.onmouseenter =()=>{
     mid_box_swiper.autoplay.stop()

@@ -49,20 +49,13 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 @login_required
+
 @csrf_exempt
 def dashboard(request):
-    total_trans = 0
     ts = TradeInvoice.objects.filter(customer=request.user)
     fs = FarmInvoice.objects.filter(customer=request.user)
     ps = ProduceInvoice.objects.filter(customer=request.user)
-
     total_count = ts.count() + fs.count() + ps.count()
-    for t in ts:
-        total_trans = total_trans + t.total_cost
-    for f in fs:
-        total_trans = total_trans + f.total_cost
-    for p in ps:
-        total_trans = total_trans + p.total_cost
 
     if request.method == 'POST':
         status_val = request.POST.get('status') 
@@ -92,12 +85,25 @@ def dashboard(request):
         'trades' : trades,
         'farms': farms,
         'produces' : produces,
-        'total_trans' : "{:.2f}".format(total_trans),
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
         'total_count' : total_count,
         'pageList' : pageList,
         'pageList_2' : pageList_2
     }
     return render(request,'Dashboard/dashboard.html', context)
+
+def get_total_trans(request):
+    ts = TradeInvoice.objects.filter(customer=request.user)
+    fs = FarmInvoice.objects.filter(customer=request.user)
+    ps = ProduceInvoice.objects.filter(customer=request.user)
+    total_trans = 0
+    for t in ts:
+        total_trans = total_trans + t.total_cost
+    for f in fs:
+        total_trans = total_trans + f.total_cost
+    for p in ps:
+        total_trans = total_trans + p.total_cost
+    return total_trans
 
 @login_required
 def trade_log(request):
@@ -133,6 +139,7 @@ def trade_log(request):
         'pend_count' : pend_count,
         'act_count' : act_count,
         'comp_count' : comp_count,
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
@@ -152,6 +159,7 @@ def tradeLog_info(request,slug):
         'time' : time,
         'total_duration' : total_duration,
         'duration_left' : duration_left,
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
     return render(request, 'Dashboard/tradeLog_info.html', context)
 
@@ -176,7 +184,8 @@ def farm_log(request):
         'farms_bal' : farms_bal,
         'pend_count' : pend_count,
         'act_count' : act_count,
-        'comp_count' : comp_count
+        'comp_count' : comp_count,
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
     return render(request,'Dashboard/farmLog.html', context)
 
@@ -187,7 +196,8 @@ def farmLog_info(request,slug):
         farm.delete()
         return redirect('farmLog_page')
     context ={
-        'farm' : farm
+        'farm' : farm,
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
     return render(request, 'Dashboard/farmLog_info.html', context)
 
@@ -199,7 +209,8 @@ def produce_log(request):
         produces_bought = produces_bought + prod.total_cost
     context = {
         'produces' : produces,
-        'produces_bought' : produces_bought
+        'produces_bought' : produces_bought,
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
     return render(request,'Dashboard/produceLog.html', context)
 
@@ -210,6 +221,7 @@ def produceLog_info(request,slug):
         return redirect('produceLog_page')
     context = {
         'produce' : produce,
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
     return render(request, 'Dashboard/produceLog_info.html', context)
 
@@ -231,6 +243,7 @@ def trans_callback(request,slug):
         cur_trans.save()
     else:
         cur_trans = ProduceInvoice.objects.get(check_id=dict_result)
+        cur_trans.status = 'Completed'
         cur_trans.save()
     context = {
         'cur_trans' : cur_trans,
@@ -285,6 +298,7 @@ def profile(request):
     context = {
         'pro_exists' : pro_exists,
         'pro_info' : pro_info,
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
     return render(request, 'Dashboard/profile.html', context)
 
@@ -292,7 +306,8 @@ def profile(request):
 def inbox(request):
     inboxes = Inbox.objects.all()
     context = {
-        'inboxes' : inboxes
+        'inboxes' : inboxes,
+        'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
     return render(request, 'Dashboard/inbox.html', context)
 

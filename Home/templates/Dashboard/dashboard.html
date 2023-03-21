@@ -25,7 +25,11 @@
 </head>
 <body>
   <section class="page">
-    {% include 'Dashboard/sideBar.html' %}
+    
+    {% block sideBar %}
+      {% include 'Dashboard/sideBar.html' %}
+    {% endblock sideBar %}
+      
     
     {% block main %}
     <section class="main">
@@ -246,6 +250,7 @@
                     <p>units</p>
                     <p class="date">Purchase Time</p>
                     <p>Total Cost</p>
+                    <p class="status">Status</p>
                   </div>
 
                   <section id="con_info">
@@ -259,6 +264,17 @@
                         <p>{{produce.units|intcomma}}</p>
                         <p class="date">{{produce.start_time|naturaltime}}</p>
                         <p>Ghc {{produce.total_cost|intcomma}}</p>
+                        <p class="status">
+                          {% if produce.status == 'Pending' %}
+                          <small style="background: #fcf1ed; color: salmon; ">
+                            {{produce.status}}
+                          </small>
+                          {% else %}
+                          <small style="background: #ebfaf2; color: #34cea7;">
+                            {{produce.status}}
+                          </small>        
+                          {% endif %}                  
+                        </p>
                       </a>
                     {% endfor %}
                   {% else %}
@@ -270,7 +286,6 @@
                   </section>
                 </div>
               </div>
-              <div class="swiper-pagination"></div>
             </div>
           </div>
         </section>

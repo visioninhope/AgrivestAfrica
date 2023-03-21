@@ -111,7 +111,12 @@ class ProduceInvoice(models.Model):
     image_url = models.CharField(max_length=300, blank=True, null=True)
     payment = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(max_length=250, blank=True, null=True)
-
+    CHOICES = (
+        ("Pending", "Pending"),
+        ("Completed", "Completed")
+    )
+    status = models.CharField(
+        max_length=50, choices=CHOICES, default='Pending')
     #token = models.UUIDField(max_length=300,default=1)
     check_id = models.CharField(max_length=500, blank=True, null=True)
     paylink = models.CharField(max_length=500, blank=True,null=True)
