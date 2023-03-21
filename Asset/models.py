@@ -3,7 +3,6 @@ from django.utils.text import slugify
 from django.utils import timezone
 from datetime import timedelta
 from Log.models import User
-from phonenumber_field.modelfields import PhoneNumberField
 
 class Trade(models.Model):
     name = models.CharField(max_length=300)
@@ -18,7 +17,6 @@ class Trade(models.Model):
         ("Unavailable", "Unavailable"),
     )
     status = models.CharField(max_length=40, choices=STATUS, default='Available')
-    Farm = models.CharField(max_length=200)
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(default=timezone.now)
     slug = models.SlugField(max_length=300,blank=True, null=True)
@@ -37,7 +35,7 @@ class Trade(models.Model):
 class Partner(models.Model):
     name = models.CharField(max_length=300)
     email = models.EmailField()
-    contact = PhoneNumberField()
+    contact = models.CharField(max_length=200)
     location = models.CharField(max_length=300)
     date_joined = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=300,blank=True,null=True)

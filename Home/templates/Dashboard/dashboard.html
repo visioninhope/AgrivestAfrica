@@ -51,13 +51,10 @@
             <p>Total Transactions</p>
             <span>Ghc {{total_trans|intcomma}}</span>
           </div>
-          <script>
-            sessionStorage.setItem('total_trans','{{total_trans}}')
-          </script>
           <div class="box mt3" id="mt_box">
             <i class="material-symbols-outlined" style="color: skyblue;">savings</i>
             <p>Total Balance</p>
-            <span>Ghc 2,425</span>
+            <span>Ghc 0.00</span>
           </div>
           <div class="box" id="mt_box">
             <div class="quick_box swiper">
@@ -209,7 +206,7 @@
                           </div>
                           <p class="date">{{farm.end_date|date:'d b, Y'}}</p>
                           <p>Ghc {{farm.total_cost|intcomma}}</p>
-                          <p>{{farm.start_time|naturaltime}} ago</p>
+                          <p>{{farm.start_time|naturaltime}}</p>
                           <p class="status">
                             {% if farm.status == 'Pending' %}
                             <small style="background: #fcf1ed; color: salmon; ">

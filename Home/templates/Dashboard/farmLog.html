@@ -72,7 +72,7 @@
                     <span id="s1" style="color: rgb(36, 194, 115);">Pay here</span>
                     <div id="stat_tag" style="background: #ff6364;"></div>
                     {% elif farm.status == 'Active' %}
-                    <span id="s1" style="color: rgb(36, 194, 115);">{{farm.start_date|timesince:farm.end_date}} left</span>
+                    <span id="s1" style="color: rgb(36, 194, 115);">{{time|timesince:farm.end_date}} left</span>
                     <div id="stat_tag" style="background: #00acea;"></div>
                     {% else %}
                     <div id="stat_tag" style="background: #aeecc1;"></div>

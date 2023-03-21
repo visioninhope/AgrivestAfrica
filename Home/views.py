@@ -130,7 +130,7 @@ def trade_log(request):
         trades_bought = trades_bought + trade.total_cost
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
-
+    
     context = {
         'trades' : trades,
         'trades_bought' : "{:.2f}".format(trades_bought),
@@ -140,6 +140,7 @@ def trade_log(request):
         'act_count' : act_count,
         'comp_count' : comp_count,
         'total_trans' : "{:.2f}".format(get_total_trans(request)),
+        'time' : timezone.now().date()
     }
     return render(request,'Dashboard/tradeLog.html', context)
 
@@ -186,6 +187,7 @@ def farm_log(request):
         'act_count' : act_count,
         'comp_count' : comp_count,
         'total_trans' : "{:.2f}".format(get_total_trans(request)),
+        'time' : timezone.now().date()
     }
     return render(request,'Dashboard/farmLog.html', context)
 

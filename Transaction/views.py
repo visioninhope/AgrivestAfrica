@@ -164,7 +164,7 @@ def buy_produce(request,slug):
         if request.user.is_authenticated:
             customer = User.objects.get(username=request.user)
             units = int(request.POST.get('units'))
-            total_cost = (units * produce.price) + ((units * produce.price))
+            total_cost = ((units * produce.price))
             produce_name = request.POST.get('produce_name')
             produceInvoice = ProduceInvoice()
             if ProduceInvoice.objects.filter(customer=request.user).filter(name=produce_name).exists():
