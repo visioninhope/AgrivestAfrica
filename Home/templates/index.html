@@ -118,7 +118,7 @@
             <div class="card-body">
               <center>
                 {% if trade.status == 'Available' %}
-                <a class="btn rgba-gradient1 btn-rounded btn-sm animated bounce white-text" href="{% url 'makeTrade_page' trade.slug %}">Available</a>
+                <a class="btn rgba-gradient1 btn-rounded btn-sm animated bounce white-text" href="{% url 'makeFarm_page' trade.slug %}">Available</a>
                 {% else %}
                 <a class="btn btn-danger btn-rounded btn-sm">Sold Out</a>
                 {% endif %}
@@ -146,7 +146,7 @@
               <div class="card-body">
                 <center>
                   {% if trade.status == 'Available' %}
-                  <a class="btn rgba-gradient1 btn-rounded btn-sm animated bounce white-text" href="{% url 'makeTrade_page' trade.slug %}">Available</a>
+                  <a class="btn rgba-gradient1 btn-rounded btn-sm animated bounce white-text" href="{% url 'makeFarm_page' trade.slug %}">Available</a>
                   {% else %}
                   <a class="btn btn-danger btn-rounded btn-sm">Sold Out</a>
                   {% endif %}
