@@ -57,7 +57,7 @@
       <div class="messBox">
         {% for message in messages %} 
           {% if message.tags == 'error' %}
-          <a href="{% url 'login_page' %}"><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">Create account to continue</div></a>
+          <a href="{% url 's_register_page' %}"><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">Create account to continue</div></a>
           {% else %}
           <a><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div></a>
           {% endif %}
