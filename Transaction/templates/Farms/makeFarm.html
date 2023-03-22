@@ -285,7 +285,7 @@
       total.innerHTML = 'GHS' + ' ' + ((units.value * price) + Math.round((units.value * price) * (serve / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       pros_low.innerHTML = '+' + ' ' + 'GHS' + ' ' + (Math.round((units.value * price) * (ros_min / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       pros_high.innerHTML = '+' + ' ' + 'GHS' +' ' + (Math.round((units.value * price) * (ros_max / 100))).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      land_size.value = (units.value/4) + ' ' + 'Achres'
+      land_size.value = (units.value/10) + ' ' + 'Achres'
     }
 
   </script>
