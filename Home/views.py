@@ -120,9 +120,9 @@ def trade_log(request):
     else:
         trades = TradeInvoice.objects.filter(customer=request.user)
 
-    pend_count = TradeInvoice.objects.filter(status='Pending').count()
-    act_count = TradeInvoice.objects.filter(status='Active').count()
-    comp_count = TradeInvoice.objects.filter(status='Completed').count()
+    pend_count = TradeInvoice.objects.filter(customer=request.user).filter(status='Pending').count()
+    act_count = TradeInvoice.objects.filter(customer=request.user).filter(status='Active').count()
+    comp_count = TradeInvoice.objects.filter(customer=request.user).filter(status='Completed').count()
     trades_bought = 0
     trades_sold = 0
     tradeList = TradeInvoice.objects.filter(customer=request.user)
@@ -169,9 +169,9 @@ def tradeLog_info(request,slug):
 @login_required
 def farm_log(request):
     farms = FarmInvoice.objects.filter(customer=request.user)
-    pend_count = FarmInvoice.objects.filter(status='Pending').count()
-    act_count = FarmInvoice.objects.filter(status='Active').count()
-    comp_count = FarmInvoice.objects.filter(status='Completed').count()
+    pend_count = FarmInvoice.objects.filter(customer=request.user).filter(status='Pending').count()
+    act_count = FarmInvoice.objects.filter(customer=request.user).filter(status='Active').count()
+    comp_count = FarmInvoice.objects.filter(customer=request.user).filter(status='Completed').count()
     farms_bought = 0
     farms_sold = 0
     for farm in farms:
