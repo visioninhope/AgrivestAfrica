@@ -1,0 +1,193 @@
+#sub_but{
+  background: #13bb82;
+  color: white;
+  padding: 10px 15px;
+}
+.profile_top{
+  min-height: 27vh;
+  width: 100%;
+  background-image: url(/media/img/plant\ coins.avif);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.profile_pic{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  bottom: -20%;
+  left: 6%;
+}
+.profile_form_header{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid rgb(58, 162, 58);
+  width: 80%;
+}
+.profile_form_header span,.profile_form_header img{
+  margin-left: 10%;
+}
+.profile_form_header span{
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 2rem;
+}
+.profile_form_box{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: white;
+  padding: 4% 0;
+}
+.profile_form{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.profile_form section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+}
+.profile_form section .input_field{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  /* height: 50px; */
+}
+.main{
+  color: rgb(225, 255, 225);
+}
+.input_field{
+  align-items: flex-start;
+  flex-direction: column;
+}
+form .sh{
+  width: 90%;
+  font-size: 0.7rem;
+  color: rgb(37, 196, 117);
+}
+.input_field #con{
+  width: 90%;
+  display: flex;
+  height: 100%;
+}
+.input_field #con #in_tag{
+  width: 15%;
+  cursor: pointer;
+  min-height: 50px;
+}
+.input_field #con input, .input_field #con select{
+  min-height: 50px;
+  width: 80%;
+}
+.input_field #in_tag{
+  width: 13%;
+  height: 100%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input_field #in_tag i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #cff3e7;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  color: #13bb82;
+  border-radius: 50%;
+}
+input[type='file']{
+  width: 0; 
+  height: 0; 
+  margin: 0; 
+  padding: 0;
+}
+.profile_form section .input_field input, select{
+  width: 70%;
+  height: 100%;
+  padding: 0 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: 0.3s ease;
+}
+select{
+  width: 74%;
+}
+
+.part .id_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+  gap: 15px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.part .id_box label{
+  background: skyblue;
+  border-radius: 3px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 5px;
+  color: white;
+}
+.part .id_box img{
+  width: 25vw;
+  height: 200px;
+}
+#pro_pic_label{
+      padding: 5px;
+      display: flex;
+      min-width: 100px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      background: #66923a;
+      color: white;
+    }
+@media all and (max-width:1300px){
+  .profile_pic{
+    top: 0;
+  }
+}
+@media all and (max-width:1000px){
+  .profile_form section{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .profile_form section .input_field{
+    width: 100%;
+  }
+  .id_box{
+    display: flex;
+    width: 100%;
+  }
+  .part .id_box img{
+    width: 90%;
+    height: 250px;
+  }
+}
+@media all and (max-width:650px){
+  #id_box_holder{
+    width: 95%;
+  }
+  .profile_form{
+    width: 99%;
+    align-items: center;
+  }
+  .profile_form .part{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 99%;
+  }
+}

@@ -1,0 +1,93 @@
+.main{
+  display: flex;
+  background: white;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: row;
+}
+.main .mail{
+  width: 65%;
+  width: 95%;
+  min-height: 100vh;
+  /* background: salmon; */
+}
+.main .mail .mail_top{
+  width: 100%;
+  background: white;
+  font-size: 2rem;
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+}
+.main .mail .mail_box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.main .mail .mail_box .box{
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border: 1px solid rgb(232, 232, 232);
+  transition: 0.3s ease;
+}
+.main .mail .mail_box .box:hover{
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.main .mail .mail_box .box #duration{
+  top: -13px;
+  padding: 0 10px;
+  font-weight: 600;
+  color: salmon;
+  right: 30px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: white;
+  position: absolute;
+}
+.main .mail .mail_box .box img{
+  height: 150px;
+  width: 200px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.main .mail .mail_box .box p{
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.main .mail .mail_box .box .con p{
+  display: flex;
+  flex-direction: column;
+}
+.main .mail .mail_box .box #s1{
+  width: fit-content;
+  font-weight: 600;
+  border-bottom: 1px solid rgb(219, 219, 219);
+}
+.main .nav{
+  display: none;
+  min-height: 100vh;
+  width: 35%;
+  background: skyblue;
+}
+.main .nav .nav_top{
+  background: white;
+}
+.main .nav .nav_top div{
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid gold;
+}
+@media all and (max-width:800px){
+  .main .mail .mail_box .box{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media all and (max-width:500px){
+  .main .mail .mail_box .box{
+    align-items: center;
+  }
+}
