@@ -15,8 +15,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
-# DEBUG = False
+# DEBUG = config('DEBUG', cast=bool)
+DEBUG = False
 
 # ALLOWED_HOSTS = ['agrivestafrica-production.up.railway.app','www.agrivestafrica.com','agrivestafrica.com']
 ALLOWED_HOSTS = ['*']
@@ -97,16 +97,16 @@ WSGI_APPLICATION = 'AgrivestAfrica.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-# DATABASES = {
-#         'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.parse('postgresql://postgres:A0zqa3IMrKUHCxIojsQA@containers-us-west-18.railway.app:6743/railway')
+        'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.parse('postgresql://postgres:A0zqa3IMrKUHCxIojsQA@containers-us-west-18.railway.app:6743/railway')
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -143,12 +143,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # if DEBUG:
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
 # else:
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
