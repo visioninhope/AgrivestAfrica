@@ -16,7 +16,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
-# DEBUG = True
+# DEBUG = False
 
 # ALLOWED_HOSTS = ['agrivestafrica-production.up.railway.app','www.agrivestafrica.com','agrivestafrica.com']
 ALLOWED_HOSTS = ['*']
@@ -27,6 +27,7 @@ CSRF_TRUSTED_ORIGINS = ['https://agrivestafrica-production.up.railway.app','http
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
