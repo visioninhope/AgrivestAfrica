@@ -72,8 +72,8 @@ def dashboard(request):
         farms = fs.order_by('-id')[0:5]
         produces = ps.order_by('-id')[0:5]
 
-    tradeList = Trade.objects.all()[0:4]
-    tradePages = Paginator(tradeList, 2)
+    tradeList = Trade.objects.all()[0:9]
+    tradePages = Paginator(tradeList, per_page=3)
     tradePages_2 = Paginator(tradeList, 3)
     pageList = []
     pageList_2 = []
