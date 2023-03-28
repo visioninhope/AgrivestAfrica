@@ -11,7 +11,6 @@ from Transaction.models import TradeInvoice,FarmInvoice,ProduceInvoice
 from Asset.models import Trade,Farm
 
 def home(request):
-    logout(request)
     trades = Trade.objects.all()
     sliderT = Trade.objects.all().order_by('-id')[:3]
     x =  math.floor(Trade.objects.all().count() / 3)
@@ -49,8 +48,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 @login_required
-
-@csrf_exempt
 def dashboard(request):
     ts = TradeInvoice.objects.filter(customer=request.user)
     fs = FarmInvoice.objects.filter(customer=request.user)
@@ -367,3 +364,6 @@ def mailPortal(request):
 def sitemap(request):
     return render(request, 'sitemap.xml')
 
+def logout_user(request):
+    logout(request)
+    return redirect('homepage')

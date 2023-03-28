@@ -41,6 +41,7 @@
     <div class=" col-md-4  mb-4">
 
       <form class="form-elegant" method="post">
+        {% csrf_token %}
         <!--Form without header-->
         <div class="card z-depth-4">
 
@@ -60,12 +61,19 @@
             <br>
             <center>
               <!--Google +-->
-              <a href="{% provider_login_url 'google'%}?next=/dashboard"  class="btn btn-rounded  z-depth-1a animated rotateIn slower " style="color: black;">
+              <a href="{% provider_login_url 'google'%}?next=/dashboard"  class="btn btn-rounded" style="color: black;">
                 <span><small>  <img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1679864118/main/7611770_xnqb9h.png" alt="" srcset="" class="img-fluid" height="30px" width="30px">Login with Google</small></span>
               </a>
             </center>
             <h5 class="text-center text-muted">or</h5>
             <!--Body-->
+            {% if messages %}   
+            <div class="messBox">
+              {% for message in messages %} 
+                <a><div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div></a>
+              {% endfor %}
+            </div>
+            {% endif %}
             <div class="md-form">
               <input type="text" id="Form-FullName" class="form-control" name="name" required>
               <label for="Form-FullName">Your Full Name</label>
@@ -75,10 +83,10 @@
               <label data-error="wrong" data-success="right" for="defaultForm-email">Your
                 email</label>
             </div>
-            <div class="md-form pb-3">
+            <!-- <div class="md-form pb-3">
               <input type="text" id="Form-Phone" class="form-control">
               <label for="Form-Phone">Phone Number</label>
-            </div>
+            </div> -->
             <div class="md-form pb-3">
               <input type="password" id="Form-pass1" class="form-control" name="pass1" required>
               <label for="Form-pass1">Your password</label>
@@ -124,7 +132,11 @@
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
   <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
-
+  <script>
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+  </script>
   <script>
     AOS.init({
       duration: 1200,

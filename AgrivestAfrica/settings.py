@@ -27,7 +27,6 @@ CSRF_TRUSTED_ORIGINS = ['https://agrivestafrica-production.up.railway.app','http
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',

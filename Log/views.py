@@ -15,7 +15,7 @@ def welcome(request):
 
 def s_register(request):
     if request.method == 'POST':
-        name = request.POST.get('username')
+        name = request.POST.get('name')
         email = request.POST.get('email')
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
