@@ -44,6 +44,9 @@
           var duration_left = parseInt('{{duration_left}}')
 
           var width_value = 100 - ((duration_left * 100)/total_duration)
+          if(width_value > 100){
+            width_value = 100
+          }
           progress.style.width = `${width_value}%`
 
 
@@ -69,16 +72,16 @@
             </p>
             <p>
               <small>unit price</small>
-              <span>Ghc {{produce.price}}</span>
+              <span>GH₵{{produce.price}}</span>
             </p>
             <p>
               <small>base cost</small>
-              <span>Ghc {{produce.base_cost|intcomma}}</span>
+              <span>GH₵{{produce.base_cost|intcomma}}</span>
             </p>
           </div>
           <strong>
             <small style="border-bottom: 2px dotted darkgray; width: fit-content;">Total cost</small>
-            <span style="font-size: 2.2rem;">GHc {{produce.total_cost}}</span>
+            <span style="font-size: 2.2rem;">GH₵{{produce.total_cost}}</span>
         </div>
       </div>
     </section>

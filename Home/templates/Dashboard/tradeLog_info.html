@@ -18,7 +18,7 @@
     <section class="main_low" >
       <div class="info_box">
         <div class="i_left">
-          <img id="i1" src="{{trade.image_url}}" alt="">
+          <img id="i1" src="{{trade.trade.image.url}}" alt="">
           <div class="stat_box">
             <div class="st_top">
               {% if trade.status == 'Pending' %}
@@ -32,7 +32,7 @@
             <div class="st_mid">
               <div class="progress_bar" id="progress_bar">
                 <div class="progress" id="progress">
-                  <img src="{{trade.image_url}}" alt="">
+                  <img src="{{trade.trade.image.url}}" alt="">
                 </div>
               </div>
               <span style="font-size: 0.8rem;">{{time|timesince:trade.end_date}} left</span>
@@ -83,11 +83,11 @@
             </p>
             <p>
               <small>unit price</small>
-              <span>Ghc {{trade.price}}</span>
+              <span>GH₵{{trade.price}}</span>
             </p>
             <p>
               <small>base cost</small>
-              <span>Ghc {{trade.base_cost|intcomma}}</span>
+              <span>GH₵{{trade.base_cost|intcomma}}</span>
             </p>
           </div>
           <div class="info_row" style="box-shadow: none;">
@@ -106,7 +106,7 @@
           </div>
           <strong>
             <small style="border-bottom: 2px dotted darkgray; width: fit-content;">Total cost</small>
-            <span style="font-size: 2.2rem;">GHc {{trade.total_cost}}</span>
+            <span style="font-size: 2.2rem;">GH₵{{trade.total_cost}}</span>
           </strong>
           <div class="info_row">
             <p>

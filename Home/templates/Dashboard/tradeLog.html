@@ -27,12 +27,12 @@
         <div class="box mt2" id="mt_box">
           <i class="material-symbols-outlined">payments</i>
           <p>Total Bought</p>
-          <span>Ghc {{trades_bought|intcomma}}</span>
+          <span>GH₵{{trades_bought|intcomma}}</span>
         </div>
         <div class="box mt3" id="mt_box">
           <i class="material-symbols-outlined">account_balance_wallet</i>
           <p>Total Sold</p>
-          <span> Ghc {{trades_sold|intcomma}}</span>         
+          <span> GH₵{{trades_sold|intcomma}}</span>         
           {% if trades_bal > '0' %}
           <p style="color:#7ac691;" id="trade_bal">+ {{trades_bal|intcomma}}</p>
           {% else %}
@@ -86,10 +86,10 @@
                 </div>
               </div>
               <div class="mid">
-                <img src="{{trade.image_url}}" alt="">
+                <img src="{{trade.trade.image.url}}" alt="">
               </div>
               <div class="low">
-                <p><span id="s1">Cost</span> <span id="s2">Ghc {{trade.total_cost|intcomma}}</span></p>
+                <p><span id="s1">Cost</span> <span id="s2">GH₵{{trade.total_cost|intcomma}}</span></p>
                 <p><span id="s1">Ros%</span> <span id="s2">{{trade.profit_range_min}} - {{trade.profit_range_max}}</span></p>
               </div>
             </a>

@@ -90,8 +90,8 @@ def dashboard(request):
     return render(request,'Dashboard/dashboard.html', context)
 
 def get_total_trans(request):
-    ts = TradeInvoice.objects.filter(customer=request.user)
-    fs = FarmInvoice.objects.filter(customer=request.user)
+    ts = TradeInvoice.objects.filter(customer=request.user).filter(status='Active').union(TradeInvoice.objects.filter(customer=request.user).filter(status='Completed'))
+    fs = FarmInvoice.objects.filter(customer=request.user).filter(status='Active').union(FarmInvoice.objects.filter(customer=request.user).filter(status='Completed'))
     ps = ProduceInvoice.objects.filter(customer=request.user)
     total_trans = 0
     for t in ts:
@@ -191,10 +191,16 @@ def farm_log(request):
 @login_required
 def farmLog_info(request,slug):
     farm = FarmInvoice.objects.get(slug=slug)
+    time = timezone.now().date()
+    total_duration = (farm.end_date - farm.start_date).days
+    duration_left = (farm.end_date - time).days
     if request.method == 'POST':
         farm.delete()
         return redirect('farmLog_page')
     context ={
+        'total_duration' : total_duration,
+        'duration_left' : duration_left,
+        'time' : time,
         'farm' : farm,
         'total_trans' : "{:.2f}".format(get_total_trans(request)),
     }
@@ -367,3 +373,14 @@ def sitemap(request):
 def logout_user(request):
     logout(request)
     return redirect('homepage')
+
+def testpay(request):
+    # from forex_python.converter import CurrencyRates
+    # import requests
+
+    # response = requests.get("https://openexchangerates.org/api/latest.json?app_id=YOUR_APP_ID")
+    # rates = response.json()["rates"]
+    # amount = 100 # USD
+    # ghs_rate = rates["GHS"]
+    # converted_amount = amount * ghs_rate
+    return render(request, 'testpay.html')

@@ -49,12 +49,12 @@
           <div class="box mt2" id="mt_box">
             <i class="material-symbols-outlined" style="color: wheat;">payments</i>
             <p>Total Transactions</p>
-            <span>Ghc {{total_trans|intcomma}}</span>
+            <span>GH₵ {{total_trans|intcomma}}</span>
           </div>
           <div class="box mt3" id="mt_box">
             <i class="material-symbols-outlined" style="color: skyblue;">account_balance_wallet</i>
             <p>Total Balance</p>
-            <span>Ghc 0.00</span>
+            <span>GH₵ 0.00</span>
           </div>
           <div class="box" id="mt_box">
             <div class="quick_box swiper">
@@ -85,7 +85,7 @@
           <div class="swiper-slide ad_box">
             {% for trade in page %}
             <a href="{% url 'makeTrade_page' trade.slug %}" class="swiper-slide ad" style="background-image: url({{trade.image.url}});">
-              <p id="p1">{{trade.price}} Ghc</p>
+              <p id="p1">{{trade.price}} GH₵</p>
               <p id="p2">{{trade.ros_max}}%</p>
               <div class="ad_cover">
                 <i class="material-symbols-outlined">paid</i>
@@ -134,7 +134,7 @@
                     {% for trade in trades %}
                     <a class="con" href="{% url 'tradeLog_info' trade.slug %}" style="color: black;">
                       <div class="prod">
-                        <img src="{{trade.image_url}}" alt="">
+                        <img src="{{trade.trade.image.url}}" alt="">
                         <span>{{trade.name}}</span>
                       </div> 
                         <p class="date">{{trade.start_date|date:'d b, Y'}}</p>
@@ -143,7 +143,7 @@
                           <i class="material-symbols-outlined">arrow_range</i>
                         </div>
                         <p class="date">{{trade.end_date|date:'d b, Y'}}</p>
-                        <p>Ghc {{trade.total_cost|intcomma}}</p>
+                        <p>GH₵ {{trade.total_cost|intcomma}}</p>
                         <p>{{trade.start_time|naturaltime}}</p>
                         <p class="status">
                           {% if trade.status == 'Pending' %}
@@ -196,7 +196,7 @@
                     {% for farm in farms %}
                       <a class="con" href="{% url 'farmLog_info' farm.slug %}" style="color: black;">
                         <div class="prod">
-                          <img src="{{farm.image_url}}" alt="">
+                          <img src="{{farm.farm.image.url}}" alt="">
                           <span>{{farm.name}}</span>
                         </div>
                           <p class="date">{{farm.start_date|date:'d b, Y'}}</p>
@@ -205,7 +205,7 @@
                             <i class="material-symbols-outlined">arrow_range</i>
                           </div>
                           <p class="date">{{farm.end_date|date:'d b, Y'}}</p>
-                          <p>Ghc {{farm.total_cost|intcomma}}</p>
+                          <p>GH₵ {{farm.total_cost|intcomma}}</p>
                           <p>{{farm.start_time|naturaltime}}</p>
                           <p class="status">
                             {% if farm.status == 'Pending' %}
@@ -260,7 +260,7 @@
                         </div>
                         <p>{{produce.units|intcomma}}</p>
                         <p class="date">{{produce.start_time|naturaltime}}</p>
-                        <p>Ghc {{produce.total_cost|intcomma}}</p>
+                        <p>GH₵ {{produce.total_cost|intcomma}}</p>
                         <p class="status">
                           {% if produce.status == 'Pending' %}
                           <small style="background: #fcf1ed; color: salmon; ">
@@ -295,7 +295,7 @@
             {% for trade in page %}
             <a href="{% url 'makeTrade_page' trade.slug %}" class="ad">
               <img src="{{trade.image.url}}" alt="" height="100%" width="100%">
-              <p id="p1">{{trade.price}} Ghc</p>
+              <p id="p1">{{trade.price}} GH₵</p>
               <p id="p2">{{trade.ros_max}}%</p>
               <p id="p3">{{trade.name}}</p>
               <div class="ad_cover">

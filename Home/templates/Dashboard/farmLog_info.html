@@ -17,7 +17,7 @@
     <section class="main_low" >
       <div class="info_box">
         <div class="i_left">
-          <img id="i1" src="{{farm.image_url}}" alt="">
+          <img id="i1" src="{{farm.farm.image.url}}" alt="">
           <div class="stat_box">
             <div class="st_top">
               {% if farm.status == 'Pending' %}
@@ -31,7 +31,7 @@
             <div class="st_mid">
               <div class="progress_bar" id="progress_bar">
                 <div class="progress" id="progress">
-                  <img src="{{farm.image_url}}" alt="">
+                  <img src="{{farm.farm.image.url}}" alt="">
                 </div>
               </div>
               <span style="font-size: 0.8rem;">{{time|timesince:farm.end_date}} left</span>
@@ -55,6 +55,9 @@
           var duration_left = parseInt('{{duration_left}}')
 
           var width_value = 100 - ((duration_left * 100)/total_duration)
+          if(width_value > 100){
+            width_value = 100
+          }
           progress.style.width = `${width_value}%`
 
 
@@ -82,11 +85,11 @@
             </p>
             <p>
               <small>unit price</small>
-              <span>Ghc {{farm.price}}</span>
+              <span>GH₵ {{farm.price}}</span>
             </p>
             <p>
               <small>base cost</small>
-              <span>Ghc {{farm.base_cost|intcomma}}</span>
+              <span>GH₵ {{farm.base_cost|intcomma}}</span>
             </p>
           </div>
           <div class="info_row" style="box-shadow: none;">
@@ -99,13 +102,13 @@
               <span class="material-symbols-outlined" style="color: skyblue;">paid</span>
             </p>
             <p>
-              <small style="color: #71d574;">Ghc{{farm.pros_max}} <i class="material-symbols-outlined">trending_up</i></small>
-              <span style="color: salmon;">Ghc{{farm.pros_min}} <i class="material-symbols-outlined">trending_down</i></span>
+              <small style="color: #71d574;">GH₵ {{farm.pros_max}} <i class="material-symbols-outlined">trending_up</i></small>
+              <span style="color: salmon;">GH₵ {{farm.pros_min}} <i class="material-symbols-outlined">trending_down</i></span>
             </p>
           </div>
           <strong>
             <small style="border-bottom: 2px dotted darkgray; width: fit-content;">Total cost</small>
-            <span style="font-size: 2.2rem;">GHc {{farm.total_cost}}</span>
+            <span style="font-size: 2.2rem;">GH₵ {{farm.total_cost}}</span>
           </strong>
           <div class="info_row">
             <p>

@@ -1,127 +1,120 @@
 {% extends "Farms/farms.html" %}
 
+{% block header %}
+  <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">Trade</h1>
+{% endblock header %}
+
 {% block backgroundImage %}
-<div class="view"
-style="background-image: url('https://res.cloudinary.com/dvnemzw0z/image/upload/v1679864256/main/golden-potatoes-levitate-white-background_485709-65_tj2nqo.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      style="background-image: url('https://res.cloudinary.com/dvnemzw0z/image/upload/v1679863170/main/corn-isolated_93675-33173_fot4j1.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;"
 {% endblock backgroundImage %}
 
-{% block headerBlock %}
-<h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">Let's Trade</h1>
-{% endblock headerBlock %}
+{% block caution %}
+  By sponsoring a trade, you became an equity shareholder of the trade. Thus, you make passive income when harvested
+  produce are sold. You can also take your share as the produce you sponsored
+  <b> <br>There Is Risk In trading. We dont Guarantee
+  returns of your sponsorship or profit.</b>
+{% endblock caution %}
+{% block placeholder %}
+    placeholder="Search Trade"
+{% endblock placeholder %}
 
+{% block content %}  
+ <small>
+   <!-- Rotating card -->
+   <div class="container">
+    {% for page in pageList %}
+    <div class="row">
+      {% for trade in page %}
+        <div class="col-md-4 box2 ">
+          <div class="card-wrapper">
+            <div id="card-1" class="card card-rotating text-center">
+              <!-- Front Side -->
+              <div class="face front">
+                <!-- Image-->
+                <div class="card-up">
+                  <img class="card-img-top" src="{{trade.image.url}}" alt="Image with a photo of clouds.">
+                </div>
+                <!-- Content -->
+                <div class="card-body">
+                  <a class="btn rgba-gradient1 btn-rounded white-text btn-sm" href="{% url 'makeTrade_page' trade.slug %}">Sponsor Trade</a>
+                  <hr>
+                  <h5 class="card-title font-weight-bold mb-4 green-text ">Maize </h5>
+                  <span class="badge badge-success mb-2">({{trade.scientific_name}})</span><span class="badge badge-success mb-2">{{trade.start_date|timesince:trade.end_date}}</span>
+                  <!-- <span class="badge badge-success mb-2">Located In The Northen Region</span> -->
+                  <dl class="row">
+                    <dd class="col-sm-6">
+                      Cost Per Unit
+                    </dd>
+                    <dd class="col-sm-6 green-text">
+                      GH₵ {{trade.price}}
+                    </dd>
+                  </dl>
 
+                  <hr>
 
-{% block content %}
-<center>
-  <div class="col-md-8">
-    <h6 class=" mb-4 green-text text-center font-small ">
-      By trading in a crop, you are virtually buying harvested produce to be warehoused on your behalf for prices to appreciate. When the produce value appreciates, they are sold on the Ghana Commodity and Exchange (GCX) platform or open market.
-      <b> <br>There Is Risk In Farming. We dont Guarantee
-        returns of your sponsorship or profit.</b>
-    </h6>
-  </div>
-</center>
-<div class="col-md-2"></div>
-<!-- Rotating card -->
-<div class="row">
-<div class="col-md-2">
-</div>
-<div class="col-md-6">
-  <form method="post" class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2">
-    {% csrf_token %}
-    <i class="fas fa-search" aria-hidden="true"></i>
-    <input name="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Trade"
-      aria-label="Search">
-  </form>
-</div>
-<div class="col-md-3">
-</div>
-</div>
-<small>
-<!-- Rotating card -->
-<div class="container">
-  {% for page in pageList %}    
- <div class="row">
-   {% for trade in page %}   
-   <div class="col-md-4 box2 ">
-     <div class="card-wrapper">
-       <div id="card-1" class="card card-rotating text-center">
-         <!-- Front Side -->
-         <div class="face front">
-           <!-- Image-->
-           <div class="card-up">
-             <img class="card-img-top" src="{{trade.image.url}}" alt="Image with a photo of clouds.">
-           </div>
-           <!-- Content -->
-           <div class="card-body">
-             <a class="btn rgba-gradient1 btn-rounded white-text btn-sm  animated rotateIn slower" href="{% url 'makeTrade_page' trade.slug %}">Trade Now</a>
-             <hr>
-             <h5 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}}</h5>
-             <span class="badge badge-success mb-2">{{trade.scientific_name}}</span><span class="badge badge-success mb-2">9 months</span>
-             <span class="badge badge-success mb-2">Located In The Northen Region</span>
-             <dl class="row">
-               <dd class="col-sm-6">
-                 Cost Per Unit
-               </dd>
-               <dd class="col-sm-6 green-text">
-                 GH₵ {{trade.price}}
-               </dd>
-             </dl>
+                  <dl class="row">
+                    <dd class="col-sm-6">
+                      tradeing Start Date
+                    </dd>
+                    <dd class="col-sm-6 green-text">
+                      {{trade.start_date}}
+                    </dd>
+                  </dl>
 
-             <hr>
+                  <hr>
 
-             <dl class="row">
-               <dd class="col-sm-6">
-                 Trade Start Date
-               </dd>
-               <dd class="col-sm-6 green-text">
-                 {{trade.start_date}}
-               </dd>
-             </dl>
-             <dl class="row">
-              <dd class="col-sm-6">
-                Trade End Date
-              </dd>
-              <dd class="col-sm-6 green-text">
-                {{trade.end_date}}
-              </dd>
-            </dl>
-             <hr>
-             <dl class="row">
-               <dd class="col-sm-6">
-                 Profit Margin
-               </dd>
-               <dd class="col-sm-6 green-text">
-                  {{trade.ros_min}}% - {{trade.ros_max}}%
-               </dd>
-             </dl>
-             <hr>
-             <!-- Triggering button -->
-             <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
-           </div>
-         </div>
-         <!-- Front Side -->
-         <!-- Back Side -->
-         <div class="face back">
-           <div class="card-body">
-             <h5 class="green-text">Details</h5>
-             <hr>
-             <p> {{trade.description}} </p>
-             <a href="{% url 'makeTrade_page' trade.slug %}" class="btn rgba-gradient1 btn-rounded white-text btn-sm  animated rotateIn slower">Trade Now</a>
-             <br>
-             <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
-           </div>
-         </div>
-         <!-- Back Side -->
+                  <dl class="row">
+                    <dd class="col-sm-6">
+                      tradeing End Date
+                    </dd>
+                    <dd class="col-sm-6 green-text">
+                      {{trade.end_date}}
+                    </dd>
+                  </dl>
+                  <hr>
+
+                  <dl class="row">
+                    <dd class="col-sm-6">
+                      Profit Margin
+                    </dd>
+                    <dd class="col-sm-6 green-text">
+                      {{trade.ros_min}}% - {{trade.ros_max}}%
+                    </dd>
+                  </dl>
+
+                  <hr>
+                  <!-- Triggering button -->
+                  <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
+                </div>
+              </div>
+              <!-- Front Side -->
+
+              <!-- Back Side -->
+              <div class="face back">
+                <div class="card-body">
+                  <h5 class="green-text">Details</h5>
+                  <hr>
+                  <p>
+                    {{trade.description}}
+                  </p>
+                  <a href="{% url 'makeTrade_page' trade.slug %}" class="btn rgba-gradient1 btn-rounded white-text btn-sm  animated rotateIn slower">Sponsor Trade</a>
+                  <br>
+                  <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
+                </div>
+              </div>
+            <!-- Back Side -->
+            </div>
+          </div>
        </div>
-     </div>
-   </div>
-   {% endfor %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <hr>
+    <br>
+    <br>
+    
   </div>
- <hr>
- {% endfor %}
-</div>
-<!-- Rotating card -->
-</small>
-{% endblock content %}
-  
+
+  <!-- Rotating card -->
+ </small>
+ {% endblock content %}

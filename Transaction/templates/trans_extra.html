@@ -1,0 +1,44 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  const icon = document.querySelectorAll('[id=icon]')
+
+  iconMove =()=>{
+    for (let i = 0; i < icon.length; i++) {
+      anime({
+        targets: icon[i],
+        translateY: [10,0],
+        opacity: [0,1],
+        // rotate: '1turn',
+        // backgroundColor: '#FFF',
+        duration: 800,
+        delay: 100*i
+      });
+    }
+  }
+
+  iconMove()
+  setInterval(()=>{
+    iconMove()
+  }, 5000)
+
+
+ 
+</script>
+
+<style>
+  .icon_box{
+    display: flex;
+  }
+  .icon_box small{
+    font-size: 1rem;
+  }
+  strong.change{
+    position: relative;
+    animation: pushUp 0.3s linear;
+  }
+  @keyframes pushUp{
+    0%{right: 5px;opacity: 0;color: green;}
+    100%{right: 0;opacity: 1;color: black;}
+  }
+</style>
+

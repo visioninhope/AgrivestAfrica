@@ -11,11 +11,13 @@ def trades(request):
     if request.method == 'POST':
         search = request.POST.get('search')
         trades = Trade.objects.filter(name__icontains = search)
-        tradePages = Paginator(trades, 3)
-        pageList = []
-        for page in tradePages:
-            pageList.append(page.object_list)
+        if trades:
+            tradePages = Paginator(trades, 3)
+            pageList = []
+            for page in tradePages:
+                pageList.append(page.object_list)
         else:
+            pageList = []
             messages.error(request, f"Couldn't find a match, Try something else")
     else:
         trades = Trade.objects.all()
@@ -30,12 +32,15 @@ def trades(request):
 
 def makeTrade(request, slug):
     trade = Trade.objects.get(slug=slug)
+    partners = trade.partners.all()
     if request.method == 'POST':
         if request.user.is_authenticated:
             customer = User.objects.get(username=request.user)
             units = int(request.POST.get('units'))
             total_cost = (units * trade.price) + ((units * trade.price) * (trade.service_charge / 100))
-            trade_name = request.POST.get('trade_name')
+            trade_name = request.POST.get('name')
+            partner = request.POST.get('partner')
+            harvest_type = request.POST.get('harvest_type')
             extra_notes = request.POST.get('extra_notes')
             if TradeInvoice.objects.filter(customer=request.user).filter(name=trade_name).exists():
                 messages.info(request, f"You already have a trade named |-> {trade_name}")
@@ -44,6 +49,8 @@ def makeTrade(request, slug):
                 tradeInvoice.name = trade_name
                 tradeInvoice.customer = customer
                 tradeInvoice.trade = trade
+                tradeInvoice.partner = Partner.objects.get(name=partner)
+                tradeInvoice.harvest_type = harvest_type
                 tradeInvoice.price = trade.price
                 tradeInvoice.units = units
                 tradeInvoice.profit_range_min = trade.ros_min
@@ -57,7 +64,6 @@ def makeTrade(request, slug):
                 tradeInvoice.pros_max = round((units * trade.price) * (trade.ros_max/100))
                 tradeInvoice.totalreturn_min = "{:.2f}".format((float(tradeInvoice.base_cost) + float(tradeInvoice.pros_min))) 
                 tradeInvoice.totalreturn_max = "{:.2f}".format((float(tradeInvoice.base_cost) + float(tradeInvoice.pros_max)))
-                tradeInvoice.image_url = trade.image.url
                 if extra_notes != '':
                     tradeInvoice.extra_notes = extra_notes
                 tradeInvoice.status = 'Pending'
@@ -72,22 +78,22 @@ def makeTrade(request, slug):
     crop = w[0]
     context = {
         'trade': trade,
+        'partners' : partners,
         'crop': crop,
     }
     return render(request, 'Trades/makeTrade.html', context)
-
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
 
 def farms(request):
     if request.method == 'POST':
         search = request.POST.get('search')
         farms = Farm.objects.filter(name__icontains = search)
-        farmPages = Paginator(farms, 3)
-        pageList = []
-        for page in farmPages:
-            pageList.append(page.object_list)
+        if farms:
+            farmPages = Paginator(farms, 3)
+            pageList = []
+            for page in farmPages:
+                pageList.append(page.object_list)
         else:
+            pageList = []
             messages.error(request, f"Couldn't find a match, Try something else")
     else:
         farms = Farm.objects.all()
@@ -109,7 +115,9 @@ def makeFarm(request, slug):
             customer = User.objects.get(username=request.user)
             units = int(request.POST.get('units'))
             total_cost = (units * farm.price) + ((units * farm.price) * (farm.service_charge / 100))
-            farm_name = request.POST.get('farm_name')
+            farm_name = request.POST.get('name')
+            harvest_type = request.POST.get('harvest_type')
+            partner = request.POST.get('partner')
             extra_notes = request.POST.get('extra_notes')
             farmInvoice = FarmInvoice()
             if FarmInvoice.objects.filter(customer=request.user).filter(name=farm_name).exists():
@@ -118,8 +126,8 @@ def makeFarm(request, slug):
                 farmInvoice.name = farm_name
                 farmInvoice.customer = customer
                 farmInvoice.farm = farm
-                farmInvoice.partner = Partner.objects.get(name=request.POST.get('partner'))
-                farmInvoice.location = farm.location
+                farmInvoice.partner = Partner.objects.get(name=partner)
+                farmInvoice.harvest_type = harvest_type
                 farmInvoice.price = farm.price
                 farmInvoice.units = units
                 farmInvoice.profit_range_min = farm.ros_min
@@ -129,7 +137,6 @@ def makeFarm(request, slug):
                 farmInvoice.base_cost = "{:.2f}".format(units * farm.price)
                 farmInvoice.service_charge = farm.service_charge
                 farmInvoice.total_cost = "{:.2f}".format(total_cost)
-                farmInvoice.image_url = farm.image.url
                 farmInvoice.pros_min = round((units * farm.price) * (farm.ros_min/100))
                 farmInvoice.pros_max = round((units * farm.price) * (farm.ros_max/100))
                 farmInvoice.totalreturn_min = "{:.2f}".format(float(farmInvoice.base_cost) + float(farmInvoice.pros_min))
@@ -149,8 +156,26 @@ def makeFarm(request, slug):
     return render(request, 'Farms/makeFarm.html', context)
 
 def produce(request):
+    if request.method == 'POST':
+        search = request.POST.get('search')
+        produces = Produce.objects.filter(name__icontains = search)
+        if produces:
+            producePages = Paginator(produces, 4)
+            pageList = []
+            for page in producePages:
+                pageList.append(page.object_list)
+        else:
+            pageList = []
+            messages.error(request, f"Couldn't find a match, Try something else")
+    else:
+        produces = Produce.objects.all()
+        producePages = Paginator(produces, 4)
+        pageList = []
+        for page in producePages:
+            pageList.append(page.object_list)
     produces = Produce.objects.all()
     context = {
+        'pageList' : pageList,
         'produces' : produces
     }
     return render(request, 'Produce/produce.html', context)
@@ -162,7 +187,7 @@ def buy_produce(request,slug):
             customer = User.objects.get(username=request.user)
             units = int(request.POST.get('units'))
             total_cost = ((units * produce.price))
-            produce_name = request.POST.get('produce_name')
+            produce_name = request.POST.get('name')
             produceInvoice = ProduceInvoice()
             if ProduceInvoice.objects.filter(customer=request.user).filter(name=produce_name).exists():
                 messages.info(request, f"You already have a produce named {produce_name}")
@@ -175,8 +200,8 @@ def buy_produce(request,slug):
                 produceInvoice.base_cost = "{:.2f}".format(units * produce.price)
                 produceInvoice.total_cost = "{:.2f}".format(total_cost)
                 produceInvoice.image_url = produce.image.url
-                payment = request.POST.get('payment')
-                produceInvoice.payment = payment
+                # payment = request.POST.get('payment')
+                # produceInvoice.payment = payment
                 produceInvoice.save()
                 return redirect(trans_pay(total_cost,produce_name, ProduceInvoice, 'produce'))
     context ={

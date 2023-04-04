@@ -1,75 +1,73 @@
+html,
+body,
+header,
+.view {
+  height: 80%;
 
- 
+}
+
+
+@media (max-width: 740px) {
+
   html,
   body,
   header,
   .view {
-    height: 98%;
-    
+    height: 100px;
   }
+}
 
+@media (min-width: 800px) and (max-width: 850px) {
 
-  @media (max-width: 740px) {
-
-    html,
-    body,
-    header,
-    .view {
-      height: 600px;
-    }
+  html,
+  body,
+  header,
+  .view {
+    height: 100px;
   }
+}
 
-  @media (min-width: 800px) and (max-width: 850px) {
+.btn .fa {
+  margin-left: 3px;
+}
 
-    html,
-    body,
-    header,
-    .view {
-      height: 600px;
-    }
-  }
+.top-nav-collapse {
+  background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(231, 216, 9, 0.7) 100%);
+  background: -webkit-linear-gradient(45deg, rgba(39, 126, 4, 0.7), rgba(168, 117, 7, 0.7) 100%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(2, 168, 10, 0.7)), to(rgba(29, 210, 177, 0.7)));
+  background: -o-linear-gradient(45deg, rgba(26, 77, 6, 0.7), rgba(148, 110, 7, 0.7) 100%);
+  background: linear-gradient(to 45deg, rgba(4, 68, 4, 0.7), rgba(27, 194, 12, 0.7) 100%);
 
-  .btn .fa {
-    margin-left: 3px;
-  }
+}
 
-  .top-nav-collapse {
-    background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(231, 216, 9, 0.7) 100%);
-    background: -webkit-linear-gradient(45deg, rgba(39, 126, 4, 0.7), rgba(168, 117, 7, 0.7) 100%);
-    background: -webkit-gradient(linear, 45deg, from(rgba(2, 168, 10, 0.7)), to(rgba(29, 210, 177, 0.7)));
-    background: -o-linear-gradient(45deg, rgba(26, 77, 6, 0.7), rgba(148, 110, 7, 0.7) 100%);
-    background: linear-gradient(to 45deg, rgba(4, 68, 4, 0.7), rgba(27, 194, 12, 0.7) 100%);
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
 
-  }
-
+@media (max-width: 991px) {
   .navbar:not(.top-nav-collapse) {
-    background: transparent !important;
+    background: green !important;
   }
+}
 
-  @media (max-width: 991px) {
-    .navbar:not(.top-nav-collapse) {
-      background: green !important;
-    }
-  }
-
-  .btn-white {
-    color: black !important;
-  }
+.btn-white {
+  color: black !important;
+}
 
 
 
-  .rgba-gradient {
-    background: -moz-linear-gradient(45deg, rgba(42, 155, 7, 0.7), rgba(2, 141, 13, 0.7) 100%);
-    background: -webkit-linear-gradient(45deg, rgba(23, 100, 4, 0.7), rgba(1, 78, 5, 0.7) 100%);
-    background: -webkit-gradient(linear, 45deg, from(rgba(24, 122, 5, 0.7)), to(rgba(32, 167, 149, 0.2)));
-    background: -o-linear-gradient(90deg, rgba(38, 99, 3, 0.7), rgba(2, 100, 10, 0.7) 100%);
-    background: linear-gradient(to 45deg, rgba(10, 54, 2, 0.7), rgba(6, 122, 16, 0.7) 100%);
-  }
+.rgba-gradient {
+  background: -moz-linear-gradient(45deg, rgba(42, 155, 7, 0.7), rgba(2, 141, 13, 0.7) 100%);
+  background: -webkit-linear-gradient(45deg, rgba(23, 100, 4, 0.7), rgba(1, 78, 5, 0.7) 100%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(24, 122, 5, 0.7)), to(rgba(32, 167, 149, 0.2)));
+  background: -o-linear-gradient(90deg, rgba(38, 99, 3, 0.7), rgba(2, 100, 10, 0.7) 100%);
+  background: linear-gradient(to 45deg, rgba(10, 54, 2, 0.7), rgba(6, 122, 16, 0.7) 100%);
+}
 
-  .rgba-gradient1 {
-    background: -moz-linear-gradient(45deg, rgba(57, 221, 16, 0.7), rgba(19, 77, 5, 0.7) 60%);
-    background: -webkit-linear-gradient(45deg, rgba(14, 233, 25, 0.7), rgba(3, 46, 3, 0.7) 40%);
-    background: -webkit-gradient(linear, 45deg, from(rgba(7, 226, 36, 0.7)), to(rgba(103, 224, 87, 0.5)));
-    background: -o-linear-gradient(45deg, rgba(60, 230, 8, 0.2), rgba(20, 85, 3, 0.7) 50%);
-    background: linear-gradient(to 45deg, rgba(57, 238, 11, 0.7), rgba(9, 61, 4, 0.7) 20%);
-  }
+.rgba-gradient1 {
+  background: -moz-linear-gradient(45deg, rgba(57, 221, 16, 0.7), rgba(19, 77, 5, 0.7) 60%);
+  background: -webkit-linear-gradient(45deg, rgba(14, 233, 25, 0.7), rgba(3, 46, 3, 0.7) 40%);
+  background: -webkit-gradient(linear, 45deg, from(rgba(7, 226, 36, 0.7)), to(rgba(103, 224, 87, 0.5)));
+  background: -o-linear-gradient(45deg, rgba(60, 230, 8, 0.2), rgba(20, 85, 3, 0.7) 50%);
+  background: linear-gradient(to 45deg, rgba(57, 238, 11, 0.7), rgba(9, 61, 4, 0.7) 20%);
+}

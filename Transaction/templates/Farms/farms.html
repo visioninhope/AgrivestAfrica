@@ -1,127 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="theme-color" content="#33b5e5">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link rel="stylesheet"
-    href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/compiled-4.20.0.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <meta charset="utf-8">
-  <meta name="description" content="
-  Sign Up with Grow For Me for the opportunity to invest in new farms, manage and monitor old farms. " />
-<meta name="keywords" content=" Grow For Me, Grow, growth, farm, sponsorship, sponsor, sponsoring, invest, investing, farm,
-  crop, africa, ghana, nigeria, india, agriculture, green technology " />
-<meta name="subject" content="Agrivest Africa">
-<meta name="copyright" content="Agrivest Africa">
-{% block staticBlock %}
-  
-{% endblock staticBlock %}
+{% load static %}
 
-<link rel="shortcut icon" href="/media/img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
-  <style>
-    html,
-    body,
-    header,
-    .view {
-      height: 80%;
-    }
+  {% include 'makeHeader.html' %}
+  <link rel="shortcut icon" href="https://res.cloudinary.com/dvnemzw0z/image/upload/v1679865307/main/cocoa-pods-cocoa-beans-cacao-powder-with-leaves-isolated-white-background_38145-707_aql6qv.webp" />
+</head>
 
-    
-    @media (max-width: 740px) {
-
-      html,
-      body,
-      header,
-      .view {
-        height: 400px;
-      }
-    }
-
-    @media (min-width: 800px) and (max-width: 850px) {
-
-      html,
-      body,
-      header,
-      .view {
-        height: 500px;
-      }
-    }
-
-    .btn .fa {
-      margin-left: 3px;
-    }
-
-    .top-nav-collapse {
-      background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(13, 211, 13, 0.7) 100%);
-      background: -webkit-linear-gradient(45deg, rgba(39, 126, 4, 0.7), rgba(11, 233, 66, 0.7) 100%);
-      background: -webkit-gradient(linear, 45deg, from(rgba(2, 168, 10, 0.7)), to(rgba(29, 210, 177, 0.7)));
-      background: -o-linear-gradient(45deg, rgba(26, 77, 6, 0.7), rgba(12, 228, 48, 0.7) 100%);
-      background: linear-gradient(to 45deg, rgba(4, 68, 4, 0.7), rgba(27, 194, 12, 0.7) 100%);
-
-    }
-
-    .navbar:not(.top-nav-collapse) {
-      background: transparent !important;
-    }
-
-    @media (max-width: 991px) {
-      .navbar:not(.top-nav-collapse) {
-        background: #06aa14 !important;
-      }
-    }
-
-    .btn-white {
-      color: black !important;
-    }
+  <script data-cfasync="false">
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          '//www.googletagmanager.com/gtm.' + 'js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-W7MBMN');
+  </script>
 
 
-
-    .rgba-gradient {
-      background: -moz-linear-gradient(45deg, rgba(42, 155, 7, 0.7), rgba(29, 210, 177, 0.7) 100%);
-      background: -webkit-linear-gradient(45deg, rgba(23, 100, 4, 0.7), rgba(29, 210, 177, 0.7) 100%);
-      background: -webkit-gradient(linear, 45deg, from(rgba(24, 122, 5, 0.7)), to(rgba(29, 210, 177, 0.7)));
-      background: -o-linear-gradient(45deg, rgba(38, 99, 3, 0.7), rgba(29, 210, 177, 0.7) 100%);
-      background: linear-gradient(to 45deg, rgba(10, 54, 2, 0.7), rgba(29, 210, 177, 0.7) 100%);
-    }
-
-    .rgba-gradient1 {
-      background: -moz-linear-gradient(45deg, rgba(57, 221, 16, 0.7), rgba(19, 77, 5, 0.7) 60%);
-      background: -webkit-linear-gradient(45deg, rgba(14, 233, 25, 0.7), rgba(3, 46, 3, 0.7) 40%);
-      background: -webkit-gradient(linear, 45deg, from(rgba(7, 226, 36, 0.7)), to(rgba(103, 224, 87, 0.5)));
-      background: -o-linear-gradient(45deg, rgba(60, 230, 8, 0.2), rgba(20, 85, 3, 0.7) 50%);
-      background: linear-gradient(to 45deg, rgba(57, 238, 11, 0.7), rgba(9, 61, 4, 0.7) 20%);
-    }
-
-    .rgba-gradient2 {
-      background: -moz-linear-gradient(45deg, rgba(63, 1, 71, 0.1), rgba(29, 210, 177, 0.3) 60%);
-      background: -webkit-linear-gradient(45deg, rgba(230, 11, 200, 0.1), rgba(29, 210, 177, 0.3) 40%);
-      background: -webkit-gradient(linear, 45deg, from(rgba(212, 19, 203, 0.1)), to(rgba(29, 210, 177, 0.3)));
-      background: -o-linear-gradient(45deg, rgba(209, 10, 166, 0.1), rgba(189, 29, 210, 0.2) 50%);
-      background: linear-gradient(to 45deg, rgba(78, 4, 107, 0.2), rgba(180, 16, 158, 0.2) 20%);
-    }
-  
-
-  
-    .box2 {
-    margin-bottom: 2rem;
-    }
-  
-  </style>
-
-  <header>
-      <!--Navbar-->
-      {% include 'navbar.html' %}
-      <!-- Full Page Intro -->
-      
-      
-    {% block backgroundImage %}
+  <head>
+     <!--Navbar-->
+     {% include 'navbar.html' %}
+    <!-- Full Page Intro -->
     <div class="view"
-    style="background-image: url('https://res.cloudinary.com/dvnemzw0z/image/upload/v1679864214/main/soy-beans_1339-224_hkz6dx.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    
+    {% block backgroundImage %}
+      style="background-image: url('https://res.cloudinary.com/dvnemzw0z/image/upload/v1679864948/main/soybean-isolated-white-background_74190-7801_kghwbo.webp'); background-repeat: no-repeat; background-size: cover; background-position: center center;"
     {% endblock backgroundImage %}
+    
+    >
+      
       
       <!-- Mask & flexbox options-->
       <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
@@ -134,9 +40,11 @@
           <div class="row">
             <!--Grid column-->
             <div class="col-md-6 white-text text-center text-md-center mt-xl-5 mb-5 ">
-              {% block headerBlock %}
-              <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">Let's Farm</h1>
-              {% endblock headerBlock %}
+              
+              {% block header %}
+              <h1 class="h1-responsive font-weight-bold mt-sm-5 text-left animated tada slower">Farm</h1>
+              {% endblock header %}
+                
               <hr class="hr-light">
             </div>
           </div>
@@ -149,163 +57,269 @@
     <!-- Mask & flexbox options-->
     </div>
     <!-- Full Page Intro -->
-  </header>
-  <!-- Main navigation -->
-</head>
+    </header>
+    <!-- Main navigation -->
+  </head>
 
 <body>
   <br>
   <br>
   <br>
   <br>
-  
-  {% if messages %}
-  <div style="text-align: center; width: 100%;">
-      {% for message in messages %}
-      <div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div>
-      {% endfor %}
-  </div>
-  {% endif %}
-  
-  {% block content %}
+  <div class="col-md-2"></div>
   <center>
     <div class="col-md-8">
       <h6 class=" mb-4 green-text text-center font-small ">
-        By trading in a crop, you are virtually buying harvested produce to be warehoused on your behalf for prices to appreciate. When the produce value appreciates, they are sold on the Ghana Commodity and Exchange (GCX) platform or open market.
-        <b> <br>There Is Risk In Farming. We dont Guarantee
+        
+        {% block caution %}
+          By sponsoring a farm, you became an equity shareholder of the farm. Thus, you make passive income when harvested
+          produce are sold. You can also take your share as the produce you sponsored
+          <b> <br>There Is Risk In Farming. We dont Guarantee
           returns of your sponsorship or profit.</b>
+        {% endblock caution %}
+          
+        
+          <form class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2" method="post">
+            {% csrf_token %}
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input class="form-control form-control-sm ml-3 w-75" type="text" name="search"  aria-label="Search"
+            
+            {% block placeholder %}
+              placeholder="Search Farm"
+            {% endblock placeholder %}
+              
+            >
+          </form>
       </h6>
     </div>
   </center>
-  <div class="col-md-2"></div>
-<!-- Rotating card -->
-<div class="row">
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-6">
-    <form method="post" class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2">
-      {% csrf_token %}
-      <i class="fas fa-search" aria-hidden="true"></i>
-      <input id="search" name="search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search Farm"
-        aria-label="Search">
-    </form>
-  </div>
-  <div class="col-md-3">
-  </div>
-</div>
-<small>
-  <!-- Rotating card -->
-  <div class="container">
-    {% for page in pageList %}    
-   <div class="row">
-     {% for farm in page %}   
-     <div class="col-md-4 box2 ">
-       <div class="card-wrapper">
-         <div id="card-1" class="card card-rotating text-center">
-           <!-- Front Side -->
-           <div class="face front">
-             <!-- Image-->
-             <div class="card-up">
-               <img class="card-img-top" src="{{farm.image.url}}" alt="Image with a photo of clouds.">
-             </div>
-             <!-- Content -->
-             <div class="card-body">
-               <a class="btn rgba-gradient1 btn-rounded white-text btn-sm  animated rotateIn slower" href="{% url 'makeFarm_page' farm.slug %}">Farm Now</a>
-               <hr>
-               <h5 class="card-title font-weight-bold mb-4 green-text ">{{farm.name}}</h5>
-               <span class="badge badge-success mb-2">{{farm.scientific_name}}</span><span class="badge badge-success mb-2">{{farm.start_date|timesince:farm.end_date}}</span>
-               <span class="badge badge-success mb-2">Located In The Northen Region</span>
-               <dl class="row">
-                 <dd class="col-sm-6">
-                   Cost Per Unit
-                 </dd>
-                 <dd class="col-sm-6 green-text">
-                   GH₵ {{farm.price}}
-                 </dd>
-               </dl>
-
-               <hr>
-
-               <dl class="row">
-                 <dd class="col-sm-6">
-                   Farm Start Date
-                 </dd>
-                 <dd class="col-sm-6 green-text">
-                   {{farm.start_date}}
-                 </dd>
-               </dl>
-               <dl class="row">
-                <dd class="col-sm-6">
-                  Farm End Date
-                </dd>
-                <dd class="col-sm-6 green-text">
-                  {{farm.end_date}}
-                </dd>
-              </dl>
-               <hr>
-               <dl class="row">
-                 <dd class="col-sm-6">
-                   Profit Margin
-                 </dd>
-                 <dd class="col-sm-6 green-text">
-                    {{farm.ros_min}}% - {{farm.ros_max}}%
-                 </dd>
-               </dl>
-               <hr>
-               <!-- Triggering button -->
-               <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
-             </div>
-           </div>
-           <!-- Front Side -->
-           <!-- Back Side -->
-           <div class="face back">
-             <div class="card-body">
-               <h5 class="green-text">Details</h5>
-               <hr>
-               <p> {{farm.description}} </p>
-               <a href="{% url 'makeFarm_page' farm.slug %}" class="btn rgba-gradient1 btn-rounded white-text btn-sm  animated rotateIn slower">farm Now</a>
-               <br>
-               <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
-             </div>
-           </div>
-           <!-- Back Side -->
-         </div>
-       </div>
-     </div>
-     {% endfor %}
-    </div>
-   <hr>
-   {% endfor %}
- </div>
- <!-- Rotating card -->
-</small>
-{% endblock content %}
   
+  {% if messages %}
+    {% for message in messages %}
+    <div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div>
+    {% endfor %}
+  {% endif %}
+  <div class="col-md-2"></div>
+
+
+
+{% block content %}  
+ <small>
+   <!-- Rotating card -->
+   <div class="container">
+    {% for page in pageList %}
+    <div class="row">
+      {% for farm in page %}
+        <div class="col-md-4 box2 ">
+          <div class="card-wrapper">
+            <div id="card-1" class="card card-rotating text-center">
+              <!-- Front Side -->
+              <div class="face front">
+                <!-- Image-->
+                <div class="card-up">
+                  <img class="card-img-top" src="{{farm.image.url}}" alt="Image with a photo of clouds.">
+                </div>
+                <!-- Content -->
+                <div class="card-body">
+                  <a class="btn rgba-gradient1 btn-rounded white-text btn-sm" href="{% url 'makeFarm_page' farm.slug %}">Sponsor Farm</a>
+                  <hr>
+                  <h5 class="card-title font-weight-bold mb-4 green-text ">Maize </h5>
+                  <span class="badge badge-success mb-2">({{farm.scientific_name}})</span><span class="badge badge-success mb-2">{{farm.start_date|timesince:farm.end_date}}</span>
+                  <!-- <span class="badge badge-success mb-2">Located In The Northen Region</span> -->
+                  <dl class="row">
+                    <dd class="col-sm-6">
+                      Cost Per Unit
+                    </dd>
+                    <dd class="col-sm-6 green-text">
+                      GH₵ {{farm.price}}
+                    </dd>
+                  </dl>
+
+                  <hr>
+
+                  <dl class="row">
+                    <dd class="col-sm-6">
+                      Farming Start Date
+                    </dd>
+                    <dd class="col-sm-6 green-text">
+                      {{farm.start_date}}
+                    </dd>
+                  </dl>
+
+                  <hr>
+
+                  <dl class="row">
+                    <dd class="col-sm-6">
+                      Farming End Date
+                    </dd>
+                    <dd class="col-sm-6 green-text">
+                      {{farm.end_date}}
+                    </dd>
+                  </dl>
+                  <hr>
+
+                  <dl class="row">
+                    <dd class="col-sm-6">
+                      Profit Margin
+                    </dd>
+                    <dd class="col-sm-6 green-text">
+                      {{farm.ros_min}}% - {{farm.ros_max}}%
+                    </dd>
+                  </dl>
+
+                  <hr>
+                  <!-- Triggering button -->
+                  <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to read more</a>
+                </div>
+              </div>
+              <!-- Front Side -->
+
+              <!-- Back Side -->
+              <div class="face back">
+                <div class="card-body">
+                  <h5 class="green-text">Details</h5>
+                  <hr>
+                  <p>
+                    {{farm.description}}
+                  </p>
+                  <a href="{% url 'makeFarm_page' farm.slug %}" class="btn rgba-gradient1 btn-rounded white-text btn-sm  animated rotateIn slower">Sponsor Farm</a>
+                  <br>
+                  <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to go back</a>
+                </div>
+              </div>
+            <!-- Back Side -->
+            </div>
+          </div>
+       </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <hr>
+    <br>
+    <br>
+    
+  </div>
+
   <!-- Rotating card -->
+ </small>
+ {% endblock content %}
+
+  <!-- Footer -->
+
+  <!-- Footer Elements -->
+  <footer class="page-footer font-small green darken-3 fixed-bottom">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2022 Copyright:
+      <a href=""> Agrivest Africa.com</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+
 <br>
 <br>
 <br>
-<!-- Footer Elements -->
-{% include 'footer.html' %}
-<!-- Footer -->
+<br>
+
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
+
+
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
   <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<script>
-  AOS.init({
-  duration: 1200,
-})
+  <style>    
+    html,
+    body,
+    header,
+    .view {
+      height: 65%;
+    }
 
-if ( window.history.replaceState ) {
-  window.history.replaceState( null, null, window.location.href );
-}
-</script>
 
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 100px;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 100px;
+      }
+    }
+
+
+      .btn .fa {
+        margin-left: 3px;
+      }
+
+      .top-nav-collapse {
+        background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(13, 211, 13, 0.7) 100%);
+        background: -webkit-linear-gradient(45deg, rgba(39, 126, 4, 0.7), rgba(11, 233, 66, 0.7) 100%);
+        background: -webkit-gradient(linear, 45deg, from(rgba(2, 168, 10, 0.7)), to(rgba(29, 210, 177, 0.7)));
+        background: -o-linear-gradient(45deg, rgba(26, 77, 6, 0.7), rgba(12, 228, 48, 0.7) 100%);
+        background: linear-gradient(to 45deg, rgba(4, 68, 4, 0.7), rgba(27, 194, 12, 0.7) 100%);
+
+      }
+
+      .navbar:not(.top-nav-collapse) {
+        background: transparent !important;
+      }
+
+      @media (max-width: 991px) {
+        .navbar:not(.top-nav-collapse) {
+          background: #06aa14 !important;
+        }
+      }
+
+      .btn-white {
+        color: black !important;
+      }
+
+
+
+      .rgba-gradient {
+        background: -moz-linear-gradient(45deg, rgba(42, 155, 7, 0.7), rgba(29, 210, 177, 0.7) 100%);
+        background: -webkit-linear-gradient(45deg, rgba(23, 100, 4, 0.7), rgba(29, 210, 177, 0.7) 100%);
+        background: -webkit-gradient(linear, 45deg, from(rgba(24, 122, 5, 0.7)), to(rgba(29, 210, 177, 0.7)));
+        background: -o-linear-gradient(45deg, rgba(38, 99, 3, 0.7), rgba(29, 210, 177, 0.7) 100%);
+        background: linear-gradient(to 45deg, rgba(10, 54, 2, 0.7), rgba(29, 210, 177, 0.7) 100%);
+      }
+
+      .rgba-gradient1 {
+        background: -moz-linear-gradient(45deg, rgba(57, 221, 16, 0.7), rgba(19, 77, 5, 0.7) 60%);
+        background: -webkit-linear-gradient(45deg, rgba(14, 233, 25, 0.7), rgba(3, 46, 3, 0.7) 40%);
+        background: -webkit-gradient(linear, 45deg, from(rgba(7, 226, 36, 0.7)), to(rgba(103, 224, 87, 0.5)));
+        background: -o-linear-gradient(45deg, rgba(60, 230, 8, 0.2), rgba(20, 85, 3, 0.7) 50%);
+        background: linear-gradient(to 45deg, rgba(57, 238, 11, 0.7), rgba(9, 61, 4, 0.7) 20%);
+      }
+
+      .rgba-gradient2 {
+        background: -moz-linear-gradient(45deg, rgba(63, 1, 71, 0.1), rgba(29, 210, 177, 0.3) 60%);
+        background: -webkit-linear-gradient(45deg, rgba(230, 11, 200, 0.1), rgba(29, 210, 177, 0.3) 40%);
+        background: -webkit-gradient(linear, 45deg, from(rgba(212, 19, 203, 0.1)), to(rgba(29, 210, 177, 0.3)));
+        background: -o-linear-gradient(45deg, rgba(209, 10, 166, 0.1), rgba(189, 29, 210, 0.2) 50%);
+        background: linear-gradient(to 45deg, rgba(78, 4, 107, 0.2), rgba(180, 16, 158, 0.2) 20%);
+      }
+    
+        
+      
+      .box2{
+        margin-bottom: 2 rem;
+      }
+  </style>
 </body>
 
 </html>

@@ -42,6 +42,6 @@ urlpatterns = [
     path('mail/',views.mailPortal, name='mailPortal'),
     path('sitemap/', views.sitemap),
 
-    path('logout', views.logout_user, name='logout')
-
+    path('logout', views.logout_user, name='logout'),
+    path('testpay', views.testpay),
 ]

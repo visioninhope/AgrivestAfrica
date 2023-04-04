@@ -7,9 +7,9 @@ from Asset.models import Partner,Trade,Farm,Produce
 
 class TradeInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    # trade = models.CharField(max_length=200)
-    trade = models.ForeignKey(Trade, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.PROTECT)
+    trade = models.ForeignKey(Trade, on_delete=models.PROTECT)
+    partner  = models.ForeignKey(Partner, on_delete=models.PROTECT, default=2)
     price = models.FloatField()
     units = models.PositiveIntegerField()
     profit_range_min = models.FloatField()
@@ -24,18 +24,19 @@ class TradeInvoice(models.Model):
     totalreturn_min = models.FloatField()
     totalreturn_max = models.FloatField()
     extra_notes = models.CharField(max_length=200, blank=True, null=True)
-    image_url = models.CharField(max_length=300, blank=True, null=True)
     type = models.CharField(max_length=50, default='trade')
-    ##roll on option
-    #when user started trade
-        #hide in trade logs interval b/n start and finish//
+    HarvestType = (
+        ('Cash','Cash'),
+        ('Roll on trade','Roll on trade'),
+        ('Crop', 'Crop')
+    )
+    harvest_type = models.CharField(max_length=50, choices=HarvestType, default='Cash')
     CHOICES = (
         ("Pending", "Pending"),
         ("Active", "Active"),
         ("Completed", "Completed")
     )
-    status = models.CharField(
-        max_length=50, choices=CHOICES, default='Pending')
+    status = models.CharField(max_length=50, choices=CHOICES, default='Pending')
     actual_return = models.FloatField(default=0.00)
     #token = models.UUIDField(max_length=300,default=1)
     check_id = models.CharField(max_length=500, blank=True, null=True)
@@ -53,11 +54,9 @@ class TradeInvoice(models.Model):
 
 class FarmInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    farm = models.ForeignKey(Farm, on_delete=models.CASCADE)
-    # farm = models.CharField(max_length=200)
+    customer = models.ForeignKey(User, on_delete=models.PROTECT)
+    farm = models.ForeignKey(Farm, on_delete=models.PROTECT)
     partner  = models.ForeignKey(Partner, on_delete=models.PROTECT, default=2)
-    location = models.CharField(max_length=200)
     price = models.FloatField()
     units = models.PositiveIntegerField()
     profit_range_min = models.FloatField()
@@ -72,19 +71,22 @@ class FarmInvoice(models.Model):
     totalreturn_min = models.FloatField()
     totalreturn_max = models.FloatField()
     extra_notes = models.CharField(max_length=200, blank=True, null=True)
-    image_url = models.CharField(max_length=300, blank=True, null=True)
+    HarvestType = (
+        ('Cash','cash'),
+        ('Roll on trade','roll on trade'),
+        ('Crop', 'crop')
+    )
+    harvest_type = models.CharField(max_length=50, choices=HarvestType)
     type = models.CharField(max_length=50, default='farm')
     CHOICES = (
         ("Pending", "Pending"),
         ("Active", "Active"),
         ("Completed", "Completed")
     )
-    status = models.CharField(
-        max_length=50, choices=CHOICES, default='Pending')
-    start_time = models.DateTimeField(default=timezone.now)
+    status = models.CharField(max_length=50, choices=CHOICES, default='Pending')
     actual_return = models.FloatField(default=0.00)
-    #token = models.UUIDField(max_length=300,default=1)
     check_id = models.CharField(max_length=500, blank=True, null=True)
+    #token = models.UUIDField(max_length=300,default=1)
     paylink = models.CharField(max_length=500, blank=True,null=True)
     start_time = models.DateTimeField(default=timezone.now, blank=True, null=True)
 
@@ -100,9 +102,9 @@ class FarmInvoice(models.Model):
     
 class ProduceInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.PROTECT)
     # produce = models.CharField(max_length=200)
-    produce = models.ForeignKey(Produce, on_delete=models.CASCADE)
+    produce = models.ForeignKey(Produce, on_delete=models.PROTECT)
     price = models.FloatField()
     units = models.PositiveIntegerField()
     base_cost = models.FloatField()
