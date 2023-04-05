@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>AgriVestAfrica - Blog Soya</title>
+    {% include 'Extras/meta.html' %}
+
+
+    <script data-cfasync="false">
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '//www.googletagmanager.com/gtm.' + 'js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W7MBMN');
+    </script>
+
+
+
+
+    <style>
+        html,
+        body,
+        header,
+        .view {
+            height: 80%;
+        }
+
+        @media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .view {
+                height: 100px;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .view {
+                height: 100px;
+            }
+        }
+
+        .btn .fa {
+            margin-left: 3px;
+        }
+
+        .top-nav-collapse {
+            background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(13, 211, 13, 0.7) 100%);
+            background: -webkit-linear-gradient(45deg, rgba(39, 126, 4, 0.7), rgba(11, 233, 66, 0.7) 100%);
+            background: -webkit-gradient(linear, 45deg, from(rgba(2, 168, 10, 0.7)), to(rgba(29, 210, 177, 0.7)));
+            background: -o-linear-gradient(45deg, rgba(26, 77, 6, 0.7), rgba(12, 228, 48, 0.7) 100%);
+            background: linear-gradient(to 45deg, rgba(4, 68, 4, 0.7), rgba(27, 194, 12, 0.7) 100%);
+
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: transparent !important;
+        }
+
+        @media (max-width: 991px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #06aa14 !important;
+            }
+        }
+
+        .btn-white {
+            color: black !important;
+        }
+
+
+
+        .rgba-gradient {
+            background: -moz-linear-gradient(45deg, rgba(42, 155, 7, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: -webkit-linear-gradient(45deg, rgba(23, 100, 4, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: -webkit-gradient(linear, 45deg, from(rgba(24, 122, 5, 0.7)), to(rgba(29, 210, 177, 0.7)));
+            background: -o-linear-gradient(45deg, rgba(38, 99, 3, 0.7), rgba(29, 210, 177, 0.7) 100%);
+            background: linear-gradient(to 45deg, rgba(10, 54, 2, 0.7), rgba(29, 210, 177, 0.7) 100%);
+        }
+
+        .rgba-gradient1 {
+            background: -moz-linear-gradient(45deg, rgba(4, 2, 17, 0.7), rgba(29, 210, 177, 0.7) 60%);
+            background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 40%);
+            background: -webkit-gradient(linear, 45deg, from(rgba(42, 27, 161, 0.7)), to(rgba(29, 210, 177, 0.5)));
+            background: -o-linear-gradient(45deg, rgba(42, 27, 161, 0.2), rgba(29, 210, 177, 0.7) 50%);
+            background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 20%);
+        }
+
+        .rgba-gradient2 {
+            background: -moz-linear-gradient(45deg, rgba(63, 1, 71, 0.1), rgba(29, 210, 177, 0.3) 60%);
+            background: -webkit-linear-gradient(45deg, rgba(230, 11, 200, 0.1), rgba(29, 210, 177, 0.3) 40%);
+            background: -webkit-gradient(linear, 45deg, from(rgba(212, 19, 203, 0.1)), to(rgba(29, 210, 177, 0.3)));
+            background: -o-linear-gradient(45deg, rgba(209, 10, 166, 0.1), rgba(189, 29, 210, 0.2) 50%);
+            background: linear-gradient(to 45deg, rgba(78, 4, 107, 0.2), rgba(180, 16, 158, 0.2) 20%);
+        }
+
+        .timeline {
+            position: relative;
+            list-style: none;
+            padding: 1rem 0;
+            margin: 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            margin-left: -1px;
+            background-color: #0f9c0b;
+        }
+
+        .timeline-element {
+            position: relative;
+            width: 50%;
+            padding: 1rem 0;
+            padding-right: 2.5rem;
+            text-align: right;
+        }
+
+        .timeline-element::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 1.35rem;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #21ca0a;
+            background-color: #fff;
+        }
+
+        .timeline-element:nth-child(even)::before {
+            right: auto;
+            left: -8px;
+        }
+
+        .timeline-element:nth-child(even) {
+            margin-left: 50%;
+            padding-left: 2.5rem;
+            padding-right: 0;
+            text-align: left;
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline::before {
+                left: 8px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline-element {
+                width: 100%;
+                text-align: left;
+                padding-left: 2.5rem;
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline-element::before {
+                top: 1.25rem;
+                left: 1px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline-element:nth-child(even) {
+                margin-left: 0rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline-element {
+                width: 100%;
+                text-align: left;
+                padding-left: 2.5rem;
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline-element:nth-child(even)::before {
+                left: 1px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .timeline-element::before {
+                top: 1.25rem;
+            }
+        }
+    </style>
+
+    <header>
+        <!--Navbar-->
+        {% include 'navbar.html' %}
+        <!-- Full Page Intro -->
+        <div class="view"
+            style="background-image: url('https://res.cloudinary.com/dvnemzw0z/image/upload/v1680724164/main/WHY_SOYABEANS_ARE_BECOMING_A_POPULAR_CASH_CROP_AGRIVEST_AFRICA_r9trvi.gif'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+            <!-- Mask & flexbox options-->
+            <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+                <!-- Content -->
+                <div class="container">
+                    <br>
+                    <br>
+                    <br>
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 ">
+                            <h6 class="h6-responsive font-weight-bold mt-sm-5 text-left animated tada slower">WHY SOYABEANS ARE BECOMING A POPULAR CASH CROP
+                            </h6>
+                            <hr class="hr-light">
+                        </div>
+                    </div>
+
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Content -->
+        </div>
+        <!-- Mask & flexbox options-->
+        </div>
+        <!-- Full Page Intro -->
+    </header>
+    <!-- Main navigation -->
+</head>
+
+<body>
+
+
+
+    <div class="container my-5 py-5 z-depth-1">
+
+
+        <!--Section: Content-->
+        <section class="px-md-5 mx-md-5 text-left dark-grey-text">
+            <div class="row">
+            
+                <!--Grid column-->
+                <div class="col-md-12 mb-4 mb-md-0">
+
+                    <p>
+                        Soybeans are a highly nutritious and versatile crop that offer a range of health and environmental benefits. In this blog post, we'll explore some of the key benefits of soybeans.
+                        <br>
+                        <br>
+                        First and foremost, soybeans are a great source of protein, with a protein content of around 40%. This makes them an excellent source of protein for vegetarians and vegans, as well as for people who are looking to reduce their meat consumption. Soybeans also contain all of the essential amino acids, making them a complete protein source.
+                        <br>
+                        <br>
+                        In addition to their protein content, soybeans are also rich in other nutrients, including fiber, iron, calcium, and vitamins B and K. This makes them a highly nutritious food that can support overall health and wellbeing.
+                        Another important benefit of soybeans is that they are an environmentally-friendly crop. Soybeans are nitrogen-fixing, which means that they can take nitrogen from the air and convert it into a form that plants can use. This reduces the need for synthetic fertilizers, which can be harmful to the environment.
+                        Soybeans are also a versatile crop that can be used in a range of products, from soy milk and tofu to soy sauce and tempeh. 
+                        <br>
+                       
+                        <br>
+                        This versatility makes soybeans a valuable crop for farmers, who can sell their soybeans for use in a range of different products.
+                        Overall, soybeans offer a range of health and environmental benefits that make them an important crop for farmers and consumers alike. By including soybeans in your diet, you can support your health and wellbeing, while also supporting sustainable and environmentally-friendly farming practices.
+                        
+                        
+                    </p>
+
+
+                    <hr class="my-5">
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+
+    </div>
+    <!--Grid row-->
+    </section>
+    </div>
+
+    </section>
+    <!--Section: Content-->
+
+
+    </div>
+
+
+
+
+
+
+    {% include 'footer.html' %}
+
+
+
+
+        <script type="text/javascript"
+            src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
+
+
+        <script type="text/javascript"
+            src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/search-v4/search.min.js"></script>
+        <script src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/dist/main.min.js"></script>
+
+
+
+</body>
+
+</html>

@@ -42,13 +42,13 @@ def s_register(request):
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')   
             welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
             welcome_mail.start()
-            messages.success(request, 'Account Created Successfully')
+            # messages.success(request, 'Account Created Successfully')
             return redirect('dashboard')
     return render(request, 'registration/s_register.html')
 
 def f_register(request):
     if request.method == 'POST':
-        name = request.POST.get('username')
+        name = request.POST.get('name')
         email = request.POST.get('email')
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
@@ -75,13 +75,13 @@ def f_register(request):
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')    
             welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
             welcome_mail.start()
-            messages.success(request, 'Account Created Successfully')
+            # messages.success(request, 'Account Created Successfully')
             return redirect('dashboard')
     return render(request, 'registration/f_register.html')
 
 def o_register(request):
     if request.method == 'POST':
-        name = request.POST.get('username')
+        name = request.POST.get('name')
         email = request.POST.get('email')
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
@@ -108,9 +108,20 @@ def o_register(request):
             login(request,user,backend='django.contrib.auth.backends.ModelBackend')    
             welcome_mail = threading.Thread(target=send_welcome_mail, args=(name,res_email))
             welcome_mail.start()
-            messages.success(request, 'Account Created Successfully')
+            # messages.success(request, 'Account Created Successfully')
             return redirect('dashboard')
     return render(request, 'registration/o_register.html')
+
+def send_welcome_mail(name,res_email):
+    info = {'username' : name}
+    html_template = 'welcome.html'
+    welcome_message = render_to_string(html_template, context=info)
+    recipient = res_email
+    subject = 'Welcome To AgriVest Africa'
+    sender = 'support@agrivestafrica.com'
+    message = EmailMessage(subject, welcome_message, sender, [recipient])
+    message.content_subtype = 'html'
+    message.send()
 
 def send_welcome_mail(name,res_email):
     info = {'username' : name}

@@ -1,9 +1,11 @@
-{% load static %}
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <title>AgriVestAfrica - Contact</title>
-  {% include 'Extras/meta.html' %}
+    <title>AgriVestAfrica - Referrals</title>
+    {% include 'Extras/meta.html' %}
+
 
     <script data-cfasync="false">
         (function (w, d, s, l, i) {
@@ -33,7 +35,7 @@
       body,
       header,
       .view {
-        height: 400px;
+        height: 100px;
       }
     }
     @media (min-width: 800px) and (max-width: 850px) {
@@ -41,7 +43,7 @@
       body,
       header,
       .view {
-        height: 500px;
+        height: 100px;
       }
     }
   
@@ -134,11 +136,11 @@
 </head>
 
 <body>
-    <div class="container-fluid z-depth-1 my-5 px-0">
-
+    <form class="container-fluid z-depth-1 my-5 px-0" method="post">
+      {% csrf_token %}
         <!--Section: Content-->
         <section class="my-md-5" 
-          style="background-image: url('https://res.cloudinary.com/dvnemzw0z/image/upload/v1679865323/main/cocoa-pods-with-cocoa-leaf-white_41471-6709_ll6imm.webp'); background-size: cover; background-position: center center;">
+          style="background-image: url('https://res.cloudinary.com/dvnemzw0z/image/upload/v1680725370/main/farmer_ipci9c.jpg'); background-size: cover; background-position: center center;">
       
           <div class="rgba-black-strong rounded p-5">
       
@@ -156,64 +158,79 @@
                     <div class="col-lg-5 col-md-12 mb-0 mb-md-0">
             
             
-                      <p class="white-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
-                        molestiae
-                        numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam, doloremque laborum.</p>
+                      <p class="white-text">
+                        Do you have any questions, feedback, or ideas to share, please don't hesitate to get in touch with us. Our team is dedicated to providing you with the best possible support and guidance as you explore the world of agricultural development. Please contact us with any of the details below and let us know how we can assist you.
+                        Looking forward to hearing from you!
+                      </p>
             
-                      <p><span class="font-weight-bold mr-2 white-text">Email:contact@mycompany.com</p>
-                      <p><span class="font-weight-bold mr-2 white-text">Phone:0556530107</p>
-            
+                      <p><span class="font-weight-bold mr-2 white-text">Email: support@agrivestafrica.com</p>
+                      <p><span class="font-weight-bold mr-2 white-text">Phone/Whatsapp: +233 562 2057</p>
+              <!-- Facebook -->
+              <a type="button" href="https://www.facebook.com/agrivestafrica/" class="btn-floating"><i
+                  class="fab fa-facebook-f"></i></a>
+              <!-- Twitter -->
+              <a type="button" href="https://twitter.com/Agrivestafrica?t=866sCrSvqGrB14Ufdu9tIg&s=08" class="btn-floating"><i class="fab fa-twitter"></i></a>
+              <!-- Google + -->
+              <a type="button" href="https://www.linkedin.com/in/Agrivest Africa-bb6a23258/" class="btn-floating"><i
+                  class="fab fa-linkedin-in"></i></a>
+
+              <a type="button" href="https://instagram.com/agrivest_africa?igshid=ZDdkNTZiNTM=" class="btn-floating"><i class="fab fa-instagram"></i></a>
+
+
+            <!-- Grid column -->
                     </div>
                     <!--Grid column-->
+                    <!-- Grid column -->
+       
             
                     <!--Grid column-->
                     <div class="col-lg-7 col-md-12 mb-4 mb-md-0">
             
                       <!--Grid row-->
-                      <div class="row">
+                      <!-- <div class="row">
             
-                        <!--Grid column-->
+                        Grid column
                         <div class="col-md-6">
             
-                          <!-- Material outline input -->
+                          Material outline input
                           <div class="md-form md-outline mb-0 ">
                             <input type="text" id="form-first-name" class="form-control">
                             <label for="form-first-name"><span class="white-text">First name</span></label>
                           </div>
             
                         </div>
-                        <!--Grid column-->
+                        Grid column
             
-                        <!--Grid column-->
+                        Grid column
                         <div class="col-md-6">
             
-                          <!-- Material outline input -->
+                          Material outline input
                           <div class="md-form md-outline mb-0">
                             <input type="text" id="form-last-name" class="form-control">
                             <label for="form-last-name"><span class="white-text">Last name</span></label>
                           </div>
             
                         </div>
-                        <!--Grid column-->
+                        Grid column
             
-                      </div>
-                      <!--Grid row-->
+                      </div> -->
+                      <!-- Grid row -->
             
                       <!-- Material outline input -->
                       <div class="md-form md-outline mt-3">
-                        <input type="email" id="form-email" class="form-control">
+                        <input type="email" id="form-email" class="form-control" name="email" required style="color: white;">
                         <label for="form-email"><span class="white-text">Email</span></label>
                       </div>
             
                       <!-- Material outline input -->
                       <div class="md-form md-outline">
-                        <input type="text" id="form-subject" class="form-control">
+                        <input type="text" id="form-subject" class="form-control" name="subject" required style="color: white;">
                         <label for="form-subject"><span class="white-text">Form Subject</span></label>
                       </div>
             
                       <!--Material textarea-->
                       <div class="md-form md-outline mb-3">
-                        <textarea id="form-message" class="md-textarea form-control" rows="3"></textarea>
+                        <textarea id="form-message" class="md-textarea form-control" rows="3" name="content" required style="color: white;"></textarea>
                         <label for="form-message"><span class="white-text">How can we help you?</span></label>
                       </div>
             
@@ -238,7 +255,7 @@
         <!--Section: Content-->
       
       
-      </div>
+      </form>
 <br>
 
 

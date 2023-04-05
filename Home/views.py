@@ -4,7 +4,8 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from urllib.parse import urlparse, parse_qs
-import math
+import math,threading
+from django.core.mail import EmailMessage
 from .models import Inbox
 from Log.models import User,Sponsor,Farmer,Offtaker,Profile
 from Transaction.models import TradeInvoice,FarmInvoice,ProduceInvoice
@@ -354,9 +355,26 @@ def investors(request):
 def blog(request):
     return render(request, 'Extras/blog.html')
 def contact(request):
+    print('contact')
+        # if request.method == 'POST':
+        #     email = request.POST.get('email')
+        #     subject = request.POST.get('subject')
+        # contact_mail = threading.Thread(target=send_contact_mail, args=(email,subject))
+        # contact_mail.start()
     return render(request, 'Extras/contact.html')
+
+# def send_contact_mail(email,subject):
+#     print('me')
+#     recipient =  'support@agrivestafrica.com'
+#     subject = subject
+#     sender = email
+#     message = EmailMessage(subject, sender, [recipient])
+#     message.send()
+
 def how_to(request):
     return render(request, 'Extras/how_to.html')
+def blog_soya(request):
+    return render(request, 'Extras/blog_soya.html')
 
 def mailPortal(request):
     if request.method == 'POST':
