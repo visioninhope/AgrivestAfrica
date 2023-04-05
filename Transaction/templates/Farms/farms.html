@@ -123,7 +123,7 @@
                 <div class="card-body">
                   <a class="btn rgba-gradient1 btn-rounded white-text btn-sm" href="{% url 'makeFarm_page' farm.slug %}">Sponsor Farm</a>
                   <hr>
-                  <h5 class="card-title font-weight-bold mb-4 green-text ">Maize </h5>
+                  <h5 class="card-title font-weight-bold mb-4 green-text ">{{farm.name}} </h5>
                   <span class="badge badge-success mb-2">({{farm.scientific_name}})</span><span class="badge badge-success mb-2">{{farm.start_date|timesince:farm.end_date}}</span>
                   <!-- <span class="badge badge-success mb-2">Located In The Northen Region</span> -->
                   <dl class="row">

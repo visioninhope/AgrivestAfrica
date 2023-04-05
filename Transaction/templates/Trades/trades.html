@@ -38,7 +38,7 @@
                 <div class="card-body">
                   <a class="btn rgba-gradient1 btn-rounded white-text btn-sm" href="{% url 'makeTrade_page' trade.slug %}">Sponsor Trade</a>
                   <hr>
-                  <h5 class="card-title font-weight-bold mb-4 green-text ">Maize </h5>
+                  <h5 class="card-title font-weight-bold mb-4 green-text ">{{trade.name}} </h5>
                   <span class="badge badge-success mb-2">({{trade.scientific_name}})</span><span class="badge badge-success mb-2">{{trade.start_date|timesince:trade.end_date}}</span>
                   <!-- <span class="badge badge-success mb-2">Located In The Northen Region</span> -->
                   <dl class="row">
