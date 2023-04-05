@@ -72,7 +72,7 @@
             </p>
             <p>
               <small>unit price</small>
-              <span>GH₵{{produce.price}}</span>
+              <span>GH₵{{produce.price|intcomma}}</span>
             </p>
             <p>
               <small>base cost</small>
@@ -81,7 +81,7 @@
           </div>
           <strong>
             <small style="border-bottom: 2px dotted darkgray; width: fit-content;">Total cost</small>
-            <span style="font-size: 2.2rem;">GH₵{{produce.total_cost}}</span>
+            <span style="font-size: 2.2rem;">GH₵{{produce.total_cost|intcomma}}</span>
         </div>
       </div>
     </section>
