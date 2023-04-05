@@ -71,8 +71,8 @@ def dashboard(request):
         produces = ps.order_by('-id')[0:5]
 
     tradeList = Trade.objects.all()[0:9]
-    tradePages = Paginator(tradeList, per_page=3)
-    tradePages_2 = Paginator(tradeList, 3)
+    tradePages = Paginator(tradeList, per_page=2)
+    tradePages_2 = Paginator(tradeList, per_page=3)
     pageList = []
     pageList_2 = []
     for page in tradePages:
