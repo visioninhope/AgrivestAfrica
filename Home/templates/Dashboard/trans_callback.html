@@ -17,7 +17,16 @@
     <section class="box">
       <section class="box_left">
         <div class="image_box">
-          <img src="{{cur_trans.image_url}}" alt="">
+          
+          {% if cur_trans.type == 'trade' %}
+            <img src="{{cur_trans.trade.image.url}}" alt="">
+          {% elif cur_trans.type == 'farm' %}
+            <img src="{{cur_trans.farm.image.url}}" alt="">
+          {% else %}
+            <img src="{{cur_trans.produce.image.url}}" alt="">
+          {% endif %}
+
+            
         </div>
       </section>
       <section class="right">

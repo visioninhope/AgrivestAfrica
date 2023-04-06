@@ -203,7 +203,8 @@ def buy_produce(request,slug):
                 # payment = request.POST.get('payment')
                 # produceInvoice.payment = payment
                 produceInvoice.save()
-                return redirect(trans_pay(total_cost,produce_name, ProduceInvoice, 'produce'))
+                print('ME')
+                return redirect(trans_pay(total_cost,produce_name, ProduceInvoice, 'produce'),permanent=False)
     context ={
         'produce' : produce
     }
