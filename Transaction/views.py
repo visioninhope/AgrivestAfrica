@@ -6,6 +6,7 @@ from Asset.models import Trade, Farm, Produce,Partner
 from Transaction.models import FarmInvoice,TradeInvoice,ProduceInvoice
 from uuid import uuid4
 import json,requests
+from django.http import HttpResponse
 
 def trades(request):
     if request.method == 'POST':
@@ -200,11 +201,8 @@ def buy_produce(request,slug):
                 produceInvoice.base_cost = "{:.2f}".format(units * produce.price)
                 produceInvoice.total_cost = "{:.2f}".format(total_cost)
                 produceInvoice.image_url = produce.image.url
-                # payment = request.POST.get('payment')
-                # produceInvoice.payment = payment
                 produceInvoice.save()
-                print('ME')
-                return redirect(trans_pay(total_cost,produce_name, ProduceInvoice, 'produce'),permanent=False)
+                return redirect(trans_pay(total_cost,produce_name, ProduceInvoice, 'produce'))
     context ={
         'produce' : produce
     }
