@@ -56,6 +56,9 @@
           var duration_left = parseInt('{{duration_left}}')
 
           var width_value = 100 - ((duration_left * 100)/total_duration)
+          if(width_value > 100){
+            width_value = 100
+          }
           progress.style.width = `${width_value}%`
 
 
