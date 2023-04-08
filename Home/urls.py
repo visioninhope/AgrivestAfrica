@@ -38,6 +38,7 @@ urlpatterns = [
     path('blog/', views.blog, name='blog_page'),
     path('contact', views.contact, name='contact_page'),
     path('how_to/', views.how_to, name='how_to_page'),
+    path('terms_and_conditions', views.terms_and_conditions, name='terms_and_conditions_page'),
     path('blog_soya/',views.blog_soya, name='blog_soya_page'),
 
     path('mail/',views.mailPortal, name='mailPortal'),

@@ -354,6 +354,8 @@ def investors(request):
     return render(request, 'Extras/investors.html')
 def blog(request):
     return render(request, 'Extras/blog.html')
+def terms_and_conditions(request):
+    return render(request, 'Extras/terms_and_conditions.html')
 def contact(request):
     print('contact')
         # if request.method == 'POST':
