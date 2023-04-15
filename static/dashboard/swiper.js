@@ -54,16 +54,20 @@ if(document.querySelector('.ad_swiper')){
   }
 }
 
+
+
 const mt_boxes = document.querySelectorAll('[id=mt_box]')
-if(mt_boxes){
-  for (let i = 0; i < mt_boxes.length; i++) {
-    anime({
-    targets: mt_boxes[i],
-    opacity : [0,1],
-    translateY: [-100,0],
-    duration: parseInt(800) * parseInt(i+1),
-    delay: parseInt(300) * parseInt(i+1)
-    });
+if(window.innerWidth > 900){
+  if(mt_boxes){
+    for (let i = 0; i < mt_boxes.length; i++) {
+      anime({
+        targets: mt_boxes[i],
+        opacity : [0,1],
+        translateY: [-100,0],
+        duration: parseInt(800) * parseInt(i+1),
+        delay: parseInt(300) * parseInt(i+1)
+      });
+    }
   }
 }
 

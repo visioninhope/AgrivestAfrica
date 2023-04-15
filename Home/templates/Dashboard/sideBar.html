@@ -1,6 +1,7 @@
 {% load  humanize %}
 <section class="left">
-  <div id="left_tag"><i class="material-symbols-outlined">menu_open</i></div>
+  <div id="left_tag" class="left_tag"><i class="material-symbols-outlined">menu_open</i></div>
+  <div id="left_close_tag"><i class="material-symbols-outlined">close</i></div>
   <div class="top" id="left_top">
     <a href="{% url 'homepage' %}">AgrivestAfrica</a>
   </div>
@@ -35,3 +36,35 @@
     <a style="color: salmon;" href="{% url 'logout' %}"><i class="material-symbols-outlined">logout</i><span id="logout">Logout</span></a>
   </div>
 </section>
+
+<style>
+  .left{
+    /* border: 1px solid black; */
+    overflow-x: hidden;
+  }
+  /* #left_tag{
+    display: none;
+  } */
+  #left_close_tag{
+    display: none;
+  }
+
+  @media all and (max-width:900px){
+    #left_close_tag{
+      display: flex;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 10rem;
+      color: #4caf50;
+      cursor: pointer;
+      /* font-size: 3.5rem; */
+      /* background: black; */
+    }
+    #left_close_tag i{
+      font-size: 1.8rem
+    };
+  }
+
+  
+</style>

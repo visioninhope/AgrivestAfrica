@@ -60,7 +60,7 @@ if(left_tag){
 
 const handleScreen =()=>{   
 if(window.innerWidth > 900){   
-  left_tag.classList.toggle('change')
+  // left_tag.classList.toggle('change')
   left.classList.toggle('change')
   left_top.classList.toggle('change')
   user_con.classList.toggle('change')
@@ -76,7 +76,7 @@ if(window.innerWidth > 900){
 }else{
   left.classList.toggle('mini')
   main_cover.classList.toggle('change')
-}
+  }
 }
 
 const inp = document.querySelectorAll('.pro_set')

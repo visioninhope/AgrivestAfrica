@@ -34,11 +34,63 @@
     {% block main %}
     <section class="main">
       <nav class="mini_nav">
+        <div id="left_tag_2" class="left_tag_2" style="display: flex;"><i class="material-symbols-outlined">menu_open</i></div>
         <a href="{% url 'trades_page' %}" class="material-symbols-outlined">shopping_cart</a>
         <a href="{% url 'farms_page' %}" class="material-symbols-outlined">agriculture</a>
         <a href="{% url 'produce_page' %}" class="material-symbols-outlined">store</a>
       </nav>
       <div class="main_cover"></div>
+      <style>
+        .left_tag_2{
+          color: white;
+          cursor: pointer;
+        }
+      </style>
+
+      <script>
+
+const left = document.querySelector('.left')
+const left_top = document.getElementById('left_top')
+const user_con = document.querySelector('.user_con')
+const menu_a = document.querySelectorAll('[id=menu_a]')
+const menu_ab = document.querySelectorAll('[id=menu_ab]')
+const left_tag = document.getElementById('left_tag')
+const left_tag_2 = document.getElementById('left_tag_2')
+const left_close_tag = document.getElementById('left_close_tag')
+const logout = document.getElementById('logout')
+const main = document.querySelector('.main')
+const main_cover = document.querySelector('.main_cover')
+
+        left_tag_2.onclick =()=>{
+          left.classList.add('mini')
+          main_cover.classList.add('change')
+        }
+        left_close_tag.onclick =()=>{
+          left.classList.remove('mini')
+          main_cover.classList.remove('change')
+        }
+
+
+        if(left_tag){
+          left_tag.onclick =()=>{
+            left.classList.toggle('change')
+            left_tag.classList.toggle('change')
+            left_top.classList.toggle('change')
+            user_con.classList.toggle('change')
+            logout.classList.toggle('change')
+            main.classList.toggle('change')
+            menu_a.forEach(a=>{
+              a.classList.toggle('change')
+            })
+            menu_ab.forEach(a=>{
+              a.classList.toggle('change')
+            })
+            exp_menu.classList.toggle('mini')
+          } 
+        }
+
+      </script>
+
       <section class="main_top">
         <div class="mt_left">
           <div class="box mt1" id="mt_box">
@@ -56,7 +108,7 @@
             <p>Total Balance</p>
             <span>GH₵ 0.00</span>
           </div>
-          <div class="box" id="mt_box">
+          <div class="box mt4" id="mt_box">
             <div class="quick_box swiper">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -74,10 +126,21 @@
               </div>
               <div class="quick_prev"><span class="material-symbols-outlined">arrow_back_ios</span></div>
               <div class="quick_next"><span class="material-symbols-outlined">arrow_forward_ios</span></div>
+              <style>
+                .quick_box .swiper-slide a{
+                  border-radius: 5px;
+                }
+                .quick_next,.quick_prev{
+                  color: green;
+                  background: transparent;
+                }
+              </style>
             </div>
           </div>
         </div>
       </section>
+      
+
       
       <section class="main_mid swiper">
         <div class="swiper-wrapper">
@@ -100,6 +163,12 @@
       <section class="main_low">
         <section class="order_box">
           <div class="order_box_h">
+            <style>
+              .order_box_h{
+                width: 80%;
+                padding: 0 10%;
+              }
+            </style>
             <p>Recent Orders</p>
             <form method="post" id="search_form">
               {% csrf_token %}
@@ -293,8 +362,7 @@
           {% for page in pageList_2 %}
           <div class="swiper-slide ad_box_2">
             {% for trade in page %}
-            <a href="{% url 'makeTrade_page' trade.slug %}" class="ad">
-              <img src="{{trade.image.url}}" alt="" height="100%" width="100%">
+            <a href="{% url 'makeTrade_page' trade.slug %}" class="ad" style="background-image: url('{{trade.image.url}}');">
               <p id="p1">{{trade.price}} GH₵</p>
               <p id="p2">{{trade.ros_max}}%</p>
               <p id="p3">{{trade.name}}</p>
@@ -310,6 +378,12 @@
           {% endfor %}
         </div>
       </section>
+      <style>
+        .ad_box_2 .ad{
+          background-position: center;
+          background-size: cover;
+        }
+      </style>
   </section>
     <style>
       
@@ -326,7 +400,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="{% static 'dashboard/dashboard.js' %}"></script>
+  <!-- <script src="{% static 'dashboard/dashboard.js' %}"></script> -->
   
   <script>
     var order_box_swiper = new Swiper('.order_box_swiper', {
