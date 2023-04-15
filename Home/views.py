@@ -394,13 +394,28 @@ def logout_user(request):
     logout(request)
     return redirect('homepage')
 
-def testpay(request):
-    # from forex_python.converter import CurrencyRates
-    # import requests
+import requests
+from uuid import uuid4
 
-    # response = requests.get("https://openexchangerates.org/api/latest.json?app_id=YOUR_APP_ID")
-    # rates = response.json()["rates"]
-    # amount = 100 # USD
-    # ghs_rate = rates["GHS"]
-    # converted_amount = amount * ghs_rate
-    return render(request, 'testpay.html')
+def testpay(request):
+    url = "https://smp.hubtel.com/api/merchants/2017026/send/mobilemoney"
+    token = str(uuid4())
+    payload = json.dumps({
+        "RecipientName":"Joe Doe",
+        "RecipientMsisdn":"233558420368",
+        "CustomerEmail": "recipient@gmail.com",
+        "Channel":"mtn-gh",
+        "Amount":0.1,
+        "PrimaryCallbackUrl":"https://www.google.com/",
+        "Description": "Withdrawal",
+        "ClientReference":token
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    context = {
+        'info' : response.text
+    }
+    return render(request, 'testpay.html', context)
