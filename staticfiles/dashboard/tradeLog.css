@@ -4,7 +4,7 @@
   height: 100%;
   background: white;
 }
-.prod_box_h{
+/* .prod_box_h{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,7 +13,7 @@
   padding: 1% 1%;
   max-height: 10%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
+} */
 .prod_box_h p{
   color: #38723a;
   letter-spacing: 1px;
@@ -21,10 +21,14 @@
 .prod_box form{
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 40px;
-  padding: 10px 5px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  justify-content: space-between;
+  height: 8vh;
+  /* background: skyblue; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 90%;
+  padding: 0 5%;
 }
 .prod_box_h form input{
   font-size: 0.9rem;
@@ -216,6 +220,15 @@
 
 .hid{
   display: none;
+}
+.chartBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chartBox div{
+  width: 150px;
+  height: 150px;
 }
 
 
