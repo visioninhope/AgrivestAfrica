@@ -112,12 +112,15 @@
   z-index: 2000;
   display: flex;
   align-items: center;
+  border-radius: 0 0 0 10px;
   cursor: pointer;
   justify-content: center;
   background: #4caf50;
 }
 .left_tag_2{
   display: none;
+  color: white;
+  cursor: pointer;
 }
 .left_tag.change{
   position: relative;
@@ -614,7 +617,8 @@
     flex-direction: column;
     margin: 10px;
     justify-content: space-around;
-    background: #619ca3;
+    background: skyblue;
+    color: white !important;
     color: rgb(255, 255, 255);
     border-radius: 20px;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;

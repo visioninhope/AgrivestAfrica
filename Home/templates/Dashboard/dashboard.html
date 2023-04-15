@@ -40,56 +40,6 @@
         <a href="{% url 'produce_page' %}" class="material-symbols-outlined">store</a>
       </nav>
       <div class="main_cover"></div>
-      <style>
-        .left_tag_2{
-          color: white;
-          cursor: pointer;
-        }
-      </style>
-
-      <script>
-
-const left = document.querySelector('.left')
-const left_top = document.getElementById('left_top')
-const user_con = document.querySelector('.user_con')
-const menu_a = document.querySelectorAll('[id=menu_a]')
-const menu_ab = document.querySelectorAll('[id=menu_ab]')
-const left_tag = document.getElementById('left_tag')
-const left_tag_2 = document.getElementById('left_tag_2')
-const left_close_tag = document.getElementById('left_close_tag')
-const logout = document.getElementById('logout')
-const main = document.querySelector('.main')
-const main_cover = document.querySelector('.main_cover')
-
-        left_tag_2.onclick =()=>{
-          left.classList.add('mini')
-          main_cover.classList.add('change')
-        }
-        left_close_tag.onclick =()=>{
-          left.classList.remove('mini')
-          main_cover.classList.remove('change')
-        }
-
-
-        if(left_tag){
-          left_tag.onclick =()=>{
-            left.classList.toggle('change')
-            left_tag.classList.toggle('change')
-            left_top.classList.toggle('change')
-            user_con.classList.toggle('change')
-            logout.classList.toggle('change')
-            main.classList.toggle('change')
-            menu_a.forEach(a=>{
-              a.classList.toggle('change')
-            })
-            menu_ab.forEach(a=>{
-              a.classList.toggle('change')
-            })
-            exp_menu.classList.toggle('mini')
-          } 
-        }
-
-      </script>
 
       <section class="main_top">
         <div class="mt_left">
@@ -170,16 +120,6 @@ const main_cover = document.querySelector('.main_cover')
               }
             </style>
             <p>Recent Orders</p>
-            <form method="post" id="search_form">
-              {% csrf_token %}
-              <select name="status" id="status" style="border: none;">
-                <option selected hidden value="">Filter</option>
-                <option value="all">All</option>
-                <option value="Pending">Pending</option>
-                <option value="Active">Active</option>
-                <option value="Completed">Completed</option>
-              </select>
-            </form>
           </div>
           <div class="order_box_con">
             <div class="order_box_swiper swiper">
@@ -385,14 +325,6 @@ const main_cover = document.querySelector('.main_cover')
         }
       </style>
   </section>
-    <style>
-      
-      /* .prod{
-        display: flex;
-        justify-content: space-around;
-        gap: 20px;
-      } */
-    </style>
     {% endblock main %}
   </section>
 
@@ -400,7 +332,7 @@ const main_cover = document.querySelector('.main_cover')
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- <script src="{% static 'dashboard/dashboard.js' %}"></script> -->
+  <script src="{% static 'dashboard/dashboard.js' %}"></script>
   
   <script>
     var order_box_swiper = new Swiper('.order_box_swiper', {

@@ -8,6 +8,7 @@
     {% block main %}
     <section class="main">
       <nav class="mini_nav">
+        <div id="left_tag_2" class="left_tag_2" style="display: flex;"><i class="material-symbols-outlined">menu_open</i></div>
         <a href="{% url 'trades_page' %}" class="material-symbols-outlined">shopping_cart</a>
         <a href="{% url 'farms_page' %}" class="material-symbols-outlined">agriculture</a>
         <a href="{% url 'produce_page' %}" class="material-symbols-outlined">store</a>
@@ -35,8 +36,8 @@
             <p style="color:#ff6364;" id="trade_bal">{{farms_bal|intcomma}}</p>
             {% endif %}
           </div>
-          <div class="box" >
-            <div style="width: 100%; height: 100%;display: flex; justify-content: center; align-items: center;">
+          <div class="box chartBox">
+            <div style="display: flex; justify-content: center; align-items: center;">
               <canvas id="myChart"></canvas>
             </div>
           </div>
@@ -44,20 +45,21 @@
       </section>
       <section class="main_low" >
         <section class="prod_box">
-          <div class="prod_box_h">
-            <p>Farms</p>
-            <form>
-              <button><i class="material-symbols-outlined">search</i></button>
-              <input type="text" placeholder="Search Here">
-              <select name="" id="">
+          <form class="prod_box_h" method="post">
+            {% csrf_token %}
+            <p>Farms</p>              
+              <div class="input_field">
+                <button type="submit"><i class="material-symbols-outlined">search</i></button>
+                <input type="text" placeholder="Search Here" name="trans_name">
+              </div>
+              <select name="status_select">
                 <option selected hidden value="none">Filter</option>
-                <option value="">Pending</option>
-                <option value="">Active</option>
-                <option value="">Completed</option>
+                <option value="Pending">Pending</option>
+                <option value="Active">Active</option>
+                <option value="Completed">Completed</option>
               </select>
-            </form>
-            <button id="prod_box_tag"><i class="material-symbols-outlined">arrow_downward</i></button>
-          </div>
+            <button id="prod_box_tag" type="button"><i class="material-symbols-outlined">arrow_downward</i></button>
+          </form>
           <div class="prod_box_list">           
             {% if farms %}
               {% for farm in farms %}
@@ -93,10 +95,48 @@
               <img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1679868422/main/fresh-juicy-pink-tomato-isolated-white-background_414617-732_mhe69k.webp" alt="">
               <button>Sponsor A Farm</button>
             </a>
-            {% endif %}            
+            {% endif %}    
+          </div>        
         </section>
       </section>     
     </section>
+
+    <script>
+      const prod_form = document.querySelector('.prod_box_h')
+      const status_select = document.querySelector('.prod_box_h select')
+      console.log(status_select)
+      status_select.onchange =()=>{
+        prod_form.submit()
+      }
+    </script>
+
+
+    <style>
+      form input{
+        width: 200px;
+        padding: 5px;
+        border-bottom: 2px solid black;
+      }
+      form .input_field{
+        display: flex;
+        gap: 0.5rem;
+      }
+      form button[type='submit']{
+        background: black;
+        background: #7ac691;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* padding: 10px; */
+        width: 30px;
+        height: 30px;
+      }
+      form select{
+        background: transparent;
+        padding: 5px;
+      }
+    </style>
     {% endblock main %}
       
   {% block scriptBlock %}

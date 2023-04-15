@@ -31,6 +31,8 @@ const user_con = document.querySelector('.user_con')
 const menu_a = document.querySelectorAll('[id=menu_a]')
 const menu_ab = document.querySelectorAll('[id=menu_ab]')
 const left_tag = document.getElementById('left_tag')
+const left_tag_2 = document.getElementById('left_tag_2')
+const left_close_tag = document.getElementById('left_close_tag')
 const logout = document.getElementById('logout')
 const main = document.querySelector('.main')
 const main_cover = document.querySelector('.main_cover')
@@ -44,39 +46,33 @@ if(expand){
   }
 }
 
-if(left_tag){
-  left_tag.onclick =()=>{
-    handleScreen()
-  }
+left_tag_2.onclick =()=>{
+  left.classList.add('mini')
+  main_cover.classList.add('change')
+}
+left_close_tag.onclick =()=>{
+  left.classList.remove('mini')
+  main_cover.classList.remove('change')
 }
 
-window.onresize =()=>{
+
 if(left_tag){
   left_tag.onclick =()=>{
-    handleScreen()
-  }
-}
-}
-
-const handleScreen =()=>{   
-if(window.innerWidth > 900){   
-  // left_tag.classList.toggle('change')
-  left.classList.toggle('change')
-  left_top.classList.toggle('change')
-  user_con.classList.toggle('change')
-  logout.classList.toggle('change')
-  main.classList.toggle('change')
-  menu_a.forEach(a=>{
-    a.classList.toggle('change')
-  })
-  menu_ab.forEach(a=>{
-    a.classList.toggle('change')
-  })
-  exp_menu.classList.toggle('mini')
-}else{
-  left.classList.toggle('mini')
-  main_cover.classList.toggle('change')
-  }
+    console.log('me')
+    left.classList.toggle('change')
+    left_tag.classList.toggle('change')
+    left_top.classList.toggle('change')
+    user_con.classList.toggle('change')
+    logout.classList.toggle('change')
+    main.classList.toggle('change')
+    menu_a.forEach(a=>{
+      a.classList.toggle('change')
+    })
+    menu_ab.forEach(a=>{
+      a.classList.toggle('change')
+    })
+    exp_menu.classList.toggle('mini')
+  } 
 }
 
 const inp = document.querySelectorAll('.pro_set')

@@ -166,16 +166,25 @@ def tradeLog_info(request,slug):
 
 @login_required
 def farm_log(request):
-    farms = FarmInvoice.objects.filter(customer=request.user)
     pend_count = FarmInvoice.objects.filter(customer=request.user).filter(status='Pending').count()
     act_count = FarmInvoice.objects.filter(customer=request.user).filter(status='Active').count()
     comp_count = FarmInvoice.objects.filter(customer=request.user).filter(status='Completed').count()
     farms_bought = 0
     farms_sold = 0
-    for farm in farms:
+    for farm in FarmInvoice.objects.filter(customer=request.user):
         farms_bought = farms_bought + farm.total_cost
         farms_sold = farms_sold + farm.actual_return
     farms_bal = "{:.2f}".format(farms_sold - farms_bought) 
+
+    if request.method == 'POST':
+        if not request.POST.get('status_select') == 'none':
+            print('ascascasc')
+            farms = FarmInvoice.objects.filter(customer=request.user).filter(status=request.POST.get('status_select'))
+        else:
+            farms = FarmInvoice.objects.filter(customer=request.user).filter(name__icontains=request.POST.get('trans_name'))
+    else:
+        farms = FarmInvoice.objects.filter(customer=request.user)
+
     context = {
         'farms' : farms,
         'farms_bought' : farms_bought,
