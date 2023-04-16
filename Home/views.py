@@ -105,30 +105,24 @@ def get_total_trans(request):
 
 @login_required
 def trade_log(request):
-    if request.method == 'POST':
-        search_in = request.POST.get('search')
-        search_status = request.POST.get('status')
-        if search_in and search_status:
-            trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in).filter(status = search_status)
-        else:
-            if search_in:
-                trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains = search_in)
-            if search_status:
-                trades = TradeInvoice.objects.filter(customer=request.user).filter(status = search_status)    
-    else:
-        trades = TradeInvoice.objects.filter(customer=request.user)
-
     pend_count = TradeInvoice.objects.filter(customer=request.user).filter(status='Pending').count()
     act_count = TradeInvoice.objects.filter(customer=request.user).filter(status='Active').count()
     comp_count = TradeInvoice.objects.filter(customer=request.user).filter(status='Completed').count()
     trades_bought = 0
     trades_sold = 0
-    tradeList = TradeInvoice.objects.filter(customer=request.user)
-    for trade in trades:
+    for trade in TradeInvoice.objects.filter(customer=request.user):
         trades_bought = trades_bought + trade.total_cost
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
-    
+
+    # tradeList = TradeInvoice.objects.filter(customer=request.user)
+    if request.method == 'POST':
+        if not request.POST.get('status_select') == 'none':
+            trades = TradeInvoice.objects.filter(customer=request.user).filter(status=request.POST.get('status_select'))
+        else:
+            trades = TradeInvoice.objects.filter(customer=request.user).filter(name__icontains=request.POST.get('trans_name'))
+    else:
+        trades= TradeInvoice.objects.filter(customer=request.user)
     context = {
         'trades' : trades,
         'trades_bought' : "{:.2f}".format(trades_bought),
@@ -178,7 +172,6 @@ def farm_log(request):
 
     if request.method == 'POST':
         if not request.POST.get('status_select') == 'none':
-            print('ascascasc')
             farms = FarmInvoice.objects.filter(customer=request.user).filter(status=request.POST.get('status_select'))
         else:
             farms = FarmInvoice.objects.filter(customer=request.user).filter(name__icontains=request.POST.get('trans_name'))
@@ -218,10 +211,14 @@ def farmLog_info(request,slug):
 
 @login_required
 def produce_log(request):
-    produces =ProduceInvoice.objects.filter(customer=request.user)
     produces_bought = 0
-    for prod in produces:
+    for prod in ProduceInvoice.objects.filter(customer=request.user):
         produces_bought = produces_bought + prod.total_cost
+
+    if request.method == 'POST':
+        produces = ProduceInvoice.objects.filter(customer=request.user).filter(name__icontains=request.POST.get('trans_name'))
+    else:
+        produces =ProduceInvoice.objects.filter(customer=request.user)
     context = {
         'produces' : produces,
         'produces_bought' : produces_bought,

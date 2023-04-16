@@ -40,8 +40,8 @@
           <p style="color:#ff6364;" id="trade_bal">{{trades_bal|intcomma}}</p>
           {% endif %}
         </div>
-        <div class="box" >
-          <div style="width: 100%; height: 100%;display: flex; justify-content: center; align-items: center;">
+        <div class="box chartBox" >
+          <div style="display: flex; justify-content: center; align-items: center;">
             <canvas id="myChart"></canvas>
           </div>
         </div>
@@ -49,21 +49,21 @@
     </section>
     <section class="main_low" >
       <section class="prod_box">
-        <div class="prod_box_h">
+        <form class="prod_box_h" method="post">
           <p>Trades <br> </p>
-          <form method="post" id="search_form">
             {% csrf_token %}
-            <button><i class="material-symbols-outlined">search</i></button>
-            <input type="text" placeholder="Search Here" name="search" id="search">
-            <select name="status" id="status">
-              <option selected hidden value="">Filter</option>
+            <div class="input_field">
+              <button type="submit"><i class="material-symbols-outlined">search</i></button>
+              <input type="text" placeholder="Search Here" name="trans_name">
+            </div>
+            <select name="status_select">
+              <option selected hidden value="none">Filter</option>
               <option value="Pending">Pending</option>
               <option value="Active">Active</option>
               <option value="Completed">Completed</option>
             </select>
-          </form>
-          <button id="prod_box_tag"><i class="material-symbols-outlined">arrow_downward</i></button>
-        </div>
+          <button id="prod_box_tag" type="button"><i class="material-symbols-outlined">arrow_downward</i></button>
+        </form>
         <div class="prod_box_list">      
           {% if trades %}
             {% for trade in trades %}

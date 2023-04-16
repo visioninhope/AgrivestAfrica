@@ -71,4 +71,10 @@ if(window.innerWidth > 900){
   }
 }
 
-
+const prod_form = document.querySelector('.prod_box_h')
+const status_select = document.querySelector('.prod_box_h select')
+if(status_select){
+  status_select.onchange =()=>{
+    prod_form.submit()
+  }
+}

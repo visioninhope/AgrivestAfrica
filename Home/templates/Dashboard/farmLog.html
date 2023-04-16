@@ -4,7 +4,6 @@
   {% block cssBlock %}
   <link rel="stylesheet" href="{% static 'dashboard/tradeLog.css' %}">
   {% endblock cssBlock %}
-
     {% block main %}
     <section class="main">
       <nav class="mini_nav">
@@ -100,43 +99,6 @@
         </section>
       </section>     
     </section>
-
-    <script>
-      const prod_form = document.querySelector('.prod_box_h')
-      const status_select = document.querySelector('.prod_box_h select')
-      console.log(status_select)
-      status_select.onchange =()=>{
-        prod_form.submit()
-      }
-    </script>
-
-
-    <style>
-      form input{
-        width: 200px;
-        padding: 5px;
-        border-bottom: 2px solid black;
-      }
-      form .input_field{
-        display: flex;
-        gap: 0.5rem;
-      }
-      form button[type='submit']{
-        background: black;
-        background: #7ac691;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* padding: 10px; */
-        width: 30px;
-        height: 30px;
-      }
-      form select{
-        background: transparent;
-        padding: 5px;
-      }
-    </style>
     {% endblock main %}
       
   {% block scriptBlock %}

@@ -46,13 +46,17 @@ if(expand){
   }
 }
 
-left_tag_2.onclick =()=>{
-  left.classList.add('mini')
-  main_cover.classList.add('change')
+if(left_tag_2){
+  left_tag_2.onclick =()=>{
+    left.classList.add('mini')
+    main_cover.classList.add('change')
+  }
 }
-left_close_tag.onclick =()=>{
-  left.classList.remove('mini')
-  main_cover.classList.remove('change')
+if(left_close_tag){
+  left_close_tag.onclick =()=>{
+    left.classList.remove('mini')
+    main_cover.classList.remove('change')
+  }
 }
 
 
@@ -81,8 +85,8 @@ if (inp) {
   for (let i = 0; i < inp.length; i++) {
     inp[i].onchange =()=> {
       const [file] = inp[i].files
-      pic_box[i].src = URL.createObjectURL(file)
-      console.log(pic_box[i].src) 
+      var src = URL.createObjectURL(file)
+      pic_box[i].style.backgroundImage = `url(${src})`
     }
   }
 }

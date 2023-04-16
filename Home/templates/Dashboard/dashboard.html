@@ -24,6 +24,7 @@
 
 </head>
 <body>
+
   <section class="page">
     
     {% block sideBar %}
@@ -77,13 +78,7 @@
               <div class="quick_prev"><span class="material-symbols-outlined">arrow_back_ios</span></div>
               <div class="quick_next"><span class="material-symbols-outlined">arrow_forward_ios</span></div>
               <style>
-                .quick_box .swiper-slide a{
-                  border-radius: 5px;
-                }
-                .quick_next,.quick_prev{
-                  color: green;
-                  background: transparent;
-                }
+                
               </style>
             </div>
           </div>
@@ -113,12 +108,6 @@
       <section class="main_low">
         <section class="order_box">
           <div class="order_box_h">
-            <style>
-              .order_box_h{
-                width: 80%;
-                padding: 0 10%;
-              }
-            </style>
             <p>Recent Orders</p>
           </div>
           <div class="order_box_con">
@@ -129,14 +118,14 @@
                     <div class="prod" style="justify-content: center;">
                       <span style="font-weight: 600;">Trades</span>
                     </div>
-                    <p class="date">Start Date</p>
-                    <div id="schedule">
-                      <i class="material-symbols-outlined">arrow_range</i>
+                    <p class="date" >Start Date</p>
+                    <div id="schedule" >
+                      <i class="material-symbols-outlined" >arrow_range</i>
                     </div>
-                    <p class="date">End Date</p>
-                    <p>Total Cost</p>
-                    <p>Purchase Time</p>
-                    <p class="status">Status</p>
+                    <p class="date" >End Date</p>
+                    <p class="date">Total Cost</p>
+                    <p class="date">Purchase Time</p>
+                    <p  class="status">Status</p>
                   </section>
                   <section id="con_info">
                   {% if trades %}  
@@ -146,15 +135,15 @@
                         <img src="{{trade.trade.image.url}}" alt="">
                         <span>{{trade.name}}</span>
                       </div> 
-                        <p class="date">{{trade.start_date|date:'d b, Y'}}</p>
-                        <div id="schedule">
+                        <p class="date" >{{trade.start_date|date:'d b, Y'}}</p>
+                        <div id="schedule" >
                           <i class="material-symbols-outlined">schedule</i>
                           <i class="material-symbols-outlined">arrow_range</i>
                         </div>
-                        <p class="date">{{trade.end_date|date:'d b, Y'}}</p>
-                        <p>GH₵ {{trade.total_cost|intcomma}}</p>
-                        <p>{{trade.start_time|naturaltime}}</p>
-                        <p class="status">
+                        <p class="date" >{{trade.end_date|date:'d b, Y'}}</p>
+                        <p class="cost">GH₵ {{trade.total_cost|intcomma}}</p>
+                        <p class="date">{{trade.start_time|naturaltime}}</p>
+                        <p class="status" >
                           {% if trade.status == 'Pending' %}
                           <small style="background: #fcf1ed; color: salmon; ">
                             {{trade.status}}
@@ -196,8 +185,8 @@
                       <i class="material-symbols-outlined">arrow_range</i>
                     </div>
                     <p class="date">End Date</p>
-                    <p>Total Cost</p>
-                    <p>Purchase Time</p>
+                    <p class="date">Total Cost</p>
+                    <p class="date">Purchase Time</p>
                     <p class="status">Status</p>
                   </div>
                   <section id="con_info">
@@ -215,7 +204,7 @@
                           </div>
                           <p class="date">{{farm.end_date|date:'d b, Y'}}</p>
                           <p>GH₵ {{farm.total_cost|intcomma}}</p>
-                          <p>{{farm.start_time|naturaltime}}</p>
+                          <p class="date">{{farm.start_time|naturaltime}}</p>
                           <p class="status">
                             {% if farm.status == 'Pending' %}
                             <small style="background: #fcf1ed; color: salmon; ">
@@ -253,9 +242,9 @@
                     <div class="prod" style="justify-content: center;">
                       <span style="font-weight: 600;">Produce</span>
                     </div>
-                    <p>units</p>
+                    <p class="date">units</p>
                     <p class="date">Purchase Time</p>
-                    <p>Total Cost</p>
+                    <p class="date">Total Cost</p>
                     <p class="status">Status</p>
                   </div>
 
@@ -267,7 +256,7 @@
                           <img src="{{produce.image_url}}" alt="">
                           <span>{{produce.name}}</span>
                         </div>
-                        <p>{{produce.units|intcomma}}</p>
+                        <p class="date">{{produce.units|intcomma}}</p>
                         <p class="date">{{produce.start_time|naturaltime}}</p>
                         <p>GH₵ {{produce.total_cost|intcomma}}</p>
                         <p class="status">
@@ -324,8 +313,14 @@
           background-size: cover;
         }
       </style>
+
+      
+
   </section>
     {% endblock main %}
+    <section class="footer">
+      © 2022 Copyright: <a href="{% url 'homepage' %}"> Agrivest Africa.com</a>
+    </section>
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>

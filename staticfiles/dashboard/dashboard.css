@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2&family=Commissioner&family=Martel+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 * {
@@ -11,6 +11,8 @@
     outline: none;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+
 }
 
 .mt1 i{
@@ -40,9 +42,12 @@
   z-index: 50;
   height: 100vh;
   overflow-y: auto;
-  /* overflow-x: hidden; */
-
+  overflow-x: hidden;
 }
+#left_close_tag{
+  display: none;
+}
+
 .left::-webkit-scrollbar{
   width: 10px;
   background: whitesmoke;
@@ -74,7 +79,6 @@
   transition: 0.5s ease;
   background: rgb(249, 249, 249);
   display: flex;
-  /* min-height: 100vh; */
   flex-direction: column;
   background: white;
 }
@@ -264,7 +268,6 @@
   width: 100%;
 }
 .mt_left .box{
-  /* height: 60%; */
   min-height: 18vh;
   border-radius: 10px;
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
@@ -310,12 +313,12 @@
   z-index: 10;
   height: 30px;
   width: 30px;
-  background: #71d574;
+  color: green;
+  background: transparent;
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
   cursor: pointer;
 }
 .quick_prev{
@@ -323,6 +326,9 @@
 }
 .quick_next{
   right: 0;
+}
+.quick_box .swiper-slide a{
+  border-radius: 5px;
 }
 .quick_prev span, .quick_next span{
   font-weight: 600;
@@ -366,8 +372,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 98%;
-  padding: 1% 1%;
+  width: 80%;
+  padding: 0 10%;
   height: 10%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -457,7 +463,6 @@
   display:flex;
   flex-direction:column;
   align-items: center;
-  /* justify-content:center; */
 }
 .order_box_swiper #conH, .order_box_swiper #con_info,.order_box_swiper #con_info .con{
   width: 100%;
@@ -512,21 +517,21 @@
   width: 100%;
   justify-content: center;
 }
+.footer{
+  height: 7vh;
+  width: 100%;
+  display: none;
+  color: wheat;
+  justify-content: center;
+  align-items: center;
+  background: #4caf50;
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+.footer a{
+  font-family: 'Alegreya Sans SC', sans-serif;
+  color: white;
+}
 
-
-/* 
-@media all and (max-width:1300px){
-  .left .top p{
-    word-wrap: break-word;
-    font-size: 1rem;
-  }
-  .left .menu{
-    align-items: flex-start;
-  }
-  .left .menu a{
-    width: auto;
-  }
-} */
 @media all and (max-width:1300px){
   .left{
     position: fixed;
@@ -584,31 +589,27 @@
   .main_low{
     min-height: auto;
     height: auto;
-    margin: 20px 0;
   }
   .page{
     flex-direction: column;
+  }
+  .footer{
+    display: flex;
   }
 }
 
 @media all and (max-width:870px){
   .main_top{
-    /* margin: 10px 0 0 0; */
     flex-direction: column;
   }
   .mt_left{
     padding: 0;
     flex-wrap: wrap;
     width: 100%;
-    /* border: 1px solid black; */
   }
   .mt4{
     display: none !important;
   }
-
-  /* .main_low{
-    display: none;
-  } */
 
   .mt_left .box{
     width: 83% !important;
@@ -632,7 +633,6 @@
     position: absolute;
     right: 10%;
     background: #2a2a46;
-    /* border-radius: 50%; */
     --mask: 
     linear-gradient(#000 0 0) 50%/calc(100% - 8px) calc(100% - 8px) no-repeat,
     radial-gradient(4px,#0000 98%,#000) 0 -4px/7.40px 8px round no-repeat,
@@ -724,9 +724,8 @@
   .order_box_h{
     justify-content: space-around;
     align-items: center;
-    padding: 2%;
-    width: 93%;
-    width: 100%;
+    padding: 0 2%;
+    width: 93%;    
     flex-wrap: wrap;
     height: auto;
     box-shadow: none;
@@ -790,6 +789,36 @@
   .order_box .con .date,.order_box .con .status, #schedule{
     display: none;
   }
+  .order_box_con .con{
+    background: white;
+    border: 2px dashed #4caf50;
+  }
+  .order_box_con .con .prod{
+    display: flex;
+    justify-content: space-around;
+  }
+  .order_box_con #conH{
+    border: none;
+    background: salmon;
+    padding: 5px 5px;
+  }
+  .order_box_con #conH .prod span{
+    color: white;
+    font-size: 5vw;
+    font-weight: 200;
+    font-family: 'Alegreya Sans SC', sans-serif;
+  }
+  .order_box_con .con .prod span{
+    font-size: 4.5vw;
+  }
+  .order_box .con .cost{
+    border-radius: 5px;
+    color: rgb(101, 101, 101);
+    width: auto;
+    padding: 7px;
+    font-size: 4vw;
+  }
+
   .order_box .con #t_stat_tag{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     top: 3px;

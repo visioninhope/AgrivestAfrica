@@ -30,20 +30,15 @@
       </section>
       <section class="main_low" >
         <section class="prod_box">
-          <div class="prod_box_h">
+          <form class="prod_box_h" method="post">
+            {% csrf_token %}
             <p>Produces</p>
-            <form>
-              <button><i class="material-symbols-outlined">search</i></button>
-              <input type="text" placeholder="Search Here">
-              <select name="" id="">
-                <option selected hidden value="none">Filter</option>
-                <option value="">Pending</option>
-                <option value="">Active</option>
-                <option value="">Completed</option>
-              </select>
-            </form>
-            <button id="prod_box_tag"><i class="material-symbols-outlined">arrow_downward</i></button>
-          </div>
+            <div class="input_field">
+              <button type="submit"><i class="material-symbols-outlined">search</i></button>
+              <input type="text" placeholder="Search Here" name="trans_name">
+            </div>
+            <button id="prod_box_tag" type="button"><i class="material-symbols-outlined">arrow_downward</i></button>
+          </form>
           <div class="prod_box_list">           
             {% if produces %}
               {% for produce in produces %}
@@ -74,6 +69,15 @@
         </section>
       </section>     
     </section>
+
+    <style>
+      @media all and (max-width:870px){
+        form{
+          justify-content: center !important;
+        }
+      }
+    </style>
+
     {% endblock main %}
       
   {% block scriptBlock %}
