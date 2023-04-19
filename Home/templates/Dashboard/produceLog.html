@@ -82,22 +82,6 @@
       
   {% block scriptBlock %}
   <script src="{% static 'dashboard/swiper.js' %}"></script>
-  <script>
-    const ctx = document.getElementById('myChart');
-    var penCount = parseInt('{{pend_count}}')
-    var actCount = parseInt('{{act_count}}')
-    var compCount = parseInt('{{comp_count}}')
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          label: 'Order Count',
-          data: [actCount,penCount, compCount],
-          borderWidth: 1
-        }]
-      },
-    });
-  </script>
   {% endblock scriptBlock %}
     
   

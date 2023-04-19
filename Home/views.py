@@ -93,7 +93,7 @@ def dashboard(request):
 def get_total_trans(request):
     ts = TradeInvoice.objects.filter(customer=request.user).filter(status='Active').union(TradeInvoice.objects.filter(customer=request.user).filter(status='Completed'))
     fs = FarmInvoice.objects.filter(customer=request.user).filter(status='Active').union(FarmInvoice.objects.filter(customer=request.user).filter(status='Completed'))
-    ps = ProduceInvoice.objects.filter(customer=request.user)
+    ps = ProduceInvoice.objects.filter(customer=request.user).filter(status='Completed')
     total_trans = 0
     for t in ts:
         total_trans = total_trans + t.total_cost
@@ -110,7 +110,7 @@ def trade_log(request):
     comp_count = TradeInvoice.objects.filter(customer=request.user).filter(status='Completed').count()
     trades_bought = 0
     trades_sold = 0
-    for trade in TradeInvoice.objects.filter(customer=request.user):
+    for trade in TradeInvoice.objects.filter(customer=request.user).filter(status='Active').union(TradeInvoice.objects.filter(customer=request.user).filter(status='Completed')):
         trades_bought = trades_bought + trade.total_cost
         trades_sold = trades_sold + trade.actual_return
     trades_bal = "{:.2f}".format(trades_sold - trades_bought) 
@@ -165,7 +165,7 @@ def farm_log(request):
     comp_count = FarmInvoice.objects.filter(customer=request.user).filter(status='Completed').count()
     farms_bought = 0
     farms_sold = 0
-    for farm in FarmInvoice.objects.filter(customer=request.user):
+    for farm in FarmInvoice.objects.filter(customer=request.user).filter(status='Active').union(FarmInvoice.objects.filter(customer=request.user).filter(status='Completed')):
         farms_bought = farms_bought + farm.total_cost
         farms_sold = farms_sold + farm.actual_return
     farms_bal = "{:.2f}".format(farms_sold - farms_bought) 
@@ -404,24 +404,41 @@ import requests
 from uuid import uuid4
 
 def testpay(request):
-    url = "https://smp.hubtel.com/api/merchants/2017026/send/mobilemoney"
-    token = str(uuid4())
-    payload = json.dumps({
-        "RecipientName":"Joe Doe",
-        "RecipientMsisdn":"233558420368",
-        "CustomerEmail": "recipient@gmail.com",
-        "Channel":"mtn-gh",
-        "Amount":0.1,
-        "PrimaryCallbackUrl":"https://www.google.com/",
-        "Description": "Withdrawal",
-        "ClientReference":token
-    })
+    # url = "https://smp.hubtel.com/api/merchants/2017026/send/mobilemoney"
+    # token = str(uuid4())
+    # payload = json.dumps({
+    #     "RecipientName":"Joe Doe",
+    #     "RecipientMsisdn":"233558420368",
+    #     "CustomerEmail": "recipient@gmail.com",
+    #     "Channel":"mtn-gh",
+    #     "Amount":0.1,
+    #     "PrimaryCallbackUrl":"https://www.google.com/",
+    #     "Description": "Withdrawal",
+    #     "ClientReference":token
+    # })
+    # headers = {
+    #     'Content-Type': 'application/json',
+    #     'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
+    # }
+    # response = requests.request("POST", url, headers=headers, data=payload)
+
+    url = "https://openexchangerates.org/api/latest.json?app_id=25765489b0914c329a129ac15aef40e6"
+
+    payload={}
     headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
+        'Authorization': 'Bearer 25765489b0914c329a129ac15aef40e6'
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("GET", url, headers=headers, data=payload)
+    ghs =  json.loads(response.text)['rates']['GHS']
+    gbp =  json.loads(response.text)['rates']['GBP']
+    ngn =  json.loads(response.text)['rates']['NGN']
+    kes =  json.loads(response.text)['rates']['KES']
+
     context = {
-        'info' : response.text
+        'info' : response.text,
+        'ghs' : ghs,
+        'gbp' : gbp,
+        'ngn' : ngn,
+        'kes' : kes
     }
     return render(request, 'testpay.html', context)
