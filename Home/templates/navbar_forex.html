@@ -44,15 +44,15 @@
     })
     .catch(error => console.log('error', error));
   } 
-  // getCurrency()
+  getCurrency()
 
   const makeForex =()=>{
     if(!localStorage.getItem('currencyStamp')){
       localStorage.setItem('currencyStamp', currencyStamp)
-      getCurrency()
+      // getCurrency()
     }else{
       if(localStorage.getItem('currencyStamp') != currencyStamp){
-        getCurrency()
+        // getCurrency()
       }else{
         var empty = 'already exists'
       }
