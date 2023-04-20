@@ -21,7 +21,7 @@ class Partner(models.Model):
 class Trade(models.Model):
     name = models.CharField(max_length=300)
     price = models.FloatField(default=1)
-    service_charge = models.FloatField()
+    # service_charge = models.FloatField()
     image = models.ImageField(default='default.jpg', upload_to='trade_pics')
     description = models.TextField(max_length=800)
     ros_min = models.FloatField()
@@ -52,7 +52,7 @@ class Farm(models.Model):
     # crop = models.CharField(max_length=200)
     image = models.ImageField(default='default.jpg', upload_to='farmCrop_pics')
     price = models.FloatField()
-    service_charge = models.FloatField()
+    # service_charge = models.FloatField()
     ros_min = models.FloatField()
     ros_max = models.FloatField()
     start_date = models.DateField(default=timezone.now)

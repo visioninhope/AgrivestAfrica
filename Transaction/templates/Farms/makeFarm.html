@@ -6,6 +6,7 @@
 <head>
   {% include 'makeHeader.html' %}
   <link rel="shortcut icon" href="img/cocoa-pods-with-cocoa-leaf-white_41471-6709.webp" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" href="{% static 'home/checkout.css' %}">
   <header>
     <!--Navbar-->
@@ -47,16 +48,17 @@
   <br>
   <br>
   
-  {% if messages %}
-    {% for message in messages %}
-      <div class="text-center"><button type="button" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</div>
-    {% endfor %}
-  {% endif %}
+ 
     
   <br>
   <br>
   <!-- Section: Live preview -->
   <form class=" card container section-preview z-depth-1" method="post" target="_blank">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="text-center"><a href="{% url 'login_page' %}" class="btn btn-sm  btn-danger  btn-rounded">{{message}}</a></div>
+      {% endfor %}
+    {% endif %}
     {% csrf_token %}
     <!-- Grid row -->
     <div class="row">
@@ -269,7 +271,9 @@
                   <label class="green-text">+service charge({{farm.service_charge}}%)</label>
                   <br>
                   <td class="font-weight-bold">
-                    <strong id="service"><div class="icon_box"><small id="icon">.</small><small id="icon">.</small><small id="icon">.</small></div> </strong>
+                    <span id="service" style="display: flex;align-items: center;color: green;">
+                      FREE <i class="material-symbols-outlined">redeem</i>
+                    </span>
                   </td>
 
                 </div>
@@ -377,10 +381,10 @@
       total_cost.classList.add('change')
       ros_min.classList.add('change')
       ros_max.classList.add('change')
-      service_charge.classList.add('change')
+      // service_charge.classList.add('change')
       units_acre.value = eval(unit_val/10) + ' ' + 'acres'
-      service_charge.innerHTML = 'GH₵' + ' ' + eval((serve/100)*(unit_val * price)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      total_cost.innerHTML = 'GH₵' + ' ' + (eval(unit_val * price) + eval((serve/100)*(unit_val * price))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      // service_charge.innerHTML = 'GH₵' + ' ' + eval((serve/100)*(unit_val * price)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      total_cost.innerHTML = 'GH₵' + ' ' + eval(unit_val * price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       ros_min.innerHTML =  'GH₵' + ' ' + (eval((rosMin_rate/100)*(unit_val * price))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       ros_max.innerHTML =  'GH₵' + ' ' + (eval((rosMax_rate/100)*(unit_val * price))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
@@ -392,7 +396,6 @@
   </script>
 
   
-
 </body>
 
 </html>

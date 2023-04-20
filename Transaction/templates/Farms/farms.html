@@ -18,7 +18,7 @@
 
   <head>
      <!--Navbar-->
-     {% include 'navbar.html' %}
+     {% include 'navbar_forex.html' %}
     <!-- Full Page Intro -->
     <div class="view"
     
@@ -131,7 +131,7 @@
                       Cost Per Unit
                     </dd>
                     <dd class="col-sm-6 green-text">
-                      GH₵ {{farm.price}}
+                      <span class="symbol">GH₵ </span>  <span class="value">{{farm.price}}</span>
                     </dd>
                   </dl>
 
@@ -205,6 +205,61 @@
   <!-- Rotating card -->
  </small>
  {% endblock content %}
+ <script>
+  const symbolList = document.querySelectorAll('.symbol')
+  const valueList = document.querySelectorAll('.value')
+
+  buildCurrency =()=>{
+    if(sessionStorage.getItem('cur_mode') === 'usd'){
+      for (let i = 0; i < symbolList.length; i++) {
+        symbolList[i].innerHTML = '$'
+        valueList[i].innerHTML = (valueList[i].innerHTML / localStorage.getItem('usd')).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      }
+      modeBox.innerHTML = 'USD $'
+    }else if (sessionStorage.getItem('cur_mode') === 'gbp') {
+      for (let i = 0; i < symbolList.length; i++) {
+        symbolList[i].innerHTML = '£'
+        valueList[i].innerHTML = (valueList[i].innerHTML / localStorage.getItem('gbp')).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      }
+      modeBox.innerHTML = 'GBP £'
+    }else if (sessionStorage.getItem('cur_mode') === 'ngn') {
+      for (let i = 0; i < symbolList.length; i++) {
+        symbolList[i].innerHTML = '₦'
+        valueList[i].innerHTML = (valueList[i].innerHTML / localStorage.getItem('ngn')).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      }
+      modeBox.innerHTML = 'NGN ₦'
+    }else if (sessionStorage.getItem('cur_mode') === 'kes') {
+      for (let i = 0; i < symbolList.length; i++) {
+        symbolList[i].innerHTML = 'KES'
+        valueList[i].innerHTML = (valueList[i].innerHTML / localStorage.getItem('kes')).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      }
+      modeBox.innerHTML = 'KES'
+    }
+  }
+
+  curs.forEach(cur=>{
+    cur.onclick =()=>{
+      if(cur.dataset.mode === 'usd'){
+        sessionStorage.setItem('cur_mode','usd')
+      }else if (cur.dataset.mode === 'gbp') {
+        sessionStorage.setItem('cur_mode','gbp') 
+      }else if (cur.dataset.mode === 'ngn') {
+        sessionStorage.setItem('cur_mode','ngn') 
+      }else if (cur.dataset.mode === 'kes') {
+        sessionStorage.setItem('cur_mode','kes') 
+      }else{
+        sessionStorage.clear()
+      }
+      window.location.reload()
+    }
+  })
+
+  window.onload =()=>{
+    buildCurrency()
+  }
+ </script>
+
+
 
   <!-- Footer -->
 
@@ -224,7 +279,6 @@
 <br>
 <br>
 <br>
-
   <script type="text/javascript"
     src="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/js/bundles/4.20.0/compiled.min.js"></script>
 

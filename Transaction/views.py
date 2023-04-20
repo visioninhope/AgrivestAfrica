@@ -38,7 +38,7 @@ def makeTrade(request, slug):
         if request.user.is_authenticated:
             customer = User.objects.get(username=request.user)
             units = int(request.POST.get('units'))
-            total_cost = (units * trade.price) + ((units * trade.price) * (trade.service_charge / 100))
+            total_cost = (units * trade.price)
             trade_name = request.POST.get('name')
             partner = request.POST.get('partner')
             harvest_type = request.POST.get('harvest_type')
@@ -59,7 +59,7 @@ def makeTrade(request, slug):
                 tradeInvoice.start_date = trade.start_date
                 tradeInvoice.end_date = trade.end_date
                 tradeInvoice.base_cost = "{:.2f}".format(units * trade.price)
-                tradeInvoice.service_charge = trade.service_charge
+                # tradeInvoice.service_charge = trade.service_charge
                 tradeInvoice.total_cost = "{:.2f}".format(total_cost)
                 tradeInvoice.pros_min = round((units * trade.price) * (trade.ros_min/100))
                 tradeInvoice.pros_max = round((units * trade.price) * (trade.ros_max/100))
@@ -73,7 +73,7 @@ def makeTrade(request, slug):
                 tradeInvoice.save()
                 return redirect(trans_pay(total_cost,trade_name, TradeInvoice, 'trade'))
         else:
-            messages.error(request, 'Create Account to continue')
+            messages.error(request, 'Login to continue')
 
     w = trade.name.split()
     crop = w[0]
@@ -115,7 +115,7 @@ def makeFarm(request, slug):
         if request.user.is_authenticated:
             customer = User.objects.get(username=request.user)
             units = int(request.POST.get('units'))
-            total_cost = (units * farm.price) + ((units * farm.price) * (farm.service_charge / 100))
+            total_cost = (units * farm.price)
             farm_name = request.POST.get('name')
             harvest_type = request.POST.get('harvest_type')
             partner = request.POST.get('partner')
@@ -136,7 +136,7 @@ def makeFarm(request, slug):
                 farmInvoice.start_date = farm.start_date
                 farmInvoice.end_date = farm.end_date
                 farmInvoice.base_cost = "{:.2f}".format(units * farm.price)
-                farmInvoice.service_charge = farm.service_charge
+                # farmInvoice.service_charge = farm.service_charge
                 farmInvoice.total_cost = "{:.2f}".format(total_cost)
                 farmInvoice.pros_min = round((units * farm.price) * (farm.ros_min/100))
                 farmInvoice.pros_max = round((units * farm.price) * (farm.ros_max/100))

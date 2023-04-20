@@ -1,106 +1,72 @@
-<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar justify-content-center">
-  <div class="container">
-    {% if user.is_authenticated %}
-    <a class="navbar-brand" href="{% url 'homepage' %}">
-      <strong>Agrivest Africa</strong>
-    </a>
-    {% else %}
-    <a class="navbar-brand" href="{% url 'homepage' %}">
-      <strong>Agrivest Africa</strong>
-    </a>
-    {% endif %}
-    
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
-      aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'farms_page' %}">Farm</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'trades_page' %}">Trade</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'produce_page' %}">Market</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">About</a>
-          <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'about_page' %}">About Us</a>
-            <a class="dropdown-item" href="{% url 'traction_page' %}">Our Traction</a>
-            <a class="dropdown-item" href="{% url 'team_page' %}">Team</a>
-            <a class="dropdown-item" href="{% url 'board_page' %}">Our Board</a>
-            <a class="dropdown-item" href="{% url 'advisors_page' %}">Our Advisors</a>
-            <a class="dropdown-item" href="{% url 'testimonials_page' %}">Testimonials</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">How It Works</a>
-          <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'what_we_do_page' %}">Get Started</a>
-            <a class="dropdown-item" href="{% url 'how_to_page' %}">Videos</a>
-            <a class="dropdown-item" href="{% url 'faq_page' %}">FAQ</a>
-            <a class="dropdown-item" href="{% url 'webinar_page' %}">Webinar Registration</a>
-            <a class="dropdown-item" href="{% url 'referrals_page' %}">Referrals</a>
-            <a class="dropdown-item" >Offline Guide</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Investors</a>
-          <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'investors_page' %}">Investors</a>
-          </div>
-        </li>
-       
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Media</a>
-          <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'blog_page' %}">Blog</a>
-            <a class="dropdown-item" href="{% url 'gallery_page' %}">Gallery</a>
-          </div>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" style="font-family: 'Alegreya Sans SC', sans-serif;" href="{% url 'dashboard' %}">{{user.username}}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout_page' %}">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'contact_page' %}">Contact Us</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login_page' %}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 's_register_page' %}">Sign-Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'contact_page' %}">Contact Us</a>
-        </li>
-        {% endif %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765225/main/gh_prdqp3.png" alt="" srcset="" height="20px" width="20px">₵</a>
-          <div class="dropdown-menu dropdown-success" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765250/main/us_idon5i.png" alt="" srcset="" height="20px" width="20px">$</a>
-            <a class="dropdown-item" href="#"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765412/main/uk_fr3emi.png" alt="" srcset="" height="20px" width="20px">£</a>
-            <a class="dropdown-item" href="#"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765346/main/niger_mhsn4g.png" alt="" srcset="" height="20px" width="20px">₦</a>
-            <a class="dropdown-item" href="#"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765322/main/ken_ncfp3w.png" alt="" srcset="" height="20px" width="20px">K</a>
-            <a class="dropdown-item" href="#"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765467/main/rw_zsthrf.png" alt="" srcset="" height="20px" width="20px">R₣</a>
-          </div>
-        </li>
-      </ul>
-    </div>
+{% extends "navbar.html" %}
+<!-- {% load static %} -->
+
+{% block forex %}
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle modeBox" id="navbarDropdownMenuLink" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">GHS ₵</a>
+  <div class="dropdown-menu dropdown-success dropBox" aria-labelledby="navbarDropdownMenuLink">
+    <button class="dropdown-item" data-mode="usd" ><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765250/main/us_idon5i.png"  height="20px" width="20px">$</button>
+    <button class="dropdown-item" data-mode="gbp"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765412/main/uk_fr3emi.png"  height="20px" width="20px">£</button>
+    <button class="dropdown-item" data-mode="ngn"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765346/main/niger_mhsn4g.png"  height="20px" width="20px">₦</button>
+    <button class="dropdown-item" data-mode="kes"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765322/main/ken_ncfp3w.png"  height="20px" width="20px">K</button>
+    <!-- <button class="dropdown-item" data-mode="rw"><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765467/main/rw_zsthrf.png"  height="20px" width="20px">R₣</button> -->
+    <button class="dropdown-item" data-mode="ghs" ><img src="https://res.cloudinary.com/dvnemzw0z/image/upload/v1681765225/main/gh_prdqp3.png"  height="20px" width="20px">₵</button>
   </div>
-</nav>
+</li>
+
+
+<script>
+  const modeBox = document.querySelector('.modeBox')
+  const curs = document.querySelectorAll('.dropBox button')
+  var curDay = new Date().getDate()
+  var curMonth = new Date().getMonth()
+  var currencyStamp = `${curDay},${curMonth}`
+
+  const getCurrency =()=>{
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer 25765489b0914c329a129ac15aef40e6");
+
+    var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+    };
+
+    fetch("https://openexchangerates.org/api/latest.json?app_id=25765489b0914c329a129ac15aef40e6", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      console.log('memem')
+      localStorage.setItem('usd', (JSON.parse(result).rates['GHS']).toFixed(2))
+      localStorage.setItem('gbp', ((1/JSON.parse(result).rates['GBP']) * (JSON.parse(result).rates['GHS'])).toFixed(2))
+      localStorage.setItem('ngn', ((1/JSON.parse(result).rates['NGN']) * (JSON.parse(result).rates['GHS'])).toFixed(2))
+      localStorage.setItem('kes', ((1/JSON.parse(result).rates['KES']) * (JSON.parse(result).rates['GHS'])).toFixed(2))
+    })
+    .catch(error => console.log('error', error));
+  } 
+  // getCurrency()
+
+  const makeForex =()=>{
+    if(!localStorage.getItem('currencyStamp')){
+      localStorage.setItem('currencyStamp', currencyStamp)
+      getCurrency()
+    }else{
+      if(localStorage.getItem('currencyStamp') != currencyStamp){
+        getCurrency()
+      }else{
+        var empty = 'already exists'
+      }
+    }
+  }
+
+  const dropBox = document.querySelector('.dropBox')
+  dropBox.onclick =()=>{
+    console.log('ascac')
+    makeForex()
+  }
+</script>
+{% endblock forex %}
+
+
+
+  
