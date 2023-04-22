@@ -404,41 +404,25 @@ import requests
 from uuid import uuid4
 
 def testpay(request):
-    # url = "https://smp.hubtel.com/api/merchants/2017026/send/mobilemoney"
-    # token = str(uuid4())
-    # payload = json.dumps({
-    #     "RecipientName":"Joe Doe",
-    #     "RecipientMsisdn":"233558420368",
-    #     "CustomerEmail": "recipient@gmail.com",
-    #     "Channel":"mtn-gh",
-    #     "Amount":0.1,
-    #     "PrimaryCallbackUrl":"https://www.google.com/",
-    #     "Description": "Withdrawal",
-    #     "ClientReference":token
-    # })
-    # headers = {
-    #     'Content-Type': 'application/json',
-    #     'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
-    # }
-    # response = requests.request("POST", url, headers=headers, data=payload)
-
-    url = "https://openexchangerates.org/api/latest.json?app_id=25765489b0914c329a129ac15aef40e6"
-
-    payload={}
+    url = "https://smp.hubtel.com/api/merchants/2017026/send/mobilemoney"
+    token = str(uuid4())
+    payload = json.dumps({
+        "RecipientName":"Joe Doe",
+        "RecipientMsisdn":"233558420368",
+        "CustomerEmail": "recipient@gmail.com",
+        "Channel":"mtn-gh",
+        "Amount":0.1,
+        "PrimaryCallbackUrl":"https://www.google.com/",
+        "Description": "Withdrawal",
+        "ClientReference":token
+    })
     headers = {
-        'Authorization': 'Bearer 25765489b0914c329a129ac15aef40e6'
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
     }
-    response = requests.request("GET", url, headers=headers, data=payload)
-    ghs =  json.loads(response.text)['rates']['GHS']
-    gbp =  json.loads(response.text)['rates']['GBP']
-    ngn =  json.loads(response.text)['rates']['NGN']
-    kes =  json.loads(response.text)['rates']['KES']
-
+    response = requests.request("POST", url, headers=headers, data=payload)
     context = {
-        'info' : response.text,
-        'ghs' : ghs,
-        'gbp' : gbp,
-        'ngn' : ngn,
-        'kes' : kes
+        'info' : response.text
     }
+    
     return render(request, 'testpay.html', context)
