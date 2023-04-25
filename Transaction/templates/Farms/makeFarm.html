@@ -249,6 +249,8 @@
                   <br>
                   <td class="font-weight-bold">
                     <strong id="ros_max"><div class="icon_box"><small id="icon">.</small><small id="icon">.</small><small id="icon">.</small></div></strong>
+                    <br>
+                    <small id="ros_max_add" style="color: rgb(106, 106, 106);">+ 0</small>
                   </td>
 
                 </div>
@@ -259,6 +261,8 @@
                   <br>
                   <td class="font-weight-bold">
                     <strong id="ros_min"><div class="icon_box"><small id="icon">.</small><small id="icon">.</small><small id="icon">.</small></div></strong>
+                    <br>
+                    <small id="ros_min_add" style="color: rgb(106, 106, 106);">+ 0</small>
                   </td>
 
                 </div>
@@ -365,6 +369,8 @@
     const total_cost = document.getElementById('total_cost')
     const ros_min = document.getElementById('ros_min')
     const ros_max = document.getElementById('ros_max')
+    const ros_min_add = document.getElementById('ros_min_add')
+    const ros_max_add = document.getElementById('ros_max_add')
     const service_charge = document.getElementById('service')
     var price = parseInt('{{farm.price}}')
     var rosMin_rate = parseInt('{{farm.ros_min}}') 
@@ -385,8 +391,10 @@
       units_acre.value = eval(unit_val/10) + ' ' + 'acres'
       // service_charge.innerHTML = 'GH₵' + ' ' + eval((serve/100)*(unit_val * price)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
       total_cost.innerHTML = 'GH₵' + ' ' + eval(unit_val * price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      ros_min.innerHTML =  'GH₵' + ' ' + (eval((rosMin_rate/100)*(unit_val * price))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      ros_max.innerHTML =  'GH₵' + ' ' + (eval((rosMax_rate/100)*(unit_val * price))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      ros_min.innerHTML =  'GH₵' + ' ' + (eval((unit_val * price) + ((rosMin_rate/100)*(unit_val * price)))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      ros_max.innerHTML =  'GH₵' + ' ' + (eval((unit_val * price) + ((rosMax_rate/100)*(unit_val * price)))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      ros_min_add.innerHTML = '+' + 'GH₵' + ' ' + (eval((rosMin_rate/100)*(unit_val * price))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      ros_max_add.innerHTML = '+' + 'GH₵' + ' ' + (eval((rosMax_rate/100)*(unit_val * price))).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 
     units.oninput =()=>{
