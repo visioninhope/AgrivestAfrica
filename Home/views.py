@@ -404,28 +404,28 @@ import requests
 from uuid import uuid4
 
 def testpay(request):
-    # url = "https://smp.hubtel.com/api/merchants/2017026/send/mobilemoney"
-    # token = str(uuid4())
-    # payload = json.dumps({
-    #     "RecipientName":"Joe Doe",
-    #     "RecipientMsisdn":"233558420368",
-    #     "CustomerEmail": "recipient@gmail.com",
-    #     "Channel":"mtn-gh",
-    #     "Amount":0.1,
-    #     "PrimaryCallbackUrl":"https://www.google.com/",
-    #     "Description": "Withdrawal",
-    #     "ClientReference":token
-    # })
-    # headers = {
-    #     'Content-Type': 'application/json',
-    #     'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
-    # }
-    # response = requests.request("POST", url, headers=headers, data=payload)
-    url = "https://webhook.site/73db4705-d87a-4177-913b-ec42533f51c2"
-
-    payload = {}
-    headers = {}
+    url = "https://smp.hubtel.com/api/merchants/2017026/send/mobilemoney"
+    token = str(uuid4())
+    payload = json.dumps({
+        "RecipientName":"Joe Doe",
+        "RecipientMsisdn":"233558420368",
+        "CustomerEmail": "recipient@gmail.com",
+        "Channel":"mtn-gh",
+        "Amount":1,
+        "PrimaryCallbackUrl":"https://www.google.com/",
+        "Description": "Withdrawal",
+        "ClientReference":token
+    })
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic TjhaWlBtODoxZThiYmI5NzFmMmE0ZmI3OGYwNjIwYzFjMTU0NmYxMg=='
+    }
     response = requests.request("POST", url, headers=headers, data=payload)
+    # url = "https://webhook.site/73db4705-d87a-4177-913b-ec42533f51c2"
+
+    # payload = {}
+    # headers = {}
+    # response = requests.request("POST", url, headers=headers, data=payload)
 
     context = {
         'info' : response.status_code
