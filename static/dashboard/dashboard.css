@@ -51,7 +51,7 @@
 .left::-webkit-scrollbar{
   width: 10px;
   background: whitesmoke;
-  -webkit-animation: appear 0.3s ease;;
+  -webkit-animation: appear 0.3s ease;
 }
 @keyframes appear{
   0%{background: skyblue;}
