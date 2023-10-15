@@ -1,0 +1,42 @@
+{% extends "Cms/cms_base.html" %}
+
+
+{% block content %}
+<header class="text-4xl flex items-center"><i class="material-symbols-outlined text-4xl">chevron_left</i> Edit Team Member</header>
+<form id="editForm" class="flex gap-10 flex-wrap flex-col items-start" enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+    <input type="text" name="name" value="{{team.name}}" class="w-full border border-black-600 h-10 py-2 px-2" placeholder="Title" required>
+    <input type="text" name="position" value="{{team.position}}" class="w-full border border-black-600 h-10 py-2 px-2" placeholder="Position" required>
+    <textarea name="bio"  class="w-full border border-black-600 h-56 resize-none py-2 px-2" placeholder="Description" required>{{team.bio}}</textarea>
+    <label for="addImage" class="border p-2 rounded-sm bg-blue-300 cursor-pointer text-white border-black-600">
+      Add Image
+    </label>
+    <input type="file" name="image" id="addImage" accept="image/*" style="display: none;">
+    <img src="{{team.image.url}}" class="max-h-96"></img>
+
+    <input type="text" name="type" id="type" value="save" style="display: none;">
+    <nav class="flex gap-5">
+      <button type="button" onclick="saveState()" class="bg-zinc-700 text-white p-2 rounded">Save</button>
+      <button type="button" onclick="deleteState()" class="bg-red-400 text-white p-2 rounded">Delete</button>
+    </nav>
+</form>
+
+<script>
+  const editForm = document.getElementById('editForm');
+  const formType = document.getElementById('type');
+
+  const saveState =()=>{
+    formType.value = 'save';
+    editForm.submit()
+  }
+
+  const deleteState =()=>{
+    formType.value = 'delete';
+    editForm.submit()
+  }
+
+</script>
+
+
+{% endblock content %}
+  

@@ -46,4 +46,15 @@ urlpatterns = [
 
     path('logout', views.logout_user, name='logout'),
     path('testpay', views.testpay),
+
+    path('cms_team', views.cms_team, name='cms_team_page'),
+    path('cms_add_team', views.cms_add_team, name='cms_add_team_page'),
+    path('cms_edit_team/<int:id>', views.cms_edit_team, name='cms_edit_team_page'),
+    path('cms_board', views.cms_board, name='cms_board_page'),
+    path('cms_add_board', views.cms_add_board, name='cms_add_board_page'),
+    path('cms_edit_board/<int:id>', views.cms_edit_board, name='cms_edit_board_page'),
+    path('cms_advisor', views.cms_advisor, name='cms_advisor_page'),
+    path('cms_add_advisor', views.cms_add_advisor, name='cms_add_advisor_page'),
+    path('cms_edit_advisor/<int:id>', views.cms_edit_advisor, name='cms_edit_advisor_page')
+
 ]

@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.utils.text import slugify
 from Asset.models import Partner,Trade,Farm,Produce
 
-
 class TradeInvoice(models.Model):
     name = models.CharField(max_length=100,unique=True)
     customer = models.ForeignKey(User, on_delete=models.PROTECT)

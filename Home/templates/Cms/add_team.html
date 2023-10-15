@@ -1,0 +1,22 @@
+{% extends "Cms/cms_base.html" %}
+
+
+{% block content %}
+<header class="text-4xl flex items-center"><i class="material-symbols-outlined text-4xl">chevron_left</i> Add Team Member</header>
+<form class="flex gap-10 flex-wrap flex-col items-start" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="name" class="w-full border border-black-600 h-10 py-2 px-2" placeholder="Name" required>
+    <input type="text" name="position" class="w-full border border-black-600 h-10 py-2 px-2" placeholder="Position" required>
+    <textarea name="bio" class="w-full border border-black-600 h-56 resize-none py-2 px-2" placeholder="Bio" required></textarea>
+    <label for="addImage" style="position: relative;" class="border p-2 rounded-sm bg-blue-300 cursor-pointer text-white border-black-600">
+      Add Image
+      <input type="file" name="image" id="addImage" accept="image/*" style="height: 1px; width: 1px; position: absolute;" required>
+    </label>
+    <img src="" class="max-h-96"></img>
+    <nav class="flex gap-5">
+      <button class="bg-zinc-700 text-white p-2 rounded">Save</button>
+    </nav>
+</form>
+
+{% endblock content %}
+  

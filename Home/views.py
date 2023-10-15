@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from urllib.parse import urlparse, parse_qs
 import math,threading
 from django.core.mail import EmailMessage
-from .models import Inbox
+from .models import Inbox,Team,Board,Advisor
 from Log.models import User,Sponsor,Farmer,Offtaker,Profile
 from Transaction.models import TradeInvoice,FarmInvoice,ProduceInvoice
 from Asset.models import Trade,Farm
@@ -400,6 +400,95 @@ def logout_user(request):
     logout(request)
     return redirect('homepage')
 
+def create_item(request, Obj):
+    name = request.POST.get('name')
+    position = request.POST.get('position')
+    bio = request.POST.get('bio')
+    image = request.FILES['image']
+    Obj.objects.create(name=name, position=position, bio=bio, image=image)
+
+def edit_item(request, item):
+    form_type = request.POST.get('type')
+    if form_type == 'delete':
+        item.delete()
+    else:
+        name = request.POST.get('name')
+        position = request.POST.get('position')
+        bio = request.POST.get('bio')            
+        item.name = name
+        item.position = position
+        item.bio = bio
+        if 'image' in request.FILES:
+            image = request.FILES['image']
+            item.image = image
+        item.save()
+
+def cms_team(request):
+    context = {
+        'teams' : Team.objects.all()
+    }
+    return render(request, 'Cms/team.html', context)
+
+def cms_add_team(request):
+    if request.method == 'POST':
+        create_item(request, Team)
+        return redirect('cms_team_page')
+    return render(request, 'Cms/add_team.html')
+
+def cms_edit_team(request, id):
+    team = Team.objects.get(id=id)
+    if request.method == 'POST':
+        edit_item(request, team)
+        return redirect('cms_team_page')
+    context = {
+        'team' : team
+    }
+    return render(request, 'Cms/edit_team.html', context)
+
+def cms_board(request):
+    context = {
+        'boards' : Board.objects.all()
+    }
+    return render(request, 'Cms/board.html', context)
+
+def cms_add_board(request):
+    if request.method == 'POST':
+        create_item(request, Board)
+        return redirect('cms_board_page')
+    return render(request, 'Cms/add_board.html')
+
+def cms_edit_board(request, id):
+    board = Board.objects.get(id=id)
+    if request.method == 'POST':
+        edit_item(request, board)
+        return redirect('cms_board_page')
+    context = {
+        'board' : board
+    }
+    return render(request, 'Cms/edit_board.html', context)
+
+def cms_advisor(request):
+    context = {
+        'advisors' : Advisor.objects.all()
+    }
+    return render(request, 'Cms/advisor.html', context)
+
+def cms_add_advisor(request):
+    if request.method == 'POST':
+        create_item(request, Advisor)
+        return redirect('cms_advisor_page')
+    return render(request, 'Cms/add_advisor.html')
+
+def cms_edit_advisor(request, id):
+    advisor = Advisor.objects.get(id=id)
+    if request.method == 'POST':
+        edit_item(request, advisor)
+        return redirect('cms_advisor_page')
+    context = {
+        'advisor' : advisor
+    }
+    return render(request, 'Cms/edit_advisor.html', context)
+
 import requests
 from uuid import uuid4
 
@@ -432,3 +521,5 @@ def testpay(request):
     }
     
     return render(request, 'testpay.html', context)
+
+

@@ -18,7 +18,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 # DEBUG = True
 
-ALLOWED_HOSTS = ['agrivestafrica-production.up.railway.app','www.agrivestafrica.com','agrivestafrica.com']
+ALLOWED_HOSTS = ['agrivestafrica-production.up.railway.app','www.agrivestafrica.com','agrivestafrica.com','127.0.0.1']
 # ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'Log.User'
@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'robots',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'graphene_django',
 ]
 
 SITE_ID = 1
@@ -178,11 +179,11 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME' : 'dvnemzw0z',
@@ -192,12 +193,4 @@ CLOUDINARY_STORAGE = {
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-
-# CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:8000']
-
-
-# INTERNAL_IPS = [
-#     # ...
-#     "127.0.0.1",
-#     # ...
-# ]
+CORS_ALLOW_ALL_ORIGINS = True
